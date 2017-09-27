@@ -1,0 +1,46 @@
+//
+//  yxtd.pch
+//  yxtd
+//
+//  Created by qin on 2017/9/13.
+//  Copyright © 2017年 qin. All rights reserved.
+//
+
+#ifndef yxtd_pch
+#define yxtd_pch
+
+
+#import "UIImage+TZRenderImage.h"
+#import "UIColor+Hex.h"
+#import "UIView+Frame.h" 
+
+
+//高德地图key
+#define kAPIKey @"4166d89247116be10d43d37df3532fa1"
+
+
+
+#define KscreenW [UIScreen mainScreen].bounds.size.width
+
+#define KscreenH [UIScreen mainScreen].bounds.size.height
+
+//RGB值
+#define COLORWITHRGB(r,g,b)  [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0f]
+
+//黑
+#define  BlackHexColor [UIColor colorWithHexString:@"#313a3f" alpha:1];
+//绿
+#define  GreenkHexColor [UIColor colorWithHexString:@"#00dbdc" alpha:1];
+//红
+#define  RedkHexColor [UIColor colorWithHexString:@"fasc4a" alpha:1];
+
+
+//#define  btnLineColor [UIColor colorWithHexString:@"E7E7E7" alpha:1];
+#define  btnLineColor [UIColor colorWithHexString:@"d6d8d9" alpha:0.5];
+
+
+#define FourInchHeight 568
+#define FourPointSevenInchHeight 667
+#define FivePointFiveInchHeight 960
+
+#endif /* yxtd_pch */
