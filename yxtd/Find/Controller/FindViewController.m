@@ -8,6 +8,11 @@
 
 #import "FindViewController.h"
 #import "CDFindHeaderView.h"
+#import "FindOneCell.h"
+#import "FindTwoCell.h"
+#import "ExchangeVC.h"
+#import "TopicVC.h"
+#import <AFNetworking.h>
 
 
 
@@ -21,6 +26,9 @@
 @property (nonatomic,assign) int num;
 @property (nonatomic,strong) NSArray*imageArray;
 
+@property (nonatomic,strong) UIButton*button;
+@property (nonatomic,strong) UIWindow*window;
+
 
 
 @end
@@ -28,6 +36,11 @@
 @implementation FindViewController
 
  static NSString*string=@"cell";
+
+ static NSString *SectionOneCell = @"FindOneCell";
+
+ static NSString *SectionTwoCell = @"FindTwoCell";
+
 
 
 - (void)viewDidLoad {
@@ -43,78 +56,210 @@
     UICollectionView*collectionView=[[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)) collectionViewLayout:flowlayout];
     
     self.collectionView=collectionView;
-    
-    self.collectionView.backgroundColor=[UIColor grayColor];
-    
+    _collectionView.backgroundColor=[UIColor whiteColor];
     _collectionView.delegate=self;
     _collectionView.dataSource=self;
     _collectionView.showsVerticalScrollIndicator=NO;
     
     //纯代码注册
+    
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:string];
+    
+    [self.collectionView registerClass:[FindOneCell class] forCellWithReuseIdentifier:SectionOneCell];
+    
+
+    [self.collectionView registerClass:[FindTwoCell class] forCellWithReuseIdentifier:SectionTwoCell];
+    
     
     //组头注册
  
     [collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerView"];
     
     [self.view addSubview:self.collectionView];
-
     
+    [self createButton];
+  
+}
+
+
+#pragma mark 创建悬浮按钮
+
+- (void)createButton
+{
+    _button = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    [_button setBackgroundImage:[UIImage imageNamed:@"home_back_top"] forState:UIControlStateNormal];
+    
+    _button.frame = CGRectMake(KscreenW-60, KscreenH-106, 42, 42);
+    
+    [_button addTarget:self action:@selector(resignWindow) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:_button];
+
     
 }
 
+
+/**
+ *  关闭悬浮的window
+ */
+- (void)resignWindow
+{
+    
+    
+    UIAlertView*alter=[[UIAlertView alloc] initWithTitle:@"悬浮按钮提示" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定" , nil];
+    [alter show];
+
+    
+}
+
+
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    
+    _button.hidden=YES;
+}
+
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+
+    _button.hidden=NO;
+}
+
+//-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+//     _button.hidden=NO;
+//
+//}
 
 #pragma mark--代理方法的实现
 //item的大小
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    return CGSizeMake((CGRectGetWidth(self.view.frame)-1)/2, CGRectGetHeight((self.view.frame))/2) ;
+    if (indexPath.section==0) {
+        
+        return CGSizeMake(KscreenW,76);
+        
+    }else{
+        
+    return CGSizeMake((CGRectGetWidth(self.view.frame)-1)/2, 201) ;
+    }
     
 }
 
 //item的个数
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)sectio{
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
+    if (section==0) {
+        
+        return 1;
+        
+    }else{
+        
+     
+        
+        return 10;
+    }
+}
+
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     
-    return 20;
-    
+    return 2;
 }
 
 //填充cell
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     
-    UICollectionViewCell*cell=[collectionView dequeueReusableCellWithReuseIdentifier:string forIndexPath:indexPath];
+    if (indexPath.section==0) {
+        
+        FindOneCell *oneCell = [FindOneCell cellWithCollectionView:collectionView withIndexPath:indexPath];
+        
+        oneCell.backgroundColor=[UIColor whiteColor];
+        
+        oneCell.btTagBlock = ^(NSInteger tag) {
+            if (!tag) {
+                
+             
+                UIAlertView*alter=[[UIAlertView alloc] initWithTitle:@"提示1" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定" , nil];
+                
+                [alter show];
+
+              
+            }else if (tag==1){
+
+                ExchangeVC*vc=[[ExchangeVC alloc] init];
+
+                [self presentViewController:vc animated:YES completion:^{
+                    
+                    vc.hidesBottomBarWhenPushed=YES;
+                    
+                }];
+                
+                
+            }else{
+                
+                TopicVC*topVc=[[TopicVC alloc] init];
+                
+                [self presentViewController:topVc animated:YES completion:^{
+                    
+                   topVc.hidesBottomBarWhenPushed=YES;
+                    
+                }];
+                
+            }
+        };
+        
+        return oneCell;
+        
+    }else {
+        
+        FindTwoCell *cell = [FindTwoCell cellWithCollectionView:collectionView withIndexPath:indexPath];
+        
+        cell.backgroundColor=[UIColor whiteColor];
+      
+       
+        return cell;
+    }
     
-    cell.backgroundColor=[UIColor purpleColor];
     
-    return cell;
+    return nil;
+
+
 }
 
 
 #pragma mark - 头部视图内容
 // 分组头部视图
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+    
+  
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
         
         if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
             UICollectionReusableView *header=[collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"headerView" forIndexPath:indexPath];
-            
-            //添加头视图的内容
-            [self addHeaderView];
-            self.headerView.delegete=self;
-            //头视图添加view
-            [header addSubview:self.headerView];
-            
-            
-            //头部视图点击
-            UITapGestureRecognizer*tap=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapClick)];
-            
-            tap.numberOfTapsRequired = 1;
-            
-            [self.headerView addGestureRecognizer:tap];
-            
-            return header;
+
+            if (indexPath.section==0) {
+                
+                //添加头视图的内容
+                [self addHeaderView];
+                self.headerView.delegete=self;
+                //头视图添加view
+                [header addSubview:self.headerView];
+
+                //头部视图点击
+                UITapGestureRecognizer*tap=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapClick)];
+                
+                tap.numberOfTapsRequired = 1;
+                
+                [self.headerView addGestureRecognizer:tap];
+                
+                return header;
+            }else{
+                
+                UIView *style = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KscreenW,10)];
+                style.backgroundColor = COLORWITHRGB(244, 245, 245);
+                [header addSubview:style];
+
+                return header;
+            }
       }
     }
     
@@ -125,7 +270,7 @@
 //回调方法
 -(void)DataBack:(int )index{
     
-     _num=index-1;
+     _num=index;
    
     
     
@@ -134,12 +279,9 @@
 -(void)tapClick{
     
     
-    if(self.num==_imageArray.count||self.num==0) {
-        
-        
-    UIAlertView*alter=[[UIAlertView alloc] initWithTitle:@"提示" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定" , nil];
+    UIAlertView*alter=[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"点击了第%d张图片",_num] message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定" , nil];
     [alter show];
-    }
+    
 
     
 }
@@ -159,7 +301,8 @@
     self.imageArray=imagesURLStrings;
     
 
-    CDFindHeaderView*headerView=[[CDFindHeaderView alloc] initWithFrame:CGRectMake(0, 0, KscreenW, KscreenW/2) NSArray:imagesURLStrings];
+    CDFindHeaderView*headerView=[[CDFindHeaderView alloc] initWithFrame:CGRectMake(0, -20, KscreenW, KscreenW/2+20) NSArray:imagesURLStrings];
+    headerView.backgroundColor=[UIColor redColor];
     self.headerView=headerView;
  
     
@@ -167,15 +310,18 @@
 #pragma mark - 头部视图大小
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     
-    CGSize size = CGSizeMake(KscreenW, KscreenW/2);
-    return size;
+    if (section==0) {
+        CGSize size = CGSizeMake(KscreenW, KscreenW/2);
+        return size;
+        
+    }else{
+       
+        CGSize size = CGSizeMake(KscreenW, 10);
+        
+        return size;
+    }
+   
 }
-
-
-
-
-
-
 
 
 #pragma mark - 视图即将出现

@@ -6,54 +6,59 @@
 //  Copyright © 2017年 qin. All rights reserved.
 //
 
+
+#define showViewHeight 110
 #import "RunViewController.h"
+#import "JSQuanShowView.h"
+#import "SelectableOverlay.h"
+#import "RunLocationGaoDeManager.h"
+#import "JSCenterAnnotation.h"
+#import "DetailedViewController.h"
 
-#import <MAMapKit/MAMapKit.h>
-#import <AMapSearchKit/AMapSearchKit.h>
+#import "ShowAnimationView.h"
+#import "MyTabarController.h"
 
-// 自定义大头针 气泡
-#import "CurrentLocationAnnotation.h"
-#import "CustomAnnotationView.h"
 
-@interface RunViewController ()<MAMapViewDelegate,AMapSearchDelegate>
 
-// 地图
-@property (nonatomic, strong) MAMapView            *mapView;
+@interface RunViewController ()<MAMapViewDelegate,AMapNaviWalkManagerDelegate>
+{
+    
+    NSMutableArray *all_arrayList;
+    RunLocationGaoDeManager *currentPosition;
+    
+    BOOL isShowView;//上部自行车信息框弹出
+    BOOL isMoveView;//是否移动地图
+    CLLocationCoordinate2D currentCoordinate;
+    
+    JSCenterAnnotation *centerAnnotaion;
+    MAAnnotationView *centerAnnoView;
+    
+    AMapNaviWalkManager *js_walkManager;
+    
+    UIView*myView;
+    
+}
 
-// 搜索引擎
-@property (nonatomic, strong) AMapSearchAPI        *search;
 
-// 自定义大头针
-@property (nonatomic, strong) UIImageView          *centerAnnotationView;
-// 防止重复点击
-@property (nonatomic, assign) BOOL                  isMapViewRegionChangedFromTableView;
-// 是否正在定位
-@property (nonatomic, assign) BOOL                  isLocated;
+@property (nonatomic,strong) MAMapView *mapView;
+@property (nonatomic,strong) JSQuanShowView *showView;
 
-// 定位
-@property (nonatomic, strong) UIButton             *locationBtn;
+@property (nonatomic,strong) ShowAnimationView*animationView1;
 
-// 用户自定义大头针
-@property (nonatomic, strong) UIImage              *imageLocated;
-@property (nonatomic, strong) UIImage              *imageNotLocate;
+@property (nonatomic,strong) UIButton *btn_local;
+@property (nonatomic,assign) CLLocationCoordinate2D startCoordinate;
+@property (nonatomic,assign) CLLocationCoordinate2D endCoordinate;
 
-// 选项卡
-@property (nonatomic, strong) UISegmentedControl    *searchTypeSegment;
-
-// 当前选中类型
-@property (nonatomic, copy) NSString               *currentType;
-
-// 当前类型下标
-@property (nonatomic, copy) NSArray                *searchTypes;
-
-// 坐标数据源
-@property (nonatomic, strong) NSMutableArray *searchPoiArray;
+@property (nonatomic, strong) AMapNaviPoint *startPoint;
+@property (nonatomic, strong) AMapNaviPoint *endPoint;
 
 
 @property (nonatomic,weak) UIView*bgView;
 @property (nonatomic,weak) UIView*popView;
 @property (nonatomic,weak) UIView*oneView;
 
+@property (nonatomic,copy) NSString*address;
+@property (nonatomic,copy) NSString *label_distance;
 
 
 
@@ -61,14 +66,12 @@
 
 @implementation RunViewController
 
-
-// 懒加载(装载周边搜索数据坐标)
--(NSMutableArray *)searchPoiArray
-{
-    if (!_searchPoiArray) {
-        _searchPoiArray = [[NSMutableArray alloc]init];
-    }
-    return _searchPoiArray;
+- (void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
+   js_walkManager.delegate = self;
+    
 }
 
 
@@ -76,266 +79,447 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    
+  
+    [self setUpData];
+
+    [self setUpMapView];
+
     //导航栏初始化及添加按钮
-     [self setUpNavi];
+    [self setUpNavi];
+ 
     
-     [self initSearch];
-    
-     [self initMapView];
-    
-    
-   
 }
-
-#pragma mark -周边搜索
--(void)initSearch{
+- (void)setUpData{
     
-    self.search = [[AMapSearchAPI alloc] init];
-    self.search.delegate = self;
-}
-
-#pragma mark - 初始化地图
-// 主视图
--(void)initMapView{
+    all_arrayList = [[NSMutableArray alloc]init];
+    
+    CLLocationCoordinate2D coor;
+    coor.longitude = [self.show_longitude doubleValue];
+    coor.latitude = [self.show_latitude doubleValue];
+    currentCoordinate = coor;
+    
+    isMoveView = YES;
     
     
-    self.mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), self.view.bounds.size.height)];
-    self.mapView.delegate = self;
-    [self.view addSubview:self.mapView];
-    self.isLocated = NO;
-}
-
-//不显示状态栏
-//-(BOOL)prefersStatusBarHidden{
-//    
-//    return YES;
-//}
-
-
-#pragma mark - MapViewDelegate
-/**
- * @brief 地图区域改变完成后会调用此接口
- * @param mapView 地图View
- * @param animated 是否动画
- */
-- (void)mapView:(MAMapView *)mapView regionDidChangeAnimated:(BOOL)animated
-{
-    // 防止重复点击
-    if (!self.isMapViewRegionChangedFromTableView && self.mapView.userTrackingMode == MAUserTrackingModeNone)
-    {
-        [self actionSearchAroundAt:self.mapView.centerCoordinate];
-    }
-    self.isMapViewRegionChangedFromTableView = NO;
+    
+   NSData *JSONData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"nearBicycle" ofType:@"json"]];
+  
+    NSDictionary*dataDict=[NSJSONSerialization JSONObjectWithData:JSONData options:NSJSONReadingMutableContainers error:nil];
+    NSArray *result = dataDict[@"bicyles"];
+    [all_arrayList addObjectsFromArray:result];
+    
 }
 
 
-
-
-#pragma mark - userLocation
-/**
- * @brief 当userTrackingMode改变时，调用此接口
- * @param mapView 地图View
- * @param mode 改变后的mode
- * @param animated 动画
- */
-- (void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation
-{
-    if(!updatingLocation)
-        return ;
+#pragma mark -初始化地图
+- (void)setUpMapView{
     
-    if (userLocation.location.horizontalAccuracy < 0)
-    {
-        return ;
-    }
+  
     
-    if (!self.isLocated)
-    {
-        self.isLocated = YES;
-        self.mapView.userTrackingMode = MAUserTrackingModeFollow;
-        [self.mapView setCenterCoordinate:CLLocationCoordinate2DMake(userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude)];
-        
-        [self actionSearchAroundAt:userLocation.location.coordinate];
-    }
-}
+    ///初始化地图
+    self.mapView = [[MAMapView alloc] init];
 
-
-
-/**
- * @brief 当userTrackingMode改变时，调用此接口
- * @param mapView 地图View
- * @param mode 改变后的mode
- * @param animated 动画
- */
-- (void)mapView:(MAMapView *)mapView  didChangeUserTrackingMode:(MAUserTrackingMode)mode animated:(BOOL)animated
-{
-    //定位按钮随着大头针的位置改变选择样式
-    if (mode == MAUserTrackingModeNone)
-    {
-        [self.locationBtn setImage:self.imageNotLocate forState:UIControlStateNormal];
-    }
-    else
-    {
-        [self.locationBtn setImage:self.imageLocated forState:UIControlStateNormal];
-    }
-}
-
-/**
- * @brief 定位失败后，会调用此函数
- * @param mapView 地图View
- * @param error 错误号，参考CLError.h中定义的错误号
- */
-- (void)mapView:(MAMapView *)mapView didFailToLocateUserWithError:(NSError *)error
-{
-    NSLog(@"----报错的原因：error = %@",error);
-}
-
-
-/**
- * @brief 根据anntation生成对应的View
- * @param mapView 地图View
- * @param annotation 指定的标注
- * @return 生成的标注View
- */
-- (MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id <MAAnnotation>)annotation
-{
-    
-    // 自定义坐标
-    if ([annotation isKindOfClass:[CurrentLocationAnnotation class]])
-    {
-        static NSString *reuseIndetifier = @"CustomAnnotationView";
-        CustomAnnotationView *annotationView = (CustomAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
-        if (annotationView == nil)
-        {
-            annotationView = [[CustomAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
-        }
-        annotationView.image = [UIImage imageNamed:@"HomePage_nearbyRedPacket"];
-        // 设置为NO，用以调用自定义的calloutView
-        annotationView.canShowCallout = NO;
-        
-        // 设置中心点偏移，使得标注底部中间点成为经纬度对应点
-        annotationView.centerOffset = CGPointMake(0, -18);
-        return annotationView;
-        
-    }
-    return nil;
-}
-
-/**
- * @brief POI查询回调函数
- * @param request  发起的请求，具体字段参考 AMapPOISearchBaseRequest 及其子类。
- * @param response 响应结果，具体字段参考 AMapPOISearchResponse 。
- */
-- (void)onPOISearchDone:(AMapPOISearchBaseRequest *)request response:(AMapPOISearchResponse *)response
-{
-
-    [self.mapView removeAnnotations:self.searchPoiArray];
-    [self.searchPoiArray removeAllObjects];
-    
-    if (response.pois.count == 0)
-    {
-        return;
-    }
-    //解析response获取POI信息，具体解析见 Demo
-    NSLog(@" >>> %@",response.pois);
-    
-    [response.pois enumerateObjectsUsingBlock:^(AMapPOI *obj, NSUInteger idx, BOOL *stop) {
-        
-        // 这里使用了自定义的坐标是为了区分系统坐标 不然蓝点会被替代
-        CurrentLocationAnnotation *annotation = [[CurrentLocationAnnotation alloc] init];
-        [annotation setCoordinate:CLLocationCoordinate2DMake(obj.location.latitude, obj.location.longitude)];
-        [annotation setTitle:[NSString stringWithFormat:@"%@ - %ld米", obj.name, (long)obj.distance]];
-        [annotation setSubtitle:obj.address];
-        
-        [self.searchPoiArray addObject:annotation];
+    ///把地图添加至view
+   [self.view addSubview:self.mapView];
+   [self.mapView mas_makeConstraints:^(MASConstraintMaker *make) {
+       make.edges.equalTo(self.view);
     }];
     
-    [self showPOIAnnotations];
+    self.mapView.delegate = self;
+    
+    self.mapView.zoomLevel = 15;   //缩放等级
+    
+    self.mapView.showsUserLocation = true; //是否显示用户位置
+    self.mapView.userTrackingMode = MAUserTrackingModeFollow;   //跟随用于位置更新
+    
+    self.mapView.showsCompass=NO;  //是否显示指南针
+    self.mapView.showsScale = YES;          ///是否显示比例尺
+    self.mapView.showTraffic = NO;        // 是否显示交通
+    self.mapView.showsBuildings = NO;      // 是否显示建筑物
+    
+   self.mapView.scaleOrigin=CGPointMake(20, -KscreenH+64); ///比例尺的位置
+   
+    
+    /** MAMapTypeStandard = 0,  ///< 普通地图
+     MAMapTypeSatellite,     ///< 卫星地图
+     MAMapTypeStandardNight, ///< 夜间视图
+     MAMapTypeNavi,          ///< 导航视图
+     MAMapTypeBus
+     
+     */
+    
+    //self.mapView.mapType=MAMapTypeBus;  //地图样式
+    
+    [self.mapView addAnnotation:centerAnnotaion];
+    
+    [self addAnnotations];
+    
+    MAUserLocationRepresentation *localPoint = [[MAUserLocationRepresentation alloc] init];
+    localPoint.showsHeadingIndicator = YES;
+    
+    [self.mapView updateUserLocationRepresentation:localPoint];
+    //初始化步行导航
+    js_walkManager = [[AMapNaviWalkManager alloc]init];
+    js_walkManager.delegate = self;
+    
+    self.btn_local = [[UIButton alloc]init];
+    [self.btn_local setImage:[UIImage imageNamed:@"gpsnormal"] forState:0];
+    [self.btn_local addTarget:self action:@selector(local) forControlEvents:1 <<  6];
+    [self.view addSubview:self.btn_local];
+    
+    [self.btn_local mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(@22);
+        make.bottom.equalTo(@-180);
+    }];
+
+    
+    //第一进入app显示引导图
+       [self firstLogin];
+    
+    
+    //定位精度圈
+    //MAUserLocationRepresentation*r=[[MAUserLocationRepresentation alloc] init];
+
+   // r.fillColor = [UIColor redColor];///精度圈 填充颜色, 默认
+    
+  
+   // r.enablePulseAnnimation = YES;///内部蓝色圆点是否使用律动效果, 默认YES
+   // r.locationDotFillColor = [UIColor grayColor];///定位点蓝色圆点颜色，不设置默认蓝色
+ 
+   // [self.mapView updateUserLocationRepresentation:r];
+}
+
+#pragma mark -第一次进入显示引导图
+
+-(void)firstLogin{
+
+    self.animationView1=[[ShowAnimationView alloc] initWithFrame:self.view.bounds];
+    [self.animationView1 showView];
+
+
+
+//     [[UIApplication sharedApplication].keyWindow addSubview:myView];
 }
 
 
-// 设置地图使其可以显示数组中所有的annotation
-- (void)showPOIAnnotations
-{
-    // 向地图窗口添加一组标注
-    [self.mapView addAnnotations:self.searchPoiArray];
+
+//定位按钮点击事件处理
+- (void)local{
     
-    if (self.searchPoiArray.count == 1)
-    {
-        //  如果数组中只有一个则直接设置地图中心为annotation的位置。
-        self.mapView.centerCoordinate = [(MAPointAnnotation *)self.searchPoiArray[0] coordinate];
-        [self.mapView setZoomLevel:16 animated:NO];
+    self.mapView.zoomLevel=15;
+    
+    self.mapView.showsUserLocation = true;
+    
+    self.mapView.userTrackingMode = MAUserTrackingModeFollow;
+}
+
+
+#pragma mark - 添加大头针和动画
+//添加大头针
+- (void)addAnnotations{
+    NSMutableArray *array_annotations = [[NSMutableArray alloc]init];
+    
+    for (NSDictionary *dict in all_arrayList) {
+        MAPointAnnotation *annotation =  [[MAPointAnnotation alloc]init];
+        annotation.coordinate = CLLocationCoordinate2DMake([dict[@"gLat" ] doubleValue], [dict[@"gLng"] doubleValue]);
+        annotation.title = dict[@"name"];
+        annotation.subtitle = [NSString stringWithFormat:@"%@|%@",dict[@"availTotal"],dict[@"emptyTotal"]];
+        [array_annotations addObject:annotation];
+    }
+    [self.mapView addAnnotations:array_annotations];
+}
+
+#pragma mark - mapViewDelete
+- (void)mapView:(MAMapView *)mapView mapWillMoveByUser:(BOOL)wasUserAction{
+    if (!isMoveView) {
+        //不能移动
+        centerAnnotaion.lockedToScreen = NO;
+    }else{
+        centerAnnotaion.lockedToScreen = YES;
     }
 }
 
-
-
-
-#pragma mark - Handle Action
-- (void)actionSearchAroundAt:(CLLocationCoordinate2D)coordinate
-{
-    [self searchReGeocodeWithCoordinate:coordinate];
+- (void)mapInitComplete:(MAMapView *)mapView{
+  
+    centerAnnotaion = [[JSCenterAnnotation alloc]init];
     
-    [self searchPoiWithCenterCoordinate:coordinate];
+    centerAnnotaion.coordinate = currentCoordinate;//self.mapView.centerCoordinate;
     
-    [self centerAnnotationAnimimate];
+    centerAnnotaion.lockedScreenPoint = CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height/2);
+    centerAnnotaion.lockedToScreen = YES;
+    //
+    [self.mapView addAnnotation:centerAnnotaion];
+    
+    [self.mapView showAnnotations:@[centerAnnotaion] animated:YES];
 }
 
 
-
-/**
- * @brief 逆地址编码查询接口
- */
-- (void)searchReGeocodeWithCoordinate:(CLLocationCoordinate2D)coordinate
-{
-    AMapReGeocodeSearchRequest *regeo = [[AMapReGeocodeSearchRequest alloc] init];
+//加载大头针
+- (MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id <MAAnnotation>)annotation{
     
-    regeo.location = [AMapGeoPoint locationWithLatitude:coordinate.latitude longitude:coordinate.longitude];
-    regeo.requireExtension = YES;
+    if ([annotation isMemberOfClass:[MAUserLocation class]]) {
+        
+        return nil;
+    }
     
-    [self.search AMapReGoecodeSearch:regeo];
+    if ([annotation isMemberOfClass:[JSCenterAnnotation class]]) {
+        static NSString *reuseCneterid = @"myCenterId";
+        MAAnnotationView *annotationView= [self.mapView dequeueReusableAnnotationViewWithIdentifier:reuseCneterid];
+        if (!annotationView) {
+            annotationView = [[MAAnnotationView alloc] initWithAnnotation:nil reuseIdentifier:reuseCneterid];
+        }
+        annotationView.image = [UIImage imageNamed:@"homePage_wholeAnchor"];
+        annotationView.canShowCallout = NO;
+        centerAnnoView = annotationView;
+        return annotationView;
+    }
+    
+    static NSString *reuseid = @"myId";
+    
+    MAAnnotationView *annotationView = [self.mapView dequeueReusableAnnotationViewWithIdentifier:reuseid];
+    if (!annotationView) {
+        annotationView = [[MAAnnotationView alloc] initWithAnnotation:nil reuseIdentifier:reuseid];
+    }
+    
+    annotationView.image = [UIImage imageNamed:@"HomePage_nearbyRedPacket"];
+    //    annotationView.canShowCallout = YES;
+    return annotationView;
 }
 
-#pragma mark - 中心点坐标来搜周边的POI
 
-/**
- * @brief 根据中心点坐标来搜周边的POI.
- */
-- (void)searchPoiWithCenterCoordinate:(CLLocationCoordinate2D )coord
-{
-    AMapPOIAroundSearchRequest*request = [[AMapPOIAroundSearchRequest alloc] init];
+//单击地图
+- (void)mapView:(MAMapView *)mapView didSingleTappedAtCoordinate:(CLLocationCoordinate2D)coordinate{
     
-    request.location = [AMapGeoPoint locationWithLatitude:coord.latitude  longitude:coord.longitude];
+    if (isShowView) {
+        
+        [self.showView setHidden:YES];
+        
+        [self.btn_local setHidden:NO];
+    }
     
-    request.radius   = 500;             /// 搜索范围
-    request.types = self.currentType;   ///搜索类型
-    request.sortrule = 0;               ///排序规则
+    self.mapView.zoomLevel = 15;
     
-    [self.search AMapPOIAroundSearch:request];
+    [self.mapView removeAnnotations:self.mapView.annotations];
+    [self.mapView removeOverlays:self.mapView.overlays];
+    
+    [self addAnnotations];
+    [self.mapView addAnnotation:centerAnnotaion];
+    
+    isMoveView = YES;
 }
 
 
-/* 移动窗口弹一下的动画 */
-- (void)centerAnnotationAnimimate
-{
-    [UIView animateWithDuration:0.5
-                          delay:0
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                         CGPoint center = self.centerAnnotationView.center;
-                         center.y -= 20;
-                         [self.centerAnnotationView setCenter:center];
-                     }
-                     completion:nil];
+- (void)mapView:(MAMapView *)mapView didSelectAnnotationView:(MAAnnotationView *)view{
     
-    [UIView animateWithDuration:0.45
-                          delay:0
-                        options:UIViewAnimationOptionCurveEaseIn
-                     animations:^{
-                         CGPoint center = self.centerAnnotationView.center;
-                         center.y += 20;
-                         [self.centerAnnotationView setCenter:center];}
-                     completion:nil];
+    
+    if ([view.annotation isMemberOfClass:[MAUserLocation class]]) {
+        
+        return;
+    }
+    
+    if ([view.annotation isMemberOfClass:[JSCenterAnnotation class]]) {
+        
+        return;
+    }
+  
+  
+    isMoveView = NO;
+    
+    //记录下点击的经纬度
+    NSString *didAddress = view.annotation.title;
+    
+    if (!self.showView) {
+       self.showView = [[JSQuanShowView alloc]initWithFrame:CGRectZero];
+        
+       
+        self.showView.backgroundColor = [UIColor whiteColor];
+        self.showView.alpha = 0.9;
+        [self.view addSubview:self.showView];
+        
+        [UIView animateWithDuration:0.5 animations:^{
+
+           self.showView.frame = CGRectMake(27, KscreenH-171-64, KscreenW-54, 0);
+
+
+        } completion:^(BOOL finished) {
+
+            self.showView.frame = CGRectMake(27, KscreenH-171-64, KscreenW-54, showViewHeight);
+        }];
+    }
+    isShowView = YES;
+    [self.showView setHidden:NO];
+    [self.btn_local setHidden:YES];
+    
+    ZXNWeakSelf(self)
+    self.showView.gotoDetailVC = ^(){
+        [weakself gotoVC];
+    };
+    
+    //星星等级
+    self.showView.statNum=4.5;
+    
+    
+    //self.showView.label_address.text = view.annotation.title;
+//    self.address=view.annotation.title;
+    
+    NSArray *counts = [view.annotation.subtitle componentsSeparatedByString:@"|"];
+    self.showView.label_availTotal.text = counts[0];
+    self.showView.label_emptyTotal.text = counts[1];
+    
+    
+    //步行导航
+    self.startCoordinate = centerAnnotaion.coordinate;
+    self.endCoordinate = view.annotation.coordinate;
+    
+    self.startPoint = [AMapNaviPoint locationWithLatitude:self.startCoordinate.latitude longitude:self.startCoordinate.longitude];
+    
+    self.endPoint = [AMapNaviPoint locationWithLatitude:self.endCoordinate.latitude longitude:self.endCoordinate.longitude];
+    [js_walkManager calculateWalkRouteWithStartPoints:@[self.startPoint] endPoints:@[self.endPoint]];
+    
+    [self.mapView removeAnnotations:self.mapView.annotations];
+    
+    NSMutableArray *array_annotations = [[NSMutableArray alloc]init];
+    [array_annotations addObject:centerAnnotaion];
+    
+    for (NSDictionary *dict in all_arrayList) {
+        MAPointAnnotation *annotation =  [[MAPointAnnotation alloc]init];
+    
+        NSLog(@"%@,%@",dict[@"name"],didAddress);
+        
+        if ([dict[@"name"] isEqualToString:didAddress]) {
+            annotation.coordinate = CLLocationCoordinate2DMake([dict[@"gLat" ] doubleValue], [dict[@"gLng"] doubleValue]);
+            annotation.title = dict[@"name"];
+            annotation.subtitle = [NSString stringWithFormat:@"%@|%@",dict[@"availTotal"],dict[@"emptyTotal"]];
+            [array_annotations addObject:annotation];
+            
+             self.address=annotation.title;
+        }
+        
+        self.address=[NSString stringWithFormat:@"%@,%@",dict[@"name"],didAddress];
+        
+    }
+    
+    [self.mapView addAnnotations:array_annotations];
+    
+    [self.mapView showAnnotations:array_annotations edgePadding:UIEdgeInsetsMake(300, 100, 50, 100) animated:YES];
+    
+}
+
+#pragma mark - AMapNaviWalkManagerDelegate 导航代理
+
+- (void)walkManagerOnCalculateRouteSuccess:(AMapNaviWalkManager *)walkManager{
+    
+    NSLog(@"步行路线规划成功！");
+    
+    if (walkManager.naviRoute == nil){
+        return;
+    }
+    
+    [self.mapView removeOverlays:self.mapView.overlays];
+    
+    //将路径显示到地图上
+    AMapNaviRoute *aRoute = walkManager.naviRoute;
+    int count = (int)[[aRoute routeCoordinates] count];
+    
+    //添加路径Polyline
+    CLLocationCoordinate2D *coords = (CLLocationCoordinate2D *)malloc(count * sizeof(CLLocationCoordinate2D));
+    for (int i = 0; i < count; i++)
+    {
+        AMapNaviPoint *coordinate = [[aRoute routeCoordinates] objectAtIndex:i];
+        coords[i].latitude = [coordinate latitude];
+        coords[i].longitude = [coordinate longitude];
+    }
+    
+    MAPolyline *polyline = [MAPolyline polylineWithCoordinates:coords count:count];
+    
+    SelectableOverlay *selectablePolyline = [[SelectableOverlay alloc] initWithOverlay:polyline];
+    
+    [self.mapView addOverlay:selectablePolyline];
+    free(coords);
+    
+    NSString *subtitle = [NSString stringWithFormat:@"长度:%ld米 | 预估时间:%ld秒 | 分段数:%ld", (long)aRoute.routeLength, (long)aRoute.routeTime, (long)aRoute.routeSegments.count];
+    NSLog(@"%@",subtitle);
+    
+    long walkMinute = walkManager.naviRoute.routeTime / 60;
+    NSString *timeDesc = @"1分钟以内";
+    if (walkMinute > 1){
+        timeDesc = [NSString stringWithFormat:@"%ld分钟",walkMinute];
+    }
+    
+    self.showView.label_minutes.text = timeDesc;
+    //self.showView.label_distance.text = [NSString stringWithFormat:@"%.1fkm",(float)aRoute.routeLength/1000];
+    
+    self.label_distance=[NSString stringWithFormat:@"%.1fkm",(float)aRoute.routeLength/1000];
+}
+
+- (MAOverlayRenderer *)mapView:(MAMapView *)mapView rendererForOverlay:(id<MAOverlay>)overlay{
+    
+    if ([overlay isKindOfClass:[SelectableOverlay class]])
+    {
+        SelectableOverlay * selectableOverlay = (SelectableOverlay *)overlay;
+        id<MAOverlay> actualOverlay = selectableOverlay.overlay;
+        MAPolylineRenderer *polylineRenderer = [[MAPolylineRenderer alloc] initWithPolyline:actualOverlay];
+        
+        polylineRenderer.lineWidth = 4.f;
+        polylineRenderer.strokeColor = selectableOverlay.isSelected ? selectableOverlay.selectedColor : selectableOverlay.regularColor;
+        
+        //是否虚线
+        polylineRenderer.lineDash=YES;
+        
+        return polylineRenderer;
+    }
+    
+    return nil;
+}
+- (void)selecteOverlayWithRouteID:(NSInteger)routeID{
+    
+    [self.mapView.overlays enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id<MAOverlay> overlay, NSUInteger idx, BOOL *stop)
+     {
+         if ([overlay isKindOfClass:[SelectableOverlay class]])
+         {
+             SelectableOverlay *selectableOverlay = overlay;
+             
+             /* 获取overlay对应的renderer. */
+             MAPolylineRenderer * overlayRenderer = (MAPolylineRenderer *)[self.mapView rendererForOverlay:selectableOverlay];
+             
+             if (selectableOverlay.routeID == routeID)
+             {
+                 /* 设置选中状态. */
+                 selectableOverlay.selected = YES;
+                 
+                 /* 修改renderer选中颜色. */
+                 overlayRenderer.fillColor   = selectableOverlay.selectedColor;
+                 overlayRenderer.strokeColor = selectableOverlay.selectedColor;
+                 
+                 /* 修改overlay覆盖的顺序. */
+                 [self.mapView exchangeOverlayAtIndex:idx withOverlayAtIndex:self.mapView.overlays.count - 1];
+             }
+             else
+             {
+                 /* 设置选中状态. */
+                 selectableOverlay.selected = NO;
+                 
+                 /* 修改renderer选中颜色. */
+                 overlayRenderer.fillColor   = selectableOverlay.regularColor;
+                 overlayRenderer.strokeColor = selectableOverlay.regularColor;
+                 
+             }
+             
+             [overlayRenderer glRender];
+         }
+     }];
+}
+
+#pragma mark -跳转详情页
+- (void)gotoVC{
+    
+    DetailedViewController*detailedVC=[[DetailedViewController alloc] init];
+    
+    detailedVC.addressLabel=self.address;
+    
+    detailedVC.distanceLabel=self.label_distance;
+    
+    [self presentViewController:detailedVC animated:YES completion:nil];
 }
 
 
@@ -353,117 +537,8 @@
     self.navigationItem.leftBarButtonItem = leftBarButton;
     
     
-     UIBarButtonItem*rightBarButton=[[UIBarButtonItem alloc] initWithImage:[UIImage imageWithoriginName:@"run_NavLeft"] style:UIBarButtonItemStylePlain target:self action:@selector(rightButton)];
+    UIBarButtonItem*rightBarButton=[[UIBarButtonItem alloc] initWithImage:[UIImage imageWithoriginName:@"run_NavLeft"] style:UIBarButtonItemStylePlain target:self action:@selector(rightButton)];
     self.navigationItem.rightBarButtonItem=rightBarButton;
-    
-}
-
-#pragma mark -搜索周边类型
--(void)initSearchTypeView{
-    
-    self.searchTypes = @[@"办公大夏", @"学校", @"楼宇", @"商场"];
-    self.currentType = self.searchTypes.firstObject;
-    self.searchTypeSegment = [[UISegmentedControl alloc] initWithItems:self.searchTypes];
-    self.searchTypeSegment.frame = CGRectMake(6, CGRectGetHeight(self.view.bounds) - 82, CGRectGetWidth(self.mapView.bounds) - 80, 32);
-    self.searchTypeSegment.layer.cornerRadius = 3;
-    self.searchTypeSegment.backgroundColor = [UIColor whiteColor];
-    self.searchTypeSegment.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
-    self.searchTypeSegment.selectedSegmentIndex = 0;
-    [self.searchTypeSegment addTarget:self action:@selector(actionTypeChanged:) forControlEvents:UIControlEventValueChanged];
-    [self.view addSubview:self.searchTypeSegment];
-    
-
-}
-
-#pragma mark -选项卡点击事件
--(void)actionTypeChanged:(UISegmentedControl *)sender{
-    
-    self.currentType = self.searchTypes[sender.selectedSegmentIndex];
-    [self actionSearchAroundAt:self.mapView.centerCoordinate];
-}
-
-#pragma mark -用户自定义大头针
--(void)initCenterView{
-    
-    // 自己的坐标
-    self.centerAnnotationView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"homePage_wholeAnchor"]];
-    self.centerAnnotationView.center = CGPointMake(self.mapView.center.x, self.mapView.center.y - CGRectGetHeight(self.centerAnnotationView.bounds) / 2);
-    
-    [self.mapView addSubview:self.centerAnnotationView];
-}
-
-
-#pragma mark -定位按钮
--(void)initLocationButton{
-    
-    self.imageLocated = [UIImage imageNamed:@"gpssearchbutton"];
-    self.imageNotLocate = [UIImage imageNamed:@"gpsnormal"];
-    self.locationBtn = [[UIButton alloc] initWithFrame:CGRectMake(20, CGRectGetHeight(self.mapView.bounds) - 150, 32, 32)];
-    self.locationBtn.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
-    //self.locationBtn.backgroundColor = [UIColor whiteColor];
-    
-    //self.locationBtn.layer.cornerRadius = 3;
-    [self.locationBtn addTarget:self action:@selector(actionLocation) forControlEvents:UIControlEventTouchUpInside];
-    [self.locationBtn setImage:self.imageNotLocate forState:UIControlStateNormal];
-    
-    [self.view addSubview:self.locationBtn];
-    
-}
-
-//定位按钮点击事件
--(void)actionLocation{
-    
-    if (self.mapView.userTrackingMode == MAUserTrackingModeFollow)
-    {
-        [self.mapView setUserTrackingMode:MAUserTrackingModeNone animated:YES];
-    }
-    else
-    {
-        [self.mapView setCenterCoordinate:self.mapView.userLocation.coordinate animated:YES];
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            // 因为下面这句的动画有bug，所以要延迟0.5s执行，动画由上一句产生
-            [self.mapView setUserTrackingMode:MAUserTrackingModeFollow animated:YES];
-        });
-    }
-    
-}
-
--(void)viewWillAppear:(BOOL)animated{
-    
-    [super viewWillAppear:animated];
-    
-     [self initCenterView];
-    
-     [self initLocationButton];
-    
-    [self initSearchTypeView];
-    
-    
-    self.mapView.zoomLevel = 17;              ///缩放级别（默认3-19，有室内地图时为3-20）
-    self.mapView.showsUserLocation = YES;    ///是否显示用户位置
-    self.mapView.showsCompass =NO;           /// 是否显示指南针
-    self.mapView.showsScale = YES;          ///是否显示比例尺
-    self.mapView.minZoomLevel =14;          /// 限制最小缩放级别
-    self.mapView.showTraffic = NO;         /// 是否显示交通
-    self.mapView.showsBuildings = NO;      /// 是否显示建筑物
-    
-    self.mapView.scaleOrigin=CGPointMake(20, 0); ///比例尺的位置
-    
-    //用户定位样式
-    MAUserLocationRepresentation*location=[[MAUserLocationRepresentation alloc] init];
-    location.image=[UIImage imageNamed:@"locationImage"];
-    
-    [self.mapView updateUserLocationRepresentation:location];
-   
-    /** MAMapTypeStandard = 0,  ///< 普通地图
-    MAMapTypeSatellite,     ///< 卫星地图
-    MAMapTypeStandardNight, ///< 夜间视图
-    MAMapTypeNavi,          ///< 导航视图
-    MAMapTypeBus
-     
-     */
-    self.mapView.mapType=MAMapTypeBus;
     
 }
 
@@ -471,18 +546,18 @@
 //导航栏左边按钮点击事件
 -(void)leftButton{
     
- 
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+
+   [self.navigationController setNavigationBarHidden:YES animated:YES];
     self.tabBarController.tabBar.hidden=YES;
     
-  
+    
     UIView * bgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     self.bgView=bgView;
     [self.view addSubview:bgView];
     // blur效果
     UIVisualEffectView *visualEfView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
     visualEfView.frame = self.bgView.frame;
-    visualEfView.alpha = 0.9;
+    visualEfView.alpha = 0.2;
     [bgView addSubview:visualEfView];
     
     //设置弹出视图
@@ -495,10 +570,10 @@
     [self addButtonWithFram:CGRectMake(20, 40, 35, 35) bgImage:[UIImage imageNamed:@"navigation_close"] Tag:1000];
 
     [self addButtonWithFram:CGRectMake((KscreenW-200)/3, KscreenH/2-50, 100, 100) bgImage:[UIImage imageNamed:@"content_jianzou_dianji"] Tag:1001];
-    
-    [self addButtonWithFram:CGRectMake((KscreenW-200)/3*2+100, KscreenH/2-50, 100, 100) bgImage:[UIImage imageNamed:@"content_paobu_dianji"] Tag:1002];
-    
 
+    [self addButtonWithFram:CGRectMake((KscreenW-200)/3*2+100, KscreenH/2-50, 100, 100) bgImage:[UIImage imageNamed:@"content_paobu_dianji"] Tag:1002];
+
+  
     
 }
 
@@ -520,9 +595,9 @@
         
         UIAlertView*alter=[[UIAlertView alloc] initWithTitle:@"图标点击了" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定" , nil];
         [alter show];
-
+        
     }
-  
+    
     
     
 }
@@ -539,8 +614,8 @@
 -(void)addButtonWithFram:(CGRect)frame bgImage:(UIImage*)bgImage Tag:(NSInteger)tag{
     
     UIButton*myButton=[UIButton buttonWithType:UIButtonTypeCustom];
-     myButton.frame=frame;
-     myButton.tag=tag;
+    myButton.frame=frame;
+    myButton.tag=tag;
     [myButton setBackgroundImage:bgImage forState:UIControlStateNormal];
     [myButton addTarget:self action:@selector(closeButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.oneView addSubview:myButton];
@@ -550,4 +625,6 @@
 
 
 
+
 @end
+

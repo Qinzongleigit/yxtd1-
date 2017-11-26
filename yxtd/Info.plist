@@ -27,10 +27,22 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>cameraDesciption</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>此APP访问您的健康分享需要打开权限</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>此APP访问您的健康更新需要打开权限</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>需要打开定位权限</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>需要打开定位功能</string>
+	<string>允许打开</string>
+	<key>NSLocationUsageDescription</key>
+	<string>允许打开</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>需要打开定位功能</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>photoLibraryDesciption</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>
@@ -40,6 +52,7 @@
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
+		<string>healthkit</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>

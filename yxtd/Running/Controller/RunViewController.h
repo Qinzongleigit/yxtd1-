@@ -6,8 +6,10 @@
 //  Copyright © 2017年 qin. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "RunRootViewController.h"
 
-@interface RunViewController : UIViewController
+@interface RunViewController : RunRootViewController
+
+
 
 @end

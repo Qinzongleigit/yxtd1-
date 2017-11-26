@@ -8,18 +8,26 @@
 
 #import "SaiShiViewController.h"
 #import "SaiShiDetailedViewController.h"
+#import "MyTabarController.h"
 
 @interface SaiShiViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UITableView*tableView;
+@property (nonatomic,strong) MyTabarController*tabbar;
 @end
 
 @implementation SaiShiViewController
 
+-(void)viewWillAppear:(BOOL)animated{
+
+   //self.tabbar.tabBar.hidden=YES;
+ 
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+
     
     self.view.backgroundColor=[UIColor whiteColor];
     

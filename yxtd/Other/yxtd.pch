@@ -9,6 +9,11 @@
 #ifndef yxtd_pch
 #define yxtd_pch
 
+#import "interface.h"
+
+#import <Masonry.h>
+#import <MBProgressHUD.h>
+#import "MBProgressHUD+MJ.h"
 
 #import "UIImage+TZRenderImage.h"
 #import "UIColor+Hex.h"
@@ -18,6 +23,23 @@
 //高德地图key
 #define kAPIKey @"4166d89247116be10d43d37df3532fa1"
 
+#import <AMapFoundationKit/AMapFoundationKit.h>
+#import <MAMapKit/MAMapKit.h>
+#import <AMapNaviKit/AMapNaviKit.h>
+
+/**
+#define boundTopBarHeight   64
+#define ZXNColor(R,G,B,A) [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:A]
+#define naviColor ZXNColor(21, 107, 176, 1)
+#define lightColor ZXNColor(247, 247, 247, 1)
+#define lightTextColor ZXNColor(221,221,221, 0.5)
+#define blackkColor ZXNColor(51, 51, 51, 1)
+#define textLightColor ZXNColor(153, 153, 153, 1)
+
+ */
+
+#define ZXNWeakSelf(type)   __weak typeof(type) weak##type = type;
+#define ZXNStrongSelf(type) __strong typeof(type) type = weak##type;
 
 
 #define KscreenW [UIScreen mainScreen].bounds.size.width
@@ -35,12 +57,21 @@
 #define  RedkHexColor [UIColor colorWithHexString:@"fasc4a" alpha:1];
 
 
-//#define  btnLineColor [UIColor colorWithHexString:@"E7E7E7" alpha:1];
+
 #define  btnLineColor [UIColor colorWithHexString:@"d6d8d9" alpha:0.5];
 
 
 #define FourInchHeight 568
 #define FourPointSevenInchHeight 667
 #define FivePointFiveInchHeight 960
+
+//以6s为基准,按比例缩放高度
+
+#define SYRealValueHeight(heitht) ((heitht)/667.0f*[UIScreen mainScreen].bounds.size.height)
+
+#define SYRealValueWidth(Width) ((Width)/375.0f*[UIScreen mainScreen].bounds.size.width)
+
+
+
 
 #endif /* yxtd_pch */

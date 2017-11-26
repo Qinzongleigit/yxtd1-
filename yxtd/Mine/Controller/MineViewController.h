@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface MineViewController : UIViewController
+@property (nonatomic,assign) BOOL SecondTabBarComeTag;
 
 @end

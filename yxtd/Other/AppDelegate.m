@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 //#import "MyTabarController.h"
 #import "LoginViewController.h"
-#import <AMapFoundationKit/AMapFoundationKit.h>
 
 
 @interface AppDelegate ()
@@ -24,16 +23,18 @@
     
     
    // self.window.rootViewController=[[MyTabarController alloc] init];
-    
-    self.window.rootViewController=[[LoginViewController alloc] init];
-    
+    LoginViewController*logVc=[[LoginViewController alloc] init];
+
+    self.window.rootViewController=logVc;
+  
     [self.window makeKeyAndVisible];
     
     //启动时间
     [NSThread sleepForTimeInterval:1.0];
     
-    [AMapServices sharedServices].apiKey=kAPIKey;
+     [AMapServices sharedServices].apiKey=kAPIKey;
     
+      [[AMapServices sharedServices] setEnableHTTPS:YES];
     return YES;
     
 }

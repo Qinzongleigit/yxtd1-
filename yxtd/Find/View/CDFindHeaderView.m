@@ -67,7 +67,7 @@
     
     pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
     
-    pageControl.pageIndicatorTintColor = [UIColor grayColor];
+    pageControl.pageIndicatorTintColor = COLORWITHRGB(112, 112, 112);
     
     [self addSubview:pageControl];
     

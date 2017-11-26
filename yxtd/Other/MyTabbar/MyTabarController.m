@@ -16,7 +16,7 @@
 
 
 
-//#define TabbarNormalFontColor [UIColor colorWithRed:80.0/255.0 green:80.0/255.0 blue:80.0/255.0 alpha:1]
+
 
 @interface MyTabarController ()<UITabBarControllerDelegate>
 
@@ -51,10 +51,10 @@
     self.delegate=self;
     
     UIView*whiteView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 49)];
+    self.whiteView=whiteView;
     whiteView.backgroundColor=[UIColor whiteColor];
     
     [self.tabBar insertSubview:whiteView atIndex:0];
-    
     
     [self setUpAllChildViewController];
     
@@ -90,8 +90,7 @@
     MineViewController*mine=[[MineViewController alloc] init];
     
     [self setupOneChildViewController:mine image:[UIImage imageWithoriginName:@"mine"] selectedImage:[UIImage imageWithoriginName:@"mine_select"] title:@"我的"];
-    mine.view.backgroundColor=[UIColor yellowColor];
-    
+    mine.view.backgroundColor=[UIColor whiteColor];
     
 }
 
@@ -109,7 +108,8 @@
     vc.tabBarItem.selectedImage=selectedImage;
     
     
-    MyUINavigationController*navi=[[MyUINavigationController alloc] initWithRootViewController:vc];
+    UINavigationController*navi=[[UINavigationController alloc] initWithRootViewController:vc];
+//    MyUINavigationController*navi=[[MyUINavigationController alloc] initWithRootViewController:vc];
     navi.navigationBar.translucent=NO;
     
     [self addChildViewController:navi];
@@ -121,21 +121,21 @@
 
 -(BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController{
     
-    MyUINavigationController*navi=(MyUINavigationController*)viewController;
+    UINavigationController*navi=(UINavigationController*)viewController;
     
     if ([navi.topViewController isKindOfClass:[RunViewController class]])
     {
         RunViewController *run = (RunViewController *)navi.topViewController;
-        
+         
         //first.firstTabBarComeTag=YES;
         
         
-    }else if([navi.topViewController isKindOfClass:[RankingViewController class]]){
+    }else if([navi.topViewController isKindOfClass:[MineViewController class]]){
         
         
-        RankingViewController *second = (RankingViewController *)navi.topViewController;
+        MineViewController *mine = (MineViewController *)navi.topViewController;
         
-        //second.SecondTabBarComeTag=YES;
+        mine.SecondTabBarComeTag=YES;
         
     }
     
@@ -155,12 +155,12 @@
 
 }
 
--(void) viewWillDisappear:(BOOL)animated
+-(void)viewWillDisappear:(BOOL)animated
 {
     [self.selectedViewController beginAppearanceTransition: NO animated: animated];
 }
 
--(void) viewDidDisappear:(BOOL)animated
+-(void)viewDidDisappear:(BOOL)animated
 {
     [self.selectedViewController endAppearanceTransition];
 }

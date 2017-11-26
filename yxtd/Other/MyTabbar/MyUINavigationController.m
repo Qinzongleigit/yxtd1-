@@ -35,13 +35,13 @@
     
  
     
-    UIImage*image=[UIImage imageWithoriginName:@"back"];
-    
-    [[UIBarButtonItem appearanceWhenContainedIn:[self.navigationItem.backBarButtonItem class], nil] setBackButtonBackgroundImage:[image resizableImageWithCapInsets:UIEdgeInsetsMake(0, image.size.width, 0, 0)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    
-    
-    [[UIBarButtonItem appearanceWhenContainedIn:[self.navigationItem.backBarButtonItem class], nil] setBackButtonTitlePositionAdjustment:UIOffsetMake(-400.f, 0) forBarMetrics:UIBarMetricsDefault];
-    
+//    UIImage*image=[UIImage imageWithoriginName:@"back"];
+//    
+//    [[UIBarButtonItem appearanceWhenContainedIn:[self.navigationItem.backBarButtonItem class], nil] setBackButtonBackgroundImage:[image resizableImageWithCapInsets:UIEdgeInsetsMake(0, image.size.width, 0, 0)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+//    
+//    
+//    [[UIBarButtonItem appearanceWhenContainedIn:[self.navigationItem.backBarButtonItem class], nil] setBackButtonTitlePositionAdjustment:UIOffsetMake(-400.f, 0) forBarMetrics:UIBarMetricsDefault];
+//    
     
 }
 
@@ -50,14 +50,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

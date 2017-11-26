@@ -7,8 +7,8 @@
 //
 
 #import "ForgotPassViewController.h"
-
-
+#import "SmsHttp.h"
+#import "SmsParam.h"
 
 
 @interface ForgotPassViewController ()<UITextFieldDelegate>
@@ -20,7 +20,11 @@
 
 @property (nonatomic,weak) UITextField *regTextField2;
 
-;
+@property (nonatomic,strong) UIButton*sendButton;
+@property (nonatomic,strong) UILabel *countLabel;
+@property (nonatomic,strong) UIButton*regButton;
+@property (nonatomic,strong) NSTimer*timer;
+
 
 @end
 
@@ -160,13 +164,12 @@
     
     //发送验证码
     UIButton*sendButton=[UIButton buttonWithType:UIButtonTypeCustom];
-    sendButton.frame=CGRectMake(CGRectGetMaxX(self.timeTextField.frame)-100,0,100,67);
+    self.sendButton=sendButton; sendButton.frame=CGRectMake(CGRectGetMaxX(self.timeTextField.frame)-90,1,90,65);
     [sendButton setTitle:@"发送验证码" forState:UIControlStateNormal];
-    sendButton.titleEdgeInsets=UIEdgeInsetsMake(0, 0, 0, -10);
     
     [sendButton setTitleColor:[UIColor colorWithRed:245.0/255.0 green:81.0/255.0 blue:49.0/255.0 alpha:1] forState:UIControlStateNormal];
     sendButton.titleLabel.font=[UIFont systemFontOfSize:15];
-    [sendButton addTarget:self action:@selector(sendClick) forControlEvents:UIControlEventTouchUpInside];
+    [sendButton addTarget:self action:@selector(sendButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
     _timeTextField.rightView=sendButton;
     _timeTextField.rightViewMode=UITextFieldViewModeAlways;
@@ -181,7 +184,7 @@
     
     
     UIButton*regButton=[UIButton buttonWithType:UIButtonTypeCustom];
-    regButton.frame=CGRectMake(30,CGRectGetMaxY(self.timeTextField.frame)+54 , self.view.frame.size.width-60, 47);
+    self.regButton=regButton; regButton.frame=CGRectMake(30,CGRectGetMaxY(self.timeTextField.frame)+54 , self.view.frame.size.width-60, 47);
     regButton.tag=10086;
     [regButton setTitle:@"确   认" forState:UIControlStateNormal];
     
@@ -201,6 +204,323 @@
     
     
 }
+
+
+
+#pragma mark 检测手机号是否输入正确
+- (NSInteger)checkOutNumber{
+    
+    if (_regTextField.text.length == 0)
+    {
+        [MBProgressHUD showError:@"请输入手机号"];
+        
+        
+        _regTextField.text = nil;
+        
+        [_regTextField becomeFirstResponder];
+        
+        return 0;
+    }
+    if (_regTextField.text.length != 11)
+    {
+        [MBProgressHUD showError:@"请输入正确的手机号"];
+        
+        _regTextField.text = nil;
+        
+        [_regTextField becomeFirstResponder];
+        
+        return 0;
+    }
+    
+    return 1;
+}
+
+#pragma mark - 发送验证码成功调此方法
+- (void)sendHttpUpdatePhoneNumberSuccess
+{
+    
+    [self.sendButton setBackgroundColor:[UIColor clearColor]];
+    
+    countNumber=120;
+    
+    [self.sendButton setTitle:@"" forState:UIControlStateNormal];
+    
+    UILabel *countLabel = [[UILabel alloc] initWithFrame:self.sendButton.frame];
+    
+    countLabel.layer.cornerRadius = 5;
+    
+    countLabel.layer.masksToBounds = YES;
+    
+    countLabel.textAlignment = NSTextAlignmentCenter;
+    
+    countLabel.backgroundColor = [UIColor lightGrayColor];
+    
+    countLabel.textColor = [UIColor whiteColor];
+    
+    countLabel.font = [UIFont systemFontOfSize:13];
+    
+    [self.sendButton.superview addSubview:countLabel];
+    
+    self.countLabel = countLabel;
+    
+    self.countLabel.text = [NSString stringWithFormat:@"(%d)重新获取", countNumber];
+    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(countDownGetAuthCode) userInfo:nil repeats:YES];
+    
+    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+}
+
+#pragma mark - 定时器事件
+- (void)countDownGetAuthCode
+{
+    
+    if (countNumber>0) {
+        
+        countNumber--;
+        self.countLabel.text = [NSString stringWithFormat:@"(%d)重新获取", countNumber];
+    }else{
+        
+        [self.timer invalidate];
+        
+        self.timer = nil;
+        
+        [self.countLabel removeFromSuperview];
+        
+        self.countLabel = nil;
+        
+        [self.sendButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+        
+        [self.sendButton setBackgroundColor:[UIColor whiteColor]];
+        
+        self.sendButton.userInteractionEnabled = YES;
+    }
+    
+}
+
+
+#pragma mark-发送验证码
+static int countNumber;
+
+-(void)sendButtonClick{
+    
+    if (![self checkOutNumber]) return;
+    
+     self.sendButton.userInteractionEnabled=NO;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+
+        SmsParam*param=[[SmsParam alloc] init];
+
+        param.phone=self.regTextField.text;
+
+        [SmsHttp httpSms:param success:^(id responseObject) {
+
+            NSString *status = responseObject[@"code"];
+
+            if (status.integerValue == 200)
+            {
+                [MBProgressHUD showSuccess:responseObject[@"msg"]];
+
+                [self sendHttpUpdatePhoneNumberSuccess];
+
+            }else
+            {
+
+                [MBProgressHUD showError:responseObject[@"msg"]];
+            }
+            self.sendButton.userInteractionEnabled = YES;
+
+        } failure:^(NSError *error) {
+
+
+            self.sendButton.userInteractionEnabled = YES;
+
+            [MBProgressHUD showError:@"获取验证码失败"];
+
+        }];
+
+    });
+
+
+  
+    
+}
+
+
+#pragma mark--找回密码注手机号、密码验证
+- (NSInteger)checkOutRegiser{
+    
+    if (!_regTextField.text.length)
+    {
+        [MBProgressHUD showError:@"请输入手机号"];
+        
+        _regTextField.text = nil;
+        
+        [_regTextField becomeFirstResponder];
+        
+        return 0;
+    }
+    if (_regTextField.text.length != 11)
+    {
+        [MBProgressHUD showError:@"请输入正确的手机号"];
+        
+        _regTextField.text = nil;
+        
+        [_regTextField becomeFirstResponder];
+        
+        return 0;
+    }if (!_regTextField2.text.length) {
+        
+        [MBProgressHUD showError:@"请输入密码"];
+        _regTextField2.text = nil;
+        
+        [_regTextField2 becomeFirstResponder];
+        
+        return 0;
+        
+    }if (_regTextField2.text.length<6)
+    {
+        [MBProgressHUD showError:@"请输入6~16位的密码"];
+        
+        _regTextField2.text = nil;
+        
+        [_regTextField2 becomeFirstResponder];
+        
+        return 0;
+        
+    }if (!_timeTextField.text.length) {
+        
+        [MBProgressHUD showError:@"请输入正确的验证码"];
+        _timeTextField.text = nil;
+        
+        [_timeTextField becomeFirstResponder];
+        
+        return 0;
+    }
+    
+    return 1;
+}
+
+#pragma mark-确认按钮点击事件
+-(void)buttonClick{
+    
+    //放弃第一响应者
+  
+     if (![self checkOutRegiser]) return;
+  
+    _regButton.userInteractionEnabled=NO;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+     
+        [self dismissViewControllerAnimated:YES completion:nil];
+        [self giveUpFirstResponder];
+        
+
+        
+#warning 接口暂时不能用
+#if 0
+        RegisterParam*param=[[RegisterParam alloc] init];
+        
+        param.mobile=self.regTextField.text;
+        param.password=self.regTextField2.text;
+        param.smskey=self.timeTextField.text;
+        
+        [RegisterHttp httpForRegister:param success:^(id responseObject) {
+            
+            NSString *code = responseObject[@"code"];
+            
+            if (code.integerValue == 200)
+            {
+                [MBProgressHUD showSuccess:responseObject[@"msg"]];
+                
+                //界面跳转用的
+                MineViewController*mineVc=[[MineViewController alloc] init];
+                [self presentViewController:mineVc animated:YES completion:nil];
+                
+            }else
+            {
+                
+                [MBProgressHUD showError:responseObject[@"msg"]];
+            }
+            
+            _regButton.userInteractionEnabled=YES;
+            
+        } failure:^(NSError *error) {
+            
+            _regButton.userInteractionEnabled=YES;
+            
+            [MBProgressHUD showError:@"注册失败，请检查原因"];
+            
+        }];
+        
+#endif
+        
+    });
+    
+    
+}
+
+#pragma mark   放弃第一响应者
+- (void)giveUpFirstResponder
+{
+    if(_regTextField.isEditing)
+    {
+        [_regTextField resignFirstResponder];
+        
+    }
+    else if(_regTextField2.isEditing)
+    {
+        
+        [_regTextField2 resignFirstResponder];
+        
+    }else if (_timeTextField.isEditing){
+        
+        [_timeTextField resignFirstResponder];
+    }
+}
+
+
+
+#pragma mark --设置导航栏
+-(void)initNavi{
+    
+    self.view.backgroundColor=[UIColor whiteColor];
+    
+    //设置导航条
+    UINavigationBar *navigationBar=[[UINavigationBar alloc]initWithFrame:CGRectMake(0, 20, CGRectGetWidth(self.view.frame), 44)];
+    navigationBar.tintColor=[UIColor whiteColor];
+    navigationBar.translucent = NO;
+    
+    [self.view addSubview:navigationBar];
+    
+    UINavigationItem *navigationItem=[[UINavigationItem alloc]init];
+    
+    //设置左边返回按钮
+    navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"NaviBack"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(backBtn)];
+    
+    [navigationBar pushNavigationItem:navigationItem animated:NO];
+    
+    // 自定义导航栏的title，用UILabel实现
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, 50, 44)];
+    titleLabel.text = @"找回密码";
+    titleLabel.textColor = [UIColor lightGrayColor];
+    titleLabel.font = [UIFont systemFontOfSize:18];
+    // 设置自定义的title
+    navigationItem.titleView = titleLabel;
+    
+    
+    
+}
+
+
+#pragma mark-返回按钮点击事件
+-(void)backBtn{
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
 
 
 
@@ -231,91 +551,5 @@
     
     [self.view endEditing:YES];
 }
-
--(void)sendClick{
-    
-    
-    UIAlertView*alter=[[UIAlertView alloc] initWithTitle:@"验证码发送成功" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定" , nil];
-    [alter show];
-    
-    
-    [self.view endEditing:YES];
-    
-}
-
--(void)buttonClick{
-    
-    //放弃第一响应者
-    [self giveUpFirstResponder];
-    
-    UIAlertView*alter=[[UIAlertView alloc] initWithTitle:@"确认按钮" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定" , nil];
-    [alter show];
-    
-    
-    
-    
-    
-}
-
-#pragma mark   放弃第一响应者
-- (void)giveUpFirstResponder
-{
-    if(_regTextField.isEditing)
-    {
-        [_regTextField resignFirstResponder];
-        
-    }
-    else if(_regTextField2.isEditing)
-    {
-        
-        [_regTextField2 resignFirstResponder];
-        
-    }else if (_timeTextField.isEditing){
-        
-        [_timeTextField resignFirstResponder];
-    }
-}
-
-
-
-#pragma mark --设置导航栏
--(void)initNavi{
-    
-    self.view.backgroundColor=[UIColor colorWithRed: 247.0f/255.0f green:247.0f/255.0f blue:248.0f/255.0f alpha:1.0f];
-    
-    //设置导航条
-    
-    UINavigationBar *navigationBar=[[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 44+20)];
-    navigationBar.tintColor=[UIColor whiteColor];
-    navigationBar.translucent = NO;
-    
-    [self.view addSubview:navigationBar];
-    
-    UINavigationItem *navigationItem=[[UINavigationItem alloc]init];
-    
-    //设置左边返回按钮
-    navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"NaviBack"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(backBtn)];
-    
-    [navigationBar pushNavigationItem:navigationItem animated:NO];
-    
-    // 自定义导航栏的title，用UILabel实现
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 44)];
-    titleLabel.text = @"找回密码";
-    titleLabel.textColor = [UIColor lightGrayColor];
-    titleLabel.font = [UIFont systemFontOfSize:18];
-    // 设置自定义的title
-    navigationItem.titleView = titleLabel;
-    
-    
-    
-}
-
-
--(void)backBtn{
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
-    
-}
-
 
 @end

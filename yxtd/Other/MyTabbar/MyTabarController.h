@@ -10,4 +10,6 @@
 
 @interface MyTabarController : UITabBarController
 
+@property (nonatomic,strong) UIView*whiteView;
+
 @end
