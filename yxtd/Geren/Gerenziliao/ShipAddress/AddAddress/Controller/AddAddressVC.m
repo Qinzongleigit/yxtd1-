@@ -68,6 +68,7 @@
     
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]}];
     
+     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(saveNewAddress)];
 
     
     self.cellLabelArr = @[@"收货人", @"手机号码", @"省 市 区", @"详细地址", @"邮政编码", @"设置为默认地址"];
@@ -77,6 +78,88 @@
     [self setExtraCellLineHidden:self.tableView];
     
     
+}
+
+
+- (void)saveNewAddress
+{
+    if (_recverName.text.length == 0)
+    {
+        [MBProgressHUD showError:@"请输入收货人姓名"];
+        
+        [_recverName becomeFirstResponder];
+        
+        return;
+    }
+    
+    if (_recverNumber.text.length == 0)
+    {
+        [MBProgressHUD showError:@"请输入收货人联系方式"];
+        
+        [_recverNumber becomeFirstResponder];
+        
+        return;
+    }
+    
+    if (_recverNumber.text.length != 11) {
+        
+        [MBProgressHUD showError:@"联系方式格式不正确"];
+        
+        [_recverNumber becomeFirstResponder];
+        
+        return;
+    }
+    
+    if (_addressTextView.text.length == 0)
+    {
+        [MBProgressHUD showError:@"请输入收货人详细地址"];
+        
+        [_addressTextView becomeFirstResponder];
+        
+        return;
+    }
+    
+//    CDAddOrUpdateAddressParam *param = [[CDAddOrUpdateAddressParam alloc] init];
+//
+//    param.shouhuoren = _recverName.text;
+//
+//    param.mobile = _recverNumber.text;
+//
+//    param.sheng = _sheng;
+//
+//    param.shi = _shi;
+//
+//    param.xian = _xian;
+//
+//    param.jiedao = _addressTextView.text;
+//
+//    param.Default = [NSString stringWithFormat:@"%d", _accessorySwitch.on];
+//
+//    [CDAddOrUpdateAddressHttp httpForAddOrUpdateAddress:param success:^(id responseObject) {
+//
+//        NSString *status = responseObject[@"status"];
+//
+//        if (status.integerValue == 1)
+//        {
+//            [MBProgressHUD showSuccess:responseObject[@"message"]];
+//
+//            [self.navigationController popViewControllerAnimated:YES];
+//
+//        }else
+//        {
+//            [MBProgressHUD showError:responseObject[@"message"]];
+//
+//
+//
+//            NSLog(@"------%@",responseObject[@"message"]);
+//
+//        }
+//
+//    } failure:^(NSError *error) {
+//
+//        [MBProgressHUD showError:[NSString stringWithFormat:@"%@", error]];
+//
+//    }];
 }
 
 //导航栏返回按钮

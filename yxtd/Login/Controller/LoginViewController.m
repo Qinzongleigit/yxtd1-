@@ -408,21 +408,7 @@
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
-        //返回登录界面
-        [self setLoginView];
-        
-        [self giveUpFirstResponder];
-       
-        UIButton *selectBt =(UIButton  *)[ self.view viewWithTag:100];
-        selectBt.selected = YES;
-        
-        UIButton *selectBt1 =(UIButton  *)[ self.view viewWithTag:101];
-        selectBt1.selected = NO;
-        
-        
-        
-#warning 接口暂时不能用
-#if 0
+      
         RegisterParam*param=[[RegisterParam alloc] init];
         
         param.mobile=self.regTextField.text;
@@ -431,6 +417,9 @@
         
         [RegisterHttp httpForRegister:param success:^(id responseObject) {
  
+            
+               NSLog(@"注册返回数据================== %@",responseObject);
+            
             NSString *code = responseObject[@"code"];
 
             if (code.integerValue == 200)
@@ -438,8 +427,23 @@
                 [MBProgressHUD showSuccess:responseObject[@"msg"]];
                 
                //界面跳转用的
-                MineViewController*mineVc=[[MineViewController alloc] init];
-                [self presentViewController:mineVc animated:YES completion:nil];
+                //MineViewController*mineVc=[[MineViewController alloc] init];
+                //[self presentViewController:mineVc animated:YES completion:nil];
+                
+                
+                //返回登录界面
+                [self setLoginView];
+                
+                [self giveUpFirstResponder];
+                
+                UIButton *selectBt =(UIButton  *)[ self.view viewWithTag:100];
+                selectBt.selected = YES;
+                
+                UIButton *selectBt1 =(UIButton  *)[ self.view viewWithTag:101];
+                selectBt1.selected = NO;
+                
+                
+             
                 
             }else
             {
@@ -457,7 +461,7 @@
             
         }];
             
-#endif
+
         
     });
     
@@ -800,13 +804,8 @@ static int countNumber;
 
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
-        //跳转到跑券界面
-        MyTabarController*myTab=[[MyTabarController alloc] init];
-       // [myTab setSelectedIndex:0];
         
-        [self presentViewController:myTab animated:YES completion:nil];
-       
-#if 0
+
        LoginParam *param=[[LoginParam alloc] init];
 
         param.phone=self.textField.text;
@@ -825,11 +824,16 @@ static int countNumber;
                 [MBProgressHUD showSuccess:responseObject[@"msg"]];
 
                 //登录界面跳转到我的界面
+//                MyTabarController*myTab=[[MyTabarController alloc] init];
+//                [myTab setSelectedIndex:3];
+//
+//                [self presentViewController:myTab animated:YES completion:nil];
+//
+                //跳转到跑券界面
                 MyTabarController*myTab=[[MyTabarController alloc] init];
-                [myTab setSelectedIndex:3];
+                // [myTab setSelectedIndex:0];
                 
                 [self presentViewController:myTab animated:YES completion:nil];
-              
 
             }else
             {
@@ -848,7 +852,7 @@ static int countNumber;
 
         }];
 
-#endif
+
 
 
    });
