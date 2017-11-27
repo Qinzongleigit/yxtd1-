@@ -43,11 +43,27 @@
     __weak typeof(self.view) weakSelf=self.view;
     
     
+    //左侧视图:leftView
+    UILabel*leftlabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 30)];
+    leftlabel.text=@"+86";
+    leftlabel.font=[UIFont systemFontOfSize:15];
+    leftlabel.textAlignment=NSTextAlignmentLeft;
+    leftlabel.textColor=[UIColor blackColor];
+    
+    UIView*lineV=[[UIView alloc] initWithFrame:CGRectMake(33, 8, 1, 14)];
+    lineV.backgroundColor=[UIColor greenColor];
+    [leftlabel addSubview:lineV];
+    
+    
+    
     UITextField*phoneText=[[UITextField alloc] init];
     self.phoneText=phoneText;
     phoneText.delegate=self;
     phoneText.placeholder=@"请输入手机号";
     [phoneText setBackground:[UIImage imageNamed:@"addressTextfiled_Image"]];
+    
+    phoneText.leftView=leftlabel;
+    phoneText.leftViewMode=UITextFieldViewModeAlways;
     
     [self.view addSubview:phoneText];
     [phoneText mas_makeConstraints:^(MASConstraintMaker *make) {
