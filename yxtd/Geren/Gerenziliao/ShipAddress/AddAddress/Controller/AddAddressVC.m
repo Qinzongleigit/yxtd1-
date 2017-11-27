@@ -58,7 +58,19 @@
     self.view.backgroundColor=[UIColor whiteColor];
     
     
-    self.cellLabelArr = @[@"收货人", @"手机号码", @"省 市 区", @"详细地址", @"设置为默认地址"];
+    
+    self.title=@"添加地址";
+    //左边按钮
+    UIBarButtonItem*leftBt=[[UIBarButtonItem alloc] initWithImage:[UIImage imageWithoriginName:@"back"] style:UIBarButtonItemStylePlain target:self action:@selector(backBtn)];
+    self.navigationItem.leftBarButtonItem=leftBt;
+    
+    self.view.backgroundColor=[UIColor whiteColor];
+    
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]}];
+    
+
+    
+    self.cellLabelArr = @[@"收货人", @"手机号码", @"省 市 区", @"详细地址", @"邮政编码", @"设置为默认地址"];
     
     self.tableView.allowsSelection = NO;
     
@@ -67,6 +79,12 @@
     
 }
 
+//导航栏返回按钮
+-(void)backBtn{
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
 
 - (UIPickerView *)setUpAddressPiker
 {
@@ -138,7 +156,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return 5;
+    return 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -190,9 +208,7 @@
         
         cell.addressTextView.hidden = NO;
         
-        
-        //  cell.addressTextView.text=@"我的商品";
-        
+
         _addressTextView = cell.addressTextView;
         
         
@@ -200,7 +216,22 @@
         
     }
     
-    if(indexPath.row == 4)
+    
+    if(indexPath.row==4){
+        
+        
+        cell.cellTextField.placeholder = _cellLabelArr[indexPath.row];
+        
+        cell.cellTextField.keyboardType = UIKeyboardTypeNumberPad;
+        
+        
+        _recverNumber = cell.cellTextField;
+        
+        _recverNumber.delegate=self;
+        
+    }
+    
+    if(indexPath.row == 5)
     {
         cell.labelWidth.constant = 110;
         

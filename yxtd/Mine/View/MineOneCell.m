@@ -53,7 +53,7 @@
         
         _codeImage=[[UIImageView alloc] init];
         //_codeImage.backgroundColor=[UIColor redColor];
-        _codeImage.image=[UIImage imageWithoriginName:@"jiangzhang_Image"];
+        _codeImage.image=[UIImage imageWithoriginName:@"code_Image"];
         [self.contentView addSubview:_codeImage];
         
         

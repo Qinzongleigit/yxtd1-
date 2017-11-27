@@ -44,11 +44,11 @@ static NSString*addresID=@"ID";
 #pragma mark -创建表格视图
 -(void)setUptableView{
     
-    UITableView*tableView=[[UITableView alloc] initWithFrame:self.view.bounds];
+    UITableView*tableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, KscreenW, KscreenH-49-64)];
     self.tableView=tableView;
     tableView.delegate=self;
     tableView.dataSource=self;
-    tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+
     [self.view addSubview:tableView];
     
    
@@ -95,15 +95,23 @@ static NSString*addresID=@"ID";
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]}];
     
     
-    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc] init];
+    UIButton*addBt=[UIButton buttonWithType:UIButtonTypeCustom];
+    [addBt setTitle:@"添加地址" forState:UIControlStateNormal];
+    [addBt setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [addBt setBackgroundColor:COLORWITHRGB(43, 51, 55)];
+    [addBt addTarget:self action:@selector(addAddress) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:addBt];
     
-    [rightBtn setTitle:@"添加地址"];
+    [addBt mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.equalTo(self.view).with.offset(0);
+        make.right.equalTo(self.view).with.offset(0);
+        make.bottom.equalTo(self.view.mas_bottom).with.offset(0);
+        make.height.mas_equalTo(@49);
+    }];
     
-    [rightBtn setTarget:self];
     
-    [rightBtn setAction:@selector(addAddress)];
-    
-    self.navigationItem.rightBarButtonItem = rightBtn;
+
 }
 
 
