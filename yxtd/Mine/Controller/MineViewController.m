@@ -146,6 +146,7 @@
            make.right.equalTo(Onecell.contentView).with.offset(-15);
        }];
        
+       Onecell.selectionStyle=UITableViewCellEditingStyleNone;
         return Onecell;
        
        
@@ -265,7 +266,8 @@
            imageView0.image=[UIImage imageNamed:_dataSource2_[indexPath.row]];
      
        }
-      
+       cell.selectionStyle=UITableViewCellEditingStyleNone;
+       
        return cell;
    }
     

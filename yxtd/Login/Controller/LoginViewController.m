@@ -823,12 +823,7 @@ static int countNumber;
             {
                 [MBProgressHUD showSuccess:responseObject[@"msg"]];
 
-                //登录界面跳转到我的界面
-//                MyTabarController*myTab=[[MyTabarController alloc] init];
-//                [myTab setSelectedIndex:3];
-//
-//                [self presentViewController:myTab animated:YES completion:nil];
-//
+
                 //跳转到跑券界面
                 MyTabarController*myTab=[[MyTabarController alloc] init];
                 // [myTab setSelectedIndex:0];

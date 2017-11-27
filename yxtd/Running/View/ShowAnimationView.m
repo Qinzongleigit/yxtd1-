@@ -62,7 +62,7 @@
             _imageView.frame = CGRectMake(50, KscreenH/2-100, KscreenW-100, 200);
       } completion:^(BOOL finished) {
           
-          _imageView.frame = CGRectMake(50+KscreenW*i, KscreenH/2-100, KscreenW-100, 250);
+          _imageView.frame = CGRectMake(50+KscreenW*i, KscreenH/2-100, KscreenW-100, 200);
           
           NSString *imageName = [NSString stringWithFormat:@"Welcome%d.jpg",i+1];
           
