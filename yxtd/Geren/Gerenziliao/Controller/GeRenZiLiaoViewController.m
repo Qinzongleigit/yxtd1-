@@ -12,6 +12,8 @@
 #import "UpdatePhoneNumberViewController.h"
 #import "ShipAddressViewController.h"
 
+#import "UpdatePhoneNumberViewController.h"
+
 
 #import <Photos/PHPhotoLibrary.h>
 #import <AVFoundation/AVCaptureDevice.h>
@@ -38,6 +40,9 @@ typedef NS_ENUM(NSInteger, ChosePhontType) {
  *  头像
  */
 @property (nonatomic, weak) UIImageView *iconView;
+
+
+@property (nonatomic,strong) UILabel*phoneLabel;
 
 @end
 
@@ -180,7 +185,7 @@ typedef NS_ENUM(NSInteger, ChosePhontType) {
             
         }else if (indexPath.row==2){
             
-            //名字
+            //性别
             UIButton*sexBt=[UIButton buttonWithType:UIButtonTypeCustom];
             [sexBt setTitle:@"男" forState:UIControlStateNormal];
             [sexBt setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -205,11 +210,13 @@ typedef NS_ENUM(NSInteger, ChosePhontType) {
         
        //手机号
         UILabel*phoneLabel=[[UILabel alloc] init];
+        
         phoneLabel.text=[self numberSuitScanf:@"15817370052"];
+        self.phoneLabel=phoneLabel;
         phoneLabel.font=[UIFont systemFontOfSize:12];
         phoneLabel.textColor=BlackHexColor;
         [cell.contentView addSubview:phoneLabel];
-
+        
         [phoneLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             
             make.centerY.equalTo(cell.contentView);
@@ -377,6 +384,12 @@ typedef NS_ENUM(NSInteger, ChosePhontType) {
     UpdatePhoneNumberViewController*updatePhoneVC=[[UpdatePhoneNumberViewController alloc] init];
         
         [self.navigationController pushViewController:updatePhoneVC animated:YES];
+        
+        //修改手机号回调回来的数据
+        updatePhoneVC.gotoGeRenZiLiao = ^(NSString *phoneNumber) {
+          
+            self.phoneLabel.text=[self numberSuitScanf:phoneNumber];
+        };
         
     }else{ //发货地址
         

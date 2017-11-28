@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 
-
 @interface SexView : UIView
 
 @property(nonatomic,strong) void(^sexBtClick)(NSInteger tag);

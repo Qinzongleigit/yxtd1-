@@ -45,7 +45,7 @@
         [self.contentView addSubview:_iconImage];
         
         _nameLabel=[[UILabel alloc] init];
-        _nameLabel.text=@"骑猪去放羊";
+        _nameLabel.text=@"绥芬河开发商";
         //_nameLabel.textColor=btnLineColor;
         _nameLabel.font=[UIFont boldSystemFontOfSize:18];
         [self.contentView addSubview:_nameLabel];
@@ -175,8 +175,11 @@
         
         make.centerX.equalTo(_fensiLabel);
         
-
         make.top.equalTo(_fensiLabel.mas_bottom).with.offset(10);
+        make.top.equalTo(_fensiLabel.mas_bottom).offset(10);
+        
+        
+        
     }];
     
     

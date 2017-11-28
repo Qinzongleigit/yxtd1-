@@ -10,4 +10,7 @@
 
 @interface UpdatePhoneNumberViewController : UIViewController
 
+@property(nonatomic,strong) void(^gotoGeRenZiLiao)(NSString*phoneNumber);
+
+
 @end

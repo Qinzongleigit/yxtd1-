@@ -19,6 +19,8 @@
 
 @property (nonatomic,strong) UIButton*sureBt;
 
+@property (nonatomic,strong) UILabel*stirngLenghLabel;
+
 @end
 
 @implementation NickNameView
@@ -95,12 +97,27 @@
     [self.textView addSubview:_placeholderLabel];
     
    
+    UILabel*stirngLenghLabel=[[UILabel alloc] init];
+    self.stirngLenghLabel=stirngLenghLabel;
+    stirngLenghLabel.text=@"0/10";
+    stirngLenghLabel.textColor=[UIColor redColor];
+    stirngLenghLabel.font=[UIFont systemFontOfSize:12];
+    [textView addSubview:stirngLenghLabel];
+    
+    [stirngLenghLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.right.equalTo(textView).offset(textView.width-5);
+        make.bottom.equalTo(textView).offset(textView.height-5);
+     
+       
+    }];
  
     
     UIButton*sureBt=[UIButton buttonWithType:UIButtonTypeCustom];
     self.sureBt=sureBt;
     [sureBt setTitle:@"确 定" forState:UIControlStateNormal];
-    sureBt.backgroundColor=COLORWITHRGB(0, 214, 215);
+    //sureBt.backgroundColor=COLORWITHRGB(0, 214, 215);
+    sureBt.backgroundColor=[UIColor lightGrayColor];
     sureBt.layer.cornerRadius=10;
     sureBt.clipsToBounds=YES;
     [sureBt setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -109,7 +126,6 @@
     [self addSubview:sureBt];
     [sureBt mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.centerX.equalTo(textView);
         make.left.equalTo(self.mas_left).with.offset(30);
         make.right.equalTo(self.mas_right).with.offset(-30);
         make.top.equalTo(textView.mas_bottom).with.offset(5);
@@ -141,13 +157,23 @@
         
         _placeholderLabel.hidden=NO;
         self.sureBt.enabled=NO;
+        self.sureBt.backgroundColor=[UIColor lightGrayColor];
         
     }else{
         
         _placeholderLabel.hidden=YES;
-        
         self.sureBt.enabled=YES;
+        self.sureBt.backgroundColor=COLORWITHRGB(0, 214, 215);
+        //实时显示字数
+        self.stirngLenghLabel.text = [NSString stringWithFormat:@"%lu/10", (unsigned long)textView.text.length];
         
+        //字数限制操作
+        if (textView.text.length >= 10) {
+            
+            textView.text = [textView.text substringToIndex:10];
+            self.stirngLenghLabel.text = @"10/10";
+            
+        }
     }
 }
 
