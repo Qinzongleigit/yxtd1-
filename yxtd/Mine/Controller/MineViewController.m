@@ -72,16 +72,24 @@
 //设置段尾高度
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 12;
+   
+        return 12;
+  
 }
 //组尾视图
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
   
+
         UIView*footerView=[[UIView alloc] init];
         
         footerView.backgroundColor=btnLineColor;
- 
+        
         return footerView;
+    
+    
+  
+  
+
  
     
 }
@@ -116,7 +124,11 @@
     }else if (section==2){
         
         return 5;
-    }else{
+    }else if (section==4){
+        
+        return 1;
+        
+    }else {
         
         return 3;
     }
@@ -125,7 +137,7 @@
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
     
-    return 4;
+    return 5;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -149,7 +161,6 @@
        Onecell.selectionStyle=UITableViewCellEditingStyleNone;
         return Onecell;
        
-       
 
    }else{
        
@@ -167,7 +178,7 @@
            }
        }
        
-       
+    //第一组二行
        if (!indexPath.section&&indexPath.row==1) {
            
            NSMutableArray*cellArray=[NSMutableArray new];
@@ -188,6 +199,21 @@
            [cellArray mas_makeConstraints:^(MASConstraintMaker *make) {
                make.top.equalTo(@15);
                make.height.equalTo(@60);
+           }];
+           
+           //第五组
+       }if (indexPath.section==4) {
+          
+           UILabel*outLabel=[[UILabel alloc] init];
+           outLabel.text=@"退出登录";
+           outLabel.font=[UIFont systemFontOfSize:14];
+           outLabel.textColor=[UIColor redColor];
+           outLabel.textAlignment=NSTextAlignmentCenter;
+           [cell.contentView addSubview:outLabel];
+           [outLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+               
+               make.center.equalTo(cell.contentView);
+               
            }];
            
            
@@ -294,6 +320,25 @@
             [self.navigationController pushViewController:jifenVc animated:YES];
 
         }
+    }if (indexPath.section==4) {
+        
+        UIAlertController*alter=[UIAlertController alertControllerWithTitle:@"退出登录吗" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        
+        UIAlertAction*cancleAction=[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            
+        }];
+        
+        
+        UIAlertAction*sureAction=[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+        }] ;
+
+        [alter addAction:cancleAction];
+        [alter addAction:sureAction];
+        
+        
+        [self presentViewController:alter animated:YES completion:nil];
+
     }
   
     //反选
