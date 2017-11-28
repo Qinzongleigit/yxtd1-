@@ -10,4 +10,6 @@
 
 @interface MineOneCell : UITableViewCell
 
+@property (nonatomic,strong) void(^codeBtBlock)(void);
+
 @end

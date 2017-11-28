@@ -83,6 +83,7 @@
 		8F5AD9CF1FB88875007B5BA8 /* Welcome2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8F5AD9CC1FB88872007B5BA8 /* Welcome2.jpg */; };
 		8F5AD9D01FB88875007B5BA8 /* Welcome3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8F5AD9CD1FB88873007B5BA8 /* Welcome3.jpg */; };
 		8F5FCE0A1FCB23340013C119 /* RankingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F5FCE091FCB23340013C119 /* RankingModel.m */; };
+		8FEC15681FCDAE8D0081799A /* TwoDimensionCodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FEC15671FCDAE8D0081799A /* TwoDimensionCodeVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -250,6 +251,8 @@
 		8F5AD9CD1FB88873007B5BA8 /* Welcome3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Welcome3.jpg; sourceTree = "<group>"; };
 		8F5FCE081FCB23340013C119 /* RankingModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RankingModel.h; sourceTree = "<group>"; };
 		8F5FCE091FCB23340013C119 /* RankingModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RankingModel.m; sourceTree = "<group>"; };
+		8FEC15661FCDAE8D0081799A /* TwoDimensionCodeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TwoDimensionCodeVC.h; sourceTree = "<group>"; };
+		8FEC15671FCDAE8D0081799A /* TwoDimensionCodeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TwoDimensionCodeVC.m; sourceTree = "<group>"; };
 		D34E885CCE21FBB8C41A8408 /* libPods-yxtd.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-yxtd.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7DAC08414912D65117CE88B /* Pods-yxtd.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yxtd.debug.xcconfig"; path = "Pods/Target Support Files/Pods-yxtd/Pods-yxtd.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -923,6 +926,7 @@
 		25D5A39B1FBED3EA00074447 /* Geren */ = {
 			isa = PBXGroup;
 			children = (
+				8FEC15651FCDAE390081799A /* TwoDimensionCode */,
 				25D5A3A01FBED53E00074447 /* JiFenStore */,
 				25D5A39C1FBED3EA00074447 /* Gerenziliao */,
 			);
@@ -994,6 +998,15 @@
 				25AD8CAD1FA1B3A500960732 /* HYSwitch.m */,
 			);
 			path = VIew;
+			sourceTree = "<group>";
+		};
+		8FEC15651FCDAE390081799A /* TwoDimensionCode */ = {
+			isa = PBXGroup;
+			children = (
+				8FEC15661FCDAE8D0081799A /* TwoDimensionCodeVC.h */,
+				8FEC15671FCDAE8D0081799A /* TwoDimensionCodeVC.m */,
+			);
+			path = TwoDimensionCode;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1237,6 +1250,7 @@
 				25D5A26D1FB9837A00074447 /* MBProgressHUD+MJ.m in Sources */,
 				253869DF1F7F479100D34B18 /* HKHealthStore+AAPLExtensions.m in Sources */,
 				2532C16B1F6F70E20064A28C /* SportViewController.m in Sources */,
+				8FEC15681FCDAE8D0081799A /* TwoDimensionCodeVC.m in Sources */,
 				8F5AD9CA1FB87475007B5BA8 /* ShowAnimationView.m in Sources */,
 				25130E471F99E8AB00E1E29A /* JSQuanShowView.m in Sources */,
 				25AB5B271FC7CDEA00BC4D6F /* ShipAddressViewController.m in Sources */,

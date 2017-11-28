@@ -10,6 +10,7 @@
 #import "MineOneCell.h"
 #import "GeRenZiLiaoViewController.h"
 #import "JiFenViewController.h"
+#import "TwoDimensionCodeVC.h"
 
 
 
@@ -159,6 +160,14 @@
        }];
        
        Onecell.selectionStyle=UITableViewCellEditingStyleNone;
+      
+       Onecell.codeBtBlock = ^{
+          //跳转到二维码界面
+           TwoDimensionCodeVC*codeVC=[[TwoDimensionCodeVC alloc] init];
+          
+           [self presentViewController:codeVC animated:YES completion:nil];
+           
+       };
         return Onecell;
        
 
@@ -202,7 +211,7 @@
            }];
            
            //第五组
-       }if (indexPath.section==4) {
+       }else if (indexPath.section==4) {
           
            UILabel*outLabel=[[UILabel alloc] init];
            outLabel.text=@"退出登录";
@@ -211,11 +220,9 @@
            outLabel.textAlignment=NSTextAlignmentCenter;
            [cell.contentView addSubview:outLabel];
            [outLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-               
-               make.center.equalTo(cell.contentView);
+      make.center.equalTo(cell.contentView);
                
            }];
-           
            
        }else{
            
@@ -322,14 +329,14 @@
         }
     }if (indexPath.section==4) {
         
-        UIAlertController*alter=[UIAlertController alertControllerWithTitle:@"退出登录吗" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertController*alter=[UIAlertController alertControllerWithTitle:@"退出登录？" message:@"亲,你忍心离开我吗~~~~~" preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction*cancleAction=[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
             
         }];
         
         
-        UIAlertAction*sureAction=[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction*sureAction=[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
             
         }] ;
 

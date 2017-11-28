@@ -14,7 +14,7 @@
 
 @property (nonatomic,strong) UILabel*nameLabel;
 
-@property (nonatomic,strong) UIImageView*codeImage;
+@property (nonatomic,strong) UIButton*codeImageBt;
 
 @property (nonatomic,strong) UILabel*guanzhuLabel;
 
@@ -51,10 +51,10 @@
         [self.contentView addSubview:_nameLabel];
         
         
-        _codeImage=[[UIImageView alloc] init];
-        //_codeImage.backgroundColor=[UIColor redColor];
-        _codeImage.image=[UIImage imageWithoriginName:@"code_Image"];
-        [self.contentView addSubview:_codeImage];
+        _codeImageBt=[UIButton buttonWithType:UIButtonTypeCustom];
+        [_codeImageBt setBackgroundImage:[UIImage imageWithoriginName:@"code_Image"] forState:UIControlStateNormal];
+        [_codeImageBt addTarget:self action:@selector(codeBtClick) forControlEvents:UIControlEventTouchUpInside];
+        [self.contentView addSubview:_codeImageBt];
         
         
         _guanzhuLabel=[[UILabel alloc] init];
@@ -131,11 +131,11 @@
     }];
     
     
-    [_codeImage mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_codeImageBt mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.centerY.equalTo(_nameLabel);
         
-        make.left.equalTo(_nameLabel.mas_right).with.offset(12);
+        make.left.equalTo(_nameLabel.mas_right).offset(12);
         make.size.mas_equalTo(CGSizeMake(15, 15));
         
         
@@ -201,16 +201,11 @@
     
 }
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
+#pragma mark-二维码点击
+-(void)codeBtClick{
     
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+    self.codeBtBlock();
     
-    // Configure the view for the selected state
 }
 
 @end
