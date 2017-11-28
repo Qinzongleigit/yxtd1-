@@ -150,32 +150,38 @@
     
 }
 
+
+
 #pragma mark -textView数值变化
 -(void)textViewDidChange:(UITextView *)textView{
-    
-    if (textView.text.length==0) {
-        
-        _placeholderLabel.hidden=NO;
-        self.sureBt.enabled=NO;
-        self.sureBt.backgroundColor=[UIColor lightGrayColor];
-        
-    }else{
-        
-        _placeholderLabel.hidden=YES;
-        self.sureBt.enabled=YES;
-        self.sureBt.backgroundColor=COLORWITHRGB(0, 214, 215);
-        //实时显示字数
-        self.stirngLenghLabel.text = [NSString stringWithFormat:@"%lu/10", (unsigned long)textView.text.length];
-        
-        //字数限制操作
-        if (textView.text.length >= 10) {
+
+        if (textView.text.length==0) {
             
-            textView.text = [textView.text substringToIndex:10];
-            self.stirngLenghLabel.text = @"10/10";
+            _placeholderLabel.hidden=NO;
+            self.sureBt.enabled=NO;
+            self.sureBt.backgroundColor=[UIColor lightGrayColor];
+            
+        }else{
+            
+            _placeholderLabel.hidden=YES;
+            self.sureBt.enabled=YES;
+            self.sureBt.backgroundColor=COLORWITHRGB(0, 214, 215);
+            
+            //实时显示字数
+            self.stirngLenghLabel.text = [NSString stringWithFormat:@"%lu/10", (unsigned long)textView.text.length];
+            
+            //字数限制操作
+            if (textView.text.length >= 10) {
+                
+                textView.text = [textView.text substringToIndex:10];
+                self.stirngLenghLabel.text = @"10/10";
+                
+            }
             
         }
-    }
+
 }
+
 
 
 
