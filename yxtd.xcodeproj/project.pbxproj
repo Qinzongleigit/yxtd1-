@@ -55,6 +55,8 @@
 		25AB5B351FC7FFB800BC4D6F /* AddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AB5B331FC7FFB800BC4D6F /* AddressCell.m */; };
 		25AB5B361FC7FFB800BC4D6F /* AddressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25AB5B341FC7FFB800BC4D6F /* AddressCell.xib */; };
 		25AB5B381FC80EBD00BC4D6F /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = 25AB5B371FC80EBD00BC4D6F /* area.plist */; };
+		25AB5B951FCE8D1400BC4D6F /* NaviBarRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AB5B941FCE8D1400BC4D6F /* NaviBarRootViewController.m */; };
+		25AB5B9A1FCE90D900BC4D6F /* HuatiDongtaiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AB5B991FCE90D900BC4D6F /* HuatiDongtaiViewController.m */; };
 		25AD8CAE1FA1B3A500960732 /* HYSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AD8CAD1FA1B3A500960732 /* HYSwitch.m */; };
 		25AD8CB81FA8156D00960732 /* DetailedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AD8CB71FA8156D00960732 /* DetailedViewController.m */; };
 		25AD8CCD1FA85B6800960732 /* StarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AD8CCC1FA85B6800960732 /* StarView.m */; };
@@ -198,6 +200,10 @@
 		25AB5B331FC7FFB800BC4D6F /* AddressCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddressCell.m; sourceTree = "<group>"; };
 		25AB5B341FC7FFB800BC4D6F /* AddressCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddressCell.xib; sourceTree = "<group>"; };
 		25AB5B371FC80EBD00BC4D6F /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
+		25AB5B931FCE8D1400BC4D6F /* NaviBarRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NaviBarRootViewController.h; sourceTree = "<group>"; };
+		25AB5B941FCE8D1400BC4D6F /* NaviBarRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NaviBarRootViewController.m; sourceTree = "<group>"; };
+		25AB5B981FCE90D900BC4D6F /* HuatiDongtaiViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HuatiDongtaiViewController.h; sourceTree = "<group>"; };
+		25AB5B991FCE90D900BC4D6F /* HuatiDongtaiViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HuatiDongtaiViewController.m; sourceTree = "<group>"; };
 		25AD8CAC1FA1B3A500960732 /* HYSwitch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSwitch.h; sourceTree = "<group>"; };
 		25AD8CAD1FA1B3A500960732 /* HYSwitch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSwitch.m; sourceTree = "<group>"; };
 		25AD8CB61FA8156D00960732 /* DetailedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailedViewController.h; sourceTree = "<group>"; };
@@ -461,6 +467,7 @@
 		25393C991F68DA5E006905CB /* yxtd */ = {
 			isa = PBXGroup;
 			children = (
+				25AB5B921FCE8C8600BC4D6F /* PublicNaViBarRootVC */,
 				253869DA1F7F455C00D34B18 /* yxtd.entitlements */,
 				257D124C1F690EFF003DC1E4 /* Running */,
 				257D12501F690F53003DC1E4 /* Ranking */,
@@ -822,6 +829,32 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		25AB5B921FCE8C8600BC4D6F /* PublicNaViBarRootVC */ = {
+			isa = PBXGroup;
+			children = (
+				25AB5B931FCE8D1400BC4D6F /* NaviBarRootViewController.h */,
+				25AB5B941FCE8D1400BC4D6F /* NaviBarRootViewController.m */,
+			);
+			path = PublicNaViBarRootVC;
+			sourceTree = "<group>";
+		};
+		25AB5B961FCE901700BC4D6F /* HuaTiAndDongtai */ = {
+			isa = PBXGroup;
+			children = (
+				25AB5B971FCE905D00BC4D6F /* Controller */,
+			);
+			path = HuaTiAndDongtai;
+			sourceTree = "<group>";
+		};
+		25AB5B971FCE905D00BC4D6F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				25AB5B981FCE90D900BC4D6F /* HuatiDongtaiViewController.h */,
+				25AB5B991FCE90D900BC4D6F /* HuatiDongtaiViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		25AD8CB51FA8154500960732 /* RunDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -926,6 +959,7 @@
 		25D5A39B1FBED3EA00074447 /* Geren */ = {
 			isa = PBXGroup;
 			children = (
+				25AB5B961FCE901700BC4D6F /* HuaTiAndDongtai */,
 				8FEC15651FCDAE390081799A /* TwoDimensionCode */,
 				25D5A3A01FBED53E00074447 /* JiFenStore */,
 				25D5A39C1FBED3EA00074447 /* Gerenziliao */,
@@ -1268,11 +1302,13 @@
 				8F5FCE0A1FCB23340013C119 /* RankingModel.m in Sources */,
 				25D5A3A31FBED5A000074447 /* JiFenViewController.m in Sources */,
 				257D12561F690F73003DC1E4 /* RunViewController.m in Sources */,
+				25AB5B9A1FCE90D900BC4D6F /* HuatiDongtaiViewController.m in Sources */,
 				25130E3E1F99E59100E1E29A /* RunRootViewController.m in Sources */,
 				25D24D3F1F8F103A0096F765 /* MineOneCell.m in Sources */,
 				25D5A2891FBA89E100074447 /* SmsHttp.m in Sources */,
 				2532C1681F6F70D10064A28C /* SaiShiViewController.m in Sources */,
 				25D5A27A1FB9957900074447 /* Reachability.m in Sources */,
+				25AB5B951FCE8D1400BC4D6F /* NaviBarRootViewController.m in Sources */,
 				25BED2361F7C9CE300A0A07A /* FindTwoCell.m in Sources */,
 				25485B991F721AFE001122F7 /* LoginViewController.m in Sources */,
 				2532C1611F6F6EEF0064A28C /* TopSliderVIew.m in Sources */,

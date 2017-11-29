@@ -8,9 +8,9 @@
 
 #import "TwoDimensionCodeVC.h"
 
-@interface TwoDimensionCodeVC ()<UIScrollViewDelegate>
+@interface TwoDimensionCodeVC ()
 
-@property (nonatomic,weak) UIImageView *imageView;
+@property (nonatomic,strong) UIImageView *imageView;
 
 @property (nonatomic , strong) NSMutableString *twoCodeUrls;
 
@@ -19,6 +19,7 @@
 @implementation TwoDimensionCodeVC
 
 
+//跳转链接地址
 - (NSMutableString *)twoCodeUrls
 {
     if(!_twoCodeUrls)
@@ -35,40 +36,67 @@
     
     self.view.backgroundColor=[UIColor whiteColor];
     
-     [self twoCodeUrls];
-    
-     [self requestData];
-   
-    
+    //头像
     UIImageView*iconImage=[[UIImageView alloc] init];
     iconImage.backgroundColor=[UIColor purpleColor];
-    iconImage.layer.cornerRadius=68/2;
+    iconImage.layer.cornerRadius=74/2;
     iconImage.clipsToBounds=YES;
     [self.view addSubview:iconImage];
     
-    
+    //昵称
     UILabel*nameLabel=[[UILabel alloc] init];
     nameLabel.text=@"骑猪去放🐂";
     nameLabel.textColor=BlackHexColor;
     nameLabel.font=[UIFont systemFontOfSize:15];
     [self.view addSubview:nameLabel];
     
+    //二维码显示
+    UIImageView *imageView = [[UIImageView alloc] init];
+    self.imageView=imageView;
+    [self.view addSubview:imageView];
+   
+    //返回按钮
+    UIButton*takeBackBt=[UIButton buttonWithType:UIButtonTypeCustom];
+    [takeBackBt setBackgroundImage:[UIImage imageWithoriginName:@"takeBack_Image"] forState:UIControlStateNormal];
+    [takeBackBt addTarget:self action:@selector(takeBackClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:takeBackBt];
+    
+    
     
     [iconImage mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.centerX.equalTo(self.view);
-        make.size.mas_equalTo(CGSizeMake(68, 68));
-        make.top.equalTo(self.view).offset(80);
+        make.size.mas_equalTo(CGSizeMake(74, 74));
+        make.top.equalTo(self.view).offset(SYRealValueHeight(126));
     }];
     
     [nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(iconImage);
-        make.top.equalTo(iconImage.mas_bottom).offset(20);
+        make.top.equalTo(iconImage.mas_bottom).offset(26);
     }];
+    
+    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.centerX.equalTo(self.view);
+        make.top.equalTo(nameLabel.mas_bottom).offset(30);
+   make.size.mas_equalTo(self.view.mas_width).multipliedBy(0.6);
+    }];
+    
+    
+    [takeBackBt mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.centerX.equalTo(self.view);
+       make.bottom.equalTo(self.view.mas_bottom).offset(-SYRealValueHeight(74));
+    }];
+    
+    
+    [self twoCodeUrls];
+    
+    [self requestData];
     
 }
 
-
+#pragma mark -获取二维码接口Url
 - (void)requestData
 {
 //    CDHttpParam *params = [[CDHttpParam alloc] init];
@@ -108,21 +136,20 @@
     CGFloat imageSize = 6;
     
     //中间二维码图像
-    UIImage *iconImage = [UIImage imageNamed:@"pingjia_Image"];
+    UIImage *iconImage = [UIImage imageNamed:@"iconImage"];
     
     NSDictionary *rgb = @{@"red":@(0),@"green":@(0),@"blue":@(0)};
     
- CGRect rect = CGRectMake(CGRectGetWidth(self.view.frame)/2 - CGRectGetHeight(self.view.frame)/3/2, CGRectGetHeight(self.view.frame)/2 - CGRectGetHeight(self.view.frame)/3/2 - 64, CGRectGetHeight(self.view.frame)/3, CGRectGetHeight(self.view.frame)/3);
-   
-    
- 
-    [self showTwoDimensionCodeMessage: message codeSize:codeSize iconSize:imageSize iconImage:iconImage RGB:rgb imageViewFrame:rect];
+
+
+    [self showTwoDimensionCodeMessage:message codeSize:codeSize iconSize:imageSize iconImage:iconImage RGB:rgb];
     
 }
 
 
 #pragma mark   显示二维码
-- (void)showTwoDimensionCodeMessage:(NSString *)message codeSize:(CGFloat)codeSize iconSize:(CGFloat)iconSize iconImage:(UIImage *)iconImage RGB:(NSDictionary *)color imageViewFrame:(CGRect)imgVFrame
+
+- (void)showTwoDimensionCodeMessage:(NSString *)message codeSize:(CGFloat)codeSize iconSize:(CGFloat)iconSize iconImage:(UIImage *)iconImage RGB:(NSDictionary *)color
 {
     UIImage *image = [self createNonInterpolatedUIImageFormCIImage:[self createQRForString:message] withSize:codeSize];
     
@@ -132,41 +159,8 @@
     UIImage *imgIcon = [self createRoundedRectImage:iconImage withSize: CGSizeMake(70.0, 93.0) withRadius:10];
     
     UIImage *lastImage = [self addIconToQRCodeImage:newImage withIcon:imgIcon withScale:iconSize];
-    
-    //将imageView放在滚动视图上
-    UIScrollView *scView = [[UIScrollView alloc] initWithFrame:self.view.frame];
-    
-    scView.delegate = self;
-    
-    scView.contentSize = CGSizeMake(0, CGRectGetHeight(self.view.frame) + 1);
-    
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:imgVFrame];
-    
-    self.imageView = imageView;
-    
-    self.imageView.image = lastImage;
-    
-    [scView addSubview:self.imageView];
-    
-    [self.view addSubview:scView];
-    
-}
 
-//#pragma mark   滚动视图代理方法
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    //获取偏移量
-    CGFloat offset = scrollView.contentOffset.y - 22;
-    
-    CGFloat x = CGRectGetWidth(self.view.frame)/2 - CGRectGetHeight(self.view.frame)/3/2 + offset/2;
-    
-    CGFloat y = CGRectGetHeight(self.view.frame)/2 - CGRectGetHeight(self.view.frame)/3/2 - 64 + 22;
-    
-    CGFloat width = CGRectGetHeight(self.view.frame)/3 - offset ;
-    
-    CGFloat height = width;
-    
-    self.imageView.frame = CGRectMake(x, y, width, height);
+    self.imageView.image=lastImage;
     
 }
 
@@ -388,7 +382,7 @@ void ProviderReleaseData (void *info, const void *data, size_t size){
 
 
 
--(void)buttonClick{
+-(void)takeBackClick{
     
     [self dismissViewControllerAnimated:YES completion:nil];
     

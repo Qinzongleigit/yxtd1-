@@ -11,6 +11,7 @@
 #import "GeRenZiLiaoViewController.h"
 #import "JiFenViewController.h"
 #import "TwoDimensionCodeVC.h"
+#import "HuatiDongtaiViewController.h"
 
 
 
@@ -25,6 +26,9 @@
 @property (nonatomic,strong) NSArray *dataSource1_;
 @property (nonatomic,strong) NSArray *dataSource2;
 @property (nonatomic,strong) NSArray *dataSource2_;
+
+@property (nonatomic,strong) UIButton*publishBt;
+
 @end
 
 @implementation MineViewController
@@ -33,6 +37,10 @@
   static NSString*oneCell=@"cell";
 
 
+-(void)viewWillAppear:(BOOL)animated{
+    
+    self.tabBarController.tabBar.hidden=NO;
+}
 
 - (void)viewDidLoad {
     
@@ -190,25 +198,37 @@
     //第一组二行
        if (!indexPath.section&&indexPath.row==1) {
            
-           NSMutableArray*cellArray=[NSMutableArray new];
+           //从没有发布过动态时显示的界面
+           [cell.contentView addSubview:self.publishBt];
+           [_publishBt mas_makeConstraints:^(MASConstraintMaker *make) {
+               make.center.equalTo(cell);
+               make.width.equalTo(cell.mas_width).multipliedBy(0.72);
+               make.height.mas_offset(@35);
+           }];
            
+#warning 有动态的时候显示的界面，没有数据先不显示
+#if 0
+           NSMutableArray*cellArray=[NSMutableArray new];
+
            for (int i=0; i<5; i++) {
-               
+
                UIView*cellView=[UIView new];
                cellView.backgroundColor=[UIColor greenColor];
                cellView.layer.cornerRadius=5;
                cellView.clipsToBounds=YES;
                [cell.contentView addSubview:cellView];
-               
+
                [cellArray addObject:cellView];
            }
            //水平方向控件间隔固定等间隔
            [cellArray mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:9 leadSpacing:14 tailSpacing:14];
-           
+
            [cellArray mas_makeConstraints:^(MASConstraintMaker *make) {
                make.top.equalTo(@15);
                make.height.equalTo(@60);
            }];
+           
+#endif
            
            //第五组
        }else if (indexPath.section==4) {
@@ -329,7 +349,7 @@
         }
     }if (indexPath.section==4) {
         
-        UIAlertController*alter=[UIAlertController alertControllerWithTitle:@"退出登录？" message:@"亲,你忍心离开我吗~~~~~" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController*alter=[UIAlertController alertControllerWithTitle:@"退出登录？" message:nil preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction*cancleAction=[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
             
@@ -340,10 +360,9 @@
             
         }] ;
 
+        
         [alter addAction:cancleAction];
         [alter addAction:sureAction];
-        
-        
         [self presentViewController:alter animated:YES completion:nil];
 
     }
@@ -353,6 +372,34 @@
     
 }
 
+#pragma mark -发布动态
+-(UIButton*)publishBt{
+    
+    if (_publishBt==nil) {
+        
+        _publishBt=[UIButton buttonWithType:UIButtonTypeCustom];
+        _publishBt.backgroundColor=COLORWITHRGB(234, 235, 235);
+        [_publishBt setTitle:@"发布第一条动态" forState:UIControlStateNormal];
+        [_publishBt setTitleColor:COLORWITHRGB(49, 58, 63) forState:UIControlStateNormal];
+        _publishBt.titleLabel.alpha=0.5;
+        [_publishBt addTarget:self action:@selector(publishBtClick) forControlEvents:UIControlEventTouchUpInside];
+        _publishBt.titleLabel.font=[UIFont systemFontOfSize:15];
+        _publishBt.layer.cornerRadius=18;
+        _publishBt.clipsToBounds=YES;
+    }
+    
+    return _publishBt;
+}
+
+
+#pragma mark -发布第一条动态点击事件
+-(void)publishBtClick{
+   
+ HuatiDongtaiViewController*dongtaiVC=[[HuatiDongtaiViewController alloc] init];
+    
+    [self.navigationController pushViewController:dongtaiVC animated:YES];
+    
+}
 
 -(void)initNavi{
 
