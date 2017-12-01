@@ -7,9 +7,9 @@
 //
 
 #import "ShowImageView.h"
-#define padding 10
-#define screenWidth [UIScreen mainScreen].bounds.size.width
-#define screenHeight [UIScreen mainScreen].bounds.size.height
+//#define padding 10
+//#define screenWidth [UIScreen mainScreen].bounds.size.width
+//#define screenHeight [UIScreen mainScreen].bounds.size.height
 
 #define imageTag 2000
 

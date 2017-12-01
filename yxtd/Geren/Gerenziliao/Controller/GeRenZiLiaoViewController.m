@@ -45,6 +45,12 @@ typedef NS_ENUM(NSInteger, ChosePhontType) {
 
 @implementation GeRenZiLiaoViewController
 
+-(void)viewWillAppear:(BOOL)animated{
+    
+    
+    self.navigationController.navigationBar.hidden=NO;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

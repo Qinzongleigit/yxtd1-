@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 //typedef，为现有类型创建一个新的名字
 //typedef  返回类型(*新类型)(参数表)
-typedef void(^didRemoveImage)();
+typedef void(^didRemoveImage)(void);
 
 @interface ShowImageView : UIView
 

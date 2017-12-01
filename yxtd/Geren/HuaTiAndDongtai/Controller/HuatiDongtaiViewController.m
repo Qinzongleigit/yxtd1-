@@ -9,6 +9,7 @@
 #import "HuatiDongtaiViewController.h"
 #import "AGImagePickerController.h"
 #import "ShowImageViewController.h"
+#import "HYSwitch.h"
 
 
 #define padding 10
@@ -17,7 +18,7 @@
 
 #define imageTag 2000
 
-@interface HuatiDongtaiViewController ()<UITableViewDelegate,UITableViewDataSource,UITextViewDelegate,UIGestureRecognizerDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate>
+@interface HuatiDongtaiViewController ()<UITableViewDelegate,UITableViewDataSource,UITextViewDelegate,UIGestureRecognizerDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate,UINavigationControllerDelegate,UIActionSheetDelegate>
 
 @property (nonatomic,strong) UITableView*tableView;
 
@@ -30,6 +31,7 @@
 @property (nonatomic, weak)UIButton *addPictureButton;
 
 @property (nonatomic, copy)NSString *messageStr;
+@property (nonatomic, weak) HYSwitch*switch1;
 
 
 /**
@@ -103,10 +105,97 @@
      [self.tableView addGestureRecognizer:tap];
     
     //隐藏多余的分割线
-    [self setExtraCellLineHidden:self.tableView];
+     [self setExtraCellLineHidden:self.tableView];
     
      [self initHeaderView];
+    
+    [self showMapLocation];
 
+    
+}
+
+#pragma mark -显示定位
+-(void)showMapLocation{
+    
+    __weak typeof(self.view) weakSelf=self.view;
+    
+    UIView*bgHView=[[UIView alloc] init];
+    bgHView.backgroundColor=COLORWITHRGB(244 , 245, 245);
+    [self.view addSubview:bgHView];
+    [bgHView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(weakSelf).with.offset(16);
+        make.right.equalTo(weakSelf).with.offset(-15);
+        make.bottom.equalTo(weakSelf).with.offset(-13);
+        
+        make.height.equalTo(@27);
+    }];
+    
+    
+    UIImageView*mapImage=[[UIImageView alloc] init];
+    mapImage.image=[UIImage imageWithoriginName:@"map_Image"];
+    [bgHView addSubview:mapImage];
+    [mapImage mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(bgHView).with.offset(20);
+        make.top.equalTo(bgHView).with.offset(6);
+        
+    }];
+    
+    UILabel*mapLabel=[[UILabel alloc] init];
+    mapLabel.text=@"显示地图";
+    mapLabel.textColor=BlackHexColor;
+    mapLabel.font=[UIFont systemFontOfSize:12];
+    [bgHView addSubview:mapLabel];
+    
+    [mapLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.centerY.equalTo(mapImage);
+        make.left.equalTo(mapImage.mas_right).with.offset(10);
+    }];
+    
+    UIView*hyView=[[UIView alloc] init];
+    hyView.backgroundColor=[UIColor colorWithRed:0/255.0 green:219/255.0 blue:220/255.0 alpha:1.0];
+    hyView.layer.cornerRadius=16/2;
+    hyView.clipsToBounds=YES;
+    [bgHView addSubview:hyView];
+    [hyView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.right.equalTo(bgHView).with.offset(-9);
+        make.centerY.equalTo(bgHView);
+        make.size.mas_equalTo(CGSizeMake(38, 16));
+        
+    }];
+    
+    
+    
+    HYSwitch*switch1=[[HYSwitch alloc] init];
+    self.switch1=switch1;
+    switch1.offColor = [UIColor whiteColor];
+    switch1.buttonColor = [UIColor colorWithRed:0/255.0 green:219/255.0 blue:220/255.0 alpha:1.0];
+    [hyView addSubview:switch1];
+    
+    [switch1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(hyView).with.offset(1);
+        make.centerY.equalTo(bgHView);
+        make.size.mas_equalTo(CGSizeMake(36, 14));
+    }];
+    
+    switch1.action = ^(BOOL isOn) {
+        //关
+        if (isOn==0) {
+            
+            self.switch1.buttonColor = [UIColor colorWithRed:0/255.0 green:219/255.0 blue:220/255.0 alpha:1.0];
+            hyView.backgroundColor=[UIColor colorWithRed:0/255.0 green:219/255.0 blue:220/255.0 alpha:1.0];
+            //开
+        }else{
+            self.switch1.buttonColor = [UIColor blackColor];
+            self.switch1.onColor = [UIColor whiteColor];
+            hyView.backgroundColor=[UIColor blackColor];
+            
+        }
+    };
     
 }
 
@@ -150,20 +239,34 @@
     
     pLabel.hidden = [self.reportStateTextView.text length];
     
-    pLabel.font = [UIFont systemFontOfSize:13];
+    pLabel.font = [UIFont systemFontOfSize:15];
     
-    pLabel.textColor = [UIColor colorWithHexString:@"#CCCCCC"];
+    pLabel.textColor = [UIColor lightGrayColor];
     
     [self.headView addSubview:pLabel];
     
+    UIView*line=[[UIView alloc] initWithFrame:CGRectMake(padding, CGRectGetMaxY(reportStateTextView.frame), KscreenW-padding*2, 1)];
+    line.backgroundColor=btnLineColor;
+    [self.headView addSubview:line];
+    
+    UILabel*tishiLabel=[[UILabel alloc] initWithFrame:CGRectMake(padding, CGRectGetMaxY(line.frame)+5, KscreenW-padding*2, 40)];
+    tishiLabel.text=@"我们家射鸡师说这里一定要放照片或视屏(无辜脸)";
+    tishiLabel.font=[UIFont systemFontOfSize:13];
+    tishiLabel.textColor=[UIColor lightGrayColor];
+    tishiLabel.textAlignment=NSTextAlignmentLeft;
+    tishiLabel.numberOfLines=0;
+    [self.headView addSubview:tishiLabel];
     
     NSInteger imageCount = [self.imagePickerArray count];
     
     for (NSInteger i = 0; i < imageCount; i++) {
         
-        UIImageView *pictureImageView = [[UIImageView alloc]initWithFrame:CGRectMake(padding + (i%4)*(pictureHW+padding), CGRectGetMaxY(reportStateTextView.frame) + padding +(i/4)*(pictureHW+padding), pictureHW, pictureHW)];
+        UIImageView *pictureImageView = [[UIImageView alloc]initWithFrame:CGRectMake(padding + (i%4)*(pictureHW+padding), CGRectGetMaxY(tishiLabel.frame) + padding*2 +(i/4)*(pictureHW+padding), pictureHW, pictureHW)];
         
         self.pictureImageView = pictureImageView;
+        
+        pictureImageView.layer.cornerRadius=10;
+        pictureImageView.clipsToBounds=YES;
         
         //用作放大图片
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapImageView:)];
@@ -172,7 +275,7 @@
         //添加删除按钮
         UIButton *dele = [UIButton buttonWithType:UIButtonTypeCustom];
         
-        dele.frame = CGRectMake(pictureHW - deleImageWH + 5, -10, deleImageWH, deleImageWH);
+        dele.frame = CGRectMake(pictureHW - deleImageWH + 3, -5, deleImageWH, deleImageWH);
         
         [dele setImage:[UIImage imageNamed:@"deletePhoto"] forState:UIControlStateNormal];
         
@@ -190,7 +293,7 @@
     }
     if (imageCount < MaxImageCount) {
         
-        UIButton *addPictureButton = [[UIButton alloc]initWithFrame:CGRectMake(padding + (imageCount%4)*(pictureHW+padding), CGRectGetMaxY(reportStateTextView.frame) + padding +(imageCount/4)*(pictureHW+padding), pictureHW, pictureHW)];
+        UIButton *addPictureButton = [[UIButton alloc]initWithFrame:CGRectMake(padding + (imageCount%4)*(pictureHW+padding), CGRectGetMaxY(tishiLabel.frame) + padding*2 +(imageCount/4)*(pictureHW+padding), pictureHW, pictureHW)];
         
         [addPictureButton setBackgroundImage:[UIImage imageNamed:@"addImage"] forState:UIControlStateNormal];
         
@@ -201,7 +304,7 @@
         self.addPictureButton = addPictureButton;
     }
     
-    NSInteger headViewHeight = 185 + (10 + pictureHW)*([self.imagePickerArray count]/4 + 1);
+    NSInteger headViewHeight = 195 + (10 + pictureHW)*([self.imagePickerArray count]/4 + 1);
     
     self.headView.frame = CGRectMake(0, 0, screenWidth, headViewHeight);
     
@@ -253,7 +356,7 @@
                 sourceType = UIImagePickerControllerSourceTypeCamera;
                 //跳转到相机或相册界面
                 UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
-                
+               
                 imagePickerController.delegate = self;
                 
                 imagePickerController.allowsEditing = YES;
@@ -502,6 +605,7 @@
     self.messageStr = textView.text;
 }
 
+#pragma mark -输入框信息变化
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
     // 不让输入表情
@@ -536,7 +640,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     
-    return 100;
+    return 50;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -553,7 +657,9 @@
         cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     
-    cell.backgroundColor=[UIColor purpleColor];
+    cell.backgroundColor=[UIColor orangeColor];
+    
+    
     return cell;
 }
 
@@ -581,7 +687,7 @@
        
        if (messageText.text.length < 10)
         {
-            alertView.message = @"获奖感言,不少于10个字";
+            alertView.message = @"发布信息,不少于10个字";
             
         }else if (selectedImages.count < 3)
         {

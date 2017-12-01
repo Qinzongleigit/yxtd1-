@@ -57,6 +57,7 @@
 		25AB5B381FC80EBD00BC4D6F /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = 25AB5B371FC80EBD00BC4D6F /* area.plist */; };
 		25AB5B951FCE8D1400BC4D6F /* NaviBarRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AB5B941FCE8D1400BC4D6F /* NaviBarRootViewController.m */; };
 		25AB5B9A1FCE90D900BC4D6F /* HuatiDongtaiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AB5B991FCE90D900BC4D6F /* HuatiDongtaiViewController.m */; };
+		25AB5BED1FD13EFC00BC4D6F /* JiFenHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AB5BEC1FD13EFC00BC4D6F /* JiFenHeaderView.m */; };
 		25AD8CAE1FA1B3A500960732 /* HYSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AD8CAD1FA1B3A500960732 /* HYSwitch.m */; };
 		25AD8CB81FA8156D00960732 /* DetailedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AD8CB71FA8156D00960732 /* DetailedViewController.m */; };
 		25AD8CCD1FA85B6800960732 /* StarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AD8CCC1FA85B6800960732 /* StarView.m */; };
@@ -220,6 +221,8 @@
 		25AB5B941FCE8D1400BC4D6F /* NaviBarRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NaviBarRootViewController.m; sourceTree = "<group>"; };
 		25AB5B981FCE90D900BC4D6F /* HuatiDongtaiViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HuatiDongtaiViewController.h; sourceTree = "<group>"; };
 		25AB5B991FCE90D900BC4D6F /* HuatiDongtaiViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HuatiDongtaiViewController.m; sourceTree = "<group>"; };
+		25AB5BEB1FD13EFC00BC4D6F /* JiFenHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JiFenHeaderView.h; sourceTree = "<group>"; };
+		25AB5BEC1FD13EFC00BC4D6F /* JiFenHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JiFenHeaderView.m; sourceTree = "<group>"; };
 		25AD8CAC1FA1B3A500960732 /* HYSwitch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSwitch.h; sourceTree = "<group>"; };
 		25AD8CAD1FA1B3A500960732 /* HYSwitch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSwitch.m; sourceTree = "<group>"; };
 		25AD8CB61FA8156D00960732 /* DetailedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailedViewController.h; sourceTree = "<group>"; };
@@ -432,9 +435,9 @@
 		2532C16C1F6F72990064A28C /* PaiHang */ = {
 			isa = PBXGroup;
 			children = (
+				2532C16D1F6F72990064A28C /* Controller */,
 				253869D61F7F44CC00D34B18 /* Model */,
 				25FE9F671F7E357600D9E420 /* View */,
-				2532C16D1F6F72990064A28C /* Controller */,
 			);
 			path = PaiHang;
 			sourceTree = "<group>";
@@ -742,11 +745,11 @@
 		257D12501F690F53003DC1E4 /* Ranking */ = {
 			isa = PBXGroup;
 			children = (
-				8F5FCE071FCB22EE0013C119 /* Model */,
 				2532C16C1F6F72990064A28C /* PaiHang */,
 				2532C1621F6F70A60064A28C /* SaiShi */,
 				2532C1641F6F70A60064A28C /* Sport */,
 				257D12511F690F53003DC1E4 /* Controller */,
+				8F5FCE071FCB22EE0013C119 /* Model */,
 				257D12531F690F53003DC1E4 /* View */,
 			);
 			path = Ranking;
@@ -907,6 +910,24 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		25AB5BE91FD13EB700BC4D6F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				25AB5BEB1FD13EFC00BC4D6F /* JiFenHeaderView.h */,
+				25AB5BEC1FD13EFC00BC4D6F /* JiFenHeaderView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		25AB5BEA1FD13EC300BC4D6F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				25D5A3A11FBED5A000074447 /* JiFenViewController.h */,
+				25D5A3A21FBED5A000074447 /* JiFenViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		25AD8CB51FA8154500960732 /* RunDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -1033,8 +1054,8 @@
 		25D5A3A01FBED53E00074447 /* JiFenStore */ = {
 			isa = PBXGroup;
 			children = (
-				25D5A3A11FBED5A000074447 /* JiFenViewController.h */,
-				25D5A3A21FBED5A000074447 /* JiFenViewController.m */,
+				25AB5BEA1FD13EC300BC4D6F /* Controller */,
+				25AB5BE91FD13EB700BC4D6F /* View */,
 			);
 			path = JiFenStore;
 			sourceTree = "<group>";
@@ -1387,6 +1408,7 @@
 				253869DF1F7F479100D34B18 /* HKHealthStore+AAPLExtensions.m in Sources */,
 				2532C16B1F6F70E20064A28C /* SportViewController.m in Sources */,
 				8FEC15681FCDAE8D0081799A /* TwoDimensionCodeVC.m in Sources */,
+				25AB5BED1FD13EFC00BC4D6F /* JiFenHeaderView.m in Sources */,
 				8F263BBB1FD05CAF00F89A45 /* AGPreviewScrollView.m in Sources */,
 				8F5AD9CA1FB87475007B5BA8 /* ShowAnimationView.m in Sources */,
 				25130E471F99E8AB00E1E29A /* JSQuanShowView.m in Sources */,

@@ -970,7 +970,7 @@ static int countNumber;
     
     rightBtn.frame = CGRectMake(17,31,22,22);
     
-    [rightBtn setBackgroundImage:[UIImage imageNamed:@"rightLoginImage"] forState:UIControlStateNormal];
+    [rightBtn setBackgroundImage:[UIImage imageNamed:@"leftLoginImage"] forState:UIControlStateNormal];
 
     [rightBtn addTarget:self action:@selector(touchrightBtn) forControlEvents:UIControlEventTouchUpInside];
     

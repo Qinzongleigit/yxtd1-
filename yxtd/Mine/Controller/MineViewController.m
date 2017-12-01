@@ -40,6 +40,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     
     self.tabBarController.tabBar.hidden=NO;
+    self.navigationController.navigationBar.hidden=NO;
 }
 
 - (void)viewDidLoad {
@@ -343,8 +344,10 @@
         }if (indexPath.row==2) {
             
             JiFenViewController*jifenVc=[[JiFenViewController alloc] init];
+            
              jifenVc.hidesBottomBarWhenPushed=YES;
-            [self.navigationController pushViewController:jifenVc animated:YES];
+            
+            [self.navigationController presentViewController:jifenVc animated:YES completion:nil];
 
         }
     }if (indexPath.section==4) {
