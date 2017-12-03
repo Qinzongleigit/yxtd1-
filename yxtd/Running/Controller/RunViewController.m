@@ -50,14 +50,18 @@
 @property (nonatomic,assign) CLLocationCoordinate2D endCoordinate;
 
 @property (nonatomic, strong) AMapNaviPoint *startPoint;
+
 @property (nonatomic, strong) AMapNaviPoint *endPoint;
 
 
 @property (nonatomic,weak) UIView*bgView;
+
 @property (nonatomic,weak) UIView*popView;
+
 @property (nonatomic,weak) UIView*oneView;
 
 @property (nonatomic,copy) NSString*address;
+
 @property (nonatomic,copy) NSString *label_distance;
 
 
@@ -139,7 +143,6 @@
     
    self.mapView.scaleOrigin=CGPointMake(20, -KscreenH+64); ///比例尺的位置
    
-    
     /** MAMapTypeStandard = 0,  ///< 普通地图
      MAMapTypeSatellite,     ///< 卫星地图
      MAMapTypeStandardNight, ///< 夜间视图

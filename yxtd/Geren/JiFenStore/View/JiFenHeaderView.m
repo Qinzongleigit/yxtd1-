@@ -8,14 +8,17 @@
 
 #import "JiFenHeaderView.h"
 
-@interface JiFenHeaderView ()
+@interface JiFenHeaderView ()<UIPickerViewDelegate,UIPickerViewDataSource>
 
 @property (nonatomic,strong) UIImageView*headeImageView;
 
 @property (nonatomic,strong) UIButton*leftBt;
 
 @property (nonatomic,strong) UIButton*rightBt;
-
+@property (nonatomic,strong) UILabel*jifenTitle;
+@property (nonatomic,strong) UIPickerView *pickerView;
+@property (nonatomic,strong) NSArray* proTitleList;
+@property (nonatomic,strong) NSArray* proTimeList;
 @end
 
 @implementation JiFenHeaderView
@@ -53,6 +56,27 @@
     [rightBt addTarget:self action:@selector(jifenrightBt) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:rightBt];
     
+    UILabel*jifenTitle=[[UILabel alloc] init];
+    jifenTitle.text=@"积分商城";
+    self.jifenTitle=jifenTitle;
+    jifenTitle.font=[UIFont systemFontOfSize:15];
+    [jifenTitle setTextColor:[UIColor whiteColor]];
+    [self addSubview:jifenTitle];
+    
+    
+    // 选择框
+    UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 50, 320, 40)];
+    // 显示选中框
+    pickerView.showsSelectionIndicator=YES;
+    pickerView.dataSource = self;
+    pickerView.delegate = self;
+    [self addSubview:pickerView];
+    
+    _proTimeList = [[NSArray alloc]initWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",nil];
+    _proTitleList = [[NSArray alloc]initWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",nil];
+    
+    
+    
     
 }
 
@@ -73,7 +97,62 @@
         make.right.equalTo(self).offset(-15);
     }];
     
+    [self.jifenTitle mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.centerX.equalTo(self);
+        make.centerY.equalTo(self.leftBt);
+    }];
     
+}
+
+
+#pragma Mark -- UIPickerViewDataSource
+// pickerView 列数
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 2;
+}
+
+// pickerView 每列个数
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    if (component == 0) {
+        return [_proTitleList count];
+    }
+    
+    return [_proTimeList count];
+}
+
+
+#pragma Mark -- UIPickerViewDelegate
+// 每列宽度
+- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
+    
+    if (component == 1) {
+        return 40;
+    }
+    return 180;
+}
+// 返回选中的行
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    if (component == 0) {
+        NSString  *_proNameStr = [_proTitleList objectAtIndex:row];
+        NSLog(@"nameStr=%@",_proNameStr);
+    } else {
+        NSString  *_proTimeStr = [_proTimeList objectAtIndex:row];
+        NSLog(@"_proTimeStr=%@",_proTimeStr);
+    }
+    
+}
+
+//返回当前行的内容,此处是将数组中数值添加到滚动的那个显示栏上
+-(NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    if (component == 0) {
+        return [_proTitleList objectAtIndex:row];
+    } else {
+        return [_proTimeList objectAtIndex:row];
+        
+    }
 }
 
 

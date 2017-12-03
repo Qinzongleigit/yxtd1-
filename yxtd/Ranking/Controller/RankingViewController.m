@@ -81,10 +81,8 @@
 
     [UIView animateWithDuration:0.5 animations:^{
 
-
        // self.topView.coverView.frame=CGRectMake(index*(KscreenW-80)/3+20*(index+1), 83, (KscreenW-80)/3, 1);
-        
-       self.topView.coverView.frame=CGRectMake((KscreenW-90-90-20)/12+90+index*((KscreenW-90-90-20)/3+10), 83, (KscreenW-90-90-20)/6, 1);
+        self.topView.coverView.frame=CGRectMake((KscreenW-90-90-20)/12+90+index*((KscreenW-90-90-20)/3+10), 83, (KscreenW-90-90-20)/6, 1);
         
         
     }];
@@ -92,7 +90,6 @@
     if (index==1) {
 
         self.tabBarController.tabBar.hidden=YES;
-
 
     }else{
 
@@ -107,7 +104,6 @@
     [super viewWillAppear:animated];
     
     self.navigationController.navigationBar.hidden = YES;
-    
     //修改状态栏颜色
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
 
@@ -125,6 +121,7 @@
 #pragma mark - 视图即将消失
 - (void)viewWillDisappear:(BOOL)animated
 {
+    
     [super viewWillDisappear:animated];
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:NO];

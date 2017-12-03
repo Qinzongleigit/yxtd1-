@@ -21,7 +21,6 @@
     self.view.backgroundColor=[UIColor whiteColor];
     
     //左边按钮
-
     _leftBt=[UIButton buttonWithType:UIButtonTypeCustom];
     _leftBt.frame=CGRectMake(16, 11, 22, 22);
     [_leftBt setBackgroundImage:[UIImage imageWithoriginName:@"back"] forState:UIControlStateNormal];
