@@ -7,8 +7,9 @@
 //
 
 #import "JiFenHeaderView.h"
+#import "UICountingLabel.h"
 
-@interface JiFenHeaderView ()<UIPickerViewDelegate,UIPickerViewDataSource>
+@interface JiFenHeaderView ()
 
 @property (nonatomic,strong) UIImageView*headeImageView;
 
@@ -16,9 +17,12 @@
 
 @property (nonatomic,strong) UIButton*rightBt;
 @property (nonatomic,strong) UILabel*jifenTitle;
-@property (nonatomic,strong) UIPickerView *pickerView;
-@property (nonatomic,strong) NSArray* proTitleList;
-@property (nonatomic,strong) NSArray* proTimeList;
+
+@property (nonatomic,strong) UICountingLabel*jifenNumberLabel;
+
+@property (nonatomic,assign) NSInteger ratio;
+
+
 @end
 
 @implementation JiFenHeaderView
@@ -64,21 +68,28 @@
     [self addSubview:jifenTitle];
     
     
-    // 选择框
-    UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 50, 320, 40)];
-    // 显示选中框
-    pickerView.showsSelectionIndicator=YES;
-    pickerView.dataSource = self;
-    pickerView.delegate = self;
-    [self addSubview:pickerView];
+    //不能用定时器来做，时间太慢了，用封装一个label
+    UICountingLabel *jifenNumberLabel = [[UICountingLabel alloc] init];
+    self.jifenNumberLabel=jifenNumberLabel;
+    jifenNumberLabel.font = [UIFont fontWithName:@"Avenir Next" size:48];
+    jifenNumberLabel.textColor = [UIColor whiteColor];
+    [self addSubview:jifenNumberLabel];
+    //设置格式
+    jifenNumberLabel.format = @"%d";
+    //设置变化范围及动画时间
+    [jifenNumberLabel countFrom:0 to:1000 withDuration:2.0f];
     
-    _proTimeList = [[NSArray alloc]initWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",nil];
-    _proTitleList = [[NSArray alloc]initWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",nil];
+
     
-    
-    
+   
+  
     
 }
+
+
+
+
+
 
 #pragma mark -坐标
 -(void)layoutSubviews{
@@ -103,57 +114,15 @@
         make.centerY.equalTo(self.leftBt);
     }];
     
-}
-
-
-#pragma Mark -- UIPickerViewDataSource
-// pickerView 列数
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-    return 2;
-}
-
-// pickerView 每列个数
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    if (component == 0) {
-        return [_proTitleList count];
-    }
-    
-    return [_proTimeList count];
-}
-
-
-#pragma Mark -- UIPickerViewDelegate
-// 每列宽度
-- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
-    
-    if (component == 1) {
-        return 40;
-    }
-    return 180;
-}
-// 返回选中的行
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
-    if (component == 0) {
-        NSString  *_proNameStr = [_proTitleList objectAtIndex:row];
-        NSLog(@"nameStr=%@",_proNameStr);
-    } else {
-        NSString  *_proTimeStr = [_proTimeList objectAtIndex:row];
-        NSLog(@"_proTimeStr=%@",_proTimeStr);
-    }
+    [self.jifenNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.centerX.equalTo(self.jifenTitle);
+        make.top.equalTo(self.jifenTitle.mas_bottom).offset(10);
+    }];
     
 }
 
-//返回当前行的内容,此处是将数组中数值添加到滚动的那个显示栏上
--(NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    if (component == 0) {
-        return [_proTitleList objectAtIndex:row];
-    } else {
-        return [_proTimeList objectAtIndex:row];
-        
-    }
-}
+
 
 
 -(void)leftBtBack{
@@ -166,6 +135,7 @@
     
     self.jifenRight();
 }
+
 
 
 @end

@@ -78,6 +78,7 @@
 		25D5A2F71FBC3D0000074447 /* LoginParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 25D5A2F51FBC3D0000074447 /* LoginParam.m */; };
 		25D5A39F1FBED44300074447 /* GeRenZiLiaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25D5A39E1FBED44300074447 /* GeRenZiLiaoViewController.m */; };
 		25D5A3A31FBED5A000074447 /* JiFenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25D5A3A21FBED5A000074447 /* JiFenViewController.m */; };
+		25D88F341FD5420700405F8D /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 25D88F331FD5420600405F8D /* UICountingLabel.m */; };
 		25FD1ADA1F6A163A00D7957E /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FD1AD91F6A163900D7957E /* UIColor+Hex.m */; };
 		25FE9F6A1F7E35BF00D9E420 /* CLTRoundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FE9F691F7E35BF00D9E420 /* CLTRoundView.m */; };
 		30AE89C1A250834E9DB980BB /* libPods-yxtd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D34E885CCE21FBB8C41A8408 /* libPods-yxtd.a */; };
@@ -264,6 +265,8 @@
 		25D5A39E1FBED44300074447 /* GeRenZiLiaoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GeRenZiLiaoViewController.m; sourceTree = "<group>"; };
 		25D5A3A11FBED5A000074447 /* JiFenViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JiFenViewController.h; sourceTree = "<group>"; };
 		25D5A3A21FBED5A000074447 /* JiFenViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JiFenViewController.m; sourceTree = "<group>"; };
+		25D88F321FD5420600405F8D /* UICountingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICountingLabel.h; sourceTree = "<group>"; };
+		25D88F331FD5420600405F8D /* UICountingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICountingLabel.m; sourceTree = "<group>"; };
 		25FD1AD81F6A163900D7957E /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		25FD1AD91F6A163900D7957E /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		25FE9F681F7E35BF00D9E420 /* CLTRoundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTRoundView.h; sourceTree = "<group>"; };
@@ -915,6 +918,8 @@
 			children = (
 				25AB5BEB1FD13EFC00BC4D6F /* JiFenHeaderView.h */,
 				25AB5BEC1FD13EFC00BC4D6F /* JiFenHeaderView.m */,
+				25D88F321FD5420600405F8D /* UICountingLabel.h */,
+				25D88F331FD5420600405F8D /* UICountingLabel.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1371,6 +1376,7 @@
 				8F263BB61FD05CAF00F89A45 /* AGIPCAssetsController.m in Sources */,
 				8F263BB81FD05CAF00F89A45 /* AGIPCGridItem.m in Sources */,
 				25393C9C1F68DA5E006905CB /* main.m in Sources */,
+				25D88F341FD5420700405F8D /* UICountingLabel.m in Sources */,
 				257D38341F74DB5500C25FE4 /* UIView+Frame.m in Sources */,
 				8F263BBA1FD05CAF00F89A45 /* AGIPCToolbarItem.m in Sources */,
 				25AD8CAE1FA1B3A500960732 /* HYSwitch.m in Sources */,

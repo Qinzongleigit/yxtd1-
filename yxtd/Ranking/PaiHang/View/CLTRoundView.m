@@ -41,7 +41,7 @@ static CGFloat  lineWidth = 20;   // 线宽
 
 
 
-@property (nonatomic,assign) int ratio;  // 记录百分比 用于数字跳动
+@property (nonatomic,assign) int ratio;  // 记录步数变化 用于数字跳动
 
 
 @end
@@ -345,7 +345,7 @@ static CGFloat  lineWidth = 20;   // 线宽
     _progressLayer.strokeEnd = _percent;;
     [CATransaction commit];
     
-    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:_percent * 0.02 target:self selector:@selector(updateLabl:) userInfo:nil repeats:YES];
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:_percent * 0.002 target:self selector:@selector(updateLabl:) userInfo:nil repeats:YES];
     
     // 将定时器放在主运行循环
     [[NSRunLoop mainRunLoop]addTimer:timer forMode:NSRunLoopCommonModes];
@@ -369,7 +369,7 @@ static CGFloat  lineWidth = 20;   // 线宽
     }
     else
     {
-        self.stepLabel.text = [NSString stringWithFormat:@"%d",self.ratio];
+        self.stepLabel.text = [NSString stringWithFormat:@"%d",flag];
         
     }
     
