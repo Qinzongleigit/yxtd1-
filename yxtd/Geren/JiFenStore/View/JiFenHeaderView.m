@@ -102,6 +102,7 @@
     
 }
 
+#pragma mark -创建按钮
 -(void)creatButton{
 
         NSArray*titleArr=[NSArray arrayWithObjects:@"可兑换",@"已兑换",@"赛事奖品", nil];
@@ -115,7 +116,6 @@
             slicdeButton.titleLabel.font=[UIFont systemFontOfSize:12];
             
             [slicdeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-
             [slicdeButton setTitleEdgeInsets:UIEdgeInsetsMake(-10, 0, 0, 0)];
             
             [slicdeButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, -25, -50)];
@@ -133,6 +133,7 @@
            if (i==0) {
 
                slicdeButton.selected=YES;
+    
               
            }
             
@@ -143,7 +144,7 @@
         
         [cellArray mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self.headerImageView.mas_bottom).offset(-1);
-            make.height.equalTo(@30);
+            make.height.equalTo(@25);
         }];
         
     
@@ -165,8 +166,6 @@
 
             [bt setSelected:NO];
 
-
-
         }
 
 
@@ -178,10 +177,6 @@
     
 
 
-
-
-
-
 #pragma mark -坐标
 -(void)layoutSubviews{
     
@@ -189,7 +184,7 @@
     [self.leftBt mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(self).offset(15);
-        make.top.equalTo(self).offset(32);
+        make.top.equalTo(self).offset(25);
         
     }];
     
@@ -214,7 +209,7 @@
     [self.myjifenLabel mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.centerX.equalTo(self.jifenNumberLabel);
-        make.top.equalTo(self.jifenNumberLabel.mas_bottom).offset(2);
+        make.top.equalTo(self.jifenNumberLabel.mas_bottom).offset(-5);
     }];
     
 }

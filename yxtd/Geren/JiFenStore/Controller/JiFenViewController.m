@@ -8,6 +8,7 @@
 
 #import "JiFenViewController.h"
 #import "JiFenHeaderView.h"
+#import "FindTwoCell.h"
 
 @interface JiFenViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
@@ -15,12 +16,14 @@
 
 @property (nonatomic,strong) JiFenHeaderView*headerView;
 
+@property (nonatomic,assign)NSInteger selectTag;
+
 
 @end
 
 @implementation JiFenViewController
 
- static NSString*string=@"cell";
+ static NSString*cellString=@"cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,12 +32,14 @@
     self.view.backgroundColor=[UIColor whiteColor];
     
     
+    //添加头视图的内容
+    [self addHeaderView];
     UICollectionViewFlowLayout*flowlayout=[[UICollectionViewFlowLayout alloc] init];
     flowlayout.minimumLineSpacing=1;
     flowlayout.minimumInteritemSpacing=0.5;
     flowlayout.scrollDirection=UICollectionViewScrollDirectionVertical;
     
-    UICollectionView*collectionView=[[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)) collectionViewLayout:flowlayout];
+    UICollectionView*collectionView=[[UICollectionView alloc] initWithFrame:CGRectMake(0, SYRealValueHeight(205), CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)-SYRealValueHeight(205)) collectionViewLayout:flowlayout];
     
     self.collectionView=collectionView;
     _collectionView.backgroundColor=[UIColor whiteColor];
@@ -43,13 +48,13 @@
     _collectionView.showsVerticalScrollIndicator=NO;
     
     //纯代码注册
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:string];
+    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:cellString];
      [self.view addSubview:self.collectionView];
     
-    //组头注册
-    [collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerView"];
-    
-    
+    // 注册cell
+    [self.collectionView registerClass:[FindTwoCell class] forCellWithReuseIdentifier:@"MyCell"];
+   
+ 
     
 }
 
@@ -75,43 +80,36 @@
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     
-    UICollectionViewCell*cell=[collectionView dequeueReusableCellWithReuseIdentifier:string forIndexPath:indexPath];
+    UICollectionViewCell*cell=[collectionView dequeueReusableCellWithReuseIdentifier:cellString forIndexPath:indexPath];
+    
+    
+    if (self.selectTag==101){
+        
+        cell.backgroundColor=[UIColor yellowColor];
+        
+    }else if(self.selectTag==102){
     
     cell.backgroundColor=[UIColor purpleColor];
-    
+        
+    }else{
+        
+        FindTwoCell*twoCell=[collectionView dequeueReusableCellWithReuseIdentifier:@"MyCell" forIndexPath:indexPath];
+        return twoCell;
+    }
+   
     
     return cell;
     
     
 }
 
-
-
-#pragma mark - 头部视图内容
-// 分组头部视图
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-    
-
-        if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
-              UICollectionReusableView *header=[collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"headerView" forIndexPath:indexPath];
-            //添加头视图的内容
-          [self addHeaderView];
-            //头视图添加view
-            [header addSubview:self.headerView];
-            
-            return header;
-        }
-    
-     return nil;
-}
-   
-
 //添加头部视图
 -(void)addHeaderView{
     
-    JiFenHeaderView*headerView=[[JiFenHeaderView alloc] initWithFrame:CGRectMake(0, -20, KscreenW, SYRealValueHeight(205)+20)];
+    JiFenHeaderView*headerView=[[JiFenHeaderView alloc] initWithFrame:CGRectMake(0, 0, KscreenW, SYRealValueHeight(205))];
     headerView.backgroundColor=[UIColor redColor];
     self.headerView=headerView;
+    [self.view addSubview:headerView];
     
     headerView.gotoBack = ^{
      
@@ -129,23 +127,15 @@
     
     headerView.headerBtClick = ^(NSInteger tag) {
       
+        self.selectTag=tag;
         
-        UIAlertView*alter=[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"%ld",tag] message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定" , nil];
-        [alter show];
+       [self.collectionView reloadData];
+        
 
     };
 
 }
 
-
-#pragma mark - 头部视图大小
--(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
-    
-        CGSize size = CGSizeMake(KscreenW, SYRealValueHeight(205));
-    
-        return size;
-    
-}
 
 
 
