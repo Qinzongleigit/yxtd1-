@@ -20,6 +20,8 @@ typedef void(^jifenRight)(void);
 
 @property (nonatomic,copy) jifenRight jifenRight;
 
+@property(nonatomic,strong) void(^headerBtClick)(NSInteger tag);
+
 
 
 @end

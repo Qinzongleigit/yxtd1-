@@ -1,225 +1,89 @@
-#import <QuartzCore/QuartzCore.h>
+
 
 #import "UICountingLabel.h"
 
-//#if !__has_feature(objc_arc)
-//#error UICountingLabel is ARC only. Either turn on ARC for the project or use -fobjc-arc flag
-//#endif
+#define kPointsNumber 50 // 即数字跳100次
+#define kDurationTime 2 // 动画时间
+#define kStartNumber  0   // 起始数字
+#define kEndNumber    1000// 结束数字
 
-
-#pragma mark - UILabelCounter
-
-#ifndef kUILabelCounterRate
-#define kUILabelCounterRate 3.0
-#endif
-
-@protocol UILabelCounter<NSObject>
-
--(CGFloat)update:(CGFloat)t;
-
-@end
-
-@interface UILabelCounterLinear : NSObject<UILabelCounter>
-
-@end
-
-@interface UILabelCounterEaseIn : NSObject<UILabelCounter>
-
-@end
-
-@interface UILabelCounterEaseOut : NSObject<UILabelCounter>
-
-@end
-
-@interface UILabelCounterEaseInOut : NSObject<UILabelCounter>
-
-@end
-
-@implementation UILabelCounterLinear
-
--(CGFloat)update:(CGFloat)t
-{
-    return t;
-}
-
-@end
-
-@implementation UILabelCounterEaseIn
-
--(CGFloat)update:(CGFloat)t
-{
-    return powf(t, kUILabelCounterRate);
-}
-
-@end
-
-@implementation UILabelCounterEaseOut
-
--(CGFloat)update:(CGFloat)t{
-    
-    return 1.0-powf((1.0-t), kUILabelCounterRate);
-}
-
-@end
-
-@implementation UILabelCounterEaseInOut
-
--(CGFloat) update: (CGFloat) t
-{
-	int sign =1;
-	int r = (int) kUILabelCounterRate;
-	if (r % 2 == 0)
-		sign = -1;
-	t *= 2;
-	if (t < 1)
-		return 0.5f * powf(t, kUILabelCounterRate);
-	else
-		return sign * 0.5f * (powf(t-2, kUILabelCounterRate) + sign * 2);
-}
-
-@end
-
-#pragma mark - UICountingLabel
 
 @interface UICountingLabel ()
 
-@property CGFloat startingValue;
-@property CGFloat destinationValue;
-@property NSTimeInterval progress;
+@property (nonatomic, assign) int pointsNumber;
+@property (nonatomic, assign) float durationTime;
+@property (nonatomic, assign) float startNumber;
+@property (nonatomic, assign) float endNumber;
 
-@property NSTimeInterval lastUpdate;
-@property NSTimeInterval totalTime;
-@property CGFloat easingRate;
-
-@property (nonatomic, strong) CADisplayLink *timer;
-@property (nonatomic, strong) id<UILabelCounter> counter;
+@property (nonatomic, retain) NSMutableArray *numberPoints;//记录每次textLayer更改值的间隔时间及输出值。
+@property (nonatomic, assign) float lastTime;
+@property (nonatomic, assign) int indexNumber;
 
 @end
 
 @implementation UICountingLabel
 
--(void)countFrom:(CGFloat)value to:(CGFloat)endValue {
-    
-    if (self.animationDuration == 0.0f) {
-        self.animationDuration = 2.0f;
-    }
-    
-    [self countFrom:value to:endValue withDuration:self.animationDuration];
+- (void)cleanUpValue {
+    _lastTime = 0;
+    _indexNumber = 0;
+    //可以取整数也可以取小数
+    self.text = [NSString stringWithFormat:@"%.0f",_startNumber];
 }
 
--(void)countFrom:(CGFloat)startValue to:(CGFloat)endValue withDuration:(NSTimeInterval)duration {
-    
-    self.startingValue = startValue;
-    self.destinationValue = endValue;
-    
-    // remove any (possible) old timers
-    [self.timer invalidate];
-    self.timer = nil;
-    
-    if (duration == 0.0) {
-   
-        [self setTextValue:endValue];
-
-        return;
-    }
-
-    self.easingRate = 3.0f;
-    self.progress = 0;
-    self.totalTime = duration;
-    self.lastUpdate = [NSDate timeIntervalSinceReferenceDate];
-
-    if(self.format == nil)
-        self.format = @"%f";
-
-    switch(self.method)
-    {
-        case UILabelCountingMethodLinear:
-            self.counter = [[UILabelCounterLinear alloc] init];
-            break;
-        case UILabelCountingMethodEaseIn:
-            self.counter = [[UILabelCounterEaseIn alloc] init];
-            break;
-        case UILabelCountingMethodEaseOut:
-            self.counter = [[UILabelCounterEaseOut alloc] init];
-            break;
-        case UILabelCountingMethodEaseInOut:
-            self.counter = [[UILabelCounterEaseInOut alloc] init];
-            break;
-    }
-
-    CADisplayLink *timer = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateValue:)];
-    timer.frameInterval = 2;
-    [timer addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
-    [timer addToRunLoop:[NSRunLoop mainRunLoop] forMode:UITrackingRunLoopMode];
-    self.timer = timer;
-}
-
-- (void)countFromCurrentValueTo:(CGFloat)endValue {
-    [self countFrom:[self currentValue] to:endValue];
-}
-
-- (void)countFromCurrentValueTo:(CGFloat)endValue withDuration:(NSTimeInterval)duration {
-    [self countFrom:[self currentValue] to:endValue withDuration:duration];
-}
-
-- (void)countFromZeroTo:(CGFloat)endValue {
-    
-    [self countFrom:0.0f to:endValue];
-}
-
-- (void)countFromZeroTo:(CGFloat)endValue withDuration:(NSTimeInterval)duration {
-    [self countFrom:0.0f to:endValue withDuration:duration];
-}
-
-- (void)updateValue:(NSTimer *)timer {
-
-    NSTimeInterval now = [NSDate timeIntervalSinceReferenceDate];
-    self.progress += now - self.lastUpdate;
-    self.lastUpdate = now;
-    
-    if (self.progress >= self.totalTime) {
-        [self.timer invalidate];
-        self.timer = nil;
-        self.progress = self.totalTime;
-    }
-    
-    [self setTextValue:[self currentValue]];
-    
-    
-}
-
-- (void)setTextValue:(CGFloat)value
+- (instancetype)initWithFrame:(CGRect)frame
 {
- 
-        if([self.format rangeOfString:@"%(.*)d" options:NSRegularExpressionSearch].location != NSNotFound || [self.format rangeOfString:@"%(.*)i"].location != NSNotFound )
-        {
-            self.text = [NSString stringWithFormat:self.format,(int)value];
-        }
+    self = [super initWithFrame:frame];
+    if (self) {
         
-        else {//普通样式
-               self.text = [NSString stringWithFormat:self.format,value];
-            }
-
-}
-
-- (void)setFormat:(NSString *)format {
-    _format = format;
-  
-    [self setTextValue:self.currentValue];
-}
-
-
-
-
-- (CGFloat)currentValue {
-    
-    if (self.progress >= self.totalTime) {
-        return self.destinationValue;
     }
-    
-    CGFloat percent = self.progress / self.totalTime;
-    CGFloat updateVal = [self.counter update:percent];
-    return self.startingValue + (updateVal * (self.destinationValue - self.startingValue));
+    return self;
 }
+
+
+- (void)jumpNumberWithDuration:(int)duration
+                    fromNumber:(float)startNumber
+                      toNumber:(float)endNumber {
+    _durationTime = duration;
+    _startNumber = startNumber;
+    _endNumber = endNumber;
+    
+    [self cleanUpValue];
+    [self initPoints];
+    [self changeNumberBySelector];
+}
+
+- (void)jumpNumber {
+    [self jumpNumberWithDuration:kDurationTime fromNumber:kStartNumber toNumber:kEndNumber];
+}
+
+- (void)initPoints {
+    
+    _numberPoints = [[NSMutableArray alloc] init];
+    float dt;
+    dt = 1.0 / (kPointsNumber - 1);
+    for (int i = 0; i < kPointsNumber; i++) {
+        float durationTime = dt * i  * _durationTime;
+        float value = dt * i * (_endNumber - _startNumber) + _startNumber;
+        [_numberPoints addObject:[NSArray arrayWithObjects:[NSNumber numberWithFloat:durationTime], [NSNumber numberWithFloat:value], nil]];
+    }
+}
+
+
+- (void)changeNumberBySelector {
+    if (_indexNumber >= kPointsNumber) {
+        self.text = [NSString stringWithFormat:@"%.0f",_endNumber];
+        return;
+    } else {
+        NSArray *pointValues = [_numberPoints objectAtIndex:_indexNumber];
+        _indexNumber++;
+        float value = [(NSNumber *)[pointValues objectAtIndex:1] intValue];// 有时要改成floatValue
+        float currentTime = [(NSNumber *)[pointValues objectAtIndex:0] floatValue];
+        float timeDuration = currentTime - _lastTime;
+        _lastTime = currentTime;
+        self.text = [NSString stringWithFormat:@"%.0f",value];
+        [self performSelector:@selector(changeNumberBySelector) withObject:nil afterDelay:timeDuration];
+    }
+}
+
 
 @end

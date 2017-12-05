@@ -95,7 +95,7 @@
         if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
               UICollectionReusableView *header=[collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"headerView" forIndexPath:indexPath];
             //添加头视图的内容
-            [self addHeaderView];
+          [self addHeaderView];
             //头视图添加view
             [header addSubview:self.headerView];
             
@@ -109,9 +109,10 @@
 //添加头部视图
 -(void)addHeaderView{
     
-    JiFenHeaderView*headerView=[[JiFenHeaderView alloc] initWithFrame:CGRectMake(0, -20, KscreenW, SYRealValueHeight(205))];
-    headerView.backgroundColor=[UIColor clearColor];
+    JiFenHeaderView*headerView=[[JiFenHeaderView alloc] initWithFrame:CGRectMake(0, -20, KscreenW, SYRealValueHeight(205)+20)];
+    headerView.backgroundColor=[UIColor redColor];
     self.headerView=headerView;
+    
     headerView.gotoBack = ^{
      
         [self dismissViewControllerAnimated:YES completion:nil];
@@ -124,6 +125,14 @@
         [alter show];
 
         
+    };
+    
+    headerView.headerBtClick = ^(NSInteger tag) {
+      
+        
+        UIAlertView*alter=[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"%ld",tag] message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定" , nil];
+        [alter show];
+
     };
 
 }
