@@ -123,7 +123,7 @@ static  NSString*cellId=@"id";
         cellHt += cellView.cellHeight;
     }
 
-    return cellHt;
+    return cellHt+35;
     
 }
 
