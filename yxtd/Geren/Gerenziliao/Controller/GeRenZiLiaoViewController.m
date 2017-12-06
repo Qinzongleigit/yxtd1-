@@ -49,6 +49,7 @@ typedef NS_ENUM(NSInteger, ChosePhontType) {
     
     
     self.navigationController.navigationBar.hidden=NO;
+    self.tabBarController.tabBar.hidden=YES;
 }
 
 - (void)viewDidLoad {

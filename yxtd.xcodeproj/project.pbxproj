@@ -37,6 +37,13 @@
 		25485B941F7219AB001122F7 /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25485B931F7219AB001122F7 /* MineViewController.m */; };
 		25485B991F721AFE001122F7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25485B981F721AFE001122F7 /* LoginViewController.m */; };
 		25485B9D1F721BC4001122F7 /* ForgotPassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25485B9C1F721BC4001122F7 /* ForgotPassViewController.m */; };
+		2575540F1FD7812200B4EBB7 /* CanDuihuanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2575540E1FD7812200B4EBB7 /* CanDuihuanCell.m */; };
+		257554121FD7816900B4EBB7 /* OverDuihuanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 257554111FD7816900B4EBB7 /* OverDuihuanCell.m */; };
+		257554151FD781BA00B4EBB7 /* SaishiGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 257554141FD781BA00B4EBB7 /* SaishiGoodsCell.m */; };
+		2575541A1FD79D7100B4EBB7 /* JiangZhangTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 257554191FD79D7100B4EBB7 /* JiangZhangTableViewController.m */; };
+		2575541E1FD7D78B00B4EBB7 /* JiangZhangCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2575541D1FD7D78B00B4EBB7 /* JiangZhangCellView.m */; };
+		257554251FD7EAE400B4EBB7 /* JiangZhangTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 257554231FD7EAE400B4EBB7 /* JiangZhangTableViewCell.m */; };
+		257554261FD7EAE400B4EBB7 /* JiangZhangTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 257554241FD7EAE400B4EBB7 /* JiangZhangTableViewCell.xib */; };
 		257D120E1F68E18E003DC1E4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 257D120B1F68E18E003DC1E4 /* AppDelegate.m */; };
 		257D120F1F68E18E003DC1E4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 257D120D1F68E18E003DC1E4 /* ViewController.m */; };
 		257D12481F690E16003DC1E4 /* FindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 257D12471F690E16003DC1E4 /* FindViewController.m */; };
@@ -184,6 +191,19 @@
 		25485B981F721AFE001122F7 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		25485B9B1F721BC4001122F7 /* ForgotPassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPassViewController.h; sourceTree = "<group>"; };
 		25485B9C1F721BC4001122F7 /* ForgotPassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPassViewController.m; sourceTree = "<group>"; };
+		2575540D1FD7812200B4EBB7 /* CanDuihuanCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanDuihuanCell.h; sourceTree = "<group>"; };
+		2575540E1FD7812200B4EBB7 /* CanDuihuanCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CanDuihuanCell.m; sourceTree = "<group>"; };
+		257554101FD7816900B4EBB7 /* OverDuihuanCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OverDuihuanCell.h; sourceTree = "<group>"; };
+		257554111FD7816900B4EBB7 /* OverDuihuanCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OverDuihuanCell.m; sourceTree = "<group>"; };
+		257554131FD781BA00B4EBB7 /* SaishiGoodsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SaishiGoodsCell.h; sourceTree = "<group>"; };
+		257554141FD781BA00B4EBB7 /* SaishiGoodsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SaishiGoodsCell.m; sourceTree = "<group>"; };
+		257554181FD79D7100B4EBB7 /* JiangZhangTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JiangZhangTableViewController.h; sourceTree = "<group>"; };
+		257554191FD79D7100B4EBB7 /* JiangZhangTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JiangZhangTableViewController.m; sourceTree = "<group>"; };
+		2575541C1FD7D78B00B4EBB7 /* JiangZhangCellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JiangZhangCellView.h; sourceTree = "<group>"; };
+		2575541D1FD7D78B00B4EBB7 /* JiangZhangCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JiangZhangCellView.m; sourceTree = "<group>"; };
+		257554221FD7EAE400B4EBB7 /* JiangZhangTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JiangZhangTableViewCell.h; sourceTree = "<group>"; };
+		257554231FD7EAE400B4EBB7 /* JiangZhangTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JiangZhangTableViewCell.m; sourceTree = "<group>"; };
+		257554241FD7EAE400B4EBB7 /* JiangZhangTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JiangZhangTableViewCell.xib; sourceTree = "<group>"; };
 		257D120A1F68E18E003DC1E4 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		257D120B1F68E18E003DC1E4 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		257D120C1F68E18E003DC1E4 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -595,6 +615,49 @@
 			path = ForgotPass;
 			sourceTree = "<group>";
 		};
+		2575540C1FD7800200B4EBB7 /* JiFenStoreCell */ = {
+			isa = PBXGroup;
+			children = (
+				2575540D1FD7812200B4EBB7 /* CanDuihuanCell.h */,
+				2575540E1FD7812200B4EBB7 /* CanDuihuanCell.m */,
+				257554101FD7816900B4EBB7 /* OverDuihuanCell.h */,
+				257554111FD7816900B4EBB7 /* OverDuihuanCell.m */,
+				257554131FD781BA00B4EBB7 /* SaishiGoodsCell.h */,
+				257554141FD781BA00B4EBB7 /* SaishiGoodsCell.m */,
+			);
+			path = JiFenStoreCell;
+			sourceTree = "<group>";
+		};
+		257554161FD79CC200B4EBB7 /* JiangZhang */ = {
+			isa = PBXGroup;
+			children = (
+				257554171FD79D2600B4EBB7 /* Controller */,
+				2575541B1FD7D70100B4EBB7 /* VIew */,
+			);
+			path = JiangZhang;
+			sourceTree = "<group>";
+		};
+		257554171FD79D2600B4EBB7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				257554181FD79D7100B4EBB7 /* JiangZhangTableViewController.h */,
+				257554191FD79D7100B4EBB7 /* JiangZhangTableViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2575541B1FD7D70100B4EBB7 /* VIew */ = {
+			isa = PBXGroup;
+			children = (
+				2575541C1FD7D78B00B4EBB7 /* JiangZhangCellView.h */,
+				2575541D1FD7D78B00B4EBB7 /* JiangZhangCellView.m */,
+				257554221FD7EAE400B4EBB7 /* JiangZhangTableViewCell.h */,
+				257554231FD7EAE400B4EBB7 /* JiangZhangTableViewCell.m */,
+				257554241FD7EAE400B4EBB7 /* JiangZhangTableViewCell.xib */,
+			);
+			path = VIew;
+			sourceTree = "<group>";
+		};
 		257D12011F68E179003DC1E4 /* Find */ = {
 			isa = PBXGroup;
 			children = (
@@ -916,6 +979,7 @@
 		25AB5BE91FD13EB700BC4D6F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2575540C1FD7800200B4EBB7 /* JiFenStoreCell */,
 				25AB5BEB1FD13EFC00BC4D6F /* JiFenHeaderView.h */,
 				25AB5BEC1FD13EFC00BC4D6F /* JiFenHeaderView.m */,
 				25D88F321FD5420600405F8D /* UICountingLabel.h */,
@@ -1037,6 +1101,7 @@
 		25D5A39B1FBED3EA00074447 /* Geren */ = {
 			isa = PBXGroup;
 			children = (
+				257554161FD79CC200B4EBB7 /* JiangZhang */,
 				25AB5B961FCE901700BC4D6F /* HuaTiAndDongtai */,
 				8FEC15651FCDAE390081799A /* TwoDimensionCode */,
 				25D5A3A01FBED53E00074447 /* JiFenStore */,
@@ -1289,6 +1354,7 @@
 				8F5AD9CF1FB88875007B5BA8 /* Welcome2.jpg in Resources */,
 				8F5AD9CE1FB88874007B5BA8 /* Welcome1.jpg in Resources */,
 				25AB5B361FC7FFB800BC4D6F /* AddressCell.xib in Resources */,
+				257554261FD7EAE400B4EBB7 /* JiangZhangTableViewCell.xib in Resources */,
 				8F263BC61FD0675200F89A45 /* deletePhoto.png in Resources */,
 				258A0E141F9B060D00EF9593 /* nearBicycle.json in Resources */,
 				25AB5B381FC80EBD00BC4D6F /* area.plist in Resources */,
@@ -1373,6 +1439,7 @@
 			files = (
 				257D120E1F68E18E003DC1E4 /* AppDelegate.m in Sources */,
 				25FD1ADA1F6A163A00D7957E /* UIColor+Hex.m in Sources */,
+				2575541E1FD7D78B00B4EBB7 /* JiangZhangCellView.m in Sources */,
 				8F263BB61FD05CAF00F89A45 /* AGIPCAssetsController.m in Sources */,
 				8F263BB81FD05CAF00F89A45 /* AGIPCGridItem.m in Sources */,
 				25393C9C1F68DA5E006905CB /* main.m in Sources */,
@@ -1393,13 +1460,16 @@
 				8F263BBD1FD05CAF00F89A45 /* UIButton+AGIPC.m in Sources */,
 				8F263BC01FD060F300F89A45 /* ShowImageViewController.m in Sources */,
 				25130E4A1F99EA1B00E1E29A /* SelectableOverlay.m in Sources */,
+				2575541A1FD79D7100B4EBB7 /* JiangZhangTableViewController.m in Sources */,
 				251CF2881FC2D04300867046 /* SexView.m in Sources */,
+				2575540F1FD7812200B4EBB7 /* CanDuihuanCell.m in Sources */,
 				25BED2321F7C9CCC00A0A07A /* FindOneCell.m in Sources */,
 				257D377E1F74B47A00C25FE4 /* CDFindImgScrollView.m in Sources */,
 				25AB5B351FC7FFB800BC4D6F /* AddressCell.m in Sources */,
 				25AB5B311FC7FBB000BC4D6F /* AddAddressVC.m in Sources */,
 				25130E441F99E84200E1E29A /* JSCenterAnnotation.m in Sources */,
 				25D5A39F1FBED44300074447 /* GeRenZiLiaoViewController.m in Sources */,
+				257554121FD7816900B4EBB7 /* OverDuihuanCell.m in Sources */,
 				2542680B1F73A95600E54A5E /* NSDate+MJ.m in Sources */,
 				25D5A2861FBA89D300074447 /* SmsParam.m in Sources */,
 				25D5A2D71FBBDD2200074447 /* WebViewController.m in Sources */,
@@ -1414,6 +1484,8 @@
 				253869DF1F7F479100D34B18 /* HKHealthStore+AAPLExtensions.m in Sources */,
 				2532C16B1F6F70E20064A28C /* SportViewController.m in Sources */,
 				8FEC15681FCDAE8D0081799A /* TwoDimensionCodeVC.m in Sources */,
+				257554151FD781BA00B4EBB7 /* SaishiGoodsCell.m in Sources */,
+				257554251FD7EAE400B4EBB7 /* JiangZhangTableViewCell.m in Sources */,
 				25AB5BED1FD13EFC00BC4D6F /* JiFenHeaderView.m in Sources */,
 				8F263BBB1FD05CAF00F89A45 /* AGPreviewScrollView.m in Sources */,
 				8F5AD9CA1FB87475007B5BA8 /* ShowAnimationView.m in Sources */,

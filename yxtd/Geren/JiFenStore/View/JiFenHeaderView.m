@@ -203,7 +203,7 @@
     [self.jifenNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.centerX.equalTo(self.jifenTitle);
-        make.top.equalTo(self.jifenTitle.mas_bottom).offset(15);
+        make.top.equalTo(self.jifenTitle.mas_bottom).offset(8);
     }];
     
     [self.myjifenLabel mas_makeConstraints:^(MASConstraintMaker *make) {

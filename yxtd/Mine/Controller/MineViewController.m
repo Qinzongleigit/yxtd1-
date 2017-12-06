@@ -12,6 +12,7 @@
 #import "JiFenViewController.h"
 #import "TwoDimensionCodeVC.h"
 #import "HuatiDongtaiViewController.h"
+#import "JiangZhangTableViewController.h"
 
 
 
@@ -337,7 +338,6 @@
         if (!indexPath.row) {
             GeRenZiLiaoViewController*ziliaoVC=[[GeRenZiLiaoViewController alloc] init];
 
-            ziliaoVC.hidesBottomBarWhenPushed=YES;
             [self.navigationController pushViewController:ziliaoVC animated:YES];
           
             
@@ -368,8 +368,15 @@
         [alter addAction:sureAction];
         [self presentViewController:alter animated:YES completion:nil];
 
+    }else if (indexPath.section==1){
+        
+        if (!indexPath.row) {
+ JiangZhangTableViewController*jiangzhangVC=[[JiangZhangTableViewController alloc] init];
+           
+            [self.navigationController pushViewController:jiangzhangVC animated:YES];
+        }
+        
     }
-  
     //反选
   [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
@@ -409,7 +416,6 @@
     UIBarButtonItem*rightBarButton=[[UIBarButtonItem alloc] initWithImage:[UIImage imageWithoriginName:@"run_NavLeft"] style:UIBarButtonItemStylePlain target:self action:@selector(rightButton)];
     self.navigationItem.rightBarButtonItem=rightBarButton;
     
-
 }
 
 
@@ -417,18 +423,12 @@
 
 -(void)rightButton{
     
-    
     UIAlertView*alter=[[UIAlertView alloc] initWithTitle:@"消息提示" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定" , nil];
     [alter show];
 
 }
 
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 
 

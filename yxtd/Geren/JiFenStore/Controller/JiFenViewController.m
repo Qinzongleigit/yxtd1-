@@ -8,7 +8,9 @@
 
 #import "JiFenViewController.h"
 #import "JiFenHeaderView.h"
-#import "FindTwoCell.h"
+#import "CanDuihuanCell.h"
+#import "OverDuihuanCell.h"
+#import "SaishiGoodsCell.h"
 
 @interface JiFenViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
@@ -52,7 +54,9 @@
      [self.view addSubview:self.collectionView];
     
     // 注册cell
-    [self.collectionView registerClass:[FindTwoCell class] forCellWithReuseIdentifier:@"MyCell"];
+    [self.collectionView registerClass:[CanDuihuanCell class] forCellWithReuseIdentifier:@"CanDuihuanCell"];
+    [self.collectionView registerClass:[OverDuihuanCell class] forCellWithReuseIdentifier:@"OverDuihuanCell"];
+    [self.collectionView registerClass:[SaishiGoodsCell class] forCellWithReuseIdentifier:@"SaishiGoodsCell"];
    
  
     
@@ -85,16 +89,20 @@
     
     if (self.selectTag==101){
         
-        cell.backgroundColor=[UIColor yellowColor];
+        OverDuihuanCell*overCell=[collectionView dequeueReusableCellWithReuseIdentifier:@"OverDuihuanCell" forIndexPath:indexPath];
+        return overCell;
         
     }else if(self.selectTag==102){
     
-    cell.backgroundColor=[UIColor purpleColor];
+    
+        SaishiGoodsCell*saishiCell=[collectionView dequeueReusableCellWithReuseIdentifier:@"SaishiGoodsCell" forIndexPath:indexPath];
+        return saishiCell;
         
     }else{
         
-        FindTwoCell*twoCell=[collectionView dequeueReusableCellWithReuseIdentifier:@"MyCell" forIndexPath:indexPath];
-        return twoCell;
+        CanDuihuanCell*duihuanCell=[collectionView dequeueReusableCellWithReuseIdentifier:@"CanDuihuanCell" forIndexPath:indexPath];
+        
+        return duihuanCell;
     }
    
     
@@ -130,7 +138,7 @@
         self.selectTag=tag;
         
        [self.collectionView reloadData];
-        
+
 
     };
 
