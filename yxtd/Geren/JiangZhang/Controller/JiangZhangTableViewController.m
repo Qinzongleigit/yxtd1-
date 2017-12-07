@@ -41,8 +41,9 @@ static  NSString*cellId=@"id";
     
     
     
-    self.allkeys = @[@"A",@"B",@"C"];
-    
+   self.allkeys = @[@"A",@"B",@"C"];
+
+   
     self.dataDictionary = [NSMutableDictionary dictionary];
     
     for (NSString * keyStr in self.allkeys) {
@@ -59,6 +60,7 @@ static  NSString*cellId=@"id";
     }
     
      [self.tableView registerClass:[JiangZhangTableViewCell class] forCellReuseIdentifier:cellId];
+    self.tableView.showsVerticalScrollIndicator=YES;
     
 }
 

@@ -17,8 +17,12 @@
 }
 -(void)setDataArray:(NSArray *)dataArray{
     _dataArray = dataArray;
+    int i=3;
     self.cellView.indexPath = self.indexPath;
     self.cellView.dataArray = _dataArray;
+    
+    self.numberLabel.text=[NSString stringWithFormat:@"( 已获得 %d 枚 )",i];
+    self.numberLabel.alpha=0.5;
 }
 
 

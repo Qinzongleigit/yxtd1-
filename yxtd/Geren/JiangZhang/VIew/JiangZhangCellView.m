@@ -7,7 +7,6 @@
 //
 
 #define kJianXi 15.0f
-#define kClickBtnHeight 36
 
 #import "JiangZhangCellView.h"
 
@@ -15,6 +14,7 @@
 
 @property (nonatomic,assign) NSInteger columns;
 
+@property (nonatomic,assign) NSInteger height;
 @end
 
 @implementation JiangZhangCellView
@@ -47,12 +47,17 @@
     
     self.backgroundColor = [UIColor colorWithRed:230/255.0 green:230/255.0 blue:230/255.0 alpha:1.0];
     CGRect mainScreen = [UIScreen mainScreen].bounds;
+    //一行有多少个按钮
     if (mainScreen.size.width == 320) {
         self.columns = 3;
     }else{
         self.columns = 4;
     }
+   
+    //每个图片的宽度
+   _height = (KscreenW - (self.columns+1)*kJianXi)/self.columns;
 }
+
 -(void)setDataArrayCount:(NSInteger)dataArrayCount{
     _dataArrayCount = dataArrayCount;
     self.cellHeight = [self heightForCount:_dataArrayCount];
@@ -86,7 +91,8 @@
             selectBtn.backgroundColor = [UIColor greenColor];
             [selectBtn addTarget:self action:@selector(clickBtnAct:) forControlEvents:UIControlEventTouchUpInside];
             [self addSubview:selectBtn];
-            
+            selectBtn.layer.cornerRadius=_height/2;
+            selectBtn.clipsToBounds=YES;
             selectBtn.tag = i+100;
         }
     }
@@ -105,9 +111,9 @@
     CGFloat itemW = (KscreenW - (self.columns+1)*kJianXi)/self.columns;
     //计算xy轴的坐标
     CGFloat x = count%self.columns*itemW +kJianXi *(count%self.columns+1);
-    CGFloat y = count/self.columns*kClickBtnHeight +kJianXi *(count/self.columns+1);
+    CGFloat y = count/self.columns*_height +kJianXi *(count/self.columns+1);
     
-    return CGRectMake(x, y, itemW, kClickBtnHeight);
+    return CGRectMake(x, y, itemW, _height);
 }
 
 //根据数据计算高度
@@ -123,7 +129,7 @@
     
     //每个图片的宽度
     //    CGFloat itemW = (kViewWidth - (self.columns+1)*kJianXi)/self.columns;
-    CGFloat height = kClickBtnHeight * row +kJianXi*(row+1);
+    CGFloat height = _height * row +kJianXi*(row+1);
     
     return height;
 }

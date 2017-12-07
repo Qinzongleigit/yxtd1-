@@ -107,11 +107,12 @@
     
     
    NSData *JSONData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"nearBicycle" ofType:@"json"]];
-  
+
     NSDictionary*dataDict=[NSJSONSerialization JSONObjectWithData:JSONData options:NSJSONReadingMutableContainers error:nil];
     NSArray *result = dataDict[@"bicyles"];
     [all_arrayList addObjectsFromArray:result];
     
+ 
 }
 
 
@@ -222,9 +223,10 @@
 - (void)addAnnotations{
     NSMutableArray *array_annotations = [[NSMutableArray alloc]init];
     
-    for (NSDictionary *dict in all_arrayList) {
+  for (NSDictionary *dict in all_arrayList) {
         MAPointAnnotation *annotation =  [[MAPointAnnotation alloc]init];
         annotation.coordinate = CLLocationCoordinate2DMake([dict[@"gLat" ] doubleValue], [dict[@"gLng"] doubleValue]);
+    
         annotation.title = dict[@"name"];
         annotation.subtitle = [NSString stringWithFormat:@"%@|%@",dict[@"availTotal"],dict[@"emptyTotal"]];
         [array_annotations addObject:annotation];

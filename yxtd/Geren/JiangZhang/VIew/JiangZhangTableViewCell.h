@@ -10,6 +10,10 @@
 #import "JiangZhangCellView.h"
 
 @interface JiangZhangTableViewCell : UITableViewCell
+
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *numberLabel;
+
 @property (weak, nonatomic) IBOutlet JiangZhangCellView *cellView;
 
 @property (nonatomic,strong) NSArray * dataArray;
