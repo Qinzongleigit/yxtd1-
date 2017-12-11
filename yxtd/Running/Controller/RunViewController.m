@@ -334,22 +334,45 @@
     NSString *didAddress = view.annotation.title;
     
     if (!self.showView) {
-       self.showView = [[JSQuanShowView alloc]initWithFrame:CGRectZero];
+      // self.showView = [[JSQuanShowView alloc]initWithFrame:CGRectMake(27, KscreenH+showViewHeight, KscreenW-54, showViewHeight)];
         
-       
+        self.showView=[[JSQuanShowView alloc] init];
+        
         self.showView.backgroundColor = [UIColor whiteColor];
         self.showView.alpha = 0.9;
         [self.view addSubview:self.showView];
         
-        [UIView animateWithDuration:0.5 animations:^{
-
-           self.showView.frame = CGRectMake(27, KscreenH-171-64, KscreenW-54, 0);
-
-
-        } completion:^(BOOL finished) {
-
-            self.showView.frame = CGRectMake(27, KscreenH-171-64, KscreenW-54, showViewHeight);
+        [self.showView mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.bottom.mas_equalTo(120);
+            make.centerX.equalTo(self.view);
+            make.size.mas_equalTo(CGSizeMake(KscreenW-54, showViewHeight));
         }];
+        
+        [self.showView.superview layoutIfNeeded];//如果其约束还没有生成的时候需要动画的话，就请先强制刷新后才写动画，否则所有没生成的约束会直接跑动画
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            
+            [self.showView mas_updateConstraints:^(MASConstraintMaker *make) {
+                
+                make.bottom.mas_equalTo(-62);
+                
+            }];
+            
+            [self.view layoutIfNeeded];//强制绘制
+            
+        }];
+        
+        
+//        [UIView animateWithDuration:1 animations:^{
+//
+//           self.showView.frame = CGRectMake(27, KscreenH-171-64, KscreenW-54, 0);
+//
+//
+//        } completion:^(BOOL finished) {
+//
+//            self.showView.frame = CGRectMake(27, KscreenH-171-64, KscreenW-54, showViewHeight);
+//        }];
     }
     isShowView = YES;
     [self.showView setHidden:NO];
