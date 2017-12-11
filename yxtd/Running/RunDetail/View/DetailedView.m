@@ -31,7 +31,7 @@
     [self addSubview:_bgImageView];
     
     _backBt=[UIButton buttonWithType:UIButtonTypeCustom];
-    [_backBt setBackgroundImage:[UIImage imageNamed:@"rightLoginImage"] forState:UIControlStateNormal];
+    [_backBt setBackgroundImage:[UIImage imageNamed:@"leftLoginImage"] forState:UIControlStateNormal];
     [_backBt addTarget:self action:@selector(btBack) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_backBt];
     

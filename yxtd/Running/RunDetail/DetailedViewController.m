@@ -40,15 +40,31 @@
     self.detailHeaderView.locationLabel.text=self.addressLabel;
     
     [self.view addSubview:self.detailHeaderView];
-
-    [_detailHeaderView mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.left.equalTo(@0);
-        make.right.equalTo(@0);
-        make.top.equalTo(@0);
-        make.height.equalTo(@SYRealValueHeight(showViewHeight));
-        
-    }];
+    
+    
+        [_detailHeaderView mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.left.equalTo(@0);
+            make.right.equalTo(@0);
+            make.top.equalTo(@0);
+ make.height.equalTo(@SYRealValueHeight(showViewHeight));
+            
+        }];
+  
+   
+    
+//    [_detailHeaderView.superview layoutIfNeeded];
+//
+//    [UIView animateWithDuration:10 animations:^{
+//
+//        [_detailHeaderView mas_updateConstraints:^(MASConstraintMaker *make) {
+//
+//            make.top.equalTo(@100);
+//        }];
+//        [_detailHeaderView.superview layoutIfNeeded];
+//
+//    }];
+//
     
     
     _bglineH=[[UIView alloc] init];
