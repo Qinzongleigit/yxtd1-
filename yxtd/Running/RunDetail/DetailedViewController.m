@@ -14,7 +14,12 @@
 @interface DetailedViewController ()
 
 @property (nonatomic,strong) DetailedView *detailHeaderView;
-@property (nonatomic,strong)  UIView*bglineH;
+@property (nonatomic,strong) UIView*bglineH;
+
+@property (nonatomic,strong) UIScrollView*scrollView;
+
+@property (nonatomic,strong) NSArray*labelTextArr;
+
 
 @end
 
@@ -27,48 +32,122 @@
     
     self.view.backgroundColor=[UIColor whiteColor];
     
-    self.detailHeaderView = [[DetailedView alloc] init];
-    self.detailHeaderView.backgroundColor = [UIColor whiteColor];
-    self.detailHeaderView.alpha = 0.9;
-    self.detailHeaderView.statNum=4.5;
-    ZXNWeakSelf(self)
-    self.detailHeaderView.backRunVC  = ^(){
-        
-        [weakself gotoRunVC];
-    };
     
-    self.detailHeaderView.locationLabel.text=self.addressLabel;
-    
-    [self.view addSubview:self.detailHeaderView];
+    [self performSelector:@selector(HeaderViewDelay) withObject:nil afterDelay:0.1];
     
     
-        [_detailHeaderView mas_makeConstraints:^(MASConstraintMaker *make) {
-            
-            make.left.equalTo(@0);
-            make.right.equalTo(@0);
-            make.top.equalTo(@0);
- make.height.equalTo(@SYRealValueHeight(showViewHeight));
-            
-        }];
-  
+    [self creatCALandKM];
+    
+    [self creatScrollView];
+    
+    [self addButton];
    
+}
+#pragma mark -导航按钮
+-(void)addButton{
+
+    UIButton*naviBt=[UIButton buttonWithType:UIButtonTypeCustom];
+    naviBt.backgroundColor=COLORWITHRGB(0, 219, 220);
+    [naviBt setTitle:@"导航出发" forState:UIControlStateNormal];
+    [naviBt setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    naviBt.titleLabel.font=[UIFont systemFontOfSize:20];
+    [naviBt addTarget:self action:@selector(gotoRunVC) forControlEvents:UIControlEventTouchUpInside];
     
-//    [_detailHeaderView.superview layoutIfNeeded];
-//
-//    [UIView animateWithDuration:10 animations:^{
-//
-//        [_detailHeaderView mas_updateConstraints:^(MASConstraintMaker *make) {
-//
-//            make.top.equalTo(@100);
-//        }];
-//        [_detailHeaderView.superview layoutIfNeeded];
-//
-//    }];
-//
+    [self.view addSubview:naviBt];
+    [naviBt mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.bottom.mas_equalTo(0);
+        make.width.mas_equalTo(self.view);
+        make.centerX.equalTo(self.view);
+        make.height.mas_equalTo(49);
+    }];
+}
+
+#pragma mark -创建集合视图
+-(void)creatScrollView{
+
+    
+     _labelTextArr=@[@"1. 该使用券可在星巴克连锁分店使用。",@"2. 该使用券限深圳市星巴克商家使用。",@"3. 使用券为现金券，使用时请出示您的ID给服务员，使用后使用券作废。",@"4. 最终解释权为星巴克与跑券官方所有。",@"1. 该使用券可在星巴克连锁分店使用。",@"2. 该使用券限深圳市星巴克商家使用。",@"3. 使用券为现金券，使用时请出示您的ID给服务员，使用后使用券作废。",@"4. 最终解释权为星巴克与跑券官方所有。",@"1. 该使用券可在星巴克连锁分店使用。",@"2. 该使用券限深圳市星巴克商家使用。",@"3. 使用券为现金券，使用时请出示您的ID给服务员，使用后使用券作废。",@"4. 最终解释权为星巴克与跑券官方所有。",@"1. 该使用券可在星巴克连锁分店使用。",@"2. 该使用券限深圳市星巴克商家使用。",@"3. 使用券为现金券，使用时请出示您的ID给服务员，使用后使用券作废。",@"4. 最终解释权为星巴克与跑券官方所有。"];
+    self.scrollView=[[UIScrollView alloc] init];
+    
+    self.scrollView.pagingEnabled=NO;
+    [self.view addSubview:self.scrollView];
+    self.scrollView.backgroundColor=[UIColor whiteColor];
+    self.scrollView.showsVerticalScrollIndicator=NO;
+    CGFloat sceernWidth=[UIScreen mainScreen].bounds.size.width;
+    
+    
+        UIImageView*lineVImage=[[UIImageView alloc] init];
+        lineVImage.backgroundColor=COLORWITHRGB(0, 219, 220);
+        [self.scrollView addSubview:lineVImage];
+    
+       UILabel*Label0=[[UILabel alloc] init];
+        Label0.text=@"使用说明";
+        Label0.textColor=BlackHexColor;
+        Label0.font=[UIFont systemFontOfSize:15];
+        [self.scrollView addSubview:Label0];
+    
+        [lineVImage mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.scrollView).with.offset(25);
+            make.top.equalTo(@21);
+            make.size.mas_equalTo(CGSizeMake(4, 16));
+        }];
+    
+        [Label0 mas_makeConstraints:^(MASConstraintMaker *make) {
+    
+            make.centerY.equalTo(lineVImage);
+            make.left.equalTo(lineVImage.mas_right).with.offset(12);
+        }];
+    
+    
+    UILabel*lastLabel=nil;
+    for (NSInteger i=0; i<_labelTextArr.count; i++) {
+        
+        UILabel*attentionLabel=[[UILabel alloc] init];
+        attentionLabel.numberOfLines=0;
+        attentionLabel.text=_labelTextArr[i];
+        attentionLabel.font=[UIFont systemFontOfSize:12];
+        attentionLabel.preferredMaxLayoutWidth=sceernWidth-30;
+        attentionLabel.textAlignment=NSTextAlignmentLeft;
+        attentionLabel.textColor=BlackHexColor;
+        attentionLabel.alpha=0.5;
+        
+        [self.scrollView addSubview:attentionLabel];
+        
+        
+        [attentionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.left.mas_equalTo(20);
+            // make.right.mas_equalTo(-15);
+            if (lastLabel) {
+                
+                make.top.equalTo(lastLabel.mas_bottom).offset(10);
+            }else{
+                
+                make.top.equalTo(lineVImage.mas_bottom).offset(20);
+            }
+        }];
+        
+        lastLabel=attentionLabel;
+    }
+    
+    
+    [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.edges.mas_equalTo(UIEdgeInsetsMake(SYRealValueHeight(showViewHeight)+44, 0, 49, 0));
+        make.bottom.mas_equalTo(lastLabel.mas_bottom).offset(20);
+    }];
+    
+    
+    
+}
+
+#pragma mark -距离和卡路里
+-(void)creatCALandKM{
     
     
     _bglineH=[[UIView alloc] init];
-
+    
     _bglineH.backgroundColor=COLORWITHRGB(244, 245, 245);
     [self.view addSubview:_bglineH];
     
@@ -79,7 +158,15 @@
     
     UILabel*distanceLabel=[[UILabel alloc] init];
     
-    distanceLabel.text=self.distanceLabel;
+   
+    if (!self.distanceLabel) {
+        
+        distanceLabel.text=@"距离太远无法估算";
+    }else{
+        
+         distanceLabel.text=self.distanceLabel;
+        
+    }
     distanceLabel.textColor=BlackHexColor;
     distanceLabel.font=[UIFont systemFontOfSize:12];
     [_bglineH addSubview:distanceLabel];
@@ -98,9 +185,10 @@
     
     [_bglineH mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.equalTo(@0);
-        make.right.equalTo(@0);
-        make.top.equalTo(_detailHeaderView.mas_bottom).with.offset(0);
+        make.centerX.equalTo(self.view);
+        make.top.mas_equalTo(SYRealValueHeight(showViewHeight));
+        make.width.mas_equalTo(self.view);
+        
         make.height.equalTo(@44);
         
     }];
@@ -116,7 +204,7 @@
     }];
     
     [CALLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-       
+        
         make.centerY.equalTo(_bglineH);
         make.right.equalTo(_bglineH).with.offset(-60);
     }];
@@ -127,120 +215,59 @@
         make.right.equalTo(CALLabel.mas_left).with.offset(-6);
     }];
     
-   
     
-   [self labelUI];
-   
+
 }
 
--(void)labelUI{
+#pragma mark 创建移动动画
+-(void)HeaderViewDelay{
     
-    __weak typeof(self.view) weakSelf=self.view;
-    
-    NSArray*labelTextArr=@[@"1. 该使用券可在星巴克连锁分店使用。",@"2. 该使用券限深圳市星巴克商家使用。",@"3. 使用券为现金券，使用时请出示您的ID给服务员，使用后使用券作废。",@"4. 最终解释权为星巴克与跑券官方所有。"];
-    
-    UIImageView*lineVImage=[[UIImageView alloc] init];
-    lineVImage.backgroundColor=COLORWITHRGB(0, 219, 220);
-    [self.view addSubview:lineVImage];
-   
-    
-    UILabel*Label0=[[UILabel alloc] init];
-    Label0.text=@"使用说明";
-    Label0.textColor=BlackHexColor;
-    Label0.font=[UIFont systemFontOfSize:15];
-    [self.view addSubview:Label0];
-    
-    UILabel*Label1=[[UILabel alloc] init];
-    Label1.text=labelTextArr[0];
-    Label1.textColor=BlackHexColor;
-    Label1.alpha=0.5;
-    Label1.numberOfLines=0;
-    Label1.font=[UIFont systemFontOfSize:12];
-    [self.view addSubview:Label1];
-    
-    UILabel*Label2=[[UILabel alloc] init];
-    Label2.text=labelTextArr[1];
-    Label2.textColor=BlackHexColor;
-    Label2.alpha=0.5;
-    Label2.numberOfLines=0;
-    Label2.font=[UIFont systemFontOfSize:12];
-    [self.view addSubview:Label2];
-    
-    UILabel*Label3=[[UILabel alloc] init];
-    Label3.text=labelTextArr[2];
-    Label3.textColor=BlackHexColor;
-    Label3.alpha=0.5;
-    Label3.numberOfLines=0;
-    Label3.font=[UIFont systemFontOfSize:12];
-    [self.view addSubview:Label3];
-    
-    UILabel*Label4=[[UILabel alloc] init];
-    Label4.text=labelTextArr[3];
-    Label4.textColor=BlackHexColor;
-    Label4.alpha=0.5;
-    Label4.numberOfLines=0;
-    Label4.font=[UIFont systemFontOfSize:12];
-    [self.view addSubview:Label4];
-    
-    
-    UIButton*naviBt=[UIButton buttonWithType:UIButtonTypeCustom];
-    naviBt.backgroundColor=COLORWITHRGB(0, 219, 220);
-    [naviBt setTitle:@"导航出发" forState:UIControlStateNormal];
-    [naviBt setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    naviBt.titleLabel.font=[UIFont systemFontOfSize:20];
-    [self.view addSubview:naviBt];
-    
-    [lineVImage mas_makeConstraints:^(MASConstraintMaker *make) {
-
-        make.left.equalTo(weakSelf).with.offset(25);
-        make.top.equalTo(self.bglineH.mas_bottom).with.offset(21);
-        make.size.mas_equalTo(CGSizeMake(4, 16));
-    }];
-
-    [Label0 mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.centerY.equalTo(lineVImage);
-        make.left.equalTo(lineVImage.mas_right).with.offset(12);
-    }];
-    
-    [Label1 mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.left.equalTo(weakSelf).with.offset(25);
-        make.top.equalTo(lineVImage.mas_bottom).with.offset(20);
-        make.right.equalTo(weakSelf).with.offset(-10);
-    }];
-    
-    [Label2 mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.detailHeaderView = [[DetailedView alloc] init];
+    self.detailHeaderView.backgroundColor = [UIColor whiteColor];
+    self.detailHeaderView.alpha = 0.9;
+    self.detailHeaderView.statNum=4.5;
+    ZXNWeakSelf(self)
+    self.detailHeaderView.backRunVC  = ^(){
         
-        make.left.equalTo(weakSelf).with.offset(25);
-        make.top.equalTo(Label1.mas_bottom).with.offset(20);
-        make.right.equalTo(weakSelf).with.offset(-10);
-    }];
+        [weakself gotoRunVC];
+    };
+    
+    self.detailHeaderView.locationLabel.text=self.addressLabel;
+    
+    [self.view addSubview:self.detailHeaderView];
     
     
-    [Label3 mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_detailHeaderView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.equalTo(weakSelf).with.offset(25);
-        make.top.equalTo(Label2.mas_bottom).with.offset(20);
-        make.right.equalTo(weakSelf).with.offset(-10);
-    }];
-    
-    [Label4 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view);
+        make.width.mas_equalTo(self.view.mas_width).multipliedBy(0.5).priorityLow();
+        make.bottom.mas_equalTo(@SYRealValueHeight(showViewHeight));
+        make.height.equalTo(@SYRealValueHeight(showViewHeight*0.5));
         
-         make.left.equalTo(weakSelf).with.offset(25);
-         make.top.equalTo(Label3.mas_bottom).with.offset(20);
-         make.right.equalTo(weakSelf).with.offset(-10);
     }];
     
+    [self.view layoutIfNeeded];
     
-    [naviBt mas_makeConstraints:^(MASConstraintMaker *make) {
+    [UIView animateWithDuration:0.5 animations:^{
+        
+        [_detailHeaderView mas_updateConstraints:^(MASConstraintMaker *make) {
+            
+             make.bottom.mas_equalTo(-KscreenH+SYRealValueHeight(showViewHeight));
+            
+            make.height.equalTo(@SYRealValueHeight(showViewHeight*1));
+            make.width.mas_equalTo(self.view.mas_width).multipliedBy(1).priorityHigh();
+            
+             make.width.lessThanOrEqualTo(self.view);
+        }];
+        
        
-        make.left.equalTo(@0);
-        make.right.equalTo(@0);
-        make.bottom.equalTo(@0);
-        make.height.equalTo(@49);
+        [self.view layoutIfNeeded];
+        
     }];
-  
+    
+    
+    
+    
 }
 
 

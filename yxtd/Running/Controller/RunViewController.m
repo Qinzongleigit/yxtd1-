@@ -26,7 +26,7 @@
     NSMutableArray *all_arrayList;
     RunLocationGaoDeManager *currentPosition;
     
-    BOOL isShowView;//上部自行车信息框弹出
+    BOOL isShowView;//信息框弹出
     BOOL isMoveView;//是否移动地图
     CLLocationCoordinate2D currentCoordinate;
     
@@ -287,7 +287,8 @@
     }
     
     annotationView.image = [UIImage imageNamed:@"HomePage_nearbyRedPacket"];
-    //    annotationView.canShowCallout = YES;
+   
+    
     return annotationView;
 }
 
@@ -314,9 +315,10 @@
 }
 
 
+
+
 - (void)mapView:(MAMapView *)mapView didSelectAnnotationView:(MAAnnotationView *)view{
-    
-    
+  
     if ([view.annotation isMemberOfClass:[MAUserLocation class]]) {
         
         return;
@@ -326,112 +328,107 @@
         
         return;
     }
-  
-  
-    isMoveView = NO;
     
+    
+
+    isMoveView = NO;
+
     //记录下点击的经纬度
     NSString *didAddress = view.annotation.title;
-    
+
     if (!self.showView) {
-      // self.showView = [[JSQuanShowView alloc]initWithFrame:CGRectMake(27, KscreenH+showViewHeight, KscreenW-54, showViewHeight)];
-        
+
         self.showView=[[JSQuanShowView alloc] init];
-        
+
         self.showView.backgroundColor = [UIColor whiteColor];
         self.showView.alpha = 0.9;
         [self.view addSubview:self.showView];
-        
+
         [self.showView mas_makeConstraints:^(MASConstraintMaker *make) {
-           
+
             make.bottom.mas_equalTo(120);
             make.centerX.equalTo(self.view);
             make.size.mas_equalTo(CGSizeMake(KscreenW-54, showViewHeight));
         }];
-        
+
         [self.showView.superview layoutIfNeeded];//如果其约束还没有生成的时候需要动画的话，就请先强制刷新后才写动画，否则所有没生成的约束会直接跑动画
-        
-        [UIView animateWithDuration:0.5 animations:^{
-            
+
+        [UIView animateWithDuration:1 animations:^{
+
             [self.showView mas_updateConstraints:^(MASConstraintMaker *make) {
-                
+
                 make.bottom.mas_equalTo(-62);
-                
+
             }];
-            
-            [self.view layoutIfNeeded];//强制绘制
-            
+
+            [self.showView.superview layoutIfNeeded];//强制绘制
+
         }];
-        
-        
-//        [UIView animateWithDuration:1 animations:^{
-//
-//           self.showView.frame = CGRectMake(27, KscreenH-171-64, KscreenW-54, 0);
-//
-//
-//        } completion:^(BOOL finished) {
-//
-//            self.showView.frame = CGRectMake(27, KscreenH-171-64, KscreenW-54, showViewHeight);
-//        }];
+
     }
     isShowView = YES;
     [self.showView setHidden:NO];
     [self.btn_local setHidden:YES];
-    
+
     ZXNWeakSelf(self)
     self.showView.gotoDetailVC = ^(){
         [weakself gotoVC];
     };
-    
+
     //星星等级
     self.showView.statNum=4.5;
-    
-    
+
+
     //self.showView.label_address.text = view.annotation.title;
 //    self.address=view.annotation.title;
-    
+
     NSArray *counts = [view.annotation.subtitle componentsSeparatedByString:@"|"];
     self.showView.label_availTotal.text = counts[0];
     self.showView.label_emptyTotal.text = counts[1];
-    
-    
+
+
     //步行导航
     self.startCoordinate = centerAnnotaion.coordinate;
     self.endCoordinate = view.annotation.coordinate;
-    
+
     self.startPoint = [AMapNaviPoint locationWithLatitude:self.startCoordinate.latitude longitude:self.startCoordinate.longitude];
-    
+
     self.endPoint = [AMapNaviPoint locationWithLatitude:self.endCoordinate.latitude longitude:self.endCoordinate.longitude];
     [js_walkManager calculateWalkRouteWithStartPoints:@[self.startPoint] endPoints:@[self.endPoint]];
-    
+
     [self.mapView removeAnnotations:self.mapView.annotations];
-    
+
     NSMutableArray *array_annotations = [[NSMutableArray alloc]init];
     [array_annotations addObject:centerAnnotaion];
-    
+
     for (NSDictionary *dict in all_arrayList) {
         MAPointAnnotation *annotation =  [[MAPointAnnotation alloc]init];
-    
+
         NSLog(@"%@,%@",dict[@"name"],didAddress);
-        
+
         if ([dict[@"name"] isEqualToString:didAddress]) {
             annotation.coordinate = CLLocationCoordinate2DMake([dict[@"gLat" ] doubleValue], [dict[@"gLng"] doubleValue]);
             annotation.title = dict[@"name"];
             annotation.subtitle = [NSString stringWithFormat:@"%@|%@",dict[@"availTotal"],dict[@"emptyTotal"]];
             [array_annotations addObject:annotation];
-            
+
              self.address=annotation.title;
         }
-        
+
         self.address=[NSString stringWithFormat:@"%@,%@",dict[@"name"],didAddress];
-        
+
     }
-    
+
     [self.mapView addAnnotations:array_annotations];
-    
+
     [self.mapView showAnnotations:array_annotations edgePadding:UIEdgeInsetsMake(300, 100, 50, 100) animated:YES];
     
+
+
+    
 }
+
+
 
 #pragma mark - AMapNaviWalkManagerDelegate 导航代理
 
@@ -546,7 +543,7 @@
     detailedVC.addressLabel=self.address;
     
     detailedVC.distanceLabel=self.label_distance;
-    
+
     [self presentViewController:detailedVC animated:YES completion:nil];
 }
 

@@ -59,6 +59,7 @@
 
     UIButton*leftBt=[UIButton buttonWithType:UIButtonTypeCustom];
     self.leftBt=leftBt;
+  
     [leftBt setBackgroundImage:[UIImage imageWithoriginName:@"leftLoginImage"] forState:UIControlStateNormal];
     [leftBt addTarget:self action:@selector(leftBtBack) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:leftBt];
@@ -108,7 +109,7 @@
         NSArray*titleArr=[NSArray arrayWithObjects:@"可兑换",@"已兑换",@"赛事奖品", nil];
 
         NSMutableArray*cellArray=[NSMutableArray new];
-        for (int i=0; i<=2; i++) {
+        for (int i=0; i<titleArr.count; i++) {
             
             UIButton*slicdeButton=[UIButton buttonWithType:UIButtonTypeCustom];
            
@@ -123,7 +124,7 @@
             [slicdeButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
             slicdeButton.tag=100+i;
             
-            [slicdeButton setImage:[UIImage imageWithoriginName:nil] forState:UIControlStateNormal];
+            [slicdeButton setImage:[UIImage imageWithoriginName:@"bt_jifen_Image"] forState:UIControlStateNormal];
             
             [slicdeButton setImage:[UIImage imageWithoriginName:@"bgButtonImage"] forState:UIControlStateSelected];
 
