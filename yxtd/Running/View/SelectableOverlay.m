@@ -31,8 +31,8 @@
     {
         self.overlay       = overlay;
         self.selected      = NO;
-        self.selectedColor = BlackHexColor;
-        self.regularColor  = BlackHexColor;
+        self.selectedColor = COLORWITHRGB(0, 219, 220);
+        self.regularColor  = COLORWITHRGB(0, 219, 220);
 
     }
     

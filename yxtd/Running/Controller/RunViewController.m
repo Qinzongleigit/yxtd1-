@@ -119,8 +119,6 @@
 #pragma mark -初始化地图
 - (void)setUpMapView{
     
-  
-    
     ///初始化地图
     self.mapView = [[MAMapView alloc] init];
 
@@ -181,16 +179,22 @@
        [self firstLogin];
     
     
-    //定位精度圈
-    //MAUserLocationRepresentation*r=[[MAUserLocationRepresentation alloc] init];
-
-   // r.fillColor = [UIColor redColor];///精度圈 填充颜色, 默认
-    
-  
-   // r.enablePulseAnnimation = YES;///内部蓝色圆点是否使用律动效果, 默认YES
-   // r.locationDotFillColor = [UIColor grayColor];///定位点蓝色圆点颜色，不设置默认蓝色
- 
-   // [self.mapView updateUserLocationRepresentation:r];
+//    //定位精度圈
+//  MAUserLocationRepresentation*r=[[MAUserLocationRepresentation alloc] init];
+//
+//    r.fillColor = [UIColor redColor];///精度圈 填充颜色, 默认
+//
+//    r.locationDotBgColor=[UIColor yellowColor]; ///定位点背景色，不设置默认白色
+//
+//    r.strokeColor = [UIColor blueColor];///精度圈 边线颜色, 默认 kAccuracyCircleDefaultColor
+//    r.lineWidth = 2;///精度圈 边线宽度，默认0
+//
+//    r.enablePulseAnnimation = YES;///内部蓝色圆点是否使用律动效果, 默认YES
+//    r.locationDotFillColor = [UIColor grayColor];///定位点蓝色圆点颜色，不设置默认蓝色
+//
+//    r.image=[UIImage imageNamed:@""];
+//
+//    [self.mapView updateUserLocationRepresentation:r];
 }
 
 #pragma mark -第一次进入显示引导图
@@ -207,7 +211,7 @@
 
 
 
-//定位按钮点击事件处理
+#pragma mark -定位按钮点击事件处理
 - (void)local{
     
     self.mapView.zoomLevel=15;
@@ -234,7 +238,14 @@
     [self.mapView addAnnotations:array_annotations];
 }
 
+
+
 #pragma mark - mapViewDelete
+/**
+ * @brief 地图将要发生移动时调用此接口
+ * @param mapView       地图view
+ * @param wasUserAction 标识是否是用户动作
+ */
 - (void)mapView:(MAMapView *)mapView mapWillMoveByUser:(BOOL)wasUserAction{
     if (!isMoveView) {
         //不能移动
@@ -256,10 +267,14 @@
     [self.mapView addAnnotation:centerAnnotaion];
     
     [self.mapView showAnnotations:@[centerAnnotaion] animated:YES];
+    
 }
 
-
-//加载大头针
+/*
+* @param mapView 地图View
+* @param annotation 指定的标注
+* @return 生成的标注View
+*/
 - (MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id <MAAnnotation>)annotation{
     
     if ([annotation isMemberOfClass:[MAUserLocation class]]) {
@@ -293,7 +308,11 @@
 }
 
 
-//单击地图
+/**
+ * @brief 单击地图回调，返回经纬度
+ * @param mapView 地图View
+ * @param coordinate 经纬度
+ */
 - (void)mapView:(MAMapView *)mapView didSingleTappedAtCoordinate:(CLLocationCoordinate2D)coordinate{
     
     if (isShowView) {
@@ -315,8 +334,17 @@
 }
 
 
+#pragma mark-当取消选中一个annotation view时，调用此接口
+-(void)mapView:(MAMapView *)mapView didDeselectAnnotationView:(MAAnnotationView *)view{
+    
+    //取消选中时把图片还原
+    view.imageView.transform=CGAffineTransformMakeScale(1, 1);
+    
+    
+}
 
 
+#pragma mark -点击地图上优惠券的方法
 - (void)mapView:(MAMapView *)mapView didSelectAnnotationView:(MAAnnotationView *)view{
   
     if ([view.annotation isMemberOfClass:[MAUserLocation class]]) {
@@ -329,13 +357,18 @@
         return;
     }
     
+    //优惠券点击动画放大
+    [UIView animateWithDuration:1 animations:^{
+        view.imageView.transform=CGAffineTransformMakeScale(1.5, 1.5);
+    }];
     
 
     isMoveView = NO;
 
     //记录下点击的经纬度
-    NSString *didAddress = view.annotation.title;
-
+   // NSString *didAddress = view.annotation.title;
+    
+    //显示优惠券弹窗信息
     if (!self.showView) {
 
         self.showView=[[JSQuanShowView alloc] init];
@@ -356,13 +389,11 @@
         [UIView animateWithDuration:1 animations:^{
 
             [self.showView mas_updateConstraints:^(MASConstraintMaker *make) {
-
                 make.bottom.mas_equalTo(-62);
 
             }];
 
             [self.showView.superview layoutIfNeeded];//强制绘制
-
         }];
 
     }
@@ -396,6 +427,9 @@
     self.endPoint = [AMapNaviPoint locationWithLatitude:self.endCoordinate.latitude longitude:self.endCoordinate.longitude];
     [js_walkManager calculateWalkRouteWithStartPoints:@[self.startPoint] endPoints:@[self.endPoint]];
 
+    /**
+     暂时不需要单独显示点击优惠券的功能
+     
     [self.mapView removeAnnotations:self.mapView.annotations];
 
     NSMutableArray *array_annotations = [[NSMutableArray alloc]init];
@@ -422,9 +456,7 @@
     [self.mapView addAnnotations:array_annotations];
 
     [self.mapView showAnnotations:array_annotations edgePadding:UIEdgeInsetsMake(300, 100, 50, 100) animated:YES];
-    
-
-
+*/
     
 }
 
@@ -432,6 +464,10 @@
 
 #pragma mark - AMapNaviWalkManagerDelegate 导航代理
 
+/**
+ * @brief 步行路径规划成功后的回调函数
+ * @param walkManager 步行导航管理类
+ */
 - (void)walkManagerOnCalculateRouteSuccess:(AMapNaviWalkManager *)walkManager{
     
     NSLog(@"步行路线规划成功！");
@@ -472,11 +508,18 @@
     }
     
     self.showView.label_minutes.text = timeDesc;
+    
     //self.showView.label_distance.text = [NSString stringWithFormat:@"%.1fkm",(float)aRoute.routeLength/1000];
     
     self.label_distance=[NSString stringWithFormat:@"%.1fkm",(float)aRoute.routeLength/1000];
 }
 
+/**
+ * @brief 根据overlay生成对应的Renderer
+ * @param mapView 地图View
+ * @param overlay 指定的overlay
+ * @return 生成的覆盖物Renderer
+ */
 - (MAOverlayRenderer *)mapView:(MAMapView *)mapView rendererForOverlay:(id<MAOverlay>)overlay{
     
     if ([overlay isKindOfClass:[SelectableOverlay class]])
@@ -485,17 +528,18 @@
         id<MAOverlay> actualOverlay = selectableOverlay.overlay;
         MAPolylineRenderer *polylineRenderer = [[MAPolylineRenderer alloc] initWithPolyline:actualOverlay];
         
-        polylineRenderer.lineWidth = 4.f;
+        polylineRenderer.lineWidth = 6.f;
         polylineRenderer.strokeColor = selectableOverlay.isSelected ? selectableOverlay.selectedColor : selectableOverlay.regularColor;
         
         //是否虚线
-        polylineRenderer.lineDash=YES;
+       // polylineRenderer.lineDash=YES;
         
         return polylineRenderer;
     }
     
     return nil;
 }
+
 - (void)selecteOverlayWithRouteID:(NSInteger)routeID{
     
     [self.mapView.overlays enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id<MAOverlay> overlay, NSUInteger idx, BOOL *stop)
@@ -543,7 +587,7 @@
     detailedVC.addressLabel=self.address;
     
     detailedVC.distanceLabel=self.label_distance;
-
+    
     [self presentViewController:detailedVC animated:YES completion:nil];
 }
 
