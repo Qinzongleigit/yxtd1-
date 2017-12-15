@@ -65,6 +65,8 @@
 		25AB5B951FCE8D1400BC4D6F /* NaviBarRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AB5B941FCE8D1400BC4D6F /* NaviBarRootViewController.m */; };
 		25AB5B9A1FCE90D900BC4D6F /* HuatiDongtaiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AB5B991FCE90D900BC4D6F /* HuatiDongtaiViewController.m */; };
 		25AB5BED1FD13EFC00BC4D6F /* JiFenHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AB5BEC1FD13EFC00BC4D6F /* JiFenHeaderView.m */; };
+		25ABFAF51FE3A48E00C90BD0 /* StepPaiHangViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25ABFAF41FE3A48E00C90BD0 /* StepPaiHangViewController.m */; };
+		25ABFAF81FE3C3E700C90BD0 /* StepDayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25ABFAF71FE3C3E700C90BD0 /* StepDayTableViewCell.m */; };
 		25AD8CAE1FA1B3A500960732 /* HYSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AD8CAD1FA1B3A500960732 /* HYSwitch.m */; };
 		25AD8CB81FA8156D00960732 /* DetailedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AD8CB71FA8156D00960732 /* DetailedViewController.m */; };
 		25AD8CCD1FA85B6800960732 /* StarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AD8CCC1FA85B6800960732 /* StarView.m */; };
@@ -244,6 +246,10 @@
 		25AB5B991FCE90D900BC4D6F /* HuatiDongtaiViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HuatiDongtaiViewController.m; sourceTree = "<group>"; };
 		25AB5BEB1FD13EFC00BC4D6F /* JiFenHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JiFenHeaderView.h; sourceTree = "<group>"; };
 		25AB5BEC1FD13EFC00BC4D6F /* JiFenHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JiFenHeaderView.m; sourceTree = "<group>"; };
+		25ABFAF31FE3A48E00C90BD0 /* StepPaiHangViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StepPaiHangViewController.h; sourceTree = "<group>"; };
+		25ABFAF41FE3A48E00C90BD0 /* StepPaiHangViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StepPaiHangViewController.m; sourceTree = "<group>"; };
+		25ABFAF61FE3C3E700C90BD0 /* StepDayTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StepDayTableViewCell.h; sourceTree = "<group>"; };
+		25ABFAF71FE3C3E700C90BD0 /* StepDayTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StepDayTableViewCell.m; sourceTree = "<group>"; };
 		25AD8CAC1FA1B3A500960732 /* HYSwitch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSwitch.h; sourceTree = "<group>"; };
 		25AD8CAD1FA1B3A500960732 /* HYSwitch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSwitch.m; sourceTree = "<group>"; };
 		25AD8CB61FA8156D00960732 /* DetailedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailedViewController.h; sourceTree = "<group>"; };
@@ -997,6 +1003,33 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		25ABFAF11FE3A33F00C90BD0 /* StepPaiHang */ = {
+			isa = PBXGroup;
+			children = (
+				25ABFAF21FE3A3A700C90BD0 /* Controller */,
+				25ABFAF91FE3C40B00C90BD0 /* View */,
+			);
+			path = StepPaiHang;
+			sourceTree = "<group>";
+		};
+		25ABFAF21FE3A3A700C90BD0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				25ABFAF31FE3A48E00C90BD0 /* StepPaiHangViewController.h */,
+				25ABFAF41FE3A48E00C90BD0 /* StepPaiHangViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		25ABFAF91FE3C40B00C90BD0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				25ABFAF61FE3C3E700C90BD0 /* StepDayTableViewCell.h */,
+				25ABFAF71FE3C3E700C90BD0 /* StepDayTableViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		25AD8CB51FA8154500960732 /* RunDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -1101,6 +1134,7 @@
 		25D5A39B1FBED3EA00074447 /* Geren */ = {
 			isa = PBXGroup;
 			children = (
+				25ABFAF11FE3A33F00C90BD0 /* StepPaiHang */,
 				257554161FD79CC200B4EBB7 /* JiangZhang */,
 				25AB5B961FCE901700BC4D6F /* HuaTiAndDongtai */,
 				8FEC15651FCDAE390081799A /* TwoDimensionCode */,
@@ -1502,6 +1536,7 @@
 				25D5A2761FB9945B00074447 /* CDHttpTool.m in Sources */,
 				25BED23A1F7CD5EF00A0A07A /* CDMyButton.m in Sources */,
 				257D12481F690E16003DC1E4 /* FindViewController.m in Sources */,
+				25ABFAF51FE3A48E00C90BD0 /* StepPaiHangViewController.m in Sources */,
 				8F263BB71FD05CAF00F89A45 /* AGIPCGridCell.m in Sources */,
 				25130E411F99E66E00E1E29A /* RunLocationGaoDeManager.m in Sources */,
 				8F263BBC1FD05CAF00F89A45 /* ALAsset+AGIPC.m in Sources */,
@@ -1518,6 +1553,7 @@
 				25D5A27A1FB9957900074447 /* Reachability.m in Sources */,
 				25AB5B951FCE8D1400BC4D6F /* NaviBarRootViewController.m in Sources */,
 				25BED2361F7C9CE300A0A07A /* FindTwoCell.m in Sources */,
+				25ABFAF81FE3C3E700C90BD0 /* StepDayTableViewCell.m in Sources */,
 				8F263BC41FD0615500F89A45 /* ShowImageView.m in Sources */,
 				25485B991F721AFE001122F7 /* LoginViewController.m in Sources */,
 				8F263BB91FD05CAF00F89A45 /* AGIPCPreviewController.m in Sources */,

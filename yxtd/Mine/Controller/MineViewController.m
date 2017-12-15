@@ -13,6 +13,7 @@
 #import "TwoDimensionCodeVC.h"
 #import "HuatiDongtaiViewController.h"
 #import "JiangZhangTableViewController.h"
+#import "StepPaiHangViewController.h"
 
 
 
@@ -367,13 +368,18 @@
         [alter addAction:cancleAction];
         [alter addAction:sureAction];
         [self presentViewController:alter animated:YES completion:nil];
-
+        
     }else if (indexPath.section==1){
         
         if (!indexPath.row) {
- JiangZhangTableViewController*jiangzhangVC=[[JiangZhangTableViewController alloc] init];
-           
+            //奖章
+            JiangZhangTableViewController*jiangzhangVC=[[JiangZhangTableViewController alloc] init];
             [self.navigationController pushViewController:jiangzhangVC animated:YES];
+            
+        }else if (indexPath.row==1){
+            //步数排行
+            StepPaiHangViewController*stetVC=[[StepPaiHangViewController alloc] init];
+             [self.navigationController pushViewController:stetVC animated:YES];
         }
         
     }
