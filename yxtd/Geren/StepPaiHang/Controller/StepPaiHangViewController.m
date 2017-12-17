@@ -8,6 +8,7 @@
 
 #import "StepPaiHangViewController.h"
 #import "UICountingLabel.h"
+#import "StepDayTableViewCell.h"
 
 @interface StepPaiHangViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -17,6 +18,9 @@
 @end
 
 @implementation StepPaiHangViewController
+
+static  NSString*stepCellID=@"ID";
+
 -(void)viewWillAppear:(BOOL)animated{
     
     self.navigationController.navigationBar.hidden=YES;
@@ -100,8 +104,11 @@
     self.tableView=tableView;
     tableView.delegate=self;
     tableView.dataSource=self;
-    
+    tableView.rowHeight=60;
     [paihangBgView addSubview:tableView];
+    
+   [tableView registerClass:[StepDayTableViewCell class] forCellReuseIdentifier:stepCellID];
+    
     [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.width.mas_equalTo(paihangBgView.mas_width);
@@ -121,14 +128,7 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    static NSString* cellID=@"ID";
-    UITableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:cellID];
-    if (!cell) {
-        
-        cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-    }
-    cell.textLabel.text=@"测试";
-    cell.textLabel.textColor=[UIColor redColor];
+       StepDayTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:stepCellID];
     
     return cell;
 }

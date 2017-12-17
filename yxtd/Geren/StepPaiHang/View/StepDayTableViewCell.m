@@ -75,7 +75,7 @@
     _jinduImage.backgroundColor=COLORWITHRGB(0, 219, 220);
     _jinduImage.layer.cornerRadius=6;
     _jinduImage.clipsToBounds=YES;
-    [self.contentView addSubview:_jinduBgImage];
+    [self.contentView addSubview:_jinduImage];
     
     
     //总数
@@ -86,6 +86,55 @@
     [self.contentView addSubview:_zongshuLabel];
     
     
+}
+
+-(void)layoutSubviews{
+    
+    [self.paimingLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.centerY.equalTo(self.contentView);
+        make.left.mas_offset(19);
+    }];
+    
+    
+    [self.iconImageV mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.centerY.equalTo(self.paimingLabel);
+        make.left.mas_equalTo(self.paimingLabel.mas_right).offset(18);
+        make.size.mas_equalTo(CGSizeMake(33, 33));
+    }];
+    
+    
+    [self.nichengLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+
+        make.left.mas_equalTo(self.iconImageV.mas_right).offset(12);
+        make.top.mas_equalTo(15);
+    }];
+
+    [self.jinduBgImage mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.iconImageV.mas_right).offset(12);
+        make.top.mas_equalTo(self.nichengLabel.mas_bottom).offset(5);
+        make.right.mas_equalTo(-19);
+        make.height.mas_equalTo(13);
+    }];
+
+    [self.jinduImage mas_makeConstraints:^(MASConstraintMaker *make) {
+
+        make.left.mas_equalTo(self.iconImageV.mas_right).offset(12);
+        make.top.mas_equalTo(self.nichengLabel.mas_bottom).offset(5);
+       make.width.equalTo(self.jinduBgImage.mas_width).multipliedBy(0.5);
+        
+    
+        make.height.mas_equalTo(13);
+
+    }];
+
+    
+    [self.zongshuLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+
+        make.centerY.mas_equalTo(self.nichengLabel);
+        make.right.mas_equalTo(-19);
+    }];
 }
 
 
