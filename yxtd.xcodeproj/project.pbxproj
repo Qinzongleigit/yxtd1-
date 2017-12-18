@@ -94,6 +94,10 @@
 		25FD1ADA1F6A163A00D7957E /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FD1AD91F6A163900D7957E /* UIColor+Hex.m */; };
 		25FE9F6A1F7E35BF00D9E420 /* CLTRoundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FE9F691F7E35BF00D9E420 /* CLTRoundView.m */; };
 		30AE89C1A250834E9DB980BB /* libPods-yxtd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D34E885CCE21FBB8C41A8408 /* libPods-yxtd.a */; };
+		8F0D8A331FE816EE0064B514 /* MyDiscountTopSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F0D8A321FE816EE0064B514 /* MyDiscountTopSliderView.m */; };
+		8F0D8A381FE819C00064B514 /* DiscountUnusedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F0D8A371FE819C00064B514 /* DiscountUnusedViewController.m */; };
+		8F0D8A3D1FE81A360064B514 /* DiscountExpiredViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F0D8A3C1FE81A360064B514 /* DiscountExpiredViewController.m */; };
+		8F0D8A421FE81A980064B514 /* DiscountUsedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F0D8A411FE81A980064B514 /* DiscountUsedViewController.m */; };
 		8F263BB11FD05CAF00F89A45 /* AGImagePickerController+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F263B981FD05CAE00F89A45 /* AGImagePickerController+Helper.m */; };
 		8F263BB21FD05CAF00F89A45 /* AGImagePickerController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8F263B991FD05CAE00F89A45 /* AGImagePickerController.bundle */; };
 		8F263BB31FD05CAF00F89A45 /* AGImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F263B9B1FD05CAE00F89A45 /* AGImagePickerController.m */; };
@@ -307,6 +311,14 @@
 		25FE9F681F7E35BF00D9E420 /* CLTRoundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTRoundView.h; sourceTree = "<group>"; };
 		25FE9F691F7E35BF00D9E420 /* CLTRoundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLTRoundView.m; sourceTree = "<group>"; };
 		4AA24C9EA59A86043C9C2F67 /* Pods-yxtd.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yxtd.release.xcconfig"; path = "Pods/Target Support Files/Pods-yxtd/Pods-yxtd.release.xcconfig"; sourceTree = "<group>"; };
+		8F0D8A311FE816EE0064B514 /* MyDiscountTopSliderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyDiscountTopSliderView.h; sourceTree = "<group>"; };
+		8F0D8A321FE816EE0064B514 /* MyDiscountTopSliderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyDiscountTopSliderView.m; sourceTree = "<group>"; };
+		8F0D8A361FE819C00064B514 /* DiscountUnusedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscountUnusedViewController.h; sourceTree = "<group>"; };
+		8F0D8A371FE819C00064B514 /* DiscountUnusedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscountUnusedViewController.m; sourceTree = "<group>"; };
+		8F0D8A3B1FE81A360064B514 /* DiscountExpiredViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscountExpiredViewController.h; sourceTree = "<group>"; };
+		8F0D8A3C1FE81A360064B514 /* DiscountExpiredViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscountExpiredViewController.m; sourceTree = "<group>"; };
+		8F0D8A401FE81A980064B514 /* DiscountUsedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscountUsedViewController.h; sourceTree = "<group>"; };
+		8F0D8A411FE81A980064B514 /* DiscountUsedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscountUsedViewController.m; sourceTree = "<group>"; };
 		8F263B971FD05CAE00F89A45 /* AGImagePickerController+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AGImagePickerController+Helper.h"; sourceTree = "<group>"; };
 		8F263B981FD05CAE00F89A45 /* AGImagePickerController+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AGImagePickerController+Helper.m"; sourceTree = "<group>"; };
 		8F263B991FD05CAE00F89A45 /* AGImagePickerController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AGImagePickerController.bundle; sourceTree = "<group>"; };
@@ -1046,7 +1058,11 @@
 		25ABFB411FE7B12900C90BD0 /* MyDiscountCoupon */ = {
 			isa = PBXGroup;
 			children = (
+				8F0D8A3E1FE81A640064B514 /* DiscountUsed */,
+				8F0D8A391FE819F50064B514 /* DiscountExpired */,
+				8F0D8A341FE819550064B514 /* DiscountUnused */,
 				25ABFB421FE7B6CC00C90BD0 /* Controller */,
+				8F0D8A301FE8168E0064B514 /* View */,
 			);
 			path = MyDiscountCoupon;
 			sourceTree = "<group>";
@@ -1222,6 +1238,66 @@
 				4AA24C9EA59A86043C9C2F67 /* Pods-yxtd.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		8F0D8A301FE8168E0064B514 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8F0D8A311FE816EE0064B514 /* MyDiscountTopSliderView.h */,
+				8F0D8A321FE816EE0064B514 /* MyDiscountTopSliderView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8F0D8A341FE819550064B514 /* DiscountUnused */ = {
+			isa = PBXGroup;
+			children = (
+				8F0D8A351FE819800064B514 /* Controller */,
+			);
+			path = DiscountUnused;
+			sourceTree = "<group>";
+		};
+		8F0D8A351FE819800064B514 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8F0D8A361FE819C00064B514 /* DiscountUnusedViewController.h */,
+				8F0D8A371FE819C00064B514 /* DiscountUnusedViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8F0D8A391FE819F50064B514 /* DiscountExpired */ = {
+			isa = PBXGroup;
+			children = (
+				8F0D8A3A1FE81A120064B514 /* Controller */,
+			);
+			path = DiscountExpired;
+			sourceTree = "<group>";
+		};
+		8F0D8A3A1FE81A120064B514 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8F0D8A3B1FE81A360064B514 /* DiscountExpiredViewController.h */,
+				8F0D8A3C1FE81A360064B514 /* DiscountExpiredViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8F0D8A3E1FE81A640064B514 /* DiscountUsed */ = {
+			isa = PBXGroup;
+			children = (
+				8F0D8A3F1FE81A770064B514 /* Controller */,
+			);
+			path = DiscountUsed;
+			sourceTree = "<group>";
+		};
+		8F0D8A3F1FE81A770064B514 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8F0D8A401FE81A980064B514 /* DiscountUsedViewController.h */,
+				8F0D8A411FE81A980064B514 /* DiscountUsedViewController.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		8F263B961FD05CAE00F89A45 /* AGImagePickerController */ = {
@@ -1502,6 +1578,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F0D8A421FE81A980064B514 /* DiscountUsedViewController.m in Sources */,
 				257D120E1F68E18E003DC1E4 /* AppDelegate.m in Sources */,
 				25FD1ADA1F6A163A00D7957E /* UIColor+Hex.m in Sources */,
 				2575541E1FD7D78B00B4EBB7 /* JiangZhangCellView.m in Sources */,
@@ -1512,6 +1589,7 @@
 				257D38341F74DB5500C25FE4 /* UIView+Frame.m in Sources */,
 				8F263BBA1FD05CAF00F89A45 /* AGIPCToolbarItem.m in Sources */,
 				25AD8CAE1FA1B3A500960732 /* HYSwitch.m in Sources */,
+				8F0D8A331FE816EE0064B514 /* MyDiscountTopSliderView.m in Sources */,
 				25485B941F7219AB001122F7 /* MineViewController.m in Sources */,
 				253869D91F7F454100D34B18 /* HealthManager.m in Sources */,
 				257D125F1F69172B003DC1E4 /* MyTabarController.m in Sources */,
@@ -1520,6 +1598,7 @@
 				257D12591F690F9F003DC1E4 /* RankingViewController.m in Sources */,
 				25AB5B231FC7CCBF00BC4D6F /* UpdatePhoneNumberViewController.m in Sources */,
 				2532C1701F6F72A90064A28C /* PaiHangViewController.m in Sources */,
+				8F0D8A3D1FE81A360064B514 /* DiscountExpiredViewController.m in Sources */,
 				25FE9F6A1F7E35BF00D9E420 /* CLTRoundView.m in Sources */,
 				8F263BB11FD05CAF00F89A45 /* AGImagePickerController+Helper.m in Sources */,
 				8F263BBD1FD05CAF00F89A45 /* UIButton+AGIPC.m in Sources */,
@@ -1549,6 +1628,7 @@
 				25D5A26D1FB9837A00074447 /* MBProgressHUD+MJ.m in Sources */,
 				253869DF1F7F479100D34B18 /* HKHealthStore+AAPLExtensions.m in Sources */,
 				2532C16B1F6F70E20064A28C /* SportViewController.m in Sources */,
+				8F0D8A381FE819C00064B514 /* DiscountUnusedViewController.m in Sources */,
 				8FEC15681FCDAE8D0081799A /* TwoDimensionCodeVC.m in Sources */,
 				257554151FD781BA00B4EBB7 /* SaishiGoodsCell.m in Sources */,
 				257554251FD7EAE400B4EBB7 /* JiangZhangTableViewCell.m in Sources */,
