@@ -7,6 +7,7 @@
 //
 
 #import "CanDuihuanCell.h"
+#import "DuiHuanAlter.h"
 
 @interface CanDuihuanCell()
 
@@ -15,6 +16,8 @@
 @property (nonatomic,strong) UILabel*moneyLabel;
 @property (nonatomic,strong) UILabel*nameLabe;
 @property (nonatomic,strong) UIButton*duihuanBt;
+
+@property (nonatomic,strong) DuiHuanAlter*alterView;
 
 
 @end
@@ -122,12 +125,20 @@
     
 }
 
-
+#pragma mark-兑换按钮点击事件
 -(void)duihuanBtClick:(UIButton*)btn{
     
+    DuiHuanAlter*alterView=[[DuiHuanAlter alloc] initWithFrame:CGRectMake(0, 0, KscreenW, KscreenH)];
+    self.alterView=alterView;
+    [[UIApplication sharedApplication].keyWindow addSubview:alterView];
     
-    UIAlertView*alter=[[UIAlertView alloc] initWithTitle:@"兑换提示" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定" , nil];
-    [alter show];
+    alterView.alterBtClick = ^(NSInteger tag) {
+      
+        [self.alterView removeFromSuperview];
+       
+        self.alterView=nil;
+        
+    };
 
 }
 

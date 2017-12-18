@@ -21,10 +21,6 @@
 
 static  NSString*stepCellID=@"ID";
 
--(void)viewWillAppear:(BOOL)animated{
-    
-    self.navigationController.navigationBar.hidden=YES;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -321,11 +317,14 @@ static  NSString*stepCellID=@"ID";
     [alter show];
 
     
-    
 }
+
+
 -(void)setpBtBack{
     
-    [self.navigationController popViewControllerAnimated:YES];
+   
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
     
 }
 - (void)didReceiveMemoryWarning {

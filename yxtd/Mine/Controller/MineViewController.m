@@ -14,6 +14,7 @@
 #import "HuatiDongtaiViewController.h"
 #import "JiangZhangTableViewController.h"
 #import "StepPaiHangViewController.h"
+#import "MyDiscountViewController.h"
 
 
 
@@ -42,7 +43,9 @@
 -(void)viewWillAppear:(BOOL)animated{
     
     self.tabBarController.tabBar.hidden=NO;
-    self.navigationController.navigationBar.hidden=NO;
+   self.navigationController.navigationBar.hidden=NO;
+    
+ 
 }
 
 - (void)viewDidLoad {
@@ -98,11 +101,6 @@
         
         return footerView;
     
-    
-  
-  
-
- 
     
 }
 
@@ -341,7 +339,7 @@
 
             [self.navigationController pushViewController:ziliaoVC animated:YES];
           
-            
+            //积分商城
         }if (indexPath.row==2) {
             
             JiFenViewController*jifenVc=[[JiFenViewController alloc] init];
@@ -378,13 +376,25 @@
             
         }else if (indexPath.row==1){
             //步数排行
-            StepPaiHangViewController*stetVC=[[StepPaiHangViewController alloc] init];
-             [self.navigationController pushViewController:stetVC animated:YES];
+            StepPaiHangViewController*stepVC=[[StepPaiHangViewController alloc] init];
+            
+            [self presentViewController:stepVC animated:YES completion:nil];
+           
+        }
+        
+    }else if (indexPath.section==2){
+        
+        if (!indexPath.row) {
+            
+            MyDiscountViewController*myDiscountVC=[[MyDiscountViewController alloc] init];
+            myDiscountVC.hidesBottomBarWhenPushed=YES;
+            [self.navigationController pushViewController:myDiscountVC animated:YES];
+            
         }
         
     }
     //反选
-  [tableView deselectRowAtIndexPath:indexPath animated:YES];
+     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 }
 

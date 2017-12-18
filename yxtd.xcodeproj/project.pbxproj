@@ -67,6 +67,9 @@
 		25AB5BED1FD13EFC00BC4D6F /* JiFenHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AB5BEC1FD13EFC00BC4D6F /* JiFenHeaderView.m */; };
 		25ABFAF51FE3A48E00C90BD0 /* StepPaiHangViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25ABFAF41FE3A48E00C90BD0 /* StepPaiHangViewController.m */; };
 		25ABFAF81FE3C3E700C90BD0 /* StepDayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25ABFAF71FE3C3E700C90BD0 /* StepDayTableViewCell.m */; };
+		25ABFB3D1FE7660C00C90BD0 /* DuiHuanAlter.m in Sources */ = {isa = PBXBuildFile; fileRef = 25ABFB3C1FE7660C00C90BD0 /* DuiHuanAlter.m */; };
+		25ABFB401FE7A0CA00C90BD0 /* SuccessDuiHuanAlter.m in Sources */ = {isa = PBXBuildFile; fileRef = 25ABFB3F1FE7A0CA00C90BD0 /* SuccessDuiHuanAlter.m */; };
+		25ABFB481FE7B98100C90BD0 /* MyDiscountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25ABFB471FE7B98100C90BD0 /* MyDiscountViewController.m */; };
 		25AD8CAE1FA1B3A500960732 /* HYSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AD8CAD1FA1B3A500960732 /* HYSwitch.m */; };
 		25AD8CB81FA8156D00960732 /* DetailedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AD8CB71FA8156D00960732 /* DetailedViewController.m */; };
 		25AD8CCD1FA85B6800960732 /* StarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AD8CCC1FA85B6800960732 /* StarView.m */; };
@@ -250,6 +253,12 @@
 		25ABFAF41FE3A48E00C90BD0 /* StepPaiHangViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StepPaiHangViewController.m; sourceTree = "<group>"; };
 		25ABFAF61FE3C3E700C90BD0 /* StepDayTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StepDayTableViewCell.h; sourceTree = "<group>"; };
 		25ABFAF71FE3C3E700C90BD0 /* StepDayTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StepDayTableViewCell.m; sourceTree = "<group>"; };
+		25ABFB3B1FE7660C00C90BD0 /* DuiHuanAlter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DuiHuanAlter.h; sourceTree = "<group>"; };
+		25ABFB3C1FE7660C00C90BD0 /* DuiHuanAlter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DuiHuanAlter.m; sourceTree = "<group>"; };
+		25ABFB3E1FE7A0CA00C90BD0 /* SuccessDuiHuanAlter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuccessDuiHuanAlter.h; sourceTree = "<group>"; };
+		25ABFB3F1FE7A0CA00C90BD0 /* SuccessDuiHuanAlter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuccessDuiHuanAlter.m; sourceTree = "<group>"; };
+		25ABFB461FE7B98100C90BD0 /* MyDiscountViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyDiscountViewController.h; sourceTree = "<group>"; };
+		25ABFB471FE7B98100C90BD0 /* MyDiscountViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyDiscountViewController.m; sourceTree = "<group>"; };
 		25AD8CAC1FA1B3A500960732 /* HYSwitch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSwitch.h; sourceTree = "<group>"; };
 		25AD8CAD1FA1B3A500960732 /* HYSwitch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSwitch.m; sourceTree = "<group>"; };
 		25AD8CB61FA8156D00960732 /* DetailedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailedViewController.h; sourceTree = "<group>"; };
@@ -990,6 +999,10 @@
 				25AB5BEC1FD13EFC00BC4D6F /* JiFenHeaderView.m */,
 				25D88F321FD5420600405F8D /* UICountingLabel.h */,
 				25D88F331FD5420600405F8D /* UICountingLabel.m */,
+				25ABFB3B1FE7660C00C90BD0 /* DuiHuanAlter.h */,
+				25ABFB3C1FE7660C00C90BD0 /* DuiHuanAlter.m */,
+				25ABFB3E1FE7A0CA00C90BD0 /* SuccessDuiHuanAlter.h */,
+				25ABFB3F1FE7A0CA00C90BD0 /* SuccessDuiHuanAlter.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1028,6 +1041,23 @@
 				25ABFAF71FE3C3E700C90BD0 /* StepDayTableViewCell.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		25ABFB411FE7B12900C90BD0 /* MyDiscountCoupon */ = {
+			isa = PBXGroup;
+			children = (
+				25ABFB421FE7B6CC00C90BD0 /* Controller */,
+			);
+			path = MyDiscountCoupon;
+			sourceTree = "<group>";
+		};
+		25ABFB421FE7B6CC00C90BD0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				25ABFB461FE7B98100C90BD0 /* MyDiscountViewController.h */,
+				25ABFB471FE7B98100C90BD0 /* MyDiscountViewController.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		25AD8CB51FA8154500960732 /* RunDetail */ = {
@@ -1134,6 +1164,7 @@
 		25D5A39B1FBED3EA00074447 /* Geren */ = {
 			isa = PBXGroup;
 			children = (
+				25ABFB411FE7B12900C90BD0 /* MyDiscountCoupon */,
 				25ABFAF11FE3A33F00C90BD0 /* StepPaiHang */,
 				257554161FD79CC200B4EBB7 /* JiangZhang */,
 				25AB5B961FCE901700BC4D6F /* HuaTiAndDongtai */,
@@ -1495,6 +1526,7 @@
 				8F263BC01FD060F300F89A45 /* ShowImageViewController.m in Sources */,
 				25130E4A1F99EA1B00E1E29A /* SelectableOverlay.m in Sources */,
 				2575541A1FD79D7100B4EBB7 /* JiangZhangTableViewController.m in Sources */,
+				25ABFB481FE7B98100C90BD0 /* MyDiscountViewController.m in Sources */,
 				251CF2881FC2D04300867046 /* SexView.m in Sources */,
 				2575540F1FD7812200B4EBB7 /* CanDuihuanCell.m in Sources */,
 				25BED2321F7C9CCC00A0A07A /* FindOneCell.m in Sources */,
@@ -1526,6 +1558,7 @@
 				25130E471F99E8AB00E1E29A /* JSQuanShowView.m in Sources */,
 				8F263BB41FD05CAF00F89A45 /* AGImagePreviewController.m in Sources */,
 				8F263BB51FD05CAF00F89A45 /* AGIPCAlbumsController.m in Sources */,
+				25ABFB401FE7A0CA00C90BD0 /* SuccessDuiHuanAlter.m in Sources */,
 				25AB5B271FC7CDEA00BC4D6F /* ShipAddressViewController.m in Sources */,
 				257D12641F6918CE003DC1E4 /* UIImage+TZRenderImage.m in Sources */,
 				8F263BB31FD05CAF00F89A45 /* AGImagePickerController.m in Sources */,
@@ -1549,6 +1582,7 @@
 				25130E3E1F99E59100E1E29A /* RunRootViewController.m in Sources */,
 				25D24D3F1F8F103A0096F765 /* MineOneCell.m in Sources */,
 				25D5A2891FBA89E100074447 /* SmsHttp.m in Sources */,
+				25ABFB3D1FE7660C00C90BD0 /* DuiHuanAlter.m in Sources */,
 				2532C1681F6F70D10064A28C /* SaiShiViewController.m in Sources */,
 				25D5A27A1FB9957900074447 /* Reachability.m in Sources */,
 				25AB5B951FCE8D1400BC4D6F /* NaviBarRootViewController.m in Sources */,
