@@ -100,6 +100,10 @@
 		8F0D8A381FE819C00064B514 /* DiscountUnusedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F0D8A371FE819C00064B514 /* DiscountUnusedViewController.m */; };
 		8F0D8A3D1FE81A360064B514 /* DiscountExpiredViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F0D8A3C1FE81A360064B514 /* DiscountExpiredViewController.m */; };
 		8F0D8A421FE81A980064B514 /* DiscountUsedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F0D8A411FE81A980064B514 /* DiscountUsedViewController.m */; };
+		8F1BBE3E1FE95ED800602C3B /* FavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1BBE3D1FE95ED800602C3B /* FavoriteViewController.m */; };
+		8F1BBE431FE962A400602C3B /* FoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1BBE421FE962A400602C3B /* FoodViewController.m */; };
+		8F1BBE461FE962C600602C3B /* EntertainmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1BBE451FE962C600602C3B /* EntertainmentViewController.m */; };
+		8F1BBE4B1FE965A100602C3B /* FavoriteSliderTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1BBE4A1FE965A100602C3B /* FavoriteSliderTopView.m */; };
 		8F263BB11FD05CAF00F89A45 /* AGImagePickerController+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F263B981FD05CAE00F89A45 /* AGImagePickerController+Helper.m */; };
 		8F263BB21FD05CAF00F89A45 /* AGImagePickerController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8F263B991FD05CAE00F89A45 /* AGImagePickerController.bundle */; };
 		8F263BB31FD05CAF00F89A45 /* AGImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F263B9B1FD05CAE00F89A45 /* AGImagePickerController.m */; };
@@ -325,6 +329,14 @@
 		8F0D8A3C1FE81A360064B514 /* DiscountExpiredViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscountExpiredViewController.m; sourceTree = "<group>"; };
 		8F0D8A401FE81A980064B514 /* DiscountUsedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscountUsedViewController.h; sourceTree = "<group>"; };
 		8F0D8A411FE81A980064B514 /* DiscountUsedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscountUsedViewController.m; sourceTree = "<group>"; };
+		8F1BBE3C1FE95ED800602C3B /* FavoriteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavoriteViewController.h; sourceTree = "<group>"; };
+		8F1BBE3D1FE95ED800602C3B /* FavoriteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FavoriteViewController.m; sourceTree = "<group>"; };
+		8F1BBE411FE962A400602C3B /* FoodViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FoodViewController.h; sourceTree = "<group>"; };
+		8F1BBE421FE962A400602C3B /* FoodViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FoodViewController.m; sourceTree = "<group>"; };
+		8F1BBE441FE962C600602C3B /* EntertainmentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EntertainmentViewController.h; sourceTree = "<group>"; };
+		8F1BBE451FE962C600602C3B /* EntertainmentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EntertainmentViewController.m; sourceTree = "<group>"; };
+		8F1BBE491FE965A100602C3B /* FavoriteSliderTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavoriteSliderTopView.h; sourceTree = "<group>"; };
+		8F1BBE4A1FE965A100602C3B /* FavoriteSliderTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FavoriteSliderTopView.m; sourceTree = "<group>"; };
 		8F263B971FD05CAE00F89A45 /* AGImagePickerController+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AGImagePickerController+Helper.h"; sourceTree = "<group>"; };
 		8F263B981FD05CAE00F89A45 /* AGImagePickerController+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AGImagePickerController+Helper.m"; sourceTree = "<group>"; };
 		8F263B991FD05CAE00F89A45 /* AGImagePickerController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AGImagePickerController.bundle; sourceTree = "<group>"; };
@@ -1197,6 +1209,7 @@
 		25D5A39B1FBED3EA00074447 /* Geren */ = {
 			isa = PBXGroup;
 			children = (
+				8F1BBE3A1FE95DE100602C3B /* FavoriteBusiness */,
 				25ABFB411FE7B12900C90BD0 /* MyDiscountCoupon */,
 				25ABFAF11FE3A33F00C90BD0 /* StepPaiHang */,
 				257554161FD79CC200B4EBB7 /* JiangZhang */,
@@ -1316,6 +1329,53 @@
 				8F0D8A411FE81A980064B514 /* DiscountUsedViewController.m */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		8F1BBE3A1FE95DE100602C3B /* FavoriteBusiness */ = {
+			isa = PBXGroup;
+			children = (
+				8F1BBE3B1FE95E3200602C3B /* Controller */,
+				8F1BBE481FE9655400602C3B /* View */,
+				8F1BBE401FE9627B00602C3B /* Entertainment */,
+				8F1BBE3F1FE9622600602C3B /* Food */,
+			);
+			path = FavoriteBusiness;
+			sourceTree = "<group>";
+		};
+		8F1BBE3B1FE95E3200602C3B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8F1BBE3C1FE95ED800602C3B /* FavoriteViewController.h */,
+				8F1BBE3D1FE95ED800602C3B /* FavoriteViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8F1BBE3F1FE9622600602C3B /* Food */ = {
+			isa = PBXGroup;
+			children = (
+				8F1BBE411FE962A400602C3B /* FoodViewController.h */,
+				8F1BBE421FE962A400602C3B /* FoodViewController.m */,
+			);
+			path = Food;
+			sourceTree = "<group>";
+		};
+		8F1BBE401FE9627B00602C3B /* Entertainment */ = {
+			isa = PBXGroup;
+			children = (
+				8F1BBE441FE962C600602C3B /* EntertainmentViewController.h */,
+				8F1BBE451FE962C600602C3B /* EntertainmentViewController.m */,
+			);
+			path = Entertainment;
+			sourceTree = "<group>";
+		};
+		8F1BBE481FE9655400602C3B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8F1BBE491FE965A100602C3B /* FavoriteSliderTopView.h */,
+				8F1BBE4A1FE965A100602C3B /* FavoriteSliderTopView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		8F263B961FD05CAE00F89A45 /* AGImagePickerController */ = {
@@ -1611,6 +1671,7 @@
 				8F0D8A331FE816EE0064B514 /* MyDiscountTopSliderView.m in Sources */,
 				25485B941F7219AB001122F7 /* MineViewController.m in Sources */,
 				253869D91F7F454100D34B18 /* HealthManager.m in Sources */,
+				8F1BBE431FE962A400602C3B /* FoodViewController.m in Sources */,
 				257D125F1F69172B003DC1E4 /* MyTabarController.m in Sources */,
 				25D5A2821FBA857C00074447 /* RegisterHttp.m in Sources */,
 				25313D9C1FB402D4008C9ED5 /* HQPickerView.m in Sources */,
@@ -1636,6 +1697,7 @@
 				257554121FD7816900B4EBB7 /* OverDuihuanCell.m in Sources */,
 				2542680B1F73A95600E54A5E /* NSDate+MJ.m in Sources */,
 				25D5A2861FBA89D300074447 /* SmsParam.m in Sources */,
+				8F1BBE461FE962C600602C3B /* EntertainmentViewController.m in Sources */,
 				25D5A2D71FBBDD2200074447 /* WebViewController.m in Sources */,
 				25AD8CD11FA85F9C00960732 /* DetailedView.m in Sources */,
 				25AD8CB81FA8156D00960732 /* DetailedViewController.m in Sources */,
@@ -1643,6 +1705,7 @@
 				25D5A2F61FBC3D0000074447 /* LoginHttp.m in Sources */,
 				25313DE61FB5511F008C9ED5 /* ExchangeCell.m in Sources */,
 				25313DDE1FB5493D008C9ED5 /* ExchangeVC.m in Sources */,
+				8F1BBE4B1FE965A100602C3B /* FavoriteSliderTopView.m in Sources */,
 				257D12601F69172B003DC1E4 /* MyUINavigationController.m in Sources */,
 				25D5A26D1FB9837A00074447 /* MBProgressHUD+MJ.m in Sources */,
 				253869DF1F7F479100D34B18 /* HKHealthStore+AAPLExtensions.m in Sources */,
@@ -1686,6 +1749,7 @@
 				2532C1681F6F70D10064A28C /* SaiShiViewController.m in Sources */,
 				25D5A27A1FB9957900074447 /* Reachability.m in Sources */,
 				25AB5B951FCE8D1400BC4D6F /* NaviBarRootViewController.m in Sources */,
+				8F1BBE3E1FE95ED800602C3B /* FavoriteViewController.m in Sources */,
 				25BED2361F7C9CE300A0A07A /* FindTwoCell.m in Sources */,
 				25ABFAF81FE3C3E700C90BD0 /* StepDayTableViewCell.m in Sources */,
 				8F263BC41FD0615500F89A45 /* ShowImageView.m in Sources */,

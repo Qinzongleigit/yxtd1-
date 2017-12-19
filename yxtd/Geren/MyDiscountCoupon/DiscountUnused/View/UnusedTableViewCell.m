@@ -69,7 +69,8 @@
     _moneyLabel=[[UILabel alloc] init];
     _moneyLabel.text=@"¥ 15";
     _moneyLabel.textColor=[UIColor whiteColor];
-    _moneyLabel.font=[UIFont systemFontOfSize:30];
+    //_moneyLabel.font=[UIFont systemFontOfSize:30];
+    _moneyLabel.font=[UIFont boldSystemFontOfSize:30];
     [_bgView addSubview:_moneyLabel];
     
     //满减

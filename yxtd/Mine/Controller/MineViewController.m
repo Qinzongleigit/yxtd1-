@@ -15,6 +15,7 @@
 #import "JiangZhangTableViewController.h"
 #import "StepPaiHangViewController.h"
 #import "MyDiscountViewController.h"
+#import "FavoriteViewController.h"
 
 
 
@@ -389,6 +390,12 @@
             MyDiscountViewController*myDiscountVC=[[MyDiscountViewController alloc] init];
             myDiscountVC.hidesBottomBarWhenPushed=YES;
             [self.navigationController pushViewController:myDiscountVC animated:YES];
+            
+        }else if (indexPath.row==1){
+            
+            FavoriteViewController*favoriteVC=[[FavoriteViewController alloc] init];
+            favoriteVC.hidesBottomBarWhenPushed=YES;
+            [self.navigationController pushViewController:favoriteVC animated:YES ];
             
         }
         
