@@ -12,10 +12,20 @@
 #import "DiscountExpiredViewController.h"
 #import "DiscountUnusedViewController.h"
 
-@interface MyDiscountViewController ()<UIScrollViewDelegate>
 
-@property (nonatomic,strong) MyDiscountTopSliderView*discountTopView;
-@property (nonatomic,strong)UIScrollView*scrollView;
+#define ScreenWidth  [UIScreen mainScreen].bounds.size.width
+#define ScreenHeight  [UIScreen mainScreen].bounds.size.height
+
+@interface MyDiscountViewController ()<seletedControllerDelegate,UIScrollViewDelegate>
+
+@property (nonatomic,strong) MyDiscountTopSliderView*titleScroll;
+@property (nonatomic,strong)UIScrollView*mainScroll;
+
+@property (nonatomic,strong) DiscountUnusedViewController*unusedVC;
+
+@property (nonatomic,strong) DiscountExpiredViewController*expiredVC;
+@property (nonatomic,strong)DiscountUsedViewController*usedVC;
+
 
 
 @end
@@ -35,73 +45,101 @@
       [self.rightBt setBackgroundImage:[UIImage imageWithoriginName:@"fenxaing_Image"] forState:UIControlStateNormal];
     
     
-    //滚动视图
-    //禁用掉自动设置的内边距，自行控制controller上index为0的控件以及scrollview控件的位置
-    self.automaticallyAdjustsScrollViewInsets=NO;
+    //创建头部视图(滑动视图)
+    self.titleScroll= [[MyDiscountTopSliderView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 40)];
+    NSArray *titleArr = @[@"未使用",@"已过期",@"已使用"];
     
-    UIScrollView*scrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(0, 40, KscreenW, KscreenH-40)];
-    self.scrollView=scrollView;
-    scrollView.contentSize=CGSizeMake(3*KscreenW, 0);
-    scrollView.pagingEnabled=YES;
-    scrollView.delegate=self;
-    scrollView.showsHorizontalScrollIndicator=NO;
-    [self.view addSubview:scrollView];
+    self.titleScroll.headArray = titleArr.mutableCopy;
     
+    //设置代理
+    self.titleScroll.SeletedDelegate = self;
+    //添加
+    [self.view addSubview:self.titleScroll];
     
-    self.discountTopView=[[MyDiscountTopSliderView alloc] initWithFrame:CGRectMake(0, 0, KscreenW, 40)];
-    self.discountTopView.backgroundColor=[UIColor whiteColor];
-    self.discountTopView.myDiscountIndexBlock = ^(NSInteger index) {
-        
-        scrollView.contentOffset=CGPointMake(KscreenW*(index-5), 0);
-    };
-  
-    [self.view addSubview:self.discountTopView];
-    
-    
-    //排行
-    DiscountUnusedViewController * unusedVC = [[DiscountUnusedViewController alloc]init];
-    unusedVC.view.frame =CGRectMake(0, 0, KscreenW, KscreenH-40);
-    
-    [scrollView addSubview:unusedVC.view];
-    //添加子子视图
-    [self addChildViewController:unusedVC];
-    
-    
-    //运动
-    DiscountExpiredViewController * expiredVC = [[DiscountExpiredViewController alloc]init];
-    expiredVC.view.frame =CGRectMake(KscreenW, 0, KscreenW, KscreenH-40);
-    [scrollView addSubview:expiredVC.view];
-    
-    [self addChildViewController:expiredVC];
-    
-    //赛事
-    DiscountUsedViewController * usedVC = [[DiscountUsedViewController alloc]init];
-    usedVC.view.frame =CGRectMake(2*KscreenW, 0, KscreenW, KscreenH-40);
-    [scrollView addSubview:usedVC.view];
-    [self addChildViewController:usedVC];
-
+    //创建一个滑动视图用来滑动Viewcontroller
+   self.mainScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 40, ScreenWidth, ScreenHeight-40)];
+    //设置代理
+    self.mainScroll.delegate = self;
+    //设置滑动区域
+    self.mainScroll.contentSize = CGSizeMake(ScreenWidth*titleArr.count, 0) ;
+    //打开分页功能
+    self.mainScroll.pagingEnabled = YES;
+    //设置背景颜色
+    self.mainScroll.backgroundColor = [UIColor lightGrayColor];
+    [self.view addSubview:self.mainScroll];
+    //设置当前子控制器
+    self.unusedVC = [[DiscountUnusedViewController alloc] init];
+    [self addChildViewController:self.unusedVC];
+    self.unusedVC.view.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
+    //将当前的子视图控制器的view添加到主滑动视图上
+    [self.mainScroll addSubview:self.unusedVC.view];
 
     
 }
 
-#pragma mark --滚动视图代理方法
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+
+#pragma mark -滚动视图即将开始拖动
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    if (self.mainScroll.contentOffset.x < ScreenWidth) {
+        _expiredVC = [[DiscountExpiredViewController alloc] init];
+        [self addChildViewController:_expiredVC];
+        _expiredVC.view.frame = CGRectMake(ScreenWidth, 0, ScreenWidth, ScreenHeight);
+        [self.mainScroll addSubview:_expiredVC.view];
+    }else if (self.mainScroll.contentOffset.x < ScreenWidth*2){
+        _usedVC = [[DiscountUsedViewController alloc] init];
+        [self addChildViewController:_usedVC];
+        _usedVC.view.frame = CGRectMake(ScreenWidth*2, 0, ScreenWidth, ScreenHeight);
+        [self.mainScroll addSubview:_usedVC.view];
+    }
+//    else if (mainScroll.contentOffset.x < ScreenWidth *3){
+//        fourVC = [[FourViewController alloc]init];
+//        [self addChildViewController:fourVC];
+//        fourVC.view.frame = CGRectMake(ScreenWidth*3, 0, ScreenWidth, ScreenHeight);
+//        [mainScroll addSubview:fourVC.view];
+//    }
+
     
-    NSInteger index=scrollView.contentOffset.x/KscreenW;
-    
-    self.discountTopView.slicdeButton= (UIButton *)[self.scrollView viewWithTag:5+index];
-     self.discountTopView.slicdeButton.selected = YES;
-    
-    [UIView animateWithDuration:0.5 animations:^{
-        
- self.discountTopView.coverView.frame=CGRectMake((KscreenW-40-40-20)/12+40+index*((KscreenW-40-40-20)/3+10), 39, (KscreenW-40-40-20)/6, 1);
-        
-        
-    }];
-  
+    [self.titleScroll changeBtntitleColorWith:scrollView.contentOffset.x/ScreenWidth+1000];
 }
 
 
+#pragma mark -滚动视图结束拖动
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    
+    [self.titleScroll changeBtntitleColorWith:scrollView.contentOffset.x/ScreenWidth+1000];
+    
+}
+
+#pragma mark -头部scrollView的代理方法的实现
+-(void)seletedControllerWith:(UIButton *)btn{
+    
+   self. mainScroll.contentOffset = CGPointMake(ScreenWidth*(btn.tag - 1000), 0);
+    
+    if (self.mainScroll.contentOffset.x == ScreenWidth) {
+        _expiredVC = [[DiscountExpiredViewController alloc] init];
+        [self addChildViewController:_expiredVC];
+        _expiredVC.view.frame = CGRectMake(ScreenWidth, 0, ScreenWidth, ScreenHeight);
+        [self.mainScroll addSubview:_expiredVC.view];
+    }else if (self.mainScroll.contentOffset.x == ScreenWidth*2){
+        _usedVC = [[DiscountUsedViewController alloc] init];
+        [self addChildViewController:_usedVC];
+        _usedVC.view.frame = CGRectMake(ScreenWidth*2, 0, ScreenWidth, ScreenHeight);
+        [self.mainScroll addSubview:_usedVC.view];
+    }
+//    }else if (mainScroll.contentOffset.x == ScreenWidth *3){
+//        fourVC = [[FourViewController alloc]init];
+//        [self addChildViewController:fourVC];
+//        fourVC.view.frame = CGRectMake(ScreenWidth*3, 0, ScreenWidth, ScreenHeight);
+//        [mainScroll addSubview:fourVC.view];
+  //  }
+    [self.titleScroll changeBtntitleColorWith:self.mainScroll.contentOffset.x/ScreenWidth+1000];
+    
+    
+}
+
+
+
+#pragma mark-分享按钮点击事件
 -(void)rightBtnClick{
     
     

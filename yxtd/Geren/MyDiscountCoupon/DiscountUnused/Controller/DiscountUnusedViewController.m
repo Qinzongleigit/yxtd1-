@@ -7,20 +7,64 @@
 //
 
 #import "DiscountUnusedViewController.h"
+#import "UnusedTableViewCell.h"
 
-@interface DiscountUnusedViewController ()
+@interface DiscountUnusedViewController ()<UITableViewDelegate,UITableViewDataSource>
+
+@property (nonatomic,strong) UITableView*tableView;
 
 @end
 
 @implementation DiscountUnusedViewController
 
+    NSString*unusedID=@"ID";
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+
+   
     
-    self.view.backgroundColor=[UIColor whiteColor];
+    UITableView*tableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, KscreenW, KscreenH-64-40)];
+    self.tableView=tableView;
+    tableView.delegate=self;
+    tableView.rowHeight=174;
+    tableView.dataSource=self;
+    tableView.backgroundColor=[UIColor whiteColor];
+    [self.view addSubview:tableView];
+    [tableView registerClass:[UnusedTableViewCell class] forCellReuseIdentifier:unusedID];
+
+   
     
 }
+
+
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    return 20;
+}
+
+
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    UnusedTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:unusedID];
+    cell.backgroundColor=[UIColor lightGrayColor];
+    cell.alpha=0.1;
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+}
+
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -76,7 +76,7 @@
     
     
     _dateLabel=[[UILabel alloc] init];
-    _dateLabel.text=@"有效期：2017-09-15   00：00   至2017-10-09   23：59";
+    _dateLabel.text=@"有效期：2017-09-15   00：00   至\n2017-10-09   23：59";
     _dateLabel.textColor=[UIColor whiteColor];
     _dateLabel.font=[UIFont systemFontOfSize:12];
     _dateLabel.numberOfLines=0;

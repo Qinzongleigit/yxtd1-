@@ -59,7 +59,7 @@
     
     
     _dateLabel=[[UILabel alloc] init];
-    _dateLabel.text=@"有效期：2017-09-15   00：00   至2017-10-09   23：59";
+    _dateLabel.text=@"有效期：2017-09-15  00：00  至\n 2017-10-09   23：59";
     _dateLabel.textColor=[UIColor whiteColor];
     _dateLabel.font=[UIFont systemFontOfSize:10];
     _dateLabel.numberOfLines=0;
@@ -141,7 +141,7 @@
     
     [_dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(_brandImageView.mas_right).with.offset(41);
-        make.right.equalTo(weakSelf).with.offset(-45);
+        make.right.equalTo(weakSelf).with.offset(-35);
         make.top.equalTo(_lineView.mas_bottom).with.offset(7);
     }];
     

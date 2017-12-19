@@ -70,6 +70,8 @@
 		25ABFB3D1FE7660C00C90BD0 /* DuiHuanAlter.m in Sources */ = {isa = PBXBuildFile; fileRef = 25ABFB3C1FE7660C00C90BD0 /* DuiHuanAlter.m */; };
 		25ABFB401FE7A0CA00C90BD0 /* SuccessDuiHuanAlter.m in Sources */ = {isa = PBXBuildFile; fileRef = 25ABFB3F1FE7A0CA00C90BD0 /* SuccessDuiHuanAlter.m */; };
 		25ABFB481FE7B98100C90BD0 /* MyDiscountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25ABFB471FE7B98100C90BD0 /* MyDiscountViewController.m */; };
+		25ABFB4B1FE8BA1400C90BD0 /* UIView+XMGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 25ABFB4A1FE8BA1400C90BD0 /* UIView+XMGExtension.m */; };
+		25ABFB4F1FE8F3A900C90BD0 /* UnusedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25ABFB4E1FE8F3A900C90BD0 /* UnusedTableViewCell.m */; };
 		25AD8CAE1FA1B3A500960732 /* HYSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AD8CAD1FA1B3A500960732 /* HYSwitch.m */; };
 		25AD8CB81FA8156D00960732 /* DetailedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AD8CB71FA8156D00960732 /* DetailedViewController.m */; };
 		25AD8CCD1FA85B6800960732 /* StarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AD8CCC1FA85B6800960732 /* StarView.m */; };
@@ -263,6 +265,10 @@
 		25ABFB3F1FE7A0CA00C90BD0 /* SuccessDuiHuanAlter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuccessDuiHuanAlter.m; sourceTree = "<group>"; };
 		25ABFB461FE7B98100C90BD0 /* MyDiscountViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyDiscountViewController.h; sourceTree = "<group>"; };
 		25ABFB471FE7B98100C90BD0 /* MyDiscountViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyDiscountViewController.m; sourceTree = "<group>"; };
+		25ABFB491FE8BA1400C90BD0 /* UIView+XMGExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+XMGExtension.h"; sourceTree = "<group>"; };
+		25ABFB4A1FE8BA1400C90BD0 /* UIView+XMGExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+XMGExtension.m"; sourceTree = "<group>"; };
+		25ABFB4D1FE8F3A900C90BD0 /* UnusedTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnusedTableViewCell.h; sourceTree = "<group>"; };
+		25ABFB4E1FE8F3A900C90BD0 /* UnusedTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnusedTableViewCell.m; sourceTree = "<group>"; };
 		25AD8CAC1FA1B3A500960732 /* HYSwitch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSwitch.h; sourceTree = "<group>"; };
 		25AD8CAD1FA1B3A500960732 /* HYSwitch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSwitch.m; sourceTree = "<group>"; };
 		25AD8CB61FA8156D00960732 /* DetailedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailedViewController.h; sourceTree = "<group>"; };
@@ -890,6 +896,8 @@
 				257D38331F74DB5500C25FE4 /* UIView+Frame.m */,
 				25D5A26C1FB9837A00074447 /* MBProgressHUD+MJ.h */,
 				25D5A26B1FB9837900074447 /* MBProgressHUD+MJ.m */,
+				25ABFB491FE8BA1400C90BD0 /* UIView+XMGExtension.h */,
+				25ABFB4A1FE8BA1400C90BD0 /* UIView+XMGExtension.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1076,6 +1084,15 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		25ABFB4C1FE8F37B00C90BD0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				25ABFB4D1FE8F3A900C90BD0 /* UnusedTableViewCell.h */,
+				25ABFB4E1FE8F3A900C90BD0 /* UnusedTableViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		25AD8CB51FA8154500960732 /* RunDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -1253,6 +1270,7 @@
 			isa = PBXGroup;
 			children = (
 				8F0D8A351FE819800064B514 /* Controller */,
+				25ABFB4C1FE8F37B00C90BD0 /* View */,
 			);
 			path = DiscountUnused;
 			sourceTree = "<group>";
@@ -1581,6 +1599,7 @@
 				8F0D8A421FE81A980064B514 /* DiscountUsedViewController.m in Sources */,
 				257D120E1F68E18E003DC1E4 /* AppDelegate.m in Sources */,
 				25FD1ADA1F6A163A00D7957E /* UIColor+Hex.m in Sources */,
+				25ABFB4B1FE8BA1400C90BD0 /* UIView+XMGExtension.m in Sources */,
 				2575541E1FD7D78B00B4EBB7 /* JiangZhangCellView.m in Sources */,
 				8F263BB61FD05CAF00F89A45 /* AGIPCAssetsController.m in Sources */,
 				8F263BB81FD05CAF00F89A45 /* AGIPCGridItem.m in Sources */,
@@ -1650,6 +1669,7 @@
 				25BED23A1F7CD5EF00A0A07A /* CDMyButton.m in Sources */,
 				257D12481F690E16003DC1E4 /* FindViewController.m in Sources */,
 				25ABFAF51FE3A48E00C90BD0 /* StepPaiHangViewController.m in Sources */,
+				25ABFB4F1FE8F3A900C90BD0 /* UnusedTableViewCell.m in Sources */,
 				8F263BB71FD05CAF00F89A45 /* AGIPCGridCell.m in Sources */,
 				25130E411F99E66E00E1E29A /* RunLocationGaoDeManager.m in Sources */,
 				8F263BBC1FD05CAF00F89A45 /* ALAsset+AGIPC.m in Sources */,

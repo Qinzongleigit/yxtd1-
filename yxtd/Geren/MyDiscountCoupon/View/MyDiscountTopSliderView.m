@@ -7,97 +7,127 @@
 //
 
 #import "MyDiscountTopSliderView.h"
+#import "UIView+XMGExtension.h"
+
+#define ScreenWidth [UIScreen mainScreen].bounds.size.width
+
+#define BtnWidth ScreenWidth/_headArray.count
 
 @implementation MyDiscountTopSliderView
 
--(id)initWithFrame:(CGRect)frame{
+
+-(instancetype)init{
+    return [self initWithFrame:[UIScreen mainScreen].bounds];
+}
+
+-(instancetype)initWithFrame:(CGRect)frame{
+    self = [super initWithFrame:frame];
+    if (self != nil) {
     
-    if (self=[super initWithFrame:frame]) {
-        
-        [self layoutTopSliderUI];
+        self.showsHorizontalScrollIndicator = NO;
     }
     return self;
+}
+
+-(void)setHeadArray:(NSMutableArray *)headArray{
     
+    _headArray = headArray;
+    [self createScrollSubView:self.bounds];
     
 }
 
--(void)layoutTopSliderUI{
-    
-    NSArray*titleArr=[NSArray arrayWithObjects:@"未使用",@"已过期",@"已使用", nil];
-    //选中图标的颜色
-    UIView*colorV=[[UIView alloc] init];
-    self.coverView=colorV;
-    colorV.backgroundColor=COLORWITHRGB(0, 219, 220);
-    [self addSubview:colorV];
-    
-    NSMutableArray*cellArray=[NSMutableArray new];
-    for (int i=0; i<titleArr.count; i++) {
-        
-        UIButton*slicdeButton=[UIButton buttonWithType:UIButtonTypeCustom];
-        self.slicdeButton=slicdeButton;
-        [slicdeButton setTitle:[NSString stringWithFormat:@"%@",titleArr[i]] forState:UIControlStateNormal];
-        slicdeButton.titleLabel.font=[UIFont systemFontOfSize:15];
 
-        [slicdeButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+-(void)createScrollSubView:(CGRect)frame{
+    //滑动视图的颜色
+    self.backgroundColor = [UIColor whiteColor];
+    //滑动区域
+    self.contentSize = CGSizeMake(BtnWidth * _headArray.count, 0);
+    //防止滑动时弹跳
+    self.bounces = NO;
+    
+    // 底部的红色指示器
+    _indicatorView = [[UIView alloc] init];
+    _indicatorView.backgroundColor = COLORWITHRGB(0, 219, 220);
+    _indicatorView.height = 2;
+    _indicatorView.tag = -1;
+    _indicatorView.y = 38;
+    [self addSubview:_indicatorView];
+    
+    [self createBtn];
+    
+}
+
+
+
+
+#pragma amrk -循环创建button
+-(void)createBtn{
+    
+    for (int i=0; i<_headArray.count; i++) {
         
-         [slicdeButton setTitleColor:COLORWITHRGB(0, 219, 220) forState:UIControlStateSelected];
-        [slicdeButton setTitleEdgeInsets:UIEdgeInsetsMake(5, 0, 0, 0)];
-        [slicdeButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-        slicdeButton.tag=i+5;
-        [self addSubview:slicdeButton];
-        
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.frame = CGRectMake(BtnWidth * i, 0, BtnWidth, 40);
+        button.titleLabel.font = [UIFont systemFontOfSize:15];
+        [button setTitle:_headArray[i] forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
         if (i==0) {
-     _coverView.frame=CGRectMake((KscreenW-40-40-20)/12+40, 39, (KscreenW-40-40-20)/6, 1);
-            slicdeButton.selected=YES;
+            [button setTitleColor:COLORWITHRGB(0, 219, 220) forState:UIControlStateNormal];
             
+            [button.titleLabel sizeToFit];
+            _indicatorView.width = button.titleLabel.frame.size.width;
+            _indicatorView.centerX = button.center.x;
+            [self buttonAction:button];
         }
-        
-        [cellArray addObject:slicdeButton];
+        button.tag = i + 1000;
+        [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:button];
     }
-    //水平方向控件间隔固定等间隔
-    [cellArray mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:10 leadSpacing:40 tailSpacing:40];
-    
-    [cellArray mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(@0);
-        make.height.equalTo(@39);
-    }];
-    
-    
-    
 }
 
-//按钮点击事件
--(void)buttonClick:(UIButton*)bt{
+#pragma mark -循环创建按钮点击事件
+-(void)buttonAction:(UIButton *)button{
     
-    for (int i = 0; i <= 2; i++) {
-        
-        UIButton *btn = (UIButton *)[self viewWithTag:5 + i];
-        //选中当前按钮时
-        if (bt== btn) {
-            
-            bt.selected = YES;
-            
-        }else{
-            
-            [btn setSelected:NO];
-            
-        }
-        
-        
+    //获取button的tag
+    _currentBtn = (int)button.tag-1000;
+    //调用点击改变字体颜色的方法
+    [self changeBtntitleColorWith:(int)(button.tag - 1000)];
+    //代理方法
+    if ([self.SeletedDelegate respondsToSelector:@selector(seletedControllerWith:)]) {
+        [self.SeletedDelegate seletedControllerWith:button];
     }
+}
+
+-(void)changeBtntitleColorWith:(int)tag{
     
-    [UIView animateWithDuration:0.5 animations:^{
-        
-    _coverView.frame=CGRectMake(bt.frame.size.width/4+40+(bt.tag-5)*(bt.frame.size.width+10), 39, bt.frame.size.width/2, 1);
-        
-        
-        if (self.myDiscountIndexBlock) {
-            
-            self.myDiscountIndexBlock(bt.tag);
-            
+    [self.subviews enumerateObjectsUsingBlock:^(__kindof UIButton * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[UIButton class]]) {//判断该subViews是否是button
+            //是
+            if (obj.tag == tag) {//subViews的tag与按钮的tag一样
+                //改变颜色
+                [obj setTitleColor:COLORWITHRGB(0, 219, 220) forState:UIControlStateNormal];
+                // 动画
+                [UIView animateWithDuration:0.25 animations:^{
+                    self.indicatorView.width = obj.titleLabel.frame.size.width;
+                    _indicatorView.centerX = obj.center.x;
+                }];
+                
+                //----------------------------
+                if (obj.frame.origin.x < ScreenWidth/2) {
+                    [UIView animateWithDuration:0.5 animations:^{
+                        [UIView animateWithDuration:0.25 animations:^{
+                            self.indicatorView.width = obj.titleLabel.frame.size.width;
+                            _indicatorView.centerX = obj.center.x;
+                        }];
+                    }];
+                }
+                //----------------------------
+                
+            }else{//如果obj.tag != tag
+                [obj setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+                obj.titleLabel.font = [UIFont systemFontOfSize:15];
+            }
         }
-        
-    } completion:nil];
+    }];
 }
 
 
