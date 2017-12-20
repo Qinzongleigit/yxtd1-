@@ -8,6 +8,7 @@
 
 #import "FoodDetailsViewController.h"
 #import "FoodDetailHeaderView.h"
+#import "FoodDetailTableViewCell.h"
 
 @interface FoodDetailsViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -70,7 +71,9 @@
     self.tableView=tableView;
     tableView.delegate=self;
     tableView.dataSource=self;
+    tableView.rowHeight=110;
     tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+    [tableView registerClass:[FoodDetailTableViewCell class] forCellReuseIdentifier:detailStr];
     [self.view addSubview:tableView];
    
 }
@@ -87,11 +90,7 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    UITableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:detailStr];
-    if (!cell) {
-        
-        cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:detailStr];
-    }
+    FoodDetailTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:detailStr];
     
     return cell;
 }

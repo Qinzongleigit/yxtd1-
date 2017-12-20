@@ -91,6 +91,44 @@
 
 -(void)layoutSubviews{
     
+    [_bgRoundView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.edges.mas_equalTo(UIEdgeInsetsMake(10, 10, 10, 10));
+    }];
+    
+    [_moneyBgimageView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.width.mas_equalTo(90);
+        make.height.mas_equalTo(_bgRoundView);
+        make.left.top.mas_equalTo(0);
+    }];
+    
+    [_moneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.mas_equalTo(_moneyBgimageView);
+        
+    }];
+    
+    
+    [_describeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.mas_equalTo(_moneyBgimageView.mas_right).offset(35);
+        make.top.mas_equalTo(_bgRoundView).offset(10);
+    }];
+    
+    [_line mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.mas_equalTo(_moneyBgimageView.mas_right).offset(12);
+        make.right.mas_equalTo(_bgRoundView).offset(-15);
+        make.top.mas_equalTo(_describeLabel.mas_bottom).offset(9);
+        make.height.mas_equalTo(1);
+    }];
+    
+    
+    [_dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.centerX.mas_equalTo(_line);
+        make.top.mas_equalTo(_line.mas_bottom).offset(10);
+    }];
     
     
 }
