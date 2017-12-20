@@ -8,6 +8,7 @@
 
 #import "EntertainmentViewController.h"
 #import "EntertainmentTableViewCell.h"
+#import "FoodDetailsViewController.h"
 
 @interface EntertainmentViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -41,6 +42,7 @@
 }
 
 
+#pragma mark -表格视图代理方法
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     return 15;
@@ -50,10 +52,23 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     EntertainmentTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:cellStrID];
+    cell.selectionStyle=UITableViewCellSelectionStyleNone;
     
     return cell;
 }
 
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    FoodDetailsViewController*detailVC=[[FoodDetailsViewController alloc] init];
+    [self presentViewController:detailVC animated:YES completion:nil];
+    
+    //反选
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -91,6 +91,7 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     FoodDetailTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:detailStr];
+    cell.selectionStyle=UITableViewCellSelectionStyleNone;
     
     return cell;
 }
