@@ -1,28 +1,29 @@
 //
-//  EntertainmentViewController.m
+//  FoodViewController.m
 //  yxtd
 //
 //  Created by 覃宗雷 on 2017/12/19.
 //  Copyright © 2017年 qin. All rights reserved.
 //
 
-#import "EntertainmentViewController.h"
-#import "EntertainmentTableViewCell.h"
+#import "FoodViewController.h"
+#import "FoodTableViewCell.h"
+#import "FoodDetailsViewController.h"
 
-@interface EntertainmentViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface FoodViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UITableView*tableView;
 
-
 @end
 
-@implementation EntertainmentViewController
+@implementation FoodViewController
 
-  NSString*cellStrID=@"ID";
+  NSString*cellID=@"ID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     self.view.backgroundColor=[UIColor whiteColor];
     
     
@@ -33,32 +34,46 @@
     tableView.rowHeight=115;
     tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     
-    [tableView registerClass:[EntertainmentTableViewCell class] forCellReuseIdentifier:cellStrID
+    [tableView registerClass:[FoodTableViewCell class] forCellReuseIdentifier:cellID
      ];
     [self.view addSubview:tableView];
     
-    
+   
 }
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 15;
+    return 20;
 }
 
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    EntertainmentTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:cellStrID];
+    FoodTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:cellID];
     
+    cell.selectionStyle=UITableViewCellEditingStyleNone;
     return cell;
 }
 
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    FoodDetailsViewController*detailVC=[[FoodDetailsViewController alloc] init];
+    [self presentViewController:detailVC animated:YES completion:nil];
+    
+    //反选
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 
 

@@ -52,7 +52,8 @@
     
     UIImageView*headerImageView=[[UIImageView alloc] initWithFrame:self.bounds];
     self.headerImageView=headerImageView;
-    headerImageView.backgroundColor=[UIColor grayColor];
+   // headerImageView.backgroundColor=[UIColor grayColor];
+    headerImageView.image=[UIImage imageWithoriginName:@"jifenheader_Image"];
     headerImageView.userInteractionEnabled=YES;
     [self addSubview:headerImageView];
     

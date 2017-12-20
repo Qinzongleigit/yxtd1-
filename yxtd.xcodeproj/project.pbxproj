@@ -72,6 +72,13 @@
 		25ABFB481FE7B98100C90BD0 /* MyDiscountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25ABFB471FE7B98100C90BD0 /* MyDiscountViewController.m */; };
 		25ABFB4B1FE8BA1400C90BD0 /* UIView+XMGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 25ABFB4A1FE8BA1400C90BD0 /* UIView+XMGExtension.m */; };
 		25ABFB4F1FE8F3A900C90BD0 /* UnusedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25ABFB4E1FE8F3A900C90BD0 /* UnusedTableViewCell.m */; };
+		25ABFB561FEA04AD00C90BD0 /* FoodTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25ABFB551FEA04AD00C90BD0 /* FoodTableViewCell.m */; };
+		25ABFB591FEA110100C90BD0 /* FoodStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25ABFB581FEA110100C90BD0 /* FoodStarView.m */; };
+		25ABFB5D1FEA370800C90BD0 /* EntertainmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25ABFB5C1FEA370800C90BD0 /* EntertainmentTableViewCell.m */; };
+		25ABFB641FEA3AE000C90BD0 /* FoodDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25ABFB631FEA3AE000C90BD0 /* FoodDetailsViewController.m */; };
+		25ABFB671FEA3BE000C90BD0 /* FoodDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25ABFB661FEA3BE000C90BD0 /* FoodDetailHeaderView.m */; };
+		25ABFB6A1FEA4FE200C90BD0 /* FoodDetaliStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25ABFB691FEA4FE200C90BD0 /* FoodDetaliStarView.m */; };
+		25ABFB6E1FEA5A1D00C90BD0 /* FoodDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25ABFB6D1FEA5A1D00C90BD0 /* FoodDetailTableViewCell.m */; };
 		25AD8CAE1FA1B3A500960732 /* HYSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AD8CAD1FA1B3A500960732 /* HYSwitch.m */; };
 		25AD8CB81FA8156D00960732 /* DetailedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AD8CB71FA8156D00960732 /* DetailedViewController.m */; };
 		25AD8CCD1FA85B6800960732 /* StarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AD8CCC1FA85B6800960732 /* StarView.m */; };
@@ -273,6 +280,20 @@
 		25ABFB4A1FE8BA1400C90BD0 /* UIView+XMGExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+XMGExtension.m"; sourceTree = "<group>"; };
 		25ABFB4D1FE8F3A900C90BD0 /* UnusedTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnusedTableViewCell.h; sourceTree = "<group>"; };
 		25ABFB4E1FE8F3A900C90BD0 /* UnusedTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnusedTableViewCell.m; sourceTree = "<group>"; };
+		25ABFB541FEA04AD00C90BD0 /* FoodTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FoodTableViewCell.h; sourceTree = "<group>"; };
+		25ABFB551FEA04AD00C90BD0 /* FoodTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FoodTableViewCell.m; sourceTree = "<group>"; };
+		25ABFB571FEA110100C90BD0 /* FoodStarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FoodStarView.h; sourceTree = "<group>"; };
+		25ABFB581FEA110100C90BD0 /* FoodStarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FoodStarView.m; sourceTree = "<group>"; };
+		25ABFB5B1FEA370800C90BD0 /* EntertainmentTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EntertainmentTableViewCell.h; sourceTree = "<group>"; };
+		25ABFB5C1FEA370800C90BD0 /* EntertainmentTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EntertainmentTableViewCell.m; sourceTree = "<group>"; };
+		25ABFB621FEA3AE000C90BD0 /* FoodDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FoodDetailsViewController.h; sourceTree = "<group>"; };
+		25ABFB631FEA3AE000C90BD0 /* FoodDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FoodDetailsViewController.m; sourceTree = "<group>"; };
+		25ABFB651FEA3BE000C90BD0 /* FoodDetailHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FoodDetailHeaderView.h; sourceTree = "<group>"; };
+		25ABFB661FEA3BE000C90BD0 /* FoodDetailHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FoodDetailHeaderView.m; sourceTree = "<group>"; };
+		25ABFB681FEA4FE200C90BD0 /* FoodDetaliStarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FoodDetaliStarView.h; sourceTree = "<group>"; };
+		25ABFB691FEA4FE200C90BD0 /* FoodDetaliStarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FoodDetaliStarView.m; sourceTree = "<group>"; };
+		25ABFB6C1FEA5A1D00C90BD0 /* FoodDetailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FoodDetailTableViewCell.h; sourceTree = "<group>"; };
+		25ABFB6D1FEA5A1D00C90BD0 /* FoodDetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FoodDetailTableViewCell.m; sourceTree = "<group>"; };
 		25AD8CAC1FA1B3A500960732 /* HYSwitch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSwitch.h; sourceTree = "<group>"; };
 		25AD8CAD1FA1B3A500960732 /* HYSwitch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSwitch.m; sourceTree = "<group>"; };
 		25AD8CB61FA8156D00960732 /* DetailedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailedViewController.h; sourceTree = "<group>"; };
@@ -1105,6 +1126,74 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		25ABFB531FEA008300C90BD0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				25ABFB541FEA04AD00C90BD0 /* FoodTableViewCell.h */,
+				25ABFB551FEA04AD00C90BD0 /* FoodTableViewCell.m */,
+				25ABFB571FEA110100C90BD0 /* FoodStarView.h */,
+				25ABFB581FEA110100C90BD0 /* FoodStarView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		25ABFB5A1FEA36CA00C90BD0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				25ABFB5B1FEA370800C90BD0 /* EntertainmentTableViewCell.h */,
+				25ABFB5C1FEA370800C90BD0 /* EntertainmentTableViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		25ABFB5E1FEA3A1400C90BD0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8F1BBE411FE962A400602C3B /* FoodViewController.h */,
+				8F1BBE421FE962A400602C3B /* FoodViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		25ABFB5F1FEA3A4200C90BD0 /* FoodDetails */ = {
+			isa = PBXGroup;
+			children = (
+				25ABFB601FEA3A7A00C90BD0 /* Controller */,
+				25ABFB611FEA3A8A00C90BD0 /* View */,
+			);
+			path = FoodDetails;
+			sourceTree = "<group>";
+		};
+		25ABFB601FEA3A7A00C90BD0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				25ABFB621FEA3AE000C90BD0 /* FoodDetailsViewController.h */,
+				25ABFB631FEA3AE000C90BD0 /* FoodDetailsViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		25ABFB611FEA3A8A00C90BD0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				25ABFB6B1FEA59E700C90BD0 /* FoodDetailCell */,
+				25ABFB651FEA3BE000C90BD0 /* FoodDetailHeaderView.h */,
+				25ABFB661FEA3BE000C90BD0 /* FoodDetailHeaderView.m */,
+				25ABFB681FEA4FE200C90BD0 /* FoodDetaliStarView.h */,
+				25ABFB691FEA4FE200C90BD0 /* FoodDetaliStarView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		25ABFB6B1FEA59E700C90BD0 /* FoodDetailCell */ = {
+			isa = PBXGroup;
+			children = (
+				25ABFB6C1FEA5A1D00C90BD0 /* FoodDetailTableViewCell.h */,
+				25ABFB6D1FEA5A1D00C90BD0 /* FoodDetailTableViewCell.m */,
+			);
+			path = FoodDetailCell;
+			sourceTree = "<group>";
+		};
 		25AD8CB51FA8154500960732 /* RunDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -1354,8 +1443,9 @@
 		8F1BBE3F1FE9622600602C3B /* Food */ = {
 			isa = PBXGroup;
 			children = (
-				8F1BBE411FE962A400602C3B /* FoodViewController.h */,
-				8F1BBE421FE962A400602C3B /* FoodViewController.m */,
+				25ABFB5F1FEA3A4200C90BD0 /* FoodDetails */,
+				25ABFB5E1FEA3A1400C90BD0 /* Controller */,
+				25ABFB531FEA008300C90BD0 /* View */,
 			);
 			path = Food;
 			sourceTree = "<group>";
@@ -1365,6 +1455,7 @@
 			children = (
 				8F1BBE441FE962C600602C3B /* EntertainmentViewController.h */,
 				8F1BBE451FE962C600602C3B /* EntertainmentViewController.m */,
+				25ABFB5A1FEA36CA00C90BD0 /* View */,
 			);
 			path = Entertainment;
 			sourceTree = "<group>";
@@ -1678,6 +1769,7 @@
 				257D12591F690F9F003DC1E4 /* RankingViewController.m in Sources */,
 				25AB5B231FC7CCBF00BC4D6F /* UpdatePhoneNumberViewController.m in Sources */,
 				2532C1701F6F72A90064A28C /* PaiHangViewController.m in Sources */,
+				25ABFB5D1FEA370800C90BD0 /* EntertainmentTableViewCell.m in Sources */,
 				8F0D8A3D1FE81A360064B514 /* DiscountExpiredViewController.m in Sources */,
 				25FE9F6A1F7E35BF00D9E420 /* CLTRoundView.m in Sources */,
 				8F263BB11FD05CAF00F89A45 /* AGImagePickerController+Helper.m in Sources */,
@@ -1707,6 +1799,7 @@
 				25313DDE1FB5493D008C9ED5 /* ExchangeVC.m in Sources */,
 				8F1BBE4B1FE965A100602C3B /* FavoriteSliderTopView.m in Sources */,
 				257D12601F69172B003DC1E4 /* MyUINavigationController.m in Sources */,
+				25ABFB671FEA3BE000C90BD0 /* FoodDetailHeaderView.m in Sources */,
 				25D5A26D1FB9837A00074447 /* MBProgressHUD+MJ.m in Sources */,
 				253869DF1F7F479100D34B18 /* HKHealthStore+AAPLExtensions.m in Sources */,
 				2532C16B1F6F70E20064A28C /* SportViewController.m in Sources */,
@@ -1727,16 +1820,20 @@
 				25D5A2F71FBC3D0000074447 /* LoginParam.m in Sources */,
 				251CF2DA1FC50EB200867046 /* NickNameView.m in Sources */,
 				257D120F1F68E18E003DC1E4 /* ViewController.m in Sources */,
+				25ABFB641FEA3AE000C90BD0 /* FoodDetailsViewController.m in Sources */,
 				257D38371F74E70C00C25FE4 /* CDFindHeaderView.m in Sources */,
 				25D5A2761FB9945B00074447 /* CDHttpTool.m in Sources */,
 				25BED23A1F7CD5EF00A0A07A /* CDMyButton.m in Sources */,
 				257D12481F690E16003DC1E4 /* FindViewController.m in Sources */,
+				25ABFB6E1FEA5A1D00C90BD0 /* FoodDetailTableViewCell.m in Sources */,
 				25ABFAF51FE3A48E00C90BD0 /* StepPaiHangViewController.m in Sources */,
 				25ABFB4F1FE8F3A900C90BD0 /* UnusedTableViewCell.m in Sources */,
+				25ABFB6A1FEA4FE200C90BD0 /* FoodDetaliStarView.m in Sources */,
 				8F263BB71FD05CAF00F89A45 /* AGIPCGridCell.m in Sources */,
 				25130E411F99E66E00E1E29A /* RunLocationGaoDeManager.m in Sources */,
 				8F263BBC1FD05CAF00F89A45 /* ALAsset+AGIPC.m in Sources */,
 				25AD8CCD1FA85B6800960732 /* StarView.m in Sources */,
+				25ABFB561FEA04AD00C90BD0 /* FoodTableViewCell.m in Sources */,
 				25485B9D1F721BC4001122F7 /* ForgotPassViewController.m in Sources */,
 				8F5FCE0A1FCB23340013C119 /* RankingModel.m in Sources */,
 				25D5A3A31FBED5A000074447 /* JiFenViewController.m in Sources */,
@@ -1756,6 +1853,7 @@
 				25485B991F721AFE001122F7 /* LoginViewController.m in Sources */,
 				8F263BB91FD05CAF00F89A45 /* AGIPCPreviewController.m in Sources */,
 				2532C1611F6F6EEF0064A28C /* TopSliderVIew.m in Sources */,
+				25ABFB591FEA110100C90BD0 /* FoodStarView.m in Sources */,
 				25D5A27F1FBA846400074447 /* RegisterParam.m in Sources */,
 				2532C1BB1F70BB000064A28C /* SaiShiDetailedHeaderView.m in Sources */,
 				2532C1771F6F77FF0064A28C /* SaiShiDetailedViewController.m in Sources */,

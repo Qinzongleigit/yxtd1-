@@ -19,7 +19,7 @@
 @property (nonatomic,strong) UILabel*brandNameLabel;
 @property (nonatomic,strong) UIView*lineView;
 @property (nonatomic,strong) UILabel*dateLabel;
-@property (nonatomic,strong) UIView*starBgView;
+
 @property (nonatomic,assign) float  statNum;
 @property (nonatomic,strong) UILabel*locationLabel;
 

@@ -7,7 +7,7 @@
 //
 
 #import "DetailedView.h"
-#import "StarView.h"
+#import "FoodDetaliStarView.h"
 
 @implementation DetailedView
 
@@ -82,11 +82,7 @@
     _dateLabel.numberOfLines=0;
     [self addSubview:_dateLabel];
     
-    
-    
-    _starBgView=[[UIView alloc] init];
-    _starBgView.backgroundColor=[UIColor clearColor];
-    [self addSubview:_starBgView];
+
     
     
     
@@ -97,9 +93,17 @@
 //星星评分
 -(void)setStatNum:(float)statNum{
     
-    StarView*starVC=[[StarView alloc] initWithFrame:CGRectMake(0, 0, 80, 15) withFloatNum:statNum];
-    [_starBgView addSubview:starVC];
+    FoodDetaliStarView*starVC=[[FoodDetaliStarView alloc] initWithFrame:CGRectZero withFloatNum:statNum];
+      [self addSubview:starVC];
+    [starVC mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.size.mas_equalTo(CGSizeMake(96, 15));
+        make.bottom.mas_equalTo(-5);
+        make.right.mas_equalTo(0);
+    }];
     
+    
+  
     
 }
 
@@ -177,12 +181,6 @@
         make.top.equalTo(_lineView.mas_bottom).with.offset(14);
     }];
     
-    [_starBgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.right.equalTo(weakSelf).with.offset(-5);
-        make.bottom.equalTo(weakSelf).with.offset(-5);
-        make.size.mas_equalTo(CGSizeMake(80, 15));
-    }];
 }
 
 -(void)btBack{
