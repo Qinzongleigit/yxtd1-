@@ -12,6 +12,8 @@
 		25130E441F99E84200E1E29A /* JSCenterAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 25130E431F99E84200E1E29A /* JSCenterAnnotation.m */; };
 		25130E471F99E8AB00E1E29A /* JSQuanShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25130E461F99E8AB00E1E29A /* JSQuanShowView.m */; };
 		25130E4A1F99EA1B00E1E29A /* SelectableOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 25130E491F99EA1B00E1E29A /* SelectableOverlay.m */; };
+		2519B1E51FEB9F8200C706B6 /* ShangJiaGradeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2519B1E41FEB9F8200C706B6 /* ShangJiaGradeHeaderView.m */; };
+		2519B1EB1FEBA8E000C706B6 /* ShanJiaGradeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2519B1EA1FEBA8E000C706B6 /* ShanJiaGradeViewController.m */; };
 		251CF2881FC2D04300867046 /* SexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 251CF2871FC2D04300867046 /* SexView.m */; };
 		251CF2DA1FC50EB200867046 /* NickNameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 251CF2D91FC50EB200867046 /* NickNameView.m */; };
 		25313D9C1FB402D4008C9ED5 /* HQPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25313D9A1FB402D4008C9ED5 /* HQPickerView.m */; };
@@ -163,6 +165,10 @@
 		25130E461F99E8AB00E1E29A /* JSQuanShowView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSQuanShowView.m; sourceTree = "<group>"; };
 		25130E481F99EA1B00E1E29A /* SelectableOverlay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectableOverlay.h; sourceTree = "<group>"; };
 		25130E491F99EA1B00E1E29A /* SelectableOverlay.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectableOverlay.m; sourceTree = "<group>"; };
+		2519B1E31FEB9F8200C706B6 /* ShangJiaGradeHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShangJiaGradeHeaderView.h; sourceTree = "<group>"; };
+		2519B1E41FEB9F8200C706B6 /* ShangJiaGradeHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShangJiaGradeHeaderView.m; sourceTree = "<group>"; };
+		2519B1E91FEBA8E000C706B6 /* ShanJiaGradeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShanJiaGradeViewController.h; sourceTree = "<group>"; };
+		2519B1EA1FEBA8E000C706B6 /* ShanJiaGradeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShanJiaGradeViewController.m; sourceTree = "<group>"; };
 		251CF2861FC2D04300867046 /* SexView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SexView.h; sourceTree = "<group>"; };
 		251CF2871FC2D04300867046 /* SexView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SexView.m; sourceTree = "<group>"; };
 		251CF2D81FC50EB200867046 /* NickNameView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NickNameView.h; sourceTree = "<group>"; };
@@ -429,6 +435,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2519B1E01FEB9DB500C706B6 /* ShangJiaGrade */ = {
+			isa = PBXGroup;
+			children = (
+				2519B1E11FEB9E3C00C706B6 /* Controller */,
+				2519B1E21FEB9E4F00C706B6 /* View */,
+			);
+			path = ShangJiaGrade;
+			sourceTree = "<group>";
+		};
+		2519B1E11FEB9E3C00C706B6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2519B1E91FEBA8E000C706B6 /* ShanJiaGradeViewController.h */,
+				2519B1EA1FEBA8E000C706B6 /* ShanJiaGradeViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2519B1E21FEB9E4F00C706B6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2519B1E31FEB9F8200C706B6 /* ShangJiaGradeHeaderView.h */,
+				2519B1E41FEB9F8200C706B6 /* ShangJiaGradeHeaderView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		251CF2851FC2CFE000867046 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1298,6 +1331,7 @@
 		25D5A39B1FBED3EA00074447 /* Geren */ = {
 			isa = PBXGroup;
 			children = (
+				2519B1E01FEB9DB500C706B6 /* ShangJiaGrade */,
 				8F1BBE3A1FE95DE100602C3B /* FavoriteBusiness */,
 				25ABFB411FE7B12900C90BD0 /* MyDiscountCoupon */,
 				25ABFAF11FE3A33F00C90BD0 /* StepPaiHang */,
@@ -1764,6 +1798,7 @@
 				253869D91F7F454100D34B18 /* HealthManager.m in Sources */,
 				8F1BBE431FE962A400602C3B /* FoodViewController.m in Sources */,
 				257D125F1F69172B003DC1E4 /* MyTabarController.m in Sources */,
+				2519B1E51FEB9F8200C706B6 /* ShangJiaGradeHeaderView.m in Sources */,
 				25D5A2821FBA857C00074447 /* RegisterHttp.m in Sources */,
 				25313D9C1FB402D4008C9ED5 /* HQPickerView.m in Sources */,
 				257D12591F690F9F003DC1E4 /* RankingViewController.m in Sources */,
@@ -1817,6 +1852,7 @@
 				25AB5B271FC7CDEA00BC4D6F /* ShipAddressViewController.m in Sources */,
 				257D12641F6918CE003DC1E4 /* UIImage+TZRenderImage.m in Sources */,
 				8F263BB31FD05CAF00F89A45 /* AGImagePickerController.m in Sources */,
+				2519B1EB1FEBA8E000C706B6 /* ShanJiaGradeViewController.m in Sources */,
 				25D5A2F71FBC3D0000074447 /* LoginParam.m in Sources */,
 				251CF2DA1FC50EB200867046 /* NickNameView.m in Sources */,
 				257D120F1F68E18E003DC1E4 /* ViewController.m in Sources */,

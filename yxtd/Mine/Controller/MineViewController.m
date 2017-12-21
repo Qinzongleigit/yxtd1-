@@ -16,6 +16,7 @@
 #import "StepPaiHangViewController.h"
 #import "MyDiscountViewController.h"
 #import "FavoriteViewController.h"
+#import "ShanJiaGradeViewController.h"
 
 
 
@@ -378,9 +379,9 @@
         }else if (indexPath.row==1){
             //步数排行
             StepPaiHangViewController*stepVC=[[StepPaiHangViewController alloc] init];
-            
+
             [self presentViewController:stepVC animated:YES completion:nil];
-           
+   
         }
         
     }else if (indexPath.section==2){
@@ -397,6 +398,13 @@
             favoriteVC.hidesBottomBarWhenPushed=YES;
             [self.navigationController pushViewController:favoriteVC animated:YES ];
             
+        }else if (indexPath.row==2){
+            
+            ShanJiaGradeViewController*shangjiaVC=[[ShanJiaGradeViewController alloc] init];
+            
+            [self presentViewController:shangjiaVC animated:YES completion:nil];
+            
+     
         }
         
     }
