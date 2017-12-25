@@ -8,7 +8,7 @@
 
 #import "RatingStarView.h"
 
-#define SCALE 0.6
+#define SCALE 1
 
 const NSUInteger DEFAULT_STAR_COUNT = 5;
 
