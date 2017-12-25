@@ -39,6 +39,7 @@
 		25485B941F7219AB001122F7 /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25485B931F7219AB001122F7 /* MineViewController.m */; };
 		25485B991F721AFE001122F7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25485B981F721AFE001122F7 /* LoginViewController.m */; };
 		25485B9D1F721BC4001122F7 /* ForgotPassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25485B9C1F721BC4001122F7 /* ForgotPassViewController.m */; };
+		2563D07F1FF0A17A00E7448C /* RatingStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2563D07E1FF0A17A00E7448C /* RatingStarView.m */; };
 		2575540F1FD7812200B4EBB7 /* CanDuihuanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2575540E1FD7812200B4EBB7 /* CanDuihuanCell.m */; };
 		257554121FD7816900B4EBB7 /* OverDuihuanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 257554111FD7816900B4EBB7 /* OverDuihuanCell.m */; };
 		257554151FD781BA00B4EBB7 /* SaishiGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 257554141FD781BA00B4EBB7 /* SaishiGoodsCell.m */; };
@@ -219,6 +220,8 @@
 		25485B981F721AFE001122F7 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		25485B9B1F721BC4001122F7 /* ForgotPassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPassViewController.h; sourceTree = "<group>"; };
 		25485B9C1F721BC4001122F7 /* ForgotPassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPassViewController.m; sourceTree = "<group>"; };
+		2563D07D1FF0A17A00E7448C /* RatingStarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RatingStarView.h; sourceTree = "<group>"; };
+		2563D07E1FF0A17A00E7448C /* RatingStarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RatingStarView.m; sourceTree = "<group>"; };
 		2575540D1FD7812200B4EBB7 /* CanDuihuanCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanDuihuanCell.h; sourceTree = "<group>"; };
 		2575540E1FD7812200B4EBB7 /* CanDuihuanCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CanDuihuanCell.m; sourceTree = "<group>"; };
 		257554101FD7816900B4EBB7 /* OverDuihuanCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OverDuihuanCell.h; sourceTree = "<group>"; };
@@ -458,6 +461,8 @@
 			children = (
 				2519B1E31FEB9F8200C706B6 /* ShangJiaGradeHeaderView.h */,
 				2519B1E41FEB9F8200C706B6 /* ShangJiaGradeHeaderView.m */,
+				2563D07D1FF0A17A00E7448C /* RatingStarView.h */,
+				2563D07E1FF0A17A00E7448C /* RatingStarView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1887,6 +1892,7 @@
 				25ABFAF81FE3C3E700C90BD0 /* StepDayTableViewCell.m in Sources */,
 				8F263BC41FD0615500F89A45 /* ShowImageView.m in Sources */,
 				25485B991F721AFE001122F7 /* LoginViewController.m in Sources */,
+				2563D07F1FF0A17A00E7448C /* RatingStarView.m in Sources */,
 				8F263BB91FD05CAF00F89A45 /* AGIPCPreviewController.m in Sources */,
 				2532C1611F6F6EEF0064A28C /* TopSliderVIew.m in Sources */,
 				25ABFB591FEA110100C90BD0 /* FoodStarView.m in Sources */,
