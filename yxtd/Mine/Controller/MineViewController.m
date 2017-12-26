@@ -18,6 +18,8 @@
 #import "FavoriteViewController.h"
 #import "ShanJiaGradeViewController.h"
 
+#import "ExchangeRecordsViewController.h"
+
 
 
 
@@ -405,6 +407,14 @@
             [self presentViewController:shangjiaVC animated:YES completion:nil];
             
      
+        }else if (indexPath.row==4){
+            
+           
+            ExchangeRecordsViewController*recodesVC=[[ExchangeRecordsViewController alloc] init];
+            
+            
+            [self presentViewController:recodesVC animated:YES completion:nil];
+            
         }
         
     }

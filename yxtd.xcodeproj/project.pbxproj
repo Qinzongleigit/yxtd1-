@@ -40,6 +40,9 @@
 		25485B991F721AFE001122F7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25485B981F721AFE001122F7 /* LoginViewController.m */; };
 		25485B9D1F721BC4001122F7 /* ForgotPassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25485B9C1F721BC4001122F7 /* ForgotPassViewController.m */; };
 		2563D07F1FF0A17A00E7448C /* RatingStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2563D07E1FF0A17A00E7448C /* RatingStarView.m */; };
+		2563D0841FF1FA2E00E7448C /* ExchangeRecordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2563D0831FF1FA2E00E7448C /* ExchangeRecordsViewController.m */; };
+		2563D0891FF1FC8100E7448C /* RecodeTimeLineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2563D0871FF1FC8100E7448C /* RecodeTimeLineTableViewCell.m */; };
+		2563D08A1FF1FC8100E7448C /* RecodeTimeLineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2563D0881FF1FC8100E7448C /* RecodeTimeLineTableViewCell.xib */; };
 		2575540F1FD7812200B4EBB7 /* CanDuihuanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2575540E1FD7812200B4EBB7 /* CanDuihuanCell.m */; };
 		257554121FD7816900B4EBB7 /* OverDuihuanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 257554111FD7816900B4EBB7 /* OverDuihuanCell.m */; };
 		257554151FD781BA00B4EBB7 /* SaishiGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 257554141FD781BA00B4EBB7 /* SaishiGoodsCell.m */; };
@@ -222,6 +225,11 @@
 		25485B9C1F721BC4001122F7 /* ForgotPassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPassViewController.m; sourceTree = "<group>"; };
 		2563D07D1FF0A17A00E7448C /* RatingStarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RatingStarView.h; sourceTree = "<group>"; };
 		2563D07E1FF0A17A00E7448C /* RatingStarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RatingStarView.m; sourceTree = "<group>"; };
+		2563D0821FF1FA2E00E7448C /* ExchangeRecordsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExchangeRecordsViewController.h; sourceTree = "<group>"; };
+		2563D0831FF1FA2E00E7448C /* ExchangeRecordsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExchangeRecordsViewController.m; sourceTree = "<group>"; };
+		2563D0861FF1FC8100E7448C /* RecodeTimeLineTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecodeTimeLineTableViewCell.h; sourceTree = "<group>"; };
+		2563D0871FF1FC8100E7448C /* RecodeTimeLineTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecodeTimeLineTableViewCell.m; sourceTree = "<group>"; };
+		2563D0881FF1FC8100E7448C /* RecodeTimeLineTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecodeTimeLineTableViewCell.xib; sourceTree = "<group>"; };
 		2575540D1FD7812200B4EBB7 /* CanDuihuanCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanDuihuanCell.h; sourceTree = "<group>"; };
 		2575540E1FD7812200B4EBB7 /* CanDuihuanCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CanDuihuanCell.m; sourceTree = "<group>"; };
 		257554101FD7816900B4EBB7 /* OverDuihuanCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OverDuihuanCell.h; sourceTree = "<group>"; };
@@ -717,6 +725,34 @@
 				25485B9C1F721BC4001122F7 /* ForgotPassViewController.m */,
 			);
 			path = ForgotPass;
+			sourceTree = "<group>";
+		};
+		2563D0801FF1F9F400E7448C /* ExchangeRecords */ = {
+			isa = PBXGroup;
+			children = (
+				2563D0811FF1FA0800E7448C /* Controller */,
+				2563D0851FF1FA3500E7448C /* View */,
+			);
+			path = ExchangeRecords;
+			sourceTree = "<group>";
+		};
+		2563D0811FF1FA0800E7448C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2563D0821FF1FA2E00E7448C /* ExchangeRecordsViewController.h */,
+				2563D0831FF1FA2E00E7448C /* ExchangeRecordsViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2563D0851FF1FA3500E7448C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2563D0861FF1FC8100E7448C /* RecodeTimeLineTableViewCell.h */,
+				2563D0871FF1FC8100E7448C /* RecodeTimeLineTableViewCell.m */,
+				2563D0881FF1FC8100E7448C /* RecodeTimeLineTableViewCell.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		2575540C1FD7800200B4EBB7 /* JiFenStoreCell */ = {
@@ -1336,6 +1372,7 @@
 		25D5A39B1FBED3EA00074447 /* Geren */ = {
 			isa = PBXGroup;
 			children = (
+				2563D0801FF1F9F400E7448C /* ExchangeRecords */,
 				2519B1E01FEB9DB500C706B6 /* ShangJiaGrade */,
 				8F1BBE3A1FE95DE100602C3B /* FavoriteBusiness */,
 				25ABFB411FE7B12900C90BD0 /* MyDiscountCoupon */,
@@ -1707,6 +1744,7 @@
 				8F263BC61FD0675200F89A45 /* deletePhoto.png in Resources */,
 				258A0E141F9B060D00EF9593 /* nearBicycle.json in Resources */,
 				25AB5B381FC80EBD00BC4D6F /* area.plist in Resources */,
+				2563D08A1FF1FC8100E7448C /* RecodeTimeLineTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1830,6 +1868,7 @@
 				2542680B1F73A95600E54A5E /* NSDate+MJ.m in Sources */,
 				25D5A2861FBA89D300074447 /* SmsParam.m in Sources */,
 				8F1BBE461FE962C600602C3B /* EntertainmentViewController.m in Sources */,
+				2563D0841FF1FA2E00E7448C /* ExchangeRecordsViewController.m in Sources */,
 				25D5A2D71FBBDD2200074447 /* WebViewController.m in Sources */,
 				25AD8CD11FA85F9C00960732 /* DetailedView.m in Sources */,
 				25AD8CB81FA8156D00960732 /* DetailedViewController.m in Sources */,
@@ -1889,6 +1928,7 @@
 				25AB5B951FCE8D1400BC4D6F /* NaviBarRootViewController.m in Sources */,
 				8F1BBE3E1FE95ED800602C3B /* FavoriteViewController.m in Sources */,
 				25BED2361F7C9CE300A0A07A /* FindTwoCell.m in Sources */,
+				2563D0891FF1FC8100E7448C /* RecodeTimeLineTableViewCell.m in Sources */,
 				25ABFAF81FE3C3E700C90BD0 /* StepDayTableViewCell.m in Sources */,
 				8F263BC41FD0615500F89A45 /* ShowImageView.m in Sources */,
 				25485B991F721AFE001122F7 /* LoginViewController.m in Sources */,
