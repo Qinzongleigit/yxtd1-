@@ -18,6 +18,8 @@
 #import "FavoriteViewController.h"
 #import "ShanJiaGradeViewController.h"
 
+#import "MyTabarController.h"
+
 #import "ExchangeRecordsViewController.h"
 
 
@@ -407,6 +409,13 @@
             [self presentViewController:shangjiaVC animated:YES completion:nil];
             
      
+        }else if (indexPath.row==3){
+            
+            MyTabarController*myTab=[[MyTabarController alloc] init];
+            
+             [myTab setSelectedIndex:1];
+              [self presentViewController:myTab animated:YES completion:nil];
+            
         }else if (indexPath.row==4){
             
            
