@@ -66,6 +66,11 @@
     [tableView registerClass:[MessageTableViewCell class] forCellReuseIdentifier:messageID];
     
     [self.view addSubview:self.tableView];
+    
+    
+    
+    //隐藏多余线条
+    [self setExtraCellLineHidden:_tableView];
    
 }
 
@@ -119,5 +124,21 @@
     [self.navigationController popViewControllerAnimated:YES];
     
 }
+
+
+
+#pragma mark    隐藏多余线条
+-(void)setExtraCellLineHidden: (UITableView *)tableView
+{
+    
+    UIView *view = [UIView new];
+    
+    view.backgroundColor = [UIColor clearColor];
+    
+    [tableView setTableFooterView:view];
+    
+    
+}
+
 
 @end
