@@ -18,7 +18,7 @@
 #import "FavoriteViewController.h"
 #import "ShanJiaGradeViewController.h"
 
-#import "MyTabarController.h"
+#import "RankingViewController.h"
 
 #import "ExchangeRecordsViewController.h"
 
@@ -411,10 +411,7 @@
      
         }else if (indexPath.row==3){
             
-            MyTabarController*myTab=[[MyTabarController alloc] init];
-            
-             [myTab setSelectedIndex:1];
-              [self presentViewController:myTab animated:YES completion:nil];
+     //界面还没有确定暂时先不做
             
         }else if (indexPath.row==4){
             

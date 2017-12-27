@@ -43,6 +43,8 @@
 		2563D0841FF1FA2E00E7448C /* ExchangeRecordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2563D0831FF1FA2E00E7448C /* ExchangeRecordsViewController.m */; };
 		2563D0891FF1FC8100E7448C /* RecodeTimeLineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2563D0871FF1FC8100E7448C /* RecodeTimeLineTableViewCell.m */; };
 		2563D08A1FF1FC8100E7448C /* RecodeTimeLineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2563D0881FF1FC8100E7448C /* RecodeTimeLineTableViewCell.xib */; };
+		2563D0D31FF3778D00E7448C /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2563D0D21FF3778D00E7448C /* MessageViewController.m */; };
+		2563D0D61FF37CAE00E7448C /* MessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2563D0D51FF37CAE00E7448C /* MessageTableViewCell.m */; };
 		2575540F1FD7812200B4EBB7 /* CanDuihuanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2575540E1FD7812200B4EBB7 /* CanDuihuanCell.m */; };
 		257554121FD7816900B4EBB7 /* OverDuihuanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 257554111FD7816900B4EBB7 /* OverDuihuanCell.m */; };
 		257554151FD781BA00B4EBB7 /* SaishiGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 257554141FD781BA00B4EBB7 /* SaishiGoodsCell.m */; };
@@ -230,6 +232,10 @@
 		2563D0861FF1FC8100E7448C /* RecodeTimeLineTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecodeTimeLineTableViewCell.h; sourceTree = "<group>"; };
 		2563D0871FF1FC8100E7448C /* RecodeTimeLineTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecodeTimeLineTableViewCell.m; sourceTree = "<group>"; };
 		2563D0881FF1FC8100E7448C /* RecodeTimeLineTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecodeTimeLineTableViewCell.xib; sourceTree = "<group>"; };
+		2563D0D11FF3778D00E7448C /* MessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
+		2563D0D21FF3778D00E7448C /* MessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
+		2563D0D41FF37CAE00E7448C /* MessageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageTableViewCell.h; sourceTree = "<group>"; };
+		2563D0D51FF37CAE00E7448C /* MessageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageTableViewCell.m; sourceTree = "<group>"; };
 		2575540D1FD7812200B4EBB7 /* CanDuihuanCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanDuihuanCell.h; sourceTree = "<group>"; };
 		2575540E1FD7812200B4EBB7 /* CanDuihuanCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CanDuihuanCell.m; sourceTree = "<group>"; };
 		257554101FD7816900B4EBB7 /* OverDuihuanCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OverDuihuanCell.h; sourceTree = "<group>"; };
@@ -755,6 +761,25 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		2563D0CF1FF3771B00E7448C /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				2563D0D11FF3778D00E7448C /* MessageViewController.h */,
+				2563D0D21FF3778D00E7448C /* MessageViewController.m */,
+				2563D0D01FF3774700E7448C /* View */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		2563D0D01FF3774700E7448C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2563D0D41FF37CAE00E7448C /* MessageTableViewCell.h */,
+				2563D0D51FF37CAE00E7448C /* MessageTableViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		2575540C1FD7800200B4EBB7 /* JiFenStoreCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -902,6 +927,7 @@
 		257D124C1F690EFF003DC1E4 /* Running */ = {
 			isa = PBXGroup;
 			children = (
+				2563D0CF1FF3771B00E7448C /* Message */,
 				25AD8CB51FA8154500960732 /* RunDetail */,
 				257D124D1F690EFF003DC1E4 /* Controller */,
 				257D124E1F690EFF003DC1E4 /* Model */,
@@ -1846,6 +1872,7 @@
 				25313D9C1FB402D4008C9ED5 /* HQPickerView.m in Sources */,
 				257D12591F690F9F003DC1E4 /* RankingViewController.m in Sources */,
 				25AB5B231FC7CCBF00BC4D6F /* UpdatePhoneNumberViewController.m in Sources */,
+				2563D0D31FF3778D00E7448C /* MessageViewController.m in Sources */,
 				2532C1701F6F72A90064A28C /* PaiHangViewController.m in Sources */,
 				25ABFB5D1FEA370800C90BD0 /* EntertainmentTableViewCell.m in Sources */,
 				8F0D8A3D1FE81A360064B514 /* DiscountExpiredViewController.m in Sources */,
@@ -1924,6 +1951,7 @@
 				25D5A2891FBA89E100074447 /* SmsHttp.m in Sources */,
 				25ABFB3D1FE7660C00C90BD0 /* DuiHuanAlter.m in Sources */,
 				2532C1681F6F70D10064A28C /* SaiShiViewController.m in Sources */,
+				2563D0D61FF37CAE00E7448C /* MessageTableViewCell.m in Sources */,
 				25D5A27A1FB9957900074447 /* Reachability.m in Sources */,
 				25AB5B951FCE8D1400BC4D6F /* NaviBarRootViewController.m in Sources */,
 				8F1BBE3E1FE95ED800602C3B /* FavoriteViewController.m in Sources */,

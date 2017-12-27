@@ -81,7 +81,7 @@
 
     [UIView animateWithDuration:0.5 animations:^{
 
-       // self.topView.coverView.frame=CGRectMake(index*(KscreenW-80)/3+20*(index+1), 83, (KscreenW-80)/3, 1);
+    
         self.topView.coverView.frame=CGRectMake((KscreenW-90-90-20)/12+90+index*((KscreenW-90-90-20)/3+10), 83, (KscreenW-90-90-20)/6, 1);
         
         

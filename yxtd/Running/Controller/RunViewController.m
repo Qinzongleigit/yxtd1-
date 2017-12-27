@@ -18,6 +18,8 @@
 #import "ShowAnimationView.h"
 #import "MyTabarController.h"
 
+#import "MessageViewController.h"
+
 
 
 @interface RunViewController ()<MAMapViewDelegate,AMapNaviWalkManagerDelegate>
@@ -671,9 +673,14 @@
 }
 
 
+#pragma mark -消息界面
 -(void)rightButton{
     
-    NSLog(@"右边按钮点击");
+    MessageViewController*messageVC=[[MessageViewController alloc] init];
+    
+    messageVC.hidesBottomBarWhenPushed=YES;
+    
+    [self.navigationController pushViewController:messageVC animated:YES];
 }
 
 
