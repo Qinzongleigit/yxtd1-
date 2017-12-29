@@ -111,7 +111,9 @@
     
         [self.tableView deleteRowsAtIndexPaths:@[indexPath]
                               withRowAnimation:UITableViewRowAnimationFade];
-        [self.tableView reloadData];
+        
+       // [self.tableView reloadData];
+        
     }
 }
 

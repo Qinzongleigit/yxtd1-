@@ -14,9 +14,10 @@
 @interface FavoriteViewController ()<seletedControllerDelegate,UIScrollViewDelegate>
 
 @property (nonatomic,strong) FavoriteSliderTopView*titleScroll;
-@property (nonatomic,strong)UIScrollView*mainScroll;
-@property (nonatomic,strong)FoodViewController*foodVC;
-@property (nonatomic,strong)EntertainmentViewController*entertainmentVC;
+
+@property (nonatomic,strong) UIScrollView*mainScroll;
+@property (nonatomic,strong) FoodViewController*foodVC;
+@property (nonatomic,strong) EntertainmentViewController*entertainmentVC;
 
 @end
 
@@ -133,24 +134,36 @@
     [self.rightBt setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.rightBt setBackgroundImage:nil forState:UIControlStateNormal];
     self.rightBt.titleLabel.font=[UIFont systemFontOfSize:17];
+    
+     [self.rightBt addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+    
     self.title=@"收藏商家";
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]}];
     
 }
+
+#pragma mark--Editing
+- (void)btnClick:(UIButton *)btn{
+    
+    btn.selected = !btn.selected;
+    
+     if (btn.selected) {
+         
+          [btn setTitle:@"取消" forState:UIControlStateNormal];
+     }else {
+         
+         [btn setTitle:@"编辑" forState:UIControlStateNormal];
+     }
+    
+
+}
+    
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
