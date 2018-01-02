@@ -11,6 +11,8 @@
 #import "FoodViewController.h"
 #import "EntertainmentViewController.h"
 
+#import "FootView.h"
+
 @interface FavoriteViewController ()<seletedControllerDelegate,UIScrollViewDelegate>
 
 @property (nonatomic,strong) FavoriteSliderTopView*titleScroll;
@@ -18,6 +20,9 @@
 @property (nonatomic,strong) UIScrollView*mainScroll;
 @property (nonatomic,strong) FoodViewController*foodVC;
 @property (nonatomic,strong) EntertainmentViewController*entertainmentVC;
+
+
+@property (nonatomic, strong) FootView *footView;
 
 @end
 
@@ -149,11 +154,23 @@
     
      if (btn.selected) {
          
-          [btn setTitle:@"取消" forState:UIControlStateNormal];
+         _footView.hidden = NO;
+         [btn setTitle:@"取消" forState:UIControlStateNormal];
+         //防止当全部选择时，点击取消编辑，再次进入第一次点击全部选择会无效
+         
+         [_footView.allBtn setTitle:@"全部选择" forState:UIControlStateNormal];
+         [_footView.deleteBtn setTitle:@"删除" forState:UIControlStateNormal];
+         
+         _footView.allBtn.selected = NO;
      }else {
          
+         _footView.hidden = YES;
          [btn setTitle:@"编辑" forState:UIControlStateNormal];
      }
+    
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"postNoti" object:nil];
+
     
 
 }

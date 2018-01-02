@@ -45,6 +45,7 @@
 		2563D08A1FF1FC8100E7448C /* RecodeTimeLineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2563D0881FF1FC8100E7448C /* RecodeTimeLineTableViewCell.xib */; };
 		2563D0D31FF3778D00E7448C /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2563D0D21FF3778D00E7448C /* MessageViewController.m */; };
 		2563D0D61FF37CAE00E7448C /* MessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2563D0D51FF37CAE00E7448C /* MessageTableViewCell.m */; };
+		25649C401FFB800300002608 /* FootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25649C3F1FFB800300002608 /* FootView.m */; };
 		2575540F1FD7812200B4EBB7 /* CanDuihuanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2575540E1FD7812200B4EBB7 /* CanDuihuanCell.m */; };
 		257554121FD7816900B4EBB7 /* OverDuihuanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 257554111FD7816900B4EBB7 /* OverDuihuanCell.m */; };
 		257554151FD781BA00B4EBB7 /* SaishiGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 257554141FD781BA00B4EBB7 /* SaishiGoodsCell.m */; };
@@ -236,6 +237,8 @@
 		2563D0D21FF3778D00E7448C /* MessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
 		2563D0D41FF37CAE00E7448C /* MessageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageTableViewCell.h; sourceTree = "<group>"; };
 		2563D0D51FF37CAE00E7448C /* MessageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageTableViewCell.m; sourceTree = "<group>"; };
+		25649C3E1FFB800300002608 /* FootView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FootView.h; sourceTree = "<group>"; };
+		25649C3F1FFB800300002608 /* FootView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FootView.m; sourceTree = "<group>"; };
 		2575540D1FD7812200B4EBB7 /* CanDuihuanCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanDuihuanCell.h; sourceTree = "<group>"; };
 		2575540E1FD7812200B4EBB7 /* CanDuihuanCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CanDuihuanCell.m; sourceTree = "<group>"; };
 		257554101FD7816900B4EBB7 /* OverDuihuanCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OverDuihuanCell.h; sourceTree = "<group>"; };
@@ -1567,6 +1570,8 @@
 			children = (
 				8F1BBE491FE965A100602C3B /* FavoriteSliderTopView.h */,
 				8F1BBE4A1FE965A100602C3B /* FavoriteSliderTopView.m */,
+				25649C3E1FFB800300002608 /* FootView.h */,
+				25649C3F1FFB800300002608 /* FootView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1888,6 +1893,7 @@
 				25BED2321F7C9CCC00A0A07A /* FindOneCell.m in Sources */,
 				257D377E1F74B47A00C25FE4 /* CDFindImgScrollView.m in Sources */,
 				25AB5B351FC7FFB800BC4D6F /* AddressCell.m in Sources */,
+				25649C401FFB800300002608 /* FootView.m in Sources */,
 				25AB5B311FC7FBB000BC4D6F /* AddAddressVC.m in Sources */,
 				25130E441F99E84200E1E29A /* JSCenterAnnotation.m in Sources */,
 				25D5A39F1FBED44300074447 /* GeRenZiLiaoViewController.m in Sources */,

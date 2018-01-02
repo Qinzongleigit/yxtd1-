@@ -146,6 +146,7 @@
         if (tag==100) {
             
             [self dismissViewControllerAnimated:YES completion:nil];
+            
         }else if (tag==101){
             
             FoodDetailsViewController*detailVC=[[FoodDetailsViewController alloc] init];
