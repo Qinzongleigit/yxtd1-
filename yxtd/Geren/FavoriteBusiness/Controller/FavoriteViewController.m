@@ -21,7 +21,6 @@
 @property (nonatomic,strong) FoodViewController*foodVC;
 @property (nonatomic,strong) EntertainmentViewController*entertainmentVC;
 
-
 @property (nonatomic, strong) FootView *footView;
 
 @end
@@ -31,6 +30,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    
+    
+        self.view.backgroundColor=[UIColor whiteColor];
+    
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(btnTitleText) name:@"changeEditingBtnTitleText" object:nil];
     
     [self initNaviBar];
     
@@ -66,6 +71,13 @@
     [self.mainScroll addSubview:self.foodVC.view];
     
     
+    _entertainmentVC = [[EntertainmentViewController alloc] init];
+    [self addChildViewController:_entertainmentVC];
+    _entertainmentVC.view.frame = CGRectMake(KscreenW, 0, KscreenW, KscreenH);
+    //将当前的子视图控制器的view添加到主滑动视图上
+    [self.mainScroll addSubview:_entertainmentVC.view];
+    
+    
     UIView*lineV=[[UIView alloc] init];
     lineV.backgroundColor=[UIColor lightGrayColor];
     [self.titleScroll addSubview:lineV];
@@ -94,13 +106,7 @@
 
 #pragma mark -滚动视图即将开始拖动
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-    if (self.mainScroll.contentOffset.x < KscreenW) {
-        _entertainmentVC = [[EntertainmentViewController alloc] init];
-        [self addChildViewController:_entertainmentVC];
-        _entertainmentVC.view.frame = CGRectMake(KscreenW, 0, KscreenW, KscreenH);
-        [self.mainScroll addSubview:_entertainmentVC.view];
-    }
-    
+  
     [self.titleScroll changeBtntitleColorWith:scrollView.contentOffset.x/KscreenW+1000];
 }
 
@@ -117,12 +123,6 @@
     
     self. mainScroll.contentOffset = CGPointMake(KscreenW*(btn.tag - 1000), 0);
     
-    if (self.mainScroll.contentOffset.x == KscreenW) {
-        _entertainmentVC = [[EntertainmentViewController alloc] init];
-        [self addChildViewController:_entertainmentVC];
-        _entertainmentVC.view.frame = CGRectMake(KscreenW, 0, KscreenW, KscreenH);
-        [self.mainScroll addSubview:_entertainmentVC.view];
-    }
     [self.titleScroll changeBtntitleColorWith:self.mainScroll.contentOffset.x/KscreenW+1000];
     
     
@@ -153,27 +153,42 @@
     btn.selected = !btn.selected;
     
      if (btn.selected) {
-         
-         _footView.hidden = NO;
+
          [btn setTitle:@"取消" forState:UIControlStateNormal];
-         //防止当全部选择时，点击取消编辑，再次进入第一次点击全部选择会无效
-         
-         [_footView.allBtn setTitle:@"全部选择" forState:UIControlStateNormal];
-         [_footView.deleteBtn setTitle:@"删除" forState:UIControlStateNormal];
-         
-         _footView.allBtn.selected = NO;
+
      }else {
+
          
-         _footView.hidden = YES;
          [btn setTitle:@"编辑" forState:UIControlStateNormal];
      }
     
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"postNoti" object:nil];
+    //发送编辑点击事件通知
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"postNotiEditing" object:nil];
 
     
 
 }
+
+#pragma mark - 点击删除改变编辑按钮的title
+-(void)btnTitleText{
+    
+    [self.rightBt setTitle:@"编辑" forState:UIControlStateNormal];
+    
+    
+    //防止当全部选择时，点击删除，再次点击全部选择会无效
+    self.rightBt.selected=NO;
+    
+    
+}
+
+
+-(void)dealloc{
+    
+    
+     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
     
 
 - (void)didReceiveMemoryWarning {

@@ -24,20 +24,37 @@
 
 -(void)makeUI{
     
+    //全选
     _allBtn=[UIButton buttonWithType:UIButtonTypeCustom];
     _allBtn.backgroundColor=[UIColor redColor];
-    _allBtn.frame=CGRectMake(20, 10, 150, 30);
     [_allBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside ];
-    [_allBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    
     [self addSubview:_allBtn];
     
+    [_allBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.mas_equalTo(5);
+        make.left.mas_equalTo(10);
+        make.size.mas_equalTo(CGSizeMake(100, 40));
+    }];
     
     
+    
+    
+    //删除
     _deleteBtn=[UIButton buttonWithType:UIButtonTypeCustom];
     _deleteBtn.backgroundColor=[UIColor redColor];
-    _deleteBtn.frame=CGRectMake(200, 10, 100, 30);
+    
     [_deleteBtn addTarget:self action:@selector(buttonAction) forControlEvents:UIControlEventTouchUpInside ];
+    
     [self addSubview:_deleteBtn];
+    
+    [_deleteBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.centerY.mas_equalTo(_allBtn);
+        make.size.mas_equalTo(_allBtn);
+        make.right.mas_equalTo(-10);
+    }];
     
 }
 

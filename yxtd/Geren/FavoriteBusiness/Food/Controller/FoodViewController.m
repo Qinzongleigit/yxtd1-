@@ -36,39 +36,38 @@
     self.tableView=tableView;
     tableView.delegate=self;
     tableView.dataSource=self;
-    tableView.rowHeight=115;
-    tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+    tableView.rowHeight=40;
+ tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+     _tableView.allowsMultipleSelectionDuringEditing = YES;//设置tableView在编辑模式下可多选
     
-    //[tableView registerClass:[FoodTableViewCell class] forCellReuseIdentifier:cellID
-    // ];
+    
+#warning 没有数据先先不创建自己布局的cell
+#if 0
+   [tableView registerClass:[FoodTableViewCell class] forCellReuseIdentifier:cellID
+    ];
+#endif
     
     
     [self.view addSubview:tableView];
     
     
-    _tableView.allowsMultipleSelectionDuringEditing = YES;//设置tableView在编辑模式下可多选
-    
-    
-    
-    _footView=[[FootView alloc] init];
-    
-    _footView.backgroundColor=[UIColor yellowColor];
+ 
+    //弹出全选和删除view
+      _footView=[[FootView alloc] initWithFrame:CGRectMake(0, KscreenH, KscreenW, 49)];
+    _footView.backgroundColor=[UIColor grayColor];
     
     __block FoodViewController*blockSelf=self;
     
     _footView.allBtnBolock = ^(UIButton *myBt) {
         
-        
+        //全选按钮
        [blockSelf footAllSelectedBtnClick:myBt];
-        
-        
-        
         
     };
     
-    
     _footView.deleteBtnBolock = ^{
         
+        //删除按钮
       [blockSelf footDeleteBtnClick];
     };
     
@@ -78,29 +77,49 @@
     // 数据
     _cellArray = [NSMutableArray arrayWithObjects:@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", @"13", @"14", @"15", @"16", @"17", @"18", @"19", @"20", @"21", @"22", @"23", @"24", @"25", @"26", @"27", @"28", @"29", @"30", @"31", @"32", @"33", @"34", @"35", nil];
     
-       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tongzhi) name:@"postNoti" object:nil];
+       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editingTongZhi) name:@"postNotiEditing" object:nil];
+    
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hiddenFootView) name:@"postHiddenFootView" object:nil];
+   
     
    
 }
 
--(void)tongzhi{
+#pragma mark 隐藏全选删除按钮
+
+-(void)hiddenFootView{
     
- 
+    [self.tableView setEditing:NO animated:YES];
+    
+    _footView.frame=CGRectMake(0, KscreenH, KscreenW, 49);
+    
+    [_tableView setFrame:CGRectMake(0, 0, KscreenW, KscreenH-104)];
+    
+    
+}
+
+#pragma mark -编辑按钮点击发送通知
+-(void)editingTongZhi{
+    
     
     //让tableView进入编辑模式
     [_tableView setEditing:!_tableView.isEditing animated:YES];
     
     if (_tableView.isEditing) {
         
+        [_footView.allBtn setTitle:@"全部选择" forState:UIControlStateNormal];
+        [_footView.deleteBtn setTitle:@"删除" forState:UIControlStateNormal];
+        
+        _footView.allBtn.selected = NO;
         
         [_tableView setFrame:CGRectMake(0, 0, KscreenW, KscreenH - 49-64-40)];
-        
         
         _footView.frame=CGRectMake(0, KscreenH-49-64-40, KscreenW, 49);
     }else {
         
-        [_tableView setFrame:CGRectMake(0, 0, KscreenW, KscreenH)];
-        _footView.frame=CGRectMake(0, KscreenH+49, KscreenW, 49);
+        [_tableView setFrame:CGRectMake(0, 0, KscreenW, KscreenH-104)];
+        
+        _footView.frame=CGRectMake(0, KscreenH, KscreenW, 49);
     }
     
     //根据偏移量计算是否滑动到tableView最后一行 count为无符号整型 强转一下
@@ -137,7 +156,7 @@
 
 
 
-#pragma mark--Delete
+#pragma mark--删除按钮点击事件
 - (void)footDeleteBtnClick{
     
     NSMutableArray *deleteArr = [[NSMutableArray alloc] init];
@@ -151,22 +170,23 @@
     
     [_tableView reloadData];
     
-    _footView.hidden=YES ;
     
-    [_tableView setFrame:CGRectMake(0, 0, KscreenW, KscreenH)];
+    _footView.frame=CGRectMake(0, KscreenH, KscreenW, 0) ;
     
-   // _btn.selected=NO;
-    //防止当全部选择时，点击删除，再次点击全部选择会无效
+    [_tableView setFrame:CGRectMake(0, 0, KscreenW, KscreenH-104)];
     
+    //取消表格编辑状态
     [self.tableView setEditing:NO animated:YES];
     
-   // [_btn setTitle:@"编辑" forState:UIControlStateNormal];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"changeEditingBtnTitleText" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"changeTableViewEditingState" object:nil];
     
     
     
 }
 
-#pragma mark--AllSelected
+#pragma mark--全选按钮点击事件
 - (void)footAllSelectedBtnClick:(UIButton *)btn{
     
     btn.selected = !btn.selected;
@@ -187,22 +207,8 @@
     }
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        
-        [_cellArray removeObjectAtIndex:indexPath.row];
-        
-    }
-    [_tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-}
 
-
-
-
-
-
-//
+#warning 隐藏自定义cell布局
 //-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 //
 //    return 20;
@@ -218,8 +224,8 @@
 //}
 //
 //
+#pragma mark - 选中某行跳转
 //-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//
 //
 //    FoodDetailsViewController*detailVC=[[FoodDetailsViewController alloc] init];
 //    [self presentViewController:detailVC animated:YES completion:nil];
