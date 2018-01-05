@@ -16,7 +16,7 @@
 #import "StepPaiHangViewController.h"
 #import "MyDiscountViewController.h"
 #import "FavoriteViewController.h"
-#import "ShanJiaGradeViewController.h"
+#import "ShangJiaViewController.h"
 
 #import "RankingViewController.h"
 
@@ -404,9 +404,10 @@
             
         }else if (indexPath.row==2){
             
-            ShanJiaGradeViewController*shangjiaVC=[[ShanJiaGradeViewController alloc] init];
+            ShangJiaViewController*shangjiaVC=[[ShangJiaViewController alloc] init];
+            shangjiaVC.hidesBottomBarWhenPushed=YES;
             
-            [self presentViewController:shangjiaVC animated:YES completion:nil];
+            [self.navigationController pushViewController:shangjiaVC animated:YES];
             
      
         }else if (indexPath.row==3){

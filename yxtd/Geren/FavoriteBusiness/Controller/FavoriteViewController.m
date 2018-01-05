@@ -143,7 +143,7 @@
      [self.rightBt addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     
     self.title=@"收藏商家";
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]}];
+  
     
 }
 

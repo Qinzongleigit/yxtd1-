@@ -225,16 +225,27 @@
 //
 //
 #pragma mark - 选中某行跳转
-//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//
-//    FoodDetailsViewController*detailVC=[[FoodDetailsViewController alloc] init];
-//    [self presentViewController:detailVC animated:YES completion:nil];
-//
-//    //反选
-//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//
-//
-//}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    if (![tableView isEditing]) {
+        
+        FoodDetailsViewController*detailVC=[[FoodDetailsViewController alloc] init];
+        [self presentViewController:detailVC animated:YES completion:nil];
+        
+        //反选
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        
+    }
+
+
+}
+
+
+-(void)dealloc{
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

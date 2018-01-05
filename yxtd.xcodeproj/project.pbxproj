@@ -46,6 +46,10 @@
 		2563D0D31FF3778D00E7448C /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2563D0D21FF3778D00E7448C /* MessageViewController.m */; };
 		2563D0D61FF37CAE00E7448C /* MessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2563D0D51FF37CAE00E7448C /* MessageTableViewCell.m */; };
 		25649C401FFB800300002608 /* FootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25649C3F1FFB800300002608 /* FootView.m */; };
+		25649CF11FFF52A900002608 /* ShangJiaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25649CF01FFF52A900002608 /* ShangJiaViewController.m */; };
+		25649CF51FFF559400002608 /* NotEvaluatedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25649CF41FFF559400002608 /* NotEvaluatedViewController.m */; };
+		25649CF81FFF55CA00002608 /* AlreadyEvaluatedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25649CF71FFF55CA00002608 /* AlreadyEvaluatedViewController.m */; };
+		25649D001FFF637900002608 /* ShangJiaTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25649CFE1FFF637800002608 /* ShangJiaTableViewCell.m */; };
 		2575540F1FD7812200B4EBB7 /* CanDuihuanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2575540E1FD7812200B4EBB7 /* CanDuihuanCell.m */; };
 		257554121FD7816900B4EBB7 /* OverDuihuanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 257554111FD7816900B4EBB7 /* OverDuihuanCell.m */; };
 		257554151FD781BA00B4EBB7 /* SaishiGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 257554141FD781BA00B4EBB7 /* SaishiGoodsCell.m */; };
@@ -239,6 +243,14 @@
 		2563D0D51FF37CAE00E7448C /* MessageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageTableViewCell.m; sourceTree = "<group>"; };
 		25649C3E1FFB800300002608 /* FootView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FootView.h; sourceTree = "<group>"; };
 		25649C3F1FFB800300002608 /* FootView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FootView.m; sourceTree = "<group>"; };
+		25649CEF1FFF52A900002608 /* ShangJiaViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShangJiaViewController.h; sourceTree = "<group>"; };
+		25649CF01FFF52A900002608 /* ShangJiaViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShangJiaViewController.m; sourceTree = "<group>"; };
+		25649CF31FFF559400002608 /* NotEvaluatedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotEvaluatedViewController.h; sourceTree = "<group>"; };
+		25649CF41FFF559400002608 /* NotEvaluatedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotEvaluatedViewController.m; sourceTree = "<group>"; };
+		25649CF61FFF55CA00002608 /* AlreadyEvaluatedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlreadyEvaluatedViewController.h; sourceTree = "<group>"; };
+		25649CF71FFF55CA00002608 /* AlreadyEvaluatedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlreadyEvaluatedViewController.m; sourceTree = "<group>"; };
+		25649CFE1FFF637800002608 /* ShangJiaTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShangJiaTableViewCell.m; sourceTree = "<group>"; };
+		25649CFF1FFF637900002608 /* ShangJiaTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShangJiaTableViewCell.h; sourceTree = "<group>"; };
 		2575540D1FD7812200B4EBB7 /* CanDuihuanCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanDuihuanCell.h; sourceTree = "<group>"; };
 		2575540E1FD7812200B4EBB7 /* CanDuihuanCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CanDuihuanCell.m; sourceTree = "<group>"; };
 		257554101FD7816900B4EBB7 /* OverDuihuanCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OverDuihuanCell.h; sourceTree = "<group>"; };
@@ -458,6 +470,7 @@
 		2519B1E01FEB9DB500C706B6 /* ShangJiaGrade */ = {
 			isa = PBXGroup;
 			children = (
+				25649CF21FFF556200002608 /* Evaluated */,
 				2519B1E11FEB9E3C00C706B6 /* Controller */,
 				2519B1E21FEB9E4F00C706B6 /* View */,
 			);
@@ -469,6 +482,8 @@
 			children = (
 				2519B1E91FEBA8E000C706B6 /* ShanJiaGradeViewController.h */,
 				2519B1EA1FEBA8E000C706B6 /* ShanJiaGradeViewController.m */,
+				25649CEF1FFF52A900002608 /* ShangJiaViewController.h */,
+				25649CF01FFF52A900002608 /* ShangJiaViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -779,6 +794,35 @@
 			children = (
 				2563D0D41FF37CAE00E7448C /* MessageTableViewCell.h */,
 				2563D0D51FF37CAE00E7448C /* MessageTableViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		25649CF21FFF556200002608 /* Evaluated */ = {
+			isa = PBXGroup;
+			children = (
+				25649CF91FFF56AB00002608 /* Controller */,
+				25649CFA1FFF597B00002608 /* View */,
+			);
+			path = Evaluated;
+			sourceTree = "<group>";
+		};
+		25649CF91FFF56AB00002608 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				25649CF61FFF55CA00002608 /* AlreadyEvaluatedViewController.h */,
+				25649CF71FFF55CA00002608 /* AlreadyEvaluatedViewController.m */,
+				25649CF31FFF559400002608 /* NotEvaluatedViewController.h */,
+				25649CF41FFF559400002608 /* NotEvaluatedViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		25649CFA1FFF597B00002608 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				25649CFF1FFF637900002608 /* ShangJiaTableViewCell.h */,
+				25649CFE1FFF637800002608 /* ShangJiaTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1873,6 +1917,7 @@
 				8F1BBE431FE962A400602C3B /* FoodViewController.m in Sources */,
 				257D125F1F69172B003DC1E4 /* MyTabarController.m in Sources */,
 				2519B1E51FEB9F8200C706B6 /* ShangJiaGradeHeaderView.m in Sources */,
+				25649CF51FFF559400002608 /* NotEvaluatedViewController.m in Sources */,
 				25D5A2821FBA857C00074447 /* RegisterHttp.m in Sources */,
 				25313D9C1FB402D4008C9ED5 /* HQPickerView.m in Sources */,
 				257D12591F690F9F003DC1E4 /* RankingViewController.m in Sources */,
@@ -1901,6 +1946,7 @@
 				2542680B1F73A95600E54A5E /* NSDate+MJ.m in Sources */,
 				25D5A2861FBA89D300074447 /* SmsParam.m in Sources */,
 				8F1BBE461FE962C600602C3B /* EntertainmentViewController.m in Sources */,
+				25649CF81FFF55CA00002608 /* AlreadyEvaluatedViewController.m in Sources */,
 				2563D0841FF1FA2E00E7448C /* ExchangeRecordsViewController.m in Sources */,
 				25D5A2D71FBBDD2200074447 /* WebViewController.m in Sources */,
 				25AD8CD11FA85F9C00960732 /* DetailedView.m in Sources */,
@@ -1963,9 +2009,11 @@
 				8F1BBE3E1FE95ED800602C3B /* FavoriteViewController.m in Sources */,
 				25BED2361F7C9CE300A0A07A /* FindTwoCell.m in Sources */,
 				2563D0891FF1FC8100E7448C /* RecodeTimeLineTableViewCell.m in Sources */,
+				25649D001FFF637900002608 /* ShangJiaTableViewCell.m in Sources */,
 				25ABFAF81FE3C3E700C90BD0 /* StepDayTableViewCell.m in Sources */,
 				8F263BC41FD0615500F89A45 /* ShowImageView.m in Sources */,
 				25485B991F721AFE001122F7 /* LoginViewController.m in Sources */,
+				25649CF11FFF52A900002608 /* ShangJiaViewController.m in Sources */,
 				2563D07F1FF0A17A00E7448C /* RatingStarView.m in Sources */,
 				8F263BB91FD05CAF00F89A45 /* AGIPCPreviewController.m in Sources */,
 				2532C1611F6F6EEF0064A28C /* TopSliderVIew.m in Sources */,
