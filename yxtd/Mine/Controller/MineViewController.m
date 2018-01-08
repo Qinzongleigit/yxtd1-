@@ -21,6 +21,8 @@
 #import "RankingViewController.h"
 
 #import "ExchangeRecordsViewController.h"
+#import "AboutUsViewController.h"
+#import "FeedbackViewController.h"
 
 
 
@@ -355,6 +357,7 @@
             [self.navigationController presentViewController:jifenVc animated:YES completion:nil];
 
         }
+        //第五组
     }if (indexPath.section==4) {
         
         UIAlertController*alter=[UIAlertController alertControllerWithTitle:@"退出登录？" message:nil preferredStyle:UIAlertControllerStyleAlert];
@@ -372,7 +375,7 @@
         [alter addAction:cancleAction];
         [alter addAction:sureAction];
         [self presentViewController:alter animated:YES completion:nil];
-        
+       //第二组
     }else if (indexPath.section==1){
         
         if (!indexPath.row) {
@@ -387,7 +390,7 @@
             [self presentViewController:stepVC animated:YES completion:nil];
    
         }
-        
+        //第三组
     }else if (indexPath.section==2){
         
         if (!indexPath.row) {
@@ -423,7 +426,46 @@
             [self presentViewController:recodesVC animated:YES completion:nil];
             
         }
+        //第四组
+    }else if (indexPath.section==3){
         
+        if (!indexPath.row) {
+            
+            AboutUsViewController*aboutVC=[[AboutUsViewController alloc] init];
+            
+              [self.navigationController presentViewController:aboutVC animated:YES completion:nil];
+            //跳转到appStore评价
+        }else if (indexPath.row==1){
+            NSString*APPID=@"1138754653";
+            
+              NSString *itunesurl = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/cn/app/id%@?mt=8&action=write-review",APPID];
+            
+            //手机系统判断
+            NSString* phoneVersion = [[UIDevice currentDevice] systemVersion];
+            
+            
+            if (phoneVersion.floatValue<10) {
+                
+                //iOS10 以前使用
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:itunesurl]];
+                
+            }else{
+                
+                //iOS10 以后使用
+                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:itunesurl] options:@{} completionHandler:nil];
+                
+            }
+            
+         
+           //意见反馈
+        }else if (indexPath.row==2){
+            
+            FeedbackViewController*feedbackVC=[[FeedbackViewController alloc] init];
+             feedbackVC.hidesBottomBarWhenPushed=YES;
+            [self.navigationController pushViewController:feedbackVC animated:YES];
+           
+            
+        }
     }
     //反选
      [tableView deselectRowAtIndexPath:indexPath animated:YES];
