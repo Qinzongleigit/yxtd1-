@@ -28,6 +28,7 @@
 
 @property (nonatomic, weak)UILabel *pLabel;
 
+
 @property (nonatomic, weak)UIButton *addPictureButton;
 
 @property (nonatomic, copy)NSString *messageStr;
@@ -105,9 +106,9 @@
      [self.tableView addGestureRecognizer:tap];
     
     //隐藏多余的分割线
-     [self setExtraCellLineHidden:self.tableView];
+    [self setExtraCellLineHidden:self.tableView];
     
-     [self initHeaderView];
+    [self initHeaderView];
     
     [self showMapLocation];
 
@@ -423,13 +424,13 @@
             };
             
             void (^enumerationBlock)(ALAssetsGroup*, BOOL*) = ^(ALAssetsGroup* group, BOOL* stop) {
-                
+                //设置过滤类型
                 [group setAssetsFilter:[ALAssetsFilter allPhotos]];
                 
                 NSUInteger index = [group numberOfAssets] - 1;
                 
                 NSIndexSet* lastPhotoIndexSet = [NSIndexSet indexSetWithIndex:index];
-                
+                 //枚举最后一个asset
                 [group enumerateAssetsAtIndexes:lastPhotoIndexSet options:0 usingBlock:selectionBlock];
             };
             
