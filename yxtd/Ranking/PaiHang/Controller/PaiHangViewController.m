@@ -53,7 +53,7 @@
     self.scView=scView;
     
     //设置可以滚动的范围，只能上下滚动
-    scView.contentSize = CGSizeMake(0, KscreenH+120);
+    scView.contentSize = CGSizeMake(0, KscreenH+150);
    
     self.view.backgroundColor=[UIColor whiteColor];
     

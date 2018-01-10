@@ -306,6 +306,7 @@
     }
     
     NSInteger headViewHeight = 195 + (10 + pictureHW)*([self.imagePickerArray count]/4 + 1);
+ 
     
     self.headView.frame = CGRectMake(0, 0, screenWidth, headViewHeight);
     

@@ -135,8 +135,11 @@ static NSUInteger numberOfSelectedGridItems = 0;
 
 - (id)initWithImagePickerController:(AGImagePickerController *)imagePickerController asset:(ALAsset *)asset andDelegate:(id<AGIPCGridItemDelegate>)delegate
 {
-    self = [super init];
-    
+
+        self = [super init];
+        
+
+   
     if (self)
     {
         self.imagePickerController = imagePickerController;

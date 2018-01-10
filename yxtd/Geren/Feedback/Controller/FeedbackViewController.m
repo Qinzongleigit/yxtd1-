@@ -10,6 +10,7 @@
 
 #import "AGImagePickerController.h"
 #import "ShowImageViewController.h"
+#import "CustomTextField.h"
 
 #define padding 10
 #define screenWidth [UIScreen mainScreen].bounds.size.width
@@ -17,7 +18,7 @@
 
 #define imageTag 2000
 
-@interface FeedbackViewController ()<UITextViewDelegate,UIGestureRecognizerDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate,UINavigationControllerDelegate,UIActionSheetDelegate>
+@interface FeedbackViewController ()<UITextViewDelegate,UIGestureRecognizerDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,UITextFieldDelegate,UIScrollViewDelegate>
 
 @property (nonatomic,strong) UILabel*typeLabel;
 @property (nonatomic,strong) UILabel*feedbackLabel;
@@ -27,13 +28,12 @@
 @property (nonatomic,strong) UIView*bgView;
 
 
-@property (nonatomic, weak)UIView *headView;
-
 @property (nonatomic, weak)UILabel *pLabel;
 
 @property (nonatomic, weak)UITextView *feedbackTextView;
 
 @property (nonatomic, weak)UIButton *addPictureButton;
+
 
 @property (nonatomic, copy)NSString *messageStr;
 
@@ -54,6 +54,12 @@
  *  imagePicker队列
  */
 @property (nonatomic,strong)NSMutableArray *imagePickerArray;
+
+@property (nonatomic,strong) UIView*feedbackBgView;
+
+@property (nonatomic,strong) UIScrollView *feedScrollView;
+
+
 
 
 
@@ -90,8 +96,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor=COLORWITHRGB(244, 245, 245);
-    
+  
     self.title=@"意见反馈";
     
     [self.rightBt setBackgroundImage:nil forState:UIControlStateNormal];
@@ -100,19 +105,99 @@
     [self.rightBt setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
     
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(keyboardDismiss:)];
-    tap.delegate = self;
+    UIScrollView *feedScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame))];
+    self.feedScrollView=feedScrollView;
+    feedScrollView.backgroundColor = COLORWITHRGB(244, 245, 245);
     
-    [self.view addGestureRecognizer:tap];
+    feedScrollView.showsVerticalScrollIndicator = NO;
+    feedScrollView.delegate=self;
+    
+    //设置可以滚动的范围，只能上下滚动
+    feedScrollView.contentSize = CGSizeMake(0, KscreenH+150);
+
+    [self.view addSubview:feedScrollView];
+    
+    
+    
+    //键盘出现坐标上移
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillHid) name:UIKeyboardWillHideNotification object:nil];
+    
     
     [self feedbackButtonView];
     
     
     [self feedbackDescription];
-
+    
+    
+    [self feedbackAddUserNumber];
    
     
 }
+
+
+#pragma mark -键盘出现
+-(void)keyBoardWillShow:(NSNotification *)aNotification{
+    
+    //获取键盘的高度
+    NSDictionary *userInfo = [aNotification userInfo];
+    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardRect = [aValue CGRectValue];
+    int height = keyboardRect.size.height;
+    
+    self.feedScrollView.frame=CGRectMake(0, -height, KscreenW, KscreenH);
+    
+    
+    
+}
+
+
+//键盘下移
+-(void)keyBoardWillHid{
+    
+    self.feedScrollView.frame=CGRectMake(0, 0, KscreenW, KscreenH);
+    
+}
+
+#pragma mark -联系方式
+-(void)feedbackAddUserNumber{
+    
+    
+    UILabel*lianxiLabel=[[UILabel alloc] init];
+    lianxiLabel.text=@"联系方式（选填）";
+    lianxiLabel.font=[UIFont systemFontOfSize:15];
+    lianxiLabel.textColor=BlackHexColor;
+    [self.feedScrollView addSubview:lianxiLabel];
+    [lianxiLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.mas_equalTo(_feedbackLabel);
+        make.top.mas_equalTo(self.feedbackBgView.mas_bottom).offset(10);
+    }];
+    
+    
+    
+    CustomTextField*phoneNumberField=[[CustomTextField alloc] init];
+    phoneNumberField.attributedPlaceholder=[[NSAttributedString alloc] initWithString:@"手机号/微信/QQ" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor],NSFontAttributeName:phoneNumberField.font}];
+    phoneNumberField.textColor=BlackHexColor;
+    phoneNumberField.font=[UIFont systemFontOfSize:15];
+    [phoneNumberField setBackgroundColor:[UIColor whiteColor]];
+    phoneNumberField.keyboardType=
+    phoneNumberField.enablesReturnKeyAutomatically = YES; //这里设置为无文字就灰色不可点
+    phoneNumberField.clearButtonMode = UITextFieldViewModeWhileEditing; // 出现删除按钮
+    [self.feedScrollView addSubview:phoneNumberField];
+    
+    [phoneNumberField mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.top.mas_equalTo(lianxiLabel.mas_bottom).offset(10);
+        make.width.mas_equalTo(self.view);
+        make.height.mas_equalTo(45);
+    }];
+    
+    
+    
+    
+}
+
 
 #define textViewHeight 120
 
@@ -132,7 +217,7 @@
     feedbackLabel.text=@"反馈描述";
     feedbackLabel.font=[UIFont systemFontOfSize:15];
     feedbackLabel.textColor=BlackHexColor;
-    [self.view addSubview:feedbackLabel];
+    [self.feedScrollView addSubview:feedbackLabel];
     [feedbackLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.mas_equalTo(15);
@@ -144,11 +229,16 @@
     
     
 }
+
+#pragma mark -添加图片按钮
 -(void)initTextViewAndImageView{
     
+    [self.feedbackBgView removeFromSuperview]; 
+    
     UIView*feedbackBgView=[[UIView alloc] init];
+    self.feedbackBgView=feedbackBgView;
     feedbackBgView.backgroundColor=[UIColor whiteColor];
-    [self.view addSubview:feedbackBgView];
+    [self.feedScrollView addSubview:feedbackBgView];
 
     UITextView *feedbackTextView = [[UITextView alloc]initWithFrame:CGRectMake(padding / 2, padding, screenWidth - 2 * padding, textViewHeight)];
     
@@ -214,7 +304,7 @@
         
         self.pictureImageView.image = [UIImage imageWithCGImage:((ALAsset *)[self.imagePickerArray objectAtIndex:i]).thumbnail];
         
-        [self.headView addSubview:self.pictureImageView];
+        [feedbackBgView addSubview:self.pictureImageView];
     }
     if (imageCount < MaxImageCount) {
         
@@ -231,15 +321,15 @@
     
     NSInteger headViewHeight = 120 + (10 + pictureHW)*([self.imagePickerArray count]/4 + 1)+40;
     
-   
-    [feedbackBgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        
+  
+    [feedbackBgView mas_updateConstraints:^(MASConstraintMaker *make) {
+
         make.height.mas_equalTo(headViewHeight);
         make.width.mas_equalTo(self.view);
         make.top.mas_equalTo(self.feedbackLabel.mas_bottom).offset(10);
     }];
     
-    
+   
     
 }
 
@@ -330,8 +420,9 @@
     //选取完图片之后关闭视图
     [self dismissViewControllerAnimated:YES completion:^{
         
+
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
-            
+        
             ALAssetsLibrary* library = [AGImagePickerController defaultAssetsLibrary];
             
             
@@ -393,19 +484,6 @@
 }
 
 
-#pragma mark - keyboard method
--(void)keyboardDismiss:(UITapGestureRecognizer *)tap
-{
-    [self.feedbackTextView resignFirstResponder];
-    
-    if(self.feedbackTextView.isFirstResponder){
-        
-        [self.feedbackTextView resignFirstResponder];
-    }
-}
-
-
-
 // 删除图片
 -(void)deletePic:(UIButton *)btn
 {
@@ -419,7 +497,9 @@
         
         [imageView removeFromSuperview];
     }
+    
     [self initTextViewAndImageView];
+    
 }
 
 
@@ -578,7 +658,7 @@
     typeLabel.text=@"分类标签标题";
     typeLabel.font=[UIFont systemFontOfSize:15];
     typeLabel.textColor=BlackHexColor;
-    [self.view addSubview:typeLabel];
+    [self.feedScrollView addSubview:typeLabel];
     [typeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.mas_equalTo(15);
@@ -589,7 +669,7 @@
     UIView*bgView=[[UIView alloc] init];
     bgView.backgroundColor=[UIColor whiteColor];
     self.bgView=bgView;
-    [self.view addSubview:bgView];
+    [self.feedScrollView addSubview:bgView];
     [bgView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.height.mas_equalTo(90);
@@ -671,10 +751,18 @@
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+#pragma  mark   滚动视图的代理方法
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+ 
+    //隐藏键盘
+    [scrollView endEditing:YES];
+    
+
 }
+
+
 
 
 @end

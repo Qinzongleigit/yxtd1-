@@ -52,6 +52,20 @@
 		25649D001FFF637900002608 /* ShangJiaTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25649CFE1FFF637800002608 /* ShangJiaTableViewCell.m */; };
 		25649D052003096500002608 /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25649D042003096500002608 /* AboutUsViewController.m */; };
 		25649D0A2003229800002608 /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25649D092003229800002608 /* FeedbackViewController.m */; };
+		25649E312005AE8400002608 /* AGImagePickerController+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 25649E182005AE8400002608 /* AGImagePickerController+Helper.m */; };
+		25649E322005AE8400002608 /* AGImagePickerController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 25649E192005AE8400002608 /* AGImagePickerController.bundle */; };
+		25649E332005AE8400002608 /* AGImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25649E1B2005AE8400002608 /* AGImagePickerController.m */; };
+		25649E342005AE8400002608 /* AGImagePreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25649E1E2005AE8400002608 /* AGImagePreviewController.m */; };
+		25649E352005AE8400002608 /* AGIPCAlbumsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25649E202005AE8400002608 /* AGIPCAlbumsController.m */; };
+		25649E362005AE8400002608 /* AGIPCAssetsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25649E222005AE8400002608 /* AGIPCAssetsController.m */; };
+		25649E372005AE8400002608 /* AGIPCGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25649E242005AE8400002608 /* AGIPCGridCell.m */; };
+		25649E382005AE8400002608 /* AGIPCGridItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 25649E262005AE8400002608 /* AGIPCGridItem.m */; };
+		25649E392005AE8400002608 /* AGIPCPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25649E282005AE8400002608 /* AGIPCPreviewController.m */; };
+		25649E3A2005AE8400002608 /* AGIPCToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 25649E2A2005AE8400002608 /* AGIPCToolbarItem.m */; };
+		25649E3B2005AE8400002608 /* AGPreviewScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25649E2C2005AE8400002608 /* AGPreviewScrollView.m */; };
+		25649E3C2005AE8400002608 /* ALAsset+AGIPC.m in Sources */ = {isa = PBXBuildFile; fileRef = 25649E2E2005AE8400002608 /* ALAsset+AGIPC.m */; };
+		25649E3D2005AE8400002608 /* UIButton+AGIPC.m in Sources */ = {isa = PBXBuildFile; fileRef = 25649E302005AE8400002608 /* UIButton+AGIPC.m */; };
+		25649E422005F4B600002608 /* CustomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 25649E412005F4B600002608 /* CustomTextField.m */; };
 		2575540F1FD7812200B4EBB7 /* CanDuihuanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2575540E1FD7812200B4EBB7 /* CanDuihuanCell.m */; };
 		257554121FD7816900B4EBB7 /* OverDuihuanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 257554111FD7816900B4EBB7 /* OverDuihuanCell.m */; };
 		257554151FD781BA00B4EBB7 /* SaishiGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 257554141FD781BA00B4EBB7 /* SaishiGoodsCell.m */; };
@@ -126,19 +140,6 @@
 		8F1BBE431FE962A400602C3B /* FoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1BBE421FE962A400602C3B /* FoodViewController.m */; };
 		8F1BBE461FE962C600602C3B /* EntertainmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1BBE451FE962C600602C3B /* EntertainmentViewController.m */; };
 		8F1BBE4B1FE965A100602C3B /* FavoriteSliderTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1BBE4A1FE965A100602C3B /* FavoriteSliderTopView.m */; };
-		8F263BB11FD05CAF00F89A45 /* AGImagePickerController+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F263B981FD05CAE00F89A45 /* AGImagePickerController+Helper.m */; };
-		8F263BB21FD05CAF00F89A45 /* AGImagePickerController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8F263B991FD05CAE00F89A45 /* AGImagePickerController.bundle */; };
-		8F263BB31FD05CAF00F89A45 /* AGImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F263B9B1FD05CAE00F89A45 /* AGImagePickerController.m */; };
-		8F263BB41FD05CAF00F89A45 /* AGImagePreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F263B9E1FD05CAE00F89A45 /* AGImagePreviewController.m */; };
-		8F263BB51FD05CAF00F89A45 /* AGIPCAlbumsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F263BA01FD05CAE00F89A45 /* AGIPCAlbumsController.m */; };
-		8F263BB61FD05CAF00F89A45 /* AGIPCAssetsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F263BA21FD05CAE00F89A45 /* AGIPCAssetsController.m */; };
-		8F263BB71FD05CAF00F89A45 /* AGIPCGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F263BA41FD05CAE00F89A45 /* AGIPCGridCell.m */; };
-		8F263BB81FD05CAF00F89A45 /* AGIPCGridItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F263BA61FD05CAE00F89A45 /* AGIPCGridItem.m */; };
-		8F263BB91FD05CAF00F89A45 /* AGIPCPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F263BA81FD05CAE00F89A45 /* AGIPCPreviewController.m */; };
-		8F263BBA1FD05CAF00F89A45 /* AGIPCToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F263BAA1FD05CAE00F89A45 /* AGIPCToolbarItem.m */; };
-		8F263BBB1FD05CAF00F89A45 /* AGPreviewScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F263BAC1FD05CAE00F89A45 /* AGPreviewScrollView.m */; };
-		8F263BBC1FD05CAF00F89A45 /* ALAsset+AGIPC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F263BAE1FD05CAE00F89A45 /* ALAsset+AGIPC.m */; };
-		8F263BBD1FD05CAF00F89A45 /* UIButton+AGIPC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F263BB01FD05CAE00F89A45 /* UIButton+AGIPC.m */; };
 		8F263BC01FD060F300F89A45 /* ShowImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F263BBF1FD060F300F89A45 /* ShowImageViewController.m */; };
 		8F263BC41FD0615500F89A45 /* ShowImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F263BC31FD0615500F89A45 /* ShowImageView.m */; };
 		8F263BC61FD0675200F89A45 /* deletePhoto.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F263BC51FD0675200F89A45 /* deletePhoto.png */; };
@@ -257,6 +258,34 @@
 		25649D042003096500002608 /* AboutUsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AboutUsViewController.m; sourceTree = "<group>"; };
 		25649D082003229800002608 /* FeedbackViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedbackViewController.h; sourceTree = "<group>"; };
 		25649D092003229800002608 /* FeedbackViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedbackViewController.m; sourceTree = "<group>"; };
+		25649E172005AE8400002608 /* AGImagePickerController+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AGImagePickerController+Helper.h"; sourceTree = "<group>"; };
+		25649E182005AE8400002608 /* AGImagePickerController+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AGImagePickerController+Helper.m"; sourceTree = "<group>"; };
+		25649E192005AE8400002608 /* AGImagePickerController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AGImagePickerController.bundle; sourceTree = "<group>"; };
+		25649E1A2005AE8400002608 /* AGImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGImagePickerController.h; sourceTree = "<group>"; };
+		25649E1B2005AE8400002608 /* AGImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGImagePickerController.m; sourceTree = "<group>"; };
+		25649E1C2005AE8400002608 /* AGImagePickerControllerDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGImagePickerControllerDefines.h; sourceTree = "<group>"; };
+		25649E1D2005AE8400002608 /* AGImagePreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGImagePreviewController.h; sourceTree = "<group>"; };
+		25649E1E2005AE8400002608 /* AGImagePreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGImagePreviewController.m; sourceTree = "<group>"; };
+		25649E1F2005AE8400002608 /* AGIPCAlbumsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGIPCAlbumsController.h; sourceTree = "<group>"; };
+		25649E202005AE8400002608 /* AGIPCAlbumsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGIPCAlbumsController.m; sourceTree = "<group>"; };
+		25649E212005AE8400002608 /* AGIPCAssetsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGIPCAssetsController.h; sourceTree = "<group>"; };
+		25649E222005AE8400002608 /* AGIPCAssetsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGIPCAssetsController.m; sourceTree = "<group>"; };
+		25649E232005AE8400002608 /* AGIPCGridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGIPCGridCell.h; sourceTree = "<group>"; };
+		25649E242005AE8400002608 /* AGIPCGridCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGIPCGridCell.m; sourceTree = "<group>"; };
+		25649E252005AE8400002608 /* AGIPCGridItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGIPCGridItem.h; sourceTree = "<group>"; };
+		25649E262005AE8400002608 /* AGIPCGridItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGIPCGridItem.m; sourceTree = "<group>"; };
+		25649E272005AE8400002608 /* AGIPCPreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGIPCPreviewController.h; sourceTree = "<group>"; };
+		25649E282005AE8400002608 /* AGIPCPreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGIPCPreviewController.m; sourceTree = "<group>"; };
+		25649E292005AE8400002608 /* AGIPCToolbarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGIPCToolbarItem.h; sourceTree = "<group>"; };
+		25649E2A2005AE8400002608 /* AGIPCToolbarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGIPCToolbarItem.m; sourceTree = "<group>"; };
+		25649E2B2005AE8400002608 /* AGPreviewScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGPreviewScrollView.h; sourceTree = "<group>"; };
+		25649E2C2005AE8400002608 /* AGPreviewScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGPreviewScrollView.m; sourceTree = "<group>"; };
+		25649E2D2005AE8400002608 /* ALAsset+AGIPC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALAsset+AGIPC.h"; sourceTree = "<group>"; };
+		25649E2E2005AE8400002608 /* ALAsset+AGIPC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALAsset+AGIPC.m"; sourceTree = "<group>"; };
+		25649E2F2005AE8400002608 /* UIButton+AGIPC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+AGIPC.h"; sourceTree = "<group>"; };
+		25649E302005AE8400002608 /* UIButton+AGIPC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+AGIPC.m"; sourceTree = "<group>"; };
+		25649E402005F4B600002608 /* CustomTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTextField.h; sourceTree = "<group>"; };
+		25649E412005F4B600002608 /* CustomTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTextField.m; sourceTree = "<group>"; };
 		2575540D1FD7812200B4EBB7 /* CanDuihuanCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanDuihuanCell.h; sourceTree = "<group>"; };
 		2575540E1FD7812200B4EBB7 /* CanDuihuanCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CanDuihuanCell.m; sourceTree = "<group>"; };
 		257554101FD7816900B4EBB7 /* OverDuihuanCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OverDuihuanCell.h; sourceTree = "<group>"; };
@@ -402,32 +431,6 @@
 		8F1BBE451FE962C600602C3B /* EntertainmentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EntertainmentViewController.m; sourceTree = "<group>"; };
 		8F1BBE491FE965A100602C3B /* FavoriteSliderTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavoriteSliderTopView.h; sourceTree = "<group>"; };
 		8F1BBE4A1FE965A100602C3B /* FavoriteSliderTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FavoriteSliderTopView.m; sourceTree = "<group>"; };
-		8F263B971FD05CAE00F89A45 /* AGImagePickerController+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AGImagePickerController+Helper.h"; sourceTree = "<group>"; };
-		8F263B981FD05CAE00F89A45 /* AGImagePickerController+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AGImagePickerController+Helper.m"; sourceTree = "<group>"; };
-		8F263B991FD05CAE00F89A45 /* AGImagePickerController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AGImagePickerController.bundle; sourceTree = "<group>"; };
-		8F263B9A1FD05CAE00F89A45 /* AGImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGImagePickerController.h; sourceTree = "<group>"; };
-		8F263B9B1FD05CAE00F89A45 /* AGImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGImagePickerController.m; sourceTree = "<group>"; };
-		8F263B9C1FD05CAE00F89A45 /* AGImagePickerControllerDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGImagePickerControllerDefines.h; sourceTree = "<group>"; };
-		8F263B9D1FD05CAE00F89A45 /* AGImagePreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGImagePreviewController.h; sourceTree = "<group>"; };
-		8F263B9E1FD05CAE00F89A45 /* AGImagePreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGImagePreviewController.m; sourceTree = "<group>"; };
-		8F263B9F1FD05CAE00F89A45 /* AGIPCAlbumsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGIPCAlbumsController.h; sourceTree = "<group>"; };
-		8F263BA01FD05CAE00F89A45 /* AGIPCAlbumsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGIPCAlbumsController.m; sourceTree = "<group>"; };
-		8F263BA11FD05CAE00F89A45 /* AGIPCAssetsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGIPCAssetsController.h; sourceTree = "<group>"; };
-		8F263BA21FD05CAE00F89A45 /* AGIPCAssetsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGIPCAssetsController.m; sourceTree = "<group>"; };
-		8F263BA31FD05CAE00F89A45 /* AGIPCGridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGIPCGridCell.h; sourceTree = "<group>"; };
-		8F263BA41FD05CAE00F89A45 /* AGIPCGridCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGIPCGridCell.m; sourceTree = "<group>"; };
-		8F263BA51FD05CAE00F89A45 /* AGIPCGridItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGIPCGridItem.h; sourceTree = "<group>"; };
-		8F263BA61FD05CAE00F89A45 /* AGIPCGridItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGIPCGridItem.m; sourceTree = "<group>"; };
-		8F263BA71FD05CAE00F89A45 /* AGIPCPreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGIPCPreviewController.h; sourceTree = "<group>"; };
-		8F263BA81FD05CAE00F89A45 /* AGIPCPreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGIPCPreviewController.m; sourceTree = "<group>"; };
-		8F263BA91FD05CAE00F89A45 /* AGIPCToolbarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGIPCToolbarItem.h; sourceTree = "<group>"; };
-		8F263BAA1FD05CAE00F89A45 /* AGIPCToolbarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGIPCToolbarItem.m; sourceTree = "<group>"; };
-		8F263BAB1FD05CAE00F89A45 /* AGPreviewScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGPreviewScrollView.h; sourceTree = "<group>"; };
-		8F263BAC1FD05CAE00F89A45 /* AGPreviewScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGPreviewScrollView.m; sourceTree = "<group>"; };
-		8F263BAD1FD05CAE00F89A45 /* ALAsset+AGIPC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALAsset+AGIPC.h"; sourceTree = "<group>"; };
-		8F263BAE1FD05CAE00F89A45 /* ALAsset+AGIPC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALAsset+AGIPC.m"; sourceTree = "<group>"; };
-		8F263BAF1FD05CAE00F89A45 /* UIButton+AGIPC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+AGIPC.h"; sourceTree = "<group>"; };
-		8F263BB01FD05CAE00F89A45 /* UIButton+AGIPC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+AGIPC.m"; sourceTree = "<group>"; };
 		8F263BBE1FD060F300F89A45 /* ShowImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowImageViewController.h; sourceTree = "<group>"; };
 		8F263BBF1FD060F300F89A45 /* ShowImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowImageViewController.m; sourceTree = "<group>"; };
 		8F263BC21FD0615500F89A45 /* ShowImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowImageView.h; sourceTree = "<group>"; };
@@ -854,6 +857,7 @@
 			isa = PBXGroup;
 			children = (
 				25649D072003225600002608 /* Controller */,
+				25649E3F2005F46200002608 /* View */,
 			);
 			path = Feedback;
 			sourceTree = "<group>";
@@ -865,6 +869,48 @@
 				25649D092003229800002608 /* FeedbackViewController.m */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		25649E162005AE8400002608 /* AGImagePickerController */ = {
+			isa = PBXGroup;
+			children = (
+				25649E172005AE8400002608 /* AGImagePickerController+Helper.h */,
+				25649E182005AE8400002608 /* AGImagePickerController+Helper.m */,
+				25649E192005AE8400002608 /* AGImagePickerController.bundle */,
+				25649E1A2005AE8400002608 /* AGImagePickerController.h */,
+				25649E1B2005AE8400002608 /* AGImagePickerController.m */,
+				25649E1C2005AE8400002608 /* AGImagePickerControllerDefines.h */,
+				25649E1D2005AE8400002608 /* AGImagePreviewController.h */,
+				25649E1E2005AE8400002608 /* AGImagePreviewController.m */,
+				25649E1F2005AE8400002608 /* AGIPCAlbumsController.h */,
+				25649E202005AE8400002608 /* AGIPCAlbumsController.m */,
+				25649E212005AE8400002608 /* AGIPCAssetsController.h */,
+				25649E222005AE8400002608 /* AGIPCAssetsController.m */,
+				25649E232005AE8400002608 /* AGIPCGridCell.h */,
+				25649E242005AE8400002608 /* AGIPCGridCell.m */,
+				25649E252005AE8400002608 /* AGIPCGridItem.h */,
+				25649E262005AE8400002608 /* AGIPCGridItem.m */,
+				25649E272005AE8400002608 /* AGIPCPreviewController.h */,
+				25649E282005AE8400002608 /* AGIPCPreviewController.m */,
+				25649E292005AE8400002608 /* AGIPCToolbarItem.h */,
+				25649E2A2005AE8400002608 /* AGIPCToolbarItem.m */,
+				25649E2B2005AE8400002608 /* AGPreviewScrollView.h */,
+				25649E2C2005AE8400002608 /* AGPreviewScrollView.m */,
+				25649E2D2005AE8400002608 /* ALAsset+AGIPC.h */,
+				25649E2E2005AE8400002608 /* ALAsset+AGIPC.m */,
+				25649E2F2005AE8400002608 /* UIButton+AGIPC.h */,
+				25649E302005AE8400002608 /* UIButton+AGIPC.m */,
+			);
+			path = AGImagePickerController;
+			sourceTree = "<group>";
+		};
+		25649E3F2005F46200002608 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				25649E402005F4B600002608 /* CustomTextField.h */,
+				25649E412005F4B600002608 /* CustomTextField.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		2575540C1FD7800200B4EBB7 /* JiFenStoreCell */ = {
@@ -1004,7 +1050,7 @@
 		257D12101F68E196003DC1E4 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
-				8F263B961FD05CAE00F89A45 /* AGImagePickerController */,
+				25649E162005AE8400002608 /* AGImagePickerController */,
 				25D5A2771FB9957900074447 /* Reachability */,
 				257D12611F691898003DC1E4 /* Category */,
 			);
@@ -1662,39 +1708,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		8F263B961FD05CAE00F89A45 /* AGImagePickerController */ = {
-			isa = PBXGroup;
-			children = (
-				8F263B971FD05CAE00F89A45 /* AGImagePickerController+Helper.h */,
-				8F263B981FD05CAE00F89A45 /* AGImagePickerController+Helper.m */,
-				8F263B991FD05CAE00F89A45 /* AGImagePickerController.bundle */,
-				8F263B9A1FD05CAE00F89A45 /* AGImagePickerController.h */,
-				8F263B9B1FD05CAE00F89A45 /* AGImagePickerController.m */,
-				8F263B9C1FD05CAE00F89A45 /* AGImagePickerControllerDefines.h */,
-				8F263B9D1FD05CAE00F89A45 /* AGImagePreviewController.h */,
-				8F263B9E1FD05CAE00F89A45 /* AGImagePreviewController.m */,
-				8F263B9F1FD05CAE00F89A45 /* AGIPCAlbumsController.h */,
-				8F263BA01FD05CAE00F89A45 /* AGIPCAlbumsController.m */,
-				8F263BA11FD05CAE00F89A45 /* AGIPCAssetsController.h */,
-				8F263BA21FD05CAE00F89A45 /* AGIPCAssetsController.m */,
-				8F263BA31FD05CAE00F89A45 /* AGIPCGridCell.h */,
-				8F263BA41FD05CAE00F89A45 /* AGIPCGridCell.m */,
-				8F263BA51FD05CAE00F89A45 /* AGIPCGridItem.h */,
-				8F263BA61FD05CAE00F89A45 /* AGIPCGridItem.m */,
-				8F263BA71FD05CAE00F89A45 /* AGIPCPreviewController.h */,
-				8F263BA81FD05CAE00F89A45 /* AGIPCPreviewController.m */,
-				8F263BA91FD05CAE00F89A45 /* AGIPCToolbarItem.h */,
-				8F263BAA1FD05CAE00F89A45 /* AGIPCToolbarItem.m */,
-				8F263BAB1FD05CAE00F89A45 /* AGPreviewScrollView.h */,
-				8F263BAC1FD05CAE00F89A45 /* AGPreviewScrollView.m */,
-				8F263BAD1FD05CAE00F89A45 /* ALAsset+AGIPC.h */,
-				8F263BAE1FD05CAE00F89A45 /* ALAsset+AGIPC.m */,
-				8F263BAF1FD05CAE00F89A45 /* UIButton+AGIPC.h */,
-				8F263BB01FD05CAE00F89A45 /* UIButton+AGIPC.m */,
-			);
-			path = AGImagePickerController;
-			sourceTree = "<group>";
-		};
 		8F263BC11FD0613900F89A45 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1850,7 +1863,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				25393CAA1F68DA5E006905CB /* LaunchScreen.storyboard in Resources */,
-				8F263BB21FD05CAF00F89A45 /* AGImagePickerController.bundle in Resources */,
 				8F5AD9D01FB88875007B5BA8 /* Welcome3.jpg in Resources */,
 				25393CA71F68DA5E006905CB /* Assets.xcassets in Resources */,
 				25393CA51F68DA5E006905CB /* Main.storyboard in Resources */,
@@ -1858,6 +1870,7 @@
 				8F5AD9CE1FB88874007B5BA8 /* Welcome1.jpg in Resources */,
 				25AB5B361FC7FFB800BC4D6F /* AddressCell.xib in Resources */,
 				257554261FD7EAE400B4EBB7 /* JiangZhangTableViewCell.xib in Resources */,
+				25649E322005AE8400002608 /* AGImagePickerController.bundle in Resources */,
 				8F263BC61FD0675200F89A45 /* deletePhoto.png in Resources */,
 				258A0E141F9B060D00EF9593 /* nearBicycle.json in Resources */,
 				25AB5B381FC80EBD00BC4D6F /* area.plist in Resources */,
@@ -1943,35 +1956,37 @@
 			files = (
 				8F0D8A421FE81A980064B514 /* DiscountUsedViewController.m in Sources */,
 				257D120E1F68E18E003DC1E4 /* AppDelegate.m in Sources */,
+				25649E3A2005AE8400002608 /* AGIPCToolbarItem.m in Sources */,
 				25FD1ADA1F6A163A00D7957E /* UIColor+Hex.m in Sources */,
+				25649E312005AE8400002608 /* AGImagePickerController+Helper.m in Sources */,
 				25ABFB4B1FE8BA1400C90BD0 /* UIView+XMGExtension.m in Sources */,
 				2575541E1FD7D78B00B4EBB7 /* JiangZhangCellView.m in Sources */,
-				8F263BB61FD05CAF00F89A45 /* AGIPCAssetsController.m in Sources */,
-				8F263BB81FD05CAF00F89A45 /* AGIPCGridItem.m in Sources */,
 				25393C9C1F68DA5E006905CB /* main.m in Sources */,
 				25D88F341FD5420700405F8D /* UICountingLabel.m in Sources */,
 				257D38341F74DB5500C25FE4 /* UIView+Frame.m in Sources */,
-				8F263BBA1FD05CAF00F89A45 /* AGIPCToolbarItem.m in Sources */,
 				25AD8CAE1FA1B3A500960732 /* HYSwitch.m in Sources */,
+				25649E352005AE8400002608 /* AGIPCAlbumsController.m in Sources */,
 				8F0D8A331FE816EE0064B514 /* MyDiscountTopSliderView.m in Sources */,
 				25485B941F7219AB001122F7 /* MineViewController.m in Sources */,
 				253869D91F7F454100D34B18 /* HealthManager.m in Sources */,
 				8F1BBE431FE962A400602C3B /* FoodViewController.m in Sources */,
 				257D125F1F69172B003DC1E4 /* MyTabarController.m in Sources */,
 				2519B1E51FEB9F8200C706B6 /* ShangJiaGradeHeaderView.m in Sources */,
+				25649E342005AE8400002608 /* AGImagePreviewController.m in Sources */,
 				25649CF51FFF559400002608 /* NotEvaluatedViewController.m in Sources */,
 				25D5A2821FBA857C00074447 /* RegisterHttp.m in Sources */,
 				25313D9C1FB402D4008C9ED5 /* HQPickerView.m in Sources */,
+				25649E3C2005AE8400002608 /* ALAsset+AGIPC.m in Sources */,
 				257D12591F690F9F003DC1E4 /* RankingViewController.m in Sources */,
 				25AB5B231FC7CCBF00BC4D6F /* UpdatePhoneNumberViewController.m in Sources */,
 				2563D0D31FF3778D00E7448C /* MessageViewController.m in Sources */,
 				2532C1701F6F72A90064A28C /* PaiHangViewController.m in Sources */,
 				25ABFB5D1FEA370800C90BD0 /* EntertainmentTableViewCell.m in Sources */,
 				8F0D8A3D1FE81A360064B514 /* DiscountExpiredViewController.m in Sources */,
+				25649E362005AE8400002608 /* AGIPCAssetsController.m in Sources */,
 				25FE9F6A1F7E35BF00D9E420 /* CLTRoundView.m in Sources */,
-				8F263BB11FD05CAF00F89A45 /* AGImagePickerController+Helper.m in Sources */,
-				8F263BBD1FD05CAF00F89A45 /* UIButton+AGIPC.m in Sources */,
 				8F263BC01FD060F300F89A45 /* ShowImageViewController.m in Sources */,
+				25649E372005AE8400002608 /* AGIPCGridCell.m in Sources */,
 				25130E4A1F99EA1B00E1E29A /* SelectableOverlay.m in Sources */,
 				2575541A1FD79D7100B4EBB7 /* JiangZhangTableViewController.m in Sources */,
 				25ABFB481FE7B98100C90BD0 /* MyDiscountViewController.m in Sources */,
@@ -1994,10 +2009,13 @@
 				25D5A2D71FBBDD2200074447 /* WebViewController.m in Sources */,
 				25AD8CD11FA85F9C00960732 /* DetailedView.m in Sources */,
 				25AD8CB81FA8156D00960732 /* DetailedViewController.m in Sources */,
+				25649E392005AE8400002608 /* AGIPCPreviewController.m in Sources */,
 				25313DE21FB54D2F008C9ED5 /* TopicVC.m in Sources */,
 				25D5A2F61FBC3D0000074447 /* LoginHttp.m in Sources */,
 				25649D0A2003229800002608 /* FeedbackViewController.m in Sources */,
 				25313DE61FB5511F008C9ED5 /* ExchangeCell.m in Sources */,
+				25649E3D2005AE8400002608 /* UIButton+AGIPC.m in Sources */,
+				25649E382005AE8400002608 /* AGIPCGridItem.m in Sources */,
 				25313DDE1FB5493D008C9ED5 /* ExchangeVC.m in Sources */,
 				8F1BBE4B1FE965A100602C3B /* FavoriteSliderTopView.m in Sources */,
 				257D12601F69172B003DC1E4 /* MyUINavigationController.m in Sources */,
@@ -2010,15 +2028,12 @@
 				257554151FD781BA00B4EBB7 /* SaishiGoodsCell.m in Sources */,
 				257554251FD7EAE400B4EBB7 /* JiangZhangTableViewCell.m in Sources */,
 				25AB5BED1FD13EFC00BC4D6F /* JiFenHeaderView.m in Sources */,
-				8F263BBB1FD05CAF00F89A45 /* AGPreviewScrollView.m in Sources */,
+				25649E332005AE8400002608 /* AGImagePickerController.m in Sources */,
 				8F5AD9CA1FB87475007B5BA8 /* ShowAnimationView.m in Sources */,
 				25130E471F99E8AB00E1E29A /* JSQuanShowView.m in Sources */,
-				8F263BB41FD05CAF00F89A45 /* AGImagePreviewController.m in Sources */,
-				8F263BB51FD05CAF00F89A45 /* AGIPCAlbumsController.m in Sources */,
 				25ABFB401FE7A0CA00C90BD0 /* SuccessDuiHuanAlter.m in Sources */,
 				25AB5B271FC7CDEA00BC4D6F /* ShipAddressViewController.m in Sources */,
 				257D12641F6918CE003DC1E4 /* UIImage+TZRenderImage.m in Sources */,
-				8F263BB31FD05CAF00F89A45 /* AGImagePickerController.m in Sources */,
 				2519B1EB1FEBA8E000C706B6 /* ShanJiaGradeViewController.m in Sources */,
 				25D5A2F71FBC3D0000074447 /* LoginParam.m in Sources */,
 				251CF2DA1FC50EB200867046 /* NickNameView.m in Sources */,
@@ -2032,13 +2047,12 @@
 				25ABFAF51FE3A48E00C90BD0 /* StepPaiHangViewController.m in Sources */,
 				25ABFB4F1FE8F3A900C90BD0 /* UnusedTableViewCell.m in Sources */,
 				25ABFB6A1FEA4FE200C90BD0 /* FoodDetaliStarView.m in Sources */,
-				8F263BB71FD05CAF00F89A45 /* AGIPCGridCell.m in Sources */,
 				25130E411F99E66E00E1E29A /* RunLocationGaoDeManager.m in Sources */,
-				8F263BBC1FD05CAF00F89A45 /* ALAsset+AGIPC.m in Sources */,
 				25AD8CCD1FA85B6800960732 /* StarView.m in Sources */,
 				25ABFB561FEA04AD00C90BD0 /* FoodTableViewCell.m in Sources */,
 				25485B9D1F721BC4001122F7 /* ForgotPassViewController.m in Sources */,
 				8F5FCE0A1FCB23340013C119 /* RankingModel.m in Sources */,
+				25649E422005F4B600002608 /* CustomTextField.m in Sources */,
 				25D5A3A31FBED5A000074447 /* JiFenViewController.m in Sources */,
 				257D12561F690F73003DC1E4 /* RunViewController.m in Sources */,
 				25AB5B9A1FCE90D900BC4D6F /* HuatiDongtaiViewController.m in Sources */,
@@ -2059,9 +2073,9 @@
 				25485B991F721AFE001122F7 /* LoginViewController.m in Sources */,
 				25649CF11FFF52A900002608 /* ShangJiaViewController.m in Sources */,
 				2563D07F1FF0A17A00E7448C /* RatingStarView.m in Sources */,
-				8F263BB91FD05CAF00F89A45 /* AGIPCPreviewController.m in Sources */,
 				2532C1611F6F6EEF0064A28C /* TopSliderVIew.m in Sources */,
 				25ABFB591FEA110100C90BD0 /* FoodStarView.m in Sources */,
+				25649E3B2005AE8400002608 /* AGPreviewScrollView.m in Sources */,
 				25D5A27F1FBA846400074447 /* RegisterParam.m in Sources */,
 				2532C1BB1F70BB000064A28C /* SaiShiDetailedHeaderView.m in Sources */,
 				2532C1771F6F77FF0064A28C /* SaiShiDetailedViewController.m in Sources */,
