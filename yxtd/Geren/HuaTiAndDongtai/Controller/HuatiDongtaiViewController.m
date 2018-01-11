@@ -22,16 +22,16 @@
 
 @property (nonatomic,strong) UITableView*tableView;
 
-@property (nonatomic, weak)UITextView *reportStateTextView;
+@property (nonatomic, weak) UITextView *reportStateTextView;
 
-@property (nonatomic, weak)UIView *headView;
+@property (nonatomic, weak) UIView *headView;
 
-@property (nonatomic, weak)UILabel *pLabel;
+@property (nonatomic, weak) UILabel *pLabel;
 
 
-@property (nonatomic, weak)UIButton *addPictureButton;
+@property (nonatomic, weak) UIButton *addPictureButton;
 
-@property (nonatomic, copy)NSString *messageStr;
+@property (nonatomic, copy) NSString *messageStr;
 @property (nonatomic, weak) HYSwitch*switch1;
 
 

@@ -28,24 +28,24 @@
 @property (nonatomic,strong) UIView*bgView;
 
 
-@property (nonatomic, weak)UILabel *pLabel;
+@property (nonatomic, weak) UILabel *pLabel;
 
-@property (nonatomic, weak)UITextView *feedbackTextView;
+@property (nonatomic, weak) UITextView *feedbackTextView;
 
-@property (nonatomic, weak)UIButton *addPictureButton;
+@property (nonatomic, weak) UIButton *addPictureButton;
 
 
-@property (nonatomic, copy)NSString *messageStr;
+@property (nonatomic, copy) NSString *messageStr;
 
 
 /**
  *  照片选择器
  */
-@property (nonatomic,strong)AGImagePickerController *imagePicker;
+@property (nonatomic,strong) AGImagePickerController *imagePicker;
 
 @property (nonatomic,strong) UIActionSheet *actionSheet;
 
-@property (nonatomic,strong)NSMutableArray *baseImagesArr;//存放编码之后的图片
+@property (nonatomic,strong) NSMutableArray *baseImagesArr;//存放编码之后的图片
 
 
 @property (nonatomic,weak) UIImageView *pictureImageView;
@@ -53,15 +53,16 @@
 /**
  *  imagePicker队列
  */
-@property (nonatomic,strong)NSMutableArray *imagePickerArray;
+@property (nonatomic,strong) NSMutableArray *imagePickerArray;
 
-@property (nonatomic,strong) UIView*feedbackBgView;
+@property (nonatomic,strong) UIView* feedbackBgView;
 
 @property (nonatomic,strong) UIScrollView *feedScrollView;
 
+@property (nonatomic,strong) UILabel* lianxiLabel;
 
-
-
+@property (nonatomic,strong) CustomTextField* phoneNumberField;
+@property (nonatomic,strong) UIButton* publishButton;
 
 
 
@@ -91,7 +92,11 @@
     return _baseImagesArr;
 }
 
-
+//移除键盘弹出和隐藏的通知
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -104,24 +109,36 @@
     self.rightBt.titleLabel.font=[UIFont systemFontOfSize:14];
     [self.rightBt setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
+
     
-    UIScrollView *feedScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame))];
+
+    UIScrollView *feedScrollView = [[UIScrollView alloc] init];
     self.feedScrollView=feedScrollView;
     feedScrollView.backgroundColor = COLORWITHRGB(244, 245, 245);
-    
     feedScrollView.showsVerticalScrollIndicator = NO;
     feedScrollView.delegate=self;
-    
-    //设置可以滚动的范围，只能上下滚动
-    feedScrollView.contentSize = CGSizeMake(0, KscreenH+150);
-
     [self.view addSubview:feedScrollView];
     
+    UITapGestureRecognizer*tap=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapKeyBoardhidden)];
+    [feedScrollView addGestureRecognizer:tap];
+ 
+ 
     
+    UIButton*publishButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    [publishButton setBackgroundColor:COLORWITHRGB(41, 53, 55)];
+    self.publishButton=publishButton;
+    [publishButton setTitle:@"提交反馈" forState:UIControlStateNormal];
+    [publishButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [publishButton addTarget:self action:@selector(publishButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:publishButton];
+    [self.view bringSubviewToFront:publishButton];
     
-    //键盘出现坐标上移
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillHid) name:UIKeyboardWillHideNotification object:nil];
+    [publishButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.bottom.mas_equalTo(0);
+        make.size.mas_equalTo(CGSizeMake(KscreenW, 49));
+    }];
+    
     
     
     [self feedbackButtonView];
@@ -130,42 +147,128 @@
     [self feedbackDescription];
     
     
-    [self feedbackAddUserNumber];
+    //注册通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showKeyboard:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideKeyboard:) name:UIKeyboardWillHideNotification object:nil];
+    
+}
+
+#pragma mark - 键盘弹出
+- (void)showKeyboard:(NSNotification *)noti
+{
+    
+    self.view.transform = CGAffineTransformIdentity;
+    UIView *editView = _feedbackTextView ? _feedbackTextView : _phoneNumberField;
+    
+    CGRect tfRect = [editView.superview convertRect:editView.frame toView:self.view];
+    NSValue *value = noti.userInfo[@"UIKeyboardFrameEndUserInfoKey"];
+    
+    CGRect keyBoardF = [value CGRectValue];
+    
+    CGFloat animationTime = [noti.userInfo[@"UIKeyboardAnimationDurationUserInfoKey"] floatValue];
+    CGFloat _editMaxY = CGRectGetMaxY(tfRect);
+    CGFloat _keyBoardMinY = CGRectGetMinY(keyBoardF);
+    
+    //100为scrollView可偏移量+反馈按钮的高度
+    if (_keyBoardMinY < _editMaxY) {
+        CGFloat moveDistance = _editMaxY - _keyBoardMinY+100;
+        [UIView animateWithDuration:animationTime animations:^{
+            self.view.transform = CGAffineTransformTranslate(self.view.transform, 0, -moveDistance);
+        }];
+        
+    }
+}
+
+-(void)tapKeyBoardhidden{
+    
+    [self.feedScrollView endEditing:YES];
+    
+}
+
+//键盘隐藏
+- (void)hideKeyboard:(NSNotification *)noti
+{
+    
+    self.view.transform = CGAffineTransformIdentity;
+}
+
+
+#pragma mark -textField 代理方法
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    
+    _phoneNumberField =(CustomTextField*)textField;
+    _feedbackTextView = nil;
+}
+
+#pragma mark -textView 代理方法
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    _feedbackTextView = textView;
+    _phoneNumberField = nil;
+    return YES;
+}
+
+
+#pragma mark -提交反馈按钮点击事件
+-(void)publishButtonAction{
+    
+    
    
-    
-}
-
-
-#pragma mark -键盘出现
--(void)keyBoardWillShow:(NSNotification *)aNotification{
-    
-    //获取键盘的高度
-    NSDictionary *userInfo = [aNotification userInfo];
-    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
-    CGRect keyboardRect = [aValue CGRectValue];
-    int height = keyboardRect.size.height;
-    
-    self.feedScrollView.frame=CGRectMake(0, -height, KscreenW, KscreenH);
-    
+// [self publishMessage:self.feedbackTextView images:self.baseImagesArr];
+    [self publishMessage:self.feedbackTextView textFieldText:self.phoneNumberField images:self.baseImagesArr];
     
     
 }
 
 
-//键盘下移
--(void)keyBoardWillHid{
+- (void)publishMessage:(UITextView *)messageText textFieldText:(CustomTextField*)textField images:(NSArray *)selectedImages
+{
+    [self.feedScrollView endEditing:YES];
     
-    self.feedScrollView.frame=CGRectMake(0, 0, KscreenW, KscreenH);
+    if (messageText.text.length < 10 || selectedImages.count < 3 ) {
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"请完善反馈信息" message:nil delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        
+        
+        if (textField.text.length < 10)
+        {
+            alertView.message = @"意见反馈描述,不少于10个字";
+            
+        }else if (selectedImages.count < 3)
+        {
+            alertView.message = @"反馈图片,不少于3张";
+            
+        }
+        
+        [alertView show];
+    }else
+    {
+        // 反馈——上传服务器
+        [self postDataToWeb:selectedImages];
+    }
+    
     
 }
 
-#pragma mark -联系方式
+#pragma mark   提交反馈——上传服务器
+- (void)postDataToWeb:(NSArray *)imagesArray
+{
+    [MBProgressHUD showMessage:@"正在反馈到跑卷团队..." toView:self.view];
+    
+    self.publishButton.enabled = NO;
+    
+}
+
+
+#pragma mark -联系方式(选填)
 -(void)feedbackAddUserNumber{
     
-    
+    [self.lianxiLabel removeFromSuperview];
     UILabel*lianxiLabel=[[UILabel alloc] init];
     lianxiLabel.text=@"联系方式（选填）";
     lianxiLabel.font=[UIFont systemFontOfSize:15];
+    self.lianxiLabel=lianxiLabel;
     lianxiLabel.textColor=BlackHexColor;
     [self.feedScrollView addSubview:lianxiLabel];
     [lianxiLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -173,11 +276,12 @@
         make.left.mas_equalTo(_feedbackLabel);
         make.top.mas_equalTo(self.feedbackBgView.mas_bottom).offset(10);
     }];
+  
     
-    
-    
+    [self.phoneNumberField removeFromSuperview];
     CustomTextField*phoneNumberField=[[CustomTextField alloc] init];
-    phoneNumberField.attributedPlaceholder=[[NSAttributedString alloc] initWithString:@"手机号/微信/QQ" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor],NSFontAttributeName:phoneNumberField.font}];
+    self.phoneNumberField=phoneNumberField;
+    self.phoneNumberField.delegate=self; phoneNumberField.attributedPlaceholder=[[NSAttributedString alloc] initWithString:@"手机号/微信/QQ" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor],NSFontAttributeName:phoneNumberField.font}];
     phoneNumberField.textColor=BlackHexColor;
     phoneNumberField.font=[UIFont systemFontOfSize:15];
     [phoneNumberField setBackgroundColor:[UIColor whiteColor]];
@@ -185,16 +289,22 @@
     phoneNumberField.enablesReturnKeyAutomatically = YES; //这里设置为无文字就灰色不可点
     phoneNumberField.clearButtonMode = UITextFieldViewModeWhileEditing; // 出现删除按钮
     [self.feedScrollView addSubview:phoneNumberField];
-    
+
     [phoneNumberField mas_makeConstraints:^(MASConstraintMaker *make) {
-       
+
         make.top.mas_equalTo(lianxiLabel.mas_bottom).offset(10);
         make.width.mas_equalTo(self.view);
         make.height.mas_equalTo(45);
     }];
-    
-    
-    
+
+   //对添加的滚动视图给坐标
+    [self.feedScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(self.view);
+        
+        // 让scrollview的contentSize随着内容的增多而变化
+ make.bottom.mas_equalTo(self.phoneNumberField.mas_bottom).offset(50);
+        
+    }];
     
 }
 
@@ -213,6 +323,7 @@
 -(void)feedbackDescription{
     
     UILabel*feedbackLabel=[[UILabel alloc] init];
+    
     self.feedbackLabel=feedbackLabel;
     feedbackLabel.text=@"反馈描述";
     feedbackLabel.font=[UIFont systemFontOfSize:15];
@@ -233,13 +344,14 @@
 #pragma mark -添加图片按钮
 -(void)initTextViewAndImageView{
     
-    [self.feedbackBgView removeFromSuperview]; 
     
-    UIView*feedbackBgView=[[UIView alloc] init];
-    self.feedbackBgView=feedbackBgView;
-    feedbackBgView.backgroundColor=[UIColor whiteColor];
-    [self.feedScrollView addSubview:feedbackBgView];
-
+    [self.feedbackBgView removeFromSuperview];
+    
+        UIView*feedbackBgView=[[UIView alloc] init];
+        self.feedbackBgView=feedbackBgView;
+        feedbackBgView.backgroundColor=[UIColor whiteColor];
+        [self.feedScrollView addSubview:feedbackBgView];
+ 
     UITextView *feedbackTextView = [[UITextView alloc]initWithFrame:CGRectMake(padding / 2, padding, screenWidth - 2 * padding, textViewHeight)];
     
     feedbackTextView.text = self.feedbackTextView.text;  //防止用户已经输入了文字状态
@@ -254,7 +366,7 @@
     
     [[[self.feedbackTextView textInputMode] primaryLanguage] isEqualToString:@"emoji"];
     
-    [feedbackBgView addSubview:feedbackTextView];
+    [self.feedbackBgView addSubview:feedbackTextView];
     
     UILabel *pLabel = [[UILabel alloc]initWithFrame:CGRectMake(padding, 2 * padding , screenWidth, 10)];
     
@@ -268,9 +380,8 @@
     
     pLabel.textColor = [UIColor lightGrayColor];
     
-    [feedbackBgView addSubview:pLabel];
+    [self.feedbackBgView addSubview:pLabel];
     
-   
    
     NSInteger imageCount = [self.imagePickerArray count];
     
@@ -304,7 +415,7 @@
         
         self.pictureImageView.image = [UIImage imageWithCGImage:((ALAsset *)[self.imagePickerArray objectAtIndex:i]).thumbnail];
         
-        [feedbackBgView addSubview:self.pictureImageView];
+        [self.feedbackBgView addSubview:self.pictureImageView];
     }
     if (imageCount < MaxImageCount) {
         
@@ -314,7 +425,7 @@
         
         [addPictureButton addTarget:self action:@selector(addPicture) forControlEvents:UIControlEventTouchUpInside];
         
-        [feedbackBgView addSubview:addPictureButton];
+        [self.feedbackBgView addSubview:addPictureButton];
         
         self.addPictureButton = addPictureButton;
     }
@@ -322,14 +433,15 @@
     NSInteger headViewHeight = 120 + (10 + pictureHW)*([self.imagePickerArray count]/4 + 1)+40;
     
   
-    [feedbackBgView mas_updateConstraints:^(MASConstraintMaker *make) {
+    [self.feedbackBgView mas_updateConstraints:^(MASConstraintMaker *make) {
 
         make.height.mas_equalTo(headViewHeight);
         make.width.mas_equalTo(self.view);
         make.top.mas_equalTo(self.feedbackLabel.mas_bottom).offset(10);
     }];
     
-   
+    [self feedbackAddUserNumber];
+  
     
 }
 
@@ -507,45 +619,48 @@
 #pragma mark - 设置图片选择器
 - (void)showIpc
 {
-    self.imagePicker = [[AGImagePickerController alloc] initWithFailureBlock:^(NSError *error) {
-        
-        if (error == nil)
-        {
-            [self dismissViewControllerAnimated:YES completion:^{}];
-        } else
-        {
-            double delayInSeconds = 0.5;
+    
+        self.imagePicker = [[AGImagePickerController alloc] initWithFailureBlock:^(NSError *error) {
             
-            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-            
-            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                
+            if (error == nil)
+            {
                 [self dismissViewControllerAnimated:YES completion:^{}];
-                
-            });
-        }
-        
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-        
-    } andSuccessBlock:^(NSArray *info) {
-        
-        [self.imagePickerArray addObjectsFromArray:info];
-        
-        [self dismissViewControllerAnimated:YES completion:^{
+            } else
+            {
+               double delayInSeconds = 0.5;
+
+               dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+
+               dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+
+                   [self dismissViewControllerAnimated:YES completion:^{}];
+
+                });
+            }
             
-            //图片（压缩尺寸、编码）
-            [self settingImages:info];
+            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+            
+        } andSuccessBlock:^(NSArray *info) {
+            
+            [self.imagePickerArray addObjectsFromArray:info];
+            
+            [self dismissViewControllerAnimated:YES completion:^{
+                
+                //图片（压缩尺寸、编码）
+                [self settingImages:info];
+            }];
+            
+            
+            [self initTextViewAndImageView];
+            
+            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
         }];
         
+        self.imagePicker.maximumNumberOfPhotosToBeSelected = 10 - [self.imagePickerArray count];
         
-        [self initTextViewAndImageView];
-        
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-    }];
+        [self presentViewController:self.imagePicker animated:YES completion:^{}];
     
-    self.imagePicker.maximumNumberOfPhotosToBeSelected = 10 - [self.imagePickerArray count];
     
-    [self presentViewController:self.imagePicker animated:YES completion:^{}];
     
 }
 
@@ -750,6 +865,8 @@
 
     
 }
+
+
 
 
 #pragma  mark   滚动视图的代理方法
