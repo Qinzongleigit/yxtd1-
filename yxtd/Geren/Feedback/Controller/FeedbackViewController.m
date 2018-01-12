@@ -34,10 +34,6 @@
 
 @property (nonatomic, weak) UIButton *addPictureButton;
 
-
-@property (nonatomic, copy) NSString *messageStr;
-
-
 /**
  *  照片选择器
  */
@@ -63,6 +59,10 @@
 
 @property (nonatomic,strong) CustomTextField* phoneNumberField;
 @property (nonatomic,strong) UIButton* publishButton;
+
+@property (nonatomic, copy)  NSString*textFieldStr;
+
+@property (nonatomic, copy)  NSString*textViewStr;
 
 
 
@@ -212,32 +212,25 @@
 
 #pragma mark -提交反馈按钮点击事件
 -(void)publishButtonAction{
-    
-    
-   
-// [self publishMessage:self.feedbackTextView images:self.baseImagesArr];
-    [self publishMessage:self.feedbackTextView textFieldText:self.phoneNumberField images:self.baseImagesArr];
-    
-    
-}
-
-
-- (void)publishMessage:(UITextView *)messageText textFieldText:(CustomTextField*)textField images:(NSArray *)selectedImages
-{
+ 
     [self.feedScrollView endEditing:YES];
     
-    if (messageText.text.length < 10 || selectedImages.count < 3 ) {
+    if (self.textViewStr.length < 10 || self.baseImagesArr.count < 3 ||self.textFieldStr.length<6) {
         
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"请完善反馈信息" message:nil delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
         
         
-        if (textField.text.length < 10)
+        if (self.textViewStr.length < 10)
         {
             alertView.message = @"意见反馈描述,不少于10个字";
             
-        }else if (selectedImages.count < 3)
+        }else if (self.baseImagesArr.count < 3)
         {
             alertView.message = @"反馈图片,不少于3张";
+            
+        }else if(self.textFieldStr.length<6){
+            
+             alertView.message = @"请输入手机号、微信号或者QQ号";
             
         }
         
@@ -245,7 +238,7 @@
     }else
     {
         // 反馈——上传服务器
-        [self postDataToWeb:selectedImages];
+        [self postDataToWeb:self.baseImagesArr];
     }
     
     
@@ -289,6 +282,7 @@
     phoneNumberField.enablesReturnKeyAutomatically = YES; //这里设置为无文字就灰色不可点
     phoneNumberField.clearButtonMode = UITextFieldViewModeWhileEditing; // 出现删除按钮
     [self.feedScrollView addSubview:phoneNumberField];
+      [phoneNumberField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
 
     [phoneNumberField mas_makeConstraints:^(MASConstraintMaker *make) {
 
@@ -727,12 +721,35 @@
     return  YES;
 }
 
-#pragma mark - Text View Delegate
+#pragma mark -textField 数值变化
+- (void)textFieldDidChange:(UITextField *)textField {
+    
+    if (textField.text.length<14) {
+        
+        self.textFieldStr=textField.text;
+    }
+    
+}
+
+//textField代理事件(限制密码输入过长)
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    //
+    if ((textField==self.phoneNumberField) && range.location >= 20)
+    {
+        return NO;
+    }
+    
+    return YES;
+}
+
+#pragma mark - textView数值变化
 -(void)textViewDidChange:(UITextView *)textView
 {
     self.pLabel.hidden = [textView.text length];
     
-    self.messageStr = textView.text;
+    
+    self.textViewStr=textView.text;
 }
 
 #pragma mark -输入框信息变化
