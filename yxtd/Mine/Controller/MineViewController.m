@@ -23,6 +23,7 @@
 #import "ExchangeRecordsViewController.h"
 #import "AboutUsViewController.h"
 #import "FeedbackViewController.h"
+#import "MySportsController.h"
 
 
 
@@ -415,7 +416,10 @@
      
         }else if (indexPath.row==3){
             
-     //界面还没有确定暂时先不做
+     
+            MySportsController*sportsVC=[[MySportsController alloc] init];
+            sportsVC.hidesBottomBarWhenPushed=YES;
+            [self.navigationController pushViewController:sportsVC animated:YES];
             
         }else if (indexPath.row==4){
             
