@@ -10,6 +10,8 @@
 
 @interface UnusedTableViewCell()
 
+@property (nonatomic,strong) UIView*shadowView;
+
 @property (nonatomic,strong) UIView*bgView;
 
 @property (nonatomic,strong) UIImageView*brandImageView;
@@ -44,12 +46,23 @@
 
 -(void)creadUnusedCell{
     
+    //白色背景阴影
+    _shadowView = [[UIView alloc] init];
+    _shadowView.backgroundColor = [UIColor clearColor];
+    _shadowView.layer.shadowOpacity = 0.5; //不透明度
+    
+    _shadowView.layer.shadowOffset=  CGSizeMake(0, 3);//偏移距离
+    _shadowView.layer.shadowRadius = 5; //半径
+    _shadowView.layer.shadowColor=[UIColor lightGrayColor].CGColor; //阴影颜色
+    
     //白色背景
     _bgView=[[UIView alloc] init];
     _bgView.backgroundColor=[UIColor whiteColor];
     _bgView.layer.cornerRadius=10;
     _bgView.clipsToBounds=YES;
-    [self.contentView addSubview:_bgView];
+    
+    [self.contentView addSubview:_shadowView];
+    [_shadowView addSubview:_bgView];
     
     //商标
     _brandImageView=[[UIImageView alloc] init];
@@ -100,9 +113,16 @@
 
 -(void)layoutSubviews{
     
-    [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_shadowView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.edges.mas_equalTo(UIEdgeInsetsMake(10, 10, 10, 10));
+    }];
+    
+    [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.size.mas_equalTo(_shadowView);
+        make.left.top.mas_equalTo(0);
+        
     }];
     
     [_brandImageView mas_makeConstraints:^(MASConstraintMaker *make) {

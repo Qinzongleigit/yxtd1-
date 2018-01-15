@@ -31,6 +31,7 @@
     tableView.rowHeight=174;
     tableView.dataSource=self;
     tableView.backgroundColor=[UIColor whiteColor];
+    tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     [self.view addSubview:tableView];
     [tableView registerClass:[UnusedTableViewCell class] forCellReuseIdentifier:unusedID];
 
@@ -51,8 +52,8 @@
     
     
     UnusedTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:unusedID];
-    cell.backgroundColor=[UIColor lightGrayColor];
-    cell.alpha=0.1;
+    cell.backgroundColor=[UIColor whiteColor];
+   
     return cell;
 }
 
