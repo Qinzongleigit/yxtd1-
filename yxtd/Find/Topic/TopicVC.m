@@ -79,54 +79,28 @@
 -(void)initNavi{
     
     
+   
+    //设置导航条
+    UINavigationBar *navigationBar=[[UINavigationBar alloc]initWithFrame:CGRectMake(0, 20, CGRectGetWidth(self.view.frame), 44)];
+    navigationBar.tintColor=[UIColor whiteColor];
+    navigationBar.translucent = NO;
+    [self.view addSubview:navigationBar];
     
-    UIView*lineH=[[UIView alloc] initWithFrame:CGRectMake(0, 64, KscreenW, 1)];
-    lineH.backgroundColor=btnLineColor;
-    [self.view addSubview:lineH];
+    UINavigationItem *navigationItem=[[UINavigationItem alloc]init];
     
-    UIView*naviBgV=[[UIView alloc] init];
-    naviBgV.backgroundColor=[UIColor whiteColor];
-    [self.view addSubview:naviBgV];
+    //设置左边返回按钮
+    navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"back"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(backBtn)];
     
+    [navigationBar pushNavigationItem:navigationItem animated:NO];
     
-    UIButton*leftBt=[UIButton buttonWithType:UIButtonTypeCustom];
-    [leftBt setBackgroundImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-    [leftBt addTarget:self action:@selector(leftBtClick) forControlEvents:UIControlEventTouchUpInside];
-    [naviBgV addSubview:leftBt];
-    
-    
-    UILabel*titleLabel=[[UILabel alloc] init];
-    titleLabel.text=@"话题";
-    titleLabel.font=[UIFont systemFontOfSize:17];
-    titleLabel.textColor=BlackHexColor;
-    [naviBgV addSubview:titleLabel];
+    //设置标题
+    navigationItem.title = @"话题";
     
     
-    [naviBgV mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.left.equalTo(@0);
-        make.right.equalTo(@0);
-        make.left.equalTo(@0);
-        make.height.equalTo(@64);
-    }];
-    
-    [leftBt mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.top.equalTo(naviBgV.mas_top).with.offset(32);
-        make.left.equalTo(naviBgV.mas_left).with.offset(15);
-    }];
-    
-    
-    [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.centerX.equalTo(naviBgV);
-        make.top.equalTo(naviBgV.mas_top).with.offset(35);
-        make.size.mas_equalTo(CGSizeMake(40, 17));
-    }];
     
 }
 
--(void)leftBtClick{
+-(void)backBtn{
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }

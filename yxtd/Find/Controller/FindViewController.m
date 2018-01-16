@@ -186,23 +186,28 @@
             }else if (tag==1){
 
                 ExchangeVC*vc=[[ExchangeVC alloc] init];
+                
+              
+                //隐藏底部tabbar
+                vc.hidesBottomBarWhenPushed = YES;
+                
+                vc.modalPresentationStyle = UIModalPresentationPageSheet;
+                
+                [self.navigationController presentViewController:vc animated:YES completion:nil];
 
-                [self presentViewController:vc animated:YES completion:^{
-                    
-                    vc.hidesBottomBarWhenPushed=YES;
-                    
-                }];
                 
                 
             }else{
                 
                 TopicVC*topVc=[[TopicVC alloc] init];
                 
-                [self presentViewController:topVc animated:YES completion:^{
-                    
-                   topVc.hidesBottomBarWhenPushed=YES;
-                    
-                }];
+                //隐藏底部tabbar
+                topVc.hidesBottomBarWhenPushed = YES;
+                
+                topVc.modalPresentationStyle = UIModalPresentationPageSheet;
+                
+                [self.navigationController presentViewController:topVc animated:YES completion:nil];
+
                 
             }
         };

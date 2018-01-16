@@ -26,10 +26,11 @@ static  NSString*cellId=@"id";
     
     self.view.backgroundColor=[UIColor whiteColor];
     
+    
     [self initNavi];
     
     
-    UITableView*tableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 65, KscreenW, KscreenH-49-65)];
+    UITableView*tableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 65, KscreenW, KscreenH-50-64)];
     self.tableView=tableView;
     tableView.delegate=self;
     tableView.dataSource=self;
@@ -65,53 +66,24 @@ static  NSString*cellId=@"id";
 
 
 -(void)initNavi{
+ 
+    //设置导航条
+    UINavigationBar *navigationBar=[[UINavigationBar alloc]initWithFrame:CGRectMake(0, 20, CGRectGetWidth(self.view.frame), 44)];
+    navigationBar.tintColor=[UIColor whiteColor];
+    navigationBar.translucent = NO;
+    [self.view addSubview:navigationBar];
+    
+    UINavigationItem *navigationItem=[[UINavigationItem alloc]init];
+    
+    //设置左边返回按钮
+    navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"back"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(backBtn)];
+    
+    [navigationBar pushNavigationItem:navigationItem animated:NO];
+    
+    //设置标题
+    navigationItem.title = @"互换";
     
     
-    UIView*lineH=[[UIView alloc] initWithFrame:CGRectMake(0, 64, KscreenW, 1)];
-    lineH.backgroundColor=btnLineColor;
-    [self.view addSubview:lineH];
-    
-    UIView*naviBgV=[[UIView alloc] init];
-    naviBgV.backgroundColor=[UIColor whiteColor];
-    [self.view addSubview:naviBgV];
-    
-    
-    UIButton*leftBt=[UIButton buttonWithType:UIButtonTypeCustom];
-    [leftBt setBackgroundImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-    [leftBt addTarget:self action:@selector(leftBtClick) forControlEvents:UIControlEventTouchUpInside];
-    [naviBgV addSubview:leftBt];
-    
-    
-    UILabel*titleLabel=[[UILabel alloc] init];
-    titleLabel.text=@"互换";
-    titleLabel.font=[UIFont systemFontOfSize:17];
-    titleLabel.textColor=BlackHexColor;
-    [naviBgV addSubview:titleLabel];
-    
-
-    [naviBgV mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.left.equalTo(@0);
-        make.right.equalTo(@0);
-        make.left.equalTo(@0);
-        make.height.equalTo(@64);
-    }];
-    
-    [leftBt mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.top.equalTo(naviBgV.mas_top).with.offset(32);
-        make.left.equalTo(naviBgV.mas_left).with.offset(15);
-    }];
-    
-    
-    [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.centerX.equalTo(naviBgV);
-        make.top.equalTo(naviBgV.mas_top).with.offset(35);
-        make.size.mas_equalTo(CGSizeMake(40, 17));
-    }];
-    
-
     
     UIView*tabbarView=[[UIView alloc] initWithFrame:CGRectMake(0, KscreenH-49, KscreenW, 49)];
     tabbarView.backgroundColor=COLORWITHRGB(0, 219, 220);
@@ -137,7 +109,7 @@ static  NSString*cellId=@"id";
 
 }
 
--(void)leftBtClick{
+-(void)backBtn{
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }

@@ -11,6 +11,7 @@
 #import "CanDuihuanCell.h"
 #import "OverDuihuanCell.h"
 #import "SaishiGoodsCell.h"
+#import "JiFenShuoMingViewController.h"
 
 @interface JiFenViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
@@ -125,11 +126,10 @@
     };
 
     headerView.jifenRight = ^{
-      
-        
-        UIAlertView*alter=[[UIAlertView alloc] initWithTitle:@"信息提示" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定" , nil];
-        [alter show];
-
+    
+        JiFenShuoMingViewController*shuomingVC=[[JiFenShuoMingViewController alloc] init];
+       [self presentViewController:shuomingVC animated:YES completion:nil];
+       
         
     };
     

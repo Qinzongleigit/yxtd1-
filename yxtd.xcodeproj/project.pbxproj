@@ -85,6 +85,7 @@
 		257D38341F74DB5500C25FE4 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 257D38331F74DB5500C25FE4 /* UIView+Frame.m */; };
 		257D38371F74E70C00C25FE4 /* CDFindHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 257D38361F74E70C00C25FE4 /* CDFindHeaderView.m */; };
 		258A0E141F9B060D00EF9593 /* nearBicycle.json in Resources */ = {isa = PBXBuildFile; fileRef = 258A0E131F9B060D00EF9593 /* nearBicycle.json */; };
+		258FC174200DD3E400490F86 /* JiFenShuoMingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 258FC173200DD3E400490F86 /* JiFenShuoMingViewController.m */; };
 		25AB5B231FC7CCBF00BC4D6F /* UpdatePhoneNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AB5B221FC7CCBF00BC4D6F /* UpdatePhoneNumberViewController.m */; };
 		25AB5B271FC7CDEA00BC4D6F /* ShipAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AB5B261FC7CDEA00BC4D6F /* ShipAddressViewController.m */; };
 		25AB5B311FC7FBB000BC4D6F /* AddAddressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AB5B301FC7FBB000BC4D6F /* AddAddressVC.m */; };
@@ -325,6 +326,8 @@
 		257D38351F74E70C00C25FE4 /* CDFindHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDFindHeaderView.h; sourceTree = "<group>"; };
 		257D38361F74E70C00C25FE4 /* CDFindHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDFindHeaderView.m; sourceTree = "<group>"; };
 		258A0E131F9B060D00EF9593 /* nearBicycle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = nearBicycle.json; sourceTree = "<group>"; };
+		258FC172200DD3E400490F86 /* JiFenShuoMingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JiFenShuoMingViewController.h; sourceTree = "<group>"; };
+		258FC173200DD3E400490F86 /* JiFenShuoMingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JiFenShuoMingViewController.m; sourceTree = "<group>"; };
 		25AB5B211FC7CCBF00BC4D6F /* UpdatePhoneNumberViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpdatePhoneNumberViewController.h; sourceTree = "<group>"; };
 		25AB5B221FC7CCBF00BC4D6F /* UpdatePhoneNumberViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UpdatePhoneNumberViewController.m; sourceTree = "<group>"; };
 		25AB5B251FC7CDEA00BC4D6F /* ShipAddressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShipAddressViewController.h; sourceTree = "<group>"; };
@@ -1174,6 +1177,15 @@
 			path = Category;
 			sourceTree = "<group>";
 		};
+		258FC171200DD36F00490F86 /* JiFenShuoMing */ = {
+			isa = PBXGroup;
+			children = (
+				258FC172200DD3E400490F86 /* JiFenShuoMingViewController.h */,
+				258FC173200DD3E400490F86 /* JiFenShuoMingViewController.m */,
+			);
+			path = JiFenShuoMing;
+			sourceTree = "<group>";
+		};
 		25AB5B201FC7CC3800BC4D6F /* UpdateTellPhone */ = {
 			isa = PBXGroup;
 			children = (
@@ -1568,6 +1580,7 @@
 		25D5A3A01FBED53E00074447 /* JiFenStore */ = {
 			isa = PBXGroup;
 			children = (
+				258FC171200DD36F00490F86 /* JiFenShuoMing */,
 				25AB5BEA1FD13EC300BC4D6F /* Controller */,
 				25AB5BE91FD13EB700BC4D6F /* View */,
 			);
@@ -2097,6 +2110,7 @@
 				25D5A2891FBA89E100074447 /* SmsHttp.m in Sources */,
 				25ABFB3D1FE7660C00C90BD0 /* DuiHuanAlter.m in Sources */,
 				2532C1681F6F70D10064A28C /* SaiShiViewController.m in Sources */,
+				258FC174200DD3E400490F86 /* JiFenShuoMingViewController.m in Sources */,
 				2563D0D61FF37CAE00E7448C /* MessageTableViewCell.m in Sources */,
 				25D5A27A1FB9957900074447 /* Reachability.m in Sources */,
 				25AB5B951FCE8D1400BC4D6F /* NaviBarRootViewController.m in Sources */,
