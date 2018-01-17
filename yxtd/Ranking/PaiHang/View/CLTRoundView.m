@@ -41,7 +41,7 @@ static CGFloat  lineWidth = 20;   // 线宽
 
 
 
-@property (nonatomic,assign) int ratio;  // 记录步数变化 用于数字跳动
+@property (nonatomic,assign) NSInteger ratio;  // 记录步数变化 用于数字跳动
 
 
 @end
@@ -310,13 +310,18 @@ static CGFloat  lineWidth = 20;   // 线宽
 {
     _percent = percent;
     
+    
+    
     if (percent > 1) {
         percent = 1;
     }else if (percent < 0){
         percent = 0;
     }
+    
+     NSString*stepStr=[NSString stringWithFormat:@"%f",percent];
 
-   self.ratio = percent*[self.purposeBt.titleLabel.text integerValue] ;
+      self.ratio = [stepStr floatValue]*[self.purposeBt.titleLabel.text integerValue] ;
+
     
     [self performSelector:@selector(shapeChange) withObject:nil afterDelay:0];
     

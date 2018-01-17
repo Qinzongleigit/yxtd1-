@@ -8,7 +8,7 @@
 
 #import "PaiHangViewController.h"
 #import "CLTRoundView.h"
-#import "HealthManager.h"
+#import "PedometerManager.h"
 #import "HQPickerView.h"
 
 @interface PaiHangViewController ()<HQPickerViewDelegate>
@@ -70,7 +70,7 @@
     
     [self addLabelToView];
     
-    [self getHealthData];
+    [self getHealthStepData];
 
     
 }
@@ -97,47 +97,73 @@
 }
 
 
-#pragma mark  获取健康中心数据
--(void)getHealthData{
+#pragma mark  获取苹果手机步数和距离数据
+-(void)getHealthStepData{
     
-    HealthManager*manager=[HealthManager shareInstance];
-    [manager authorizeHealthKit:^(BOOL success, NSError *error) {
-        if (success) {
-            
-              NSLog(@"success");
-            
-            [manager getDistance:^(double value, NSError *error) {
-                NSLog(@"2count-->%.2f", value);
-                NSLog(@"2error-->%@", error.localizedDescription);
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    self.kmLabel.text = [NSString stringWithFormat:@"%.2fKM",value];
-          
-                });
+    if ([PedometerManager isStepCountingAvailable]) {
+        [[PedometerManager shared]
+         startPedometerUpdatesTodayWithHandler:^(PedometerData *pedometerData,
+                                                 NSError *error) {
+             if (!error) {
+                
+                 self.kmLabel.text = [NSString stringWithFormat:@"%.2fKM",([pedometerData.distance floatValue]/1000)];
+                 
+                  //步数
+                self.roudView.percent=([pedometerData.numberOfSteps floatValue]/[self.roudView.purposeBt.titleLabel.text integerValue]);
+                
 
-                
-            }];
-            [manager  getRealTimeStepCountCompletionHandler:^(double value,double time, NSError *error) {
-                
-                dispatch_sync(dispatch_get_main_queue(), ^{
-                    
-                    
-                    //步数
-                    self.roudView.percent=(value/[self.roudView.purposeBt.titleLabel.text integerValue]);
-                    
-                    //时间
-                    int h = time / 3600;
-                    int m = ((long)time % 3600)/60;
-                    self.timeLabel1.text=[NSString stringWithFormat:@"%@h %@m", @(h), @(m)];
-                }) ;
-                
-            }];
-      
-        }else{
-            
-             NSLog(@"fail");
-        }
+             }
+         }];
+    } else {
         
-    }];
+        UIAlertView *alertView = [[UIAlertView alloc]
+                                  initWithTitle:@"此设备不支持记步功能"
+                                  message:@"仅支持iPhone5s及其以上设备"
+                                  delegate:self
+                                  cancelButtonTitle:nil
+                                  otherButtonTitles:@"OK", nil];
+        
+        [alertView show];
+    }
+    
+//    HealthManager*manager=[HealthManager shareInstance];
+//    [manager authorizeHealthKit:^(BOOL success, NSError *error) {
+//        if (success) {
+//
+//              NSLog(@"success");
+//
+//            [manager getDistance:^(double value, NSError *error) {
+//                NSLog(@"2count-->%.2f", value);
+//                NSLog(@"2error-->%@", error.localizedDescription);
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    self.kmLabel.text = [NSString stringWithFormat:@"%.2fKM",value];
+//
+//                });
+//
+//
+//            }];
+//            [manager  getRealTimeStepCountCompletionHandler:^(double value,double time, NSError *error) {
+//
+//                dispatch_sync(dispatch_get_main_queue(), ^{
+//
+//
+//                    //步数
+//                    self.roudView.percent=(value/[self.roudView.purposeBt.titleLabel.text integerValue]);
+//
+//                    //时间
+//                    int h = time / 3600;
+//                    int m = ((long)time % 3600)/60;
+//                    self.timeLabel1.text=[NSString stringWithFormat:@"%@h %@m", @(h), @(m)];
+//                }) ;
+//
+//            }];
+//
+//        }else{
+//
+//             NSLog(@"fail");
+//        }
+//
+//    }];
     
 }
 

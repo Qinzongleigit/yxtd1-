@@ -26,9 +26,7 @@
 		2532C1701F6F72A90064A28C /* PaiHangViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2532C16F1F6F72A90064A28C /* PaiHangViewController.m */; };
 		2532C1771F6F77FF0064A28C /* SaiShiDetailedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2532C1761F6F77FF0064A28C /* SaiShiDetailedViewController.m */; };
 		2532C1BB1F70BB000064A28C /* SaiShiDetailedHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2532C1BA1F70BB000064A28C /* SaiShiDetailedHeaderView.m */; };
-		253869D91F7F454100D34B18 /* HealthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 253869D81F7F454100D34B18 /* HealthManager.m */; };
 		253869DC1F7F455C00D34B18 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 253869DB1F7F455C00D34B18 /* HealthKit.framework */; };
-		253869DF1F7F479100D34B18 /* HKHealthStore+AAPLExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 253869DE1F7F479100D34B18 /* HKHealthStore+AAPLExtensions.m */; };
 		25393C9C1F68DA5E006905CB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 25393C9B1F68DA5E006905CB /* main.m */; };
 		25393CA51F68DA5E006905CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25393CA31F68DA5E006905CB /* Main.storyboard */; };
 		25393CA71F68DA5E006905CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25393CA61F68DA5E006905CB /* Assets.xcassets */; };
@@ -86,6 +84,8 @@
 		257D38371F74E70C00C25FE4 /* CDFindHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 257D38361F74E70C00C25FE4 /* CDFindHeaderView.m */; };
 		258A0E141F9B060D00EF9593 /* nearBicycle.json in Resources */ = {isa = PBXBuildFile; fileRef = 258A0E131F9B060D00EF9593 /* nearBicycle.json */; };
 		258FC174200DD3E400490F86 /* JiFenShuoMingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 258FC173200DD3E400490F86 /* JiFenShuoMingViewController.m */; };
+		258FC177200F2F3E00490F86 /* PedometerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 258FC176200F2F3E00490F86 /* PedometerData.m */; };
+		258FC17A200F2F9B00490F86 /* PedometerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 258FC179200F2F9B00490F86 /* PedometerManager.m */; };
 		25AB5B231FC7CCBF00BC4D6F /* UpdatePhoneNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AB5B221FC7CCBF00BC4D6F /* UpdatePhoneNumberViewController.m */; };
 		25AB5B271FC7CDEA00BC4D6F /* ShipAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AB5B261FC7CDEA00BC4D6F /* ShipAddressViewController.m */; };
 		25AB5B311FC7FBB000BC4D6F /* AddAddressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AB5B301FC7FBB000BC4D6F /* AddAddressVC.m */; };
@@ -210,12 +210,8 @@
 		2532C1761F6F77FF0064A28C /* SaiShiDetailedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaiShiDetailedViewController.m; sourceTree = "<group>"; };
 		2532C1B91F70BB000064A28C /* SaiShiDetailedHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaiShiDetailedHeaderView.h; sourceTree = "<group>"; };
 		2532C1BA1F70BB000064A28C /* SaiShiDetailedHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaiShiDetailedHeaderView.m; sourceTree = "<group>"; };
-		253869D71F7F454100D34B18 /* HealthManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthManager.h; sourceTree = "<group>"; };
-		253869D81F7F454100D34B18 /* HealthManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthManager.m; sourceTree = "<group>"; };
 		253869DA1F7F455C00D34B18 /* yxtd.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = yxtd.entitlements; sourceTree = "<group>"; };
 		253869DB1F7F455C00D34B18 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
-		253869DD1F7F479100D34B18 /* HKHealthStore+AAPLExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HKHealthStore+AAPLExtensions.h"; sourceTree = "<group>"; };
-		253869DE1F7F479100D34B18 /* HKHealthStore+AAPLExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HKHealthStore+AAPLExtensions.m"; sourceTree = "<group>"; };
 		25393C971F68DA5E006905CB /* yxtd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yxtd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25393C9B1F68DA5E006905CB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		25393CA41F68DA5E006905CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -328,6 +324,10 @@
 		258A0E131F9B060D00EF9593 /* nearBicycle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = nearBicycle.json; sourceTree = "<group>"; };
 		258FC172200DD3E400490F86 /* JiFenShuoMingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JiFenShuoMingViewController.h; sourceTree = "<group>"; };
 		258FC173200DD3E400490F86 /* JiFenShuoMingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JiFenShuoMingViewController.m; sourceTree = "<group>"; };
+		258FC175200F2F3E00490F86 /* PedometerData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PedometerData.h; sourceTree = "<group>"; };
+		258FC176200F2F3E00490F86 /* PedometerData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PedometerData.m; sourceTree = "<group>"; };
+		258FC178200F2F9B00490F86 /* PedometerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PedometerManager.h; sourceTree = "<group>"; };
+		258FC179200F2F9B00490F86 /* PedometerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PedometerManager.m; sourceTree = "<group>"; };
 		25AB5B211FC7CCBF00BC4D6F /* UpdatePhoneNumberViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpdatePhoneNumberViewController.h; sourceTree = "<group>"; };
 		25AB5B221FC7CCBF00BC4D6F /* UpdatePhoneNumberViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UpdatePhoneNumberViewController.m; sourceTree = "<group>"; };
 		25AB5B251FC7CDEA00BC4D6F /* ShipAddressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShipAddressViewController.h; sourceTree = "<group>"; };
@@ -658,10 +658,10 @@
 		253869D61F7F44CC00D34B18 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				253869D71F7F454100D34B18 /* HealthManager.h */,
-				253869D81F7F454100D34B18 /* HealthManager.m */,
-				253869DD1F7F479100D34B18 /* HKHealthStore+AAPLExtensions.h */,
-				253869DE1F7F479100D34B18 /* HKHealthStore+AAPLExtensions.m */,
+				258FC175200F2F3E00490F86 /* PedometerData.h */,
+				258FC176200F2F3E00490F86 /* PedometerData.m */,
+				258FC178200F2F9B00490F86 /* PedometerManager.h */,
+				258FC179200F2F9B00490F86 /* PedometerManager.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1861,7 +1861,7 @@
 				TargetAttributes = {
 					25393C961F68DA5E006905CB = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = D2S943BN85;
+						DevelopmentTeam = 83K7JYL422;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -2014,8 +2014,8 @@
 				25AD8CAE1FA1B3A500960732 /* HYSwitch.m in Sources */,
 				25649E352005AE8400002608 /* AGIPCAlbumsController.m in Sources */,
 				8F0D8A331FE816EE0064B514 /* MyDiscountTopSliderView.m in Sources */,
+				258FC17A200F2F9B00490F86 /* PedometerManager.m in Sources */,
 				25485B941F7219AB001122F7 /* MineViewController.m in Sources */,
-				253869D91F7F454100D34B18 /* HealthManager.m in Sources */,
 				8F1BBE431FE962A400602C3B /* FoodViewController.m in Sources */,
 				8FFB6D1E200BAD860033E9FA /* MySportsController.m in Sources */,
 				257D125F1F69172B003DC1E4 /* MyTabarController.m in Sources */,
@@ -2070,7 +2070,6 @@
 				257D12601F69172B003DC1E4 /* MyUINavigationController.m in Sources */,
 				25ABFB671FEA3BE000C90BD0 /* FoodDetailHeaderView.m in Sources */,
 				25D5A26D1FB9837A00074447 /* MBProgressHUD+MJ.m in Sources */,
-				253869DF1F7F479100D34B18 /* HKHealthStore+AAPLExtensions.m in Sources */,
 				2532C16B1F6F70E20064A28C /* SportViewController.m in Sources */,
 				8F0D8A381FE819C00064B514 /* DiscountUnusedViewController.m in Sources */,
 				8FEC15681FCDAE8D0081799A /* TwoDimensionCodeVC.m in Sources */,
@@ -2087,6 +2086,7 @@
 				25D5A2F71FBC3D0000074447 /* LoginParam.m in Sources */,
 				251CF2DA1FC50EB200867046 /* NickNameView.m in Sources */,
 				257D120F1F68E18E003DC1E4 /* ViewController.m in Sources */,
+				258FC177200F2F3E00490F86 /* PedometerData.m in Sources */,
 				25ABFB641FEA3AE000C90BD0 /* FoodDetailsViewController.m in Sources */,
 				257D38371F74E70C00C25FE4 /* CDFindHeaderView.m in Sources */,
 				25D5A2761FB9945B00074447 /* CDHttpTool.m in Sources */,
@@ -2294,7 +2294,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = yxtd/yxtd.entitlements;
-				DEVELOPMENT_TEAM = D2S943BN85;
+				DEVELOPMENT_TEAM = 83K7JYL422;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/yxtd/Other/yxtd.pch";
 				INFOPLIST_FILE = yxtd/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
@@ -2311,7 +2311,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = yxtd/yxtd.entitlements;
-				DEVELOPMENT_TEAM = D2S943BN85;
+				DEVELOPMENT_TEAM = 83K7JYL422;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/yxtd/Other/yxtd.pch";
 				INFOPLIST_FILE = yxtd/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
