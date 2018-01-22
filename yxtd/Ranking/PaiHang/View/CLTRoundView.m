@@ -7,6 +7,7 @@
 //
 
 #import "CLTRoundView.h"
+#import "UICountingLabel.h"
 
 #define degreesToRadians(x) (M_PI*(x)/180.0) //把角度转换成PI的方式
 static CGFloat  lineWidth = 20;   // 线宽
@@ -31,17 +32,13 @@ static CGFloat  lineWidth = 20;   // 线宽
 
 @property (nonatomic,assign)CGFloat centerY;  // 中心点 y
 
-@property (nonatomic,strong)UILabel *stepLabel;  //  进度
+@property (nonatomic,strong) UICountingLabel *stepLabel;  //步数
 
-@property (nonatomic,strong)UILabel *progressLabel;  // 今日步数
+@property (nonatomic,strong)UILabel *progressLabel;  //今日步数标签
 
 @property (nonatomic,strong)UILabel *purposeLabel;  // 今日目标
 
 @property (nonatomic,strong)UILabel *rankingLabel;
-
-
-
-@property (nonatomic,assign) NSInteger ratio;  // 记录步数变化 用于数字跳动
 
 
 @end
@@ -68,6 +65,7 @@ static CGFloat  lineWidth = 20;   // 线宽
         
         [self drawLayers];
         
+        
     }
     return self;
 }
@@ -84,7 +82,7 @@ static CGFloat  lineWidth = 20;   // 线宽
     _centerX = self.frame.size.width / 2;  // 控制圆盘的X轴坐标
     _centerY = self.frame.size.height / 2  + 20; // 控制圆盘的Y轴坐标
     
-   // _radius = (self.bounds.size.width - 100 - lineWidth) / 2;  // 圆的半径
+   // 圆的半径
     _radius=108;
 
     [self drawBottomLayer];  // 绘制底部灰色填充layer
@@ -97,22 +95,14 @@ static CGFloat  lineWidth = 20;   // 线宽
     
     [self.layer addSublayer:_bottomShapeLayer];  // 添加到底层的layer 上
     
-
-    [self addSubview:self.stepLabel];
-    
     [self addSubview:self.progressLabel];
     
     [self addSubview:self.purposeLabel];
     
     [self addSubview:self.rankingLabel];
     
-    [self addSubview:self.purposeBt];
-    
-    [_purposeBt mas_makeConstraints:^(MASConstraintMaker *make) {
-
-      make.left.equalTo(_purposeLabel.mas_right).with.offset(5);
-       make.centerY.equalTo(_purposeLabel);
-    }];
+    [self addPurposeButton];
+   
 
 
 
@@ -142,28 +132,42 @@ static CGFloat  lineWidth = 20;   // 线宽
     
 }
 
+#pragma mark -设置跳动的步数显示
+-(void)setSetpNumber:(NSInteger)setpNumber{
 
-- (UILabel *)stepLabel
-{
-    if (!_stepLabel) {
-        
-        _stepLabel = [[UILabel alloc]init];
-        
+        //不能用定时器来做，时间太慢了，用封装一个label
+        UICountingLabel *stepLabel = [[UICountingLabel alloc] init];
+        self.stepLabel=stepLabel;
+        stepLabel.font = [UIFont fontWithName:@"Avenir Next" size:30];
+  
+       [self addSubview:stepLabel];
+    
         CGFloat width = 160;
         CGFloat height = 60;
         _stepLabel.frame = CGRectMake((self.frame.size.width - width) / 2, _centerY - height / 2, width, height);
         _stepLabel.font = [UIFont boldSystemFontOfSize:30];
         _stepLabel.textAlignment = NSTextAlignmentCenter;
-        _stepLabel.text = @"0";
+  
+    if (!setpNumber) {
+        
+        _stepLabel.text=@"0";
+        
+    }else{
+      
+        //设置跳动时间和跳动范围
+        [stepLabel jumpNumberWithDuration:4.0f fromNumber:0 toNumber:setpNumber];
+        
     }
-    
-    return _stepLabel;
+
+
+ 
 }
 
 
 - (UILabel *)purposeLabel
 {
     if (!_purposeLabel) {
+        
         
         _purposeLabel = [[UILabel alloc]init];
 
@@ -180,17 +184,23 @@ static CGFloat  lineWidth = 20;   // 线宽
     return _purposeLabel;
 }
 
--(UIButton*)purposeBt{
+-(void)addPurposeButton{
     
-    
-    if (!_purposeBt) {
        _purposeBt=[UIButton buttonWithType:UIButtonTypeCustom];
         [_purposeBt setTitle:@"10000" forState:UIControlStateNormal];
         [_purposeBt setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
         _purposeBt.titleLabel.font=[UIFont systemFontOfSize:16];
         [_purposeBt addTarget:self action:@selector(purposeBt:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _purposeBt;
+    [self addSubview:_purposeBt];
+    
+    [_purposeBt mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(_purposeLabel.mas_right).with.offset(5);
+        make.centerY.equalTo(_purposeLabel);
+    }];
+        
+     
+    
 }
 
 #pragma mark -目标按钮点击
@@ -237,7 +247,7 @@ static CGFloat  lineWidth = 20;   // 线宽
     
     _bottomShapeLayer.path= path.CGPath;
     _bottomShapeLayer.lineCap = kCALineCapButt;
-   _bottomShapeLayer.lineDashPattern = [NSArray arrayWithObjects:[NSNumber numberWithInt:2],[NSNumber numberWithInt:5], nil];
+    _bottomShapeLayer.lineDashPattern = [NSArray arrayWithObjects:[NSNumber numberWithInt:2],[NSNumber numberWithInt:5], nil];
     
     //线的高度
     
@@ -282,8 +292,6 @@ static CGFloat  lineWidth = 20;   // 线宽
     UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:CGPointMake(_centerX, _centerY) radius:_radius  startAngle:degreesToRadians(_startAngle) endAngle:degreesToRadians(_endAngle) clockwise:YES];
     
     //设置进度渐变的颜色组成
-//    NSMutableArray *colors = [NSMutableArray arrayWithObjects:(id)[UIColor greenColor].CGColor,(id)[UIColor whiteColor].CGColor,(id)[UIColor purpleColor].CGColor,(id)[UIColor redColor].CGColor, nil];
-    
     //两个颜色一样不会发生颜色渐变的效果
      NSMutableArray *colors = [NSMutableArray arrayWithObjects:(id)[UIColor greenColor].CGColor,(id)[UIColor greenColor].CGColor, nil];
     
@@ -309,23 +317,19 @@ static CGFloat  lineWidth = 20;   // 线宽
 - (void)setPercent:(CGFloat)percent
 {
     _percent = percent;
-    
-    
-    
+
+
     if (percent > 1) {
         percent = 1;
     }else if (percent < 0){
         percent = 0;
     }
-    
-     NSString*stepStr=[NSString stringWithFormat:@"%f",percent];
 
-      self.ratio = [stepStr floatValue]*[self.purposeBt.titleLabel.text integerValue] ;
 
-    
     [self performSelector:@selector(shapeChange) withObject:nil afterDelay:0];
-    
+
 }
+
 
 
 //更新Label 和虚线的进度
@@ -349,38 +353,8 @@ static CGFloat  lineWidth = 20;   // 线宽
     _upperShapeLayer.strokeEnd = _percent;;
     _progressLayer.strokeEnd = _percent;;
     [CATransaction commit];
-    
-    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:_percent * 0.002 target:self selector:@selector(updateLabl:) userInfo:nil repeats:YES];
-    
-    // 将定时器放在主运行循环
-    [[NSRunLoop mainRunLoop]addTimer:timer forMode:NSRunLoopCommonModes];
-    
-}
 
-- (void)updateLabl:(NSTimer *)sender
-{
-    static int flag = 0;
     
-    if (flag   == self.ratio) {
-  
-        [sender invalidate];
-        sender = nil;
-        
-        self.stepLabel.text = [NSString stringWithFormat:@"%d",flag];
-        
-        flag = 0;
-  
-        
-    }
-    else
-    {
-        self.stepLabel.text = [NSString stringWithFormat:@"%d",flag];
-        
-    }
-    
-    flag ++;
-    
- 
 }
 
 

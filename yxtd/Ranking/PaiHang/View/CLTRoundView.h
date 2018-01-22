@@ -12,8 +12,13 @@
 
 @property (nonatomic,assign) CGFloat percent;
 
-@property(nonatomic,strong) void(^purposeBtClick)(void);
+@property (nonatomic,assign) NSInteger setpNumber;
 
-@property (nonatomic,strong)UIButton *purposeBt;
+@property (nonatomic,strong) void(^purposeBtClick)(void);
+
+@property (nonatomic,strong) UIButton *purposeBt;
+
+
+
 
 @end

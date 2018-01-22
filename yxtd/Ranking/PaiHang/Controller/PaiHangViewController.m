@@ -23,6 +23,7 @@
 
 @property (nonatomic,strong) UIScrollView*scView;
 
+@property (nonatomic,assign) CGFloat stepIndex;
 
 @end
 
@@ -93,7 +94,14 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectText:(NSString *)text {
     
+    
     [self.roudView.purposeBt setTitle:text forState:UIControlStateNormal];
+    
+    //步数百分比
+    self.roudView.percent=self.stepIndex/[text integerValue];
+    
+   
+    
 }
 
 
@@ -109,8 +117,11 @@
                  self.kmLabel.text = [NSString stringWithFormat:@"%.2fKM",([pedometerData.distance floatValue]/1000)];
                  
                   //步数
-                self.roudView.percent=([pedometerData.numberOfSteps floatValue]/[self.roudView.purposeBt.titleLabel.text integerValue]);
-                
+           self.roudView.setpNumber=[pedometerData.numberOfSteps integerValue];
+                 
+                //默认的百分比
+                 self.roudView.percent=[pedometerData.numberOfSteps floatValue]/[self.roudView.purposeBt.titleLabel.text integerValue];
+                 self.stepIndex=[pedometerData.numberOfSteps floatValue];
 
              }
          }];
