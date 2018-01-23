@@ -16,13 +16,20 @@
 #import <AVFoundation/AVCaptureDevice.h>
 #import <AVFoundation/AVMediaFormat.h>
 
+#import <CoreLocation/CoreLocation.h>
+
 typedef NS_ENUM(NSInteger, ChosePhontType) {
     
     ChosePhontTypeAlbum,  //相册
     ChosePhontTypeCamera   //相机
 };
 
-@interface GeRenZiLiaoViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface GeRenZiLiaoViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,CLLocationManagerDelegate>
+{
+    CLLocationManager * locationManager;
+    NSString * currentCity; //当前城市
+
+}
 @property (nonatomic,strong) UITableView*tableView;
 
 @property (nonatomic,strong) NSArray*nameArr;
@@ -30,6 +37,7 @@ typedef NS_ENUM(NSInteger, ChosePhontType) {
 @property (nonatomic,strong) NickNameView*nickVc;
 @property (nonatomic,strong) UIButton*sexBt;
 @property (nonatomic,strong) UILabel*nameLabel;
+@property (nonatomic,strong) UILabel*cityLabel;
 
 @property (nonatomic,strong) UIImagePickerController *imagePicker;
 
@@ -73,6 +81,9 @@ typedef NS_ENUM(NSInteger, ChosePhontType) {
                ];
     
     [self.view addSubview:self.tableView];
+    
+    
+     [self locate];
     
 }
 
@@ -204,6 +215,23 @@ typedef NS_ENUM(NSInteger, ChosePhontType) {
                 make.centerY.equalTo(cell.contentView);
                 make.right.equalTo(cell.mas_right).with.offset(-40);
             }];
+            
+        }else{
+            
+            
+            //城市定位
+            UILabel*cityLabel=[[UILabel alloc] init];
+            cityLabel.text=@" ";
+            self.cityLabel=cityLabel;
+            cityLabel.font=[UIFont systemFontOfSize:12];
+            cityLabel.textColor=BlackHexColor;
+            [cell.contentView addSubview:cityLabel];
+            [cityLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                
+                make.centerY.equalTo(cell.contentView);
+                make.right.equalTo(cell.mas_right).with.offset(-40);
+            }];
+            
             
         }
         
@@ -568,6 +596,82 @@ typedef NS_ENUM(NSInteger, ChosePhontType) {
     //返回新的改变大小后的图片
     return scaledImage;
 }
+
+
+#pragma mark -当前城市定位
+- (void)locate {
+    //判断定位功能是否打开
+    if ([CLLocationManager locationServicesEnabled]) {
+        locationManager = [[CLLocationManager alloc] init];
+        locationManager.delegate = self;
+        [locationManager requestAlwaysAuthorization];
+        currentCity = [[NSString alloc] init];
+        [locationManager startUpdatingLocation];
+        
+    }
+    
+}
+
+#pragma mark CoreLocation delegate
+
+//定位失败则执行此代理方法
+//定位失败弹出提示框,点击"打开定位"按钮,会打开系统的设置,提示打开定位服务
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    UIAlertController * alertVC = [UIAlertController alertControllerWithTitle:@"允许\"定位\"提示" message:@"请在设置中打开定位" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction * ok = [UIAlertAction actionWithTitle:@"打开定位" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        //打开定位设置
+        NSURL *settingsURL = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+        [[UIApplication sharedApplication] openURL:settingsURL];
+    }];
+    UIAlertAction * cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    
+    [alertVC addAction:cancel];
+    [alertVC addAction:ok];
+    
+    [self presentViewController:alertVC animated:YES completion:nil];
+    
+}
+
+//定位成功
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    //系统会一直更新数据，直到选择停止更新，因为我们只需要获得一次经纬度即可，所以获取之后就停止更新
+    [locationManager stopUpdatingLocation];
+    
+    //此处locations存储了持续更新的位置坐标值，取最后一个值为最新位置，如果不想让其持续更新位置，则在此方法中获取到一个值之后让locationManager stopUpdatingLocation
+    CLLocation *currentLocation = [locations lastObject];
+    
+    // 获取当前所在的城市名
+    CLGeocoder * geoCoder = [[CLGeocoder alloc] init];
+    
+    //根据经纬度反向地理编译出地址信息
+    [geoCoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        
+        if (placemarks.count > 0) {
+            CLPlacemark *placeMark = placemarks[0];
+            //获取城市
+            currentCity = placeMark.locality;
+            
+            //四大直辖市的城市信息无法通过locality获得，只能通过获取省份的方法来获得（如果city为空，则可知为直辖市）
+            if (!currentCity) {
+                
+                self.cityLabel.text = @"无法定位当前城市";
+            }
+            self.cityLabel.text=[NSString stringWithFormat:@"%@ %@",currentCity,placeMark.subLocality];
+//            NSLog(@"当前城市：%@",currentCity); //这就是当前的城市
+//            NSLog(@"当前城市的街道：%@",placeMark.subLocality);//具体地址:  xx市xx区xx街道
+        }
+        else if (error == nil && placemarks.count == 0) {
+            NSLog(@"No location and error return");
+        }
+        else if (error) {
+            NSLog(@"location error: %@ ",error);
+        }
+        
+    }];
+}
+
 
 
 #pragma mark- 隐藏多余的分割线

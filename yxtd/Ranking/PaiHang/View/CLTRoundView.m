@@ -71,6 +71,7 @@ static CGFloat  lineWidth = 20;   // 线宽
 }
 
 
+#pragma mark -画圆
 - (void)drawLayers
 {
     self.backgroundColor = [UIColor whiteColor];
@@ -101,6 +102,8 @@ static CGFloat  lineWidth = 20;   // 线宽
     
     [self addSubview:self.rankingLabel];
     
+    
+    //添加每日目标按钮
     [self addPurposeButton];
    
 
@@ -135,18 +138,19 @@ static CGFloat  lineWidth = 20;   // 线宽
 #pragma mark -设置跳动的步数显示
 -(void)setSetpNumber:(NSInteger)setpNumber{
 
+       [self.stepLabel removeFromSuperview];
         //不能用定时器来做，时间太慢了，用封装一个label
         UICountingLabel *stepLabel = [[UICountingLabel alloc] init];
         self.stepLabel=stepLabel;
         stepLabel.font = [UIFont fontWithName:@"Avenir Next" size:30];
-  
+    
        [self addSubview:stepLabel];
     
         CGFloat width = 160;
         CGFloat height = 60;
-        _stepLabel.frame = CGRectMake((self.frame.size.width - width) / 2, _centerY - height / 2, width, height);
-        _stepLabel.font = [UIFont boldSystemFontOfSize:30];
-        _stepLabel.textAlignment = NSTextAlignmentCenter;
+        stepLabel.frame = CGRectMake((self.frame.size.width - width) / 2, _centerY - height / 2, width, height);
+        stepLabel.font = [UIFont boldSystemFontOfSize:30];
+        stepLabel.textAlignment = NSTextAlignmentCenter;
   
     if (!setpNumber) {
         
@@ -155,7 +159,7 @@ static CGFloat  lineWidth = 20;   // 线宽
     }else{
       
         //设置跳动时间和跳动范围
-        [stepLabel jumpNumberWithDuration:4.0f fromNumber:0 toNumber:setpNumber];
+        [stepLabel jumpNumberWithDuration:3.0f fromNumber:0 toNumber:setpNumber];
         
     }
 
