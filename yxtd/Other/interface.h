@@ -10,7 +10,7 @@
 #define interface_h
 
 
-#define httpUrl @"http://192.168.1.103/"
+#define httpUrl @"http://www.yixitongda.com/"
 
 //登录
 #define LoginMemberLogin @"" httpUrl@"/admin/MemberLogin"

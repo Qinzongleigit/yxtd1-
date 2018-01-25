@@ -243,9 +243,9 @@
     _timeTextField.delegate=self;
     
     //提示语
-    _regTextField.placeholder = pla[0];
+    _regTextField.placeholder  = pla[0];
     _regTextField2.placeholder = pla[1];
-    _timeTextField.placeholder=pla[2];
+    _timeTextField.placeholder =pla[2];
     
     //清除按钮
     _regTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -331,7 +331,7 @@
     self.regButton=regButton;
     [regButton setBackgroundColor:[UIColor colorWithRed:0/255.0 green:214/255.0 blue:215/255.0 alpha:1]];
     [regButton setTintColor:[UIColor whiteColor]];
-    [regButton addTarget:self action:@selector(regBtClick) forControlEvents:UIControlEventTouchUpInside];
+    [regButton addTarget:self action:@selector(regButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:regButton];
     
     
@@ -399,7 +399,7 @@
     return 1;
 }
 #pragma mark -注册按钮点击
--(void)regBtClick{
+-(void)regButtonClick{
     
    
     if (![self checkOutRegiser]) return;
@@ -411,7 +411,7 @@
       
         RegisterParam*param=[[RegisterParam alloc] init];
         
-        param.mobile=self.regTextField.text;
+        param.phone=self.regTextField.text;
         param.password=self.regTextField2.text;
         param.smskey=self.timeTextField.text;
         
@@ -425,10 +425,6 @@
             if (code.integerValue == 200)
             {
                 [MBProgressHUD showSuccess:responseObject[@"msg"]];
-                
-               //界面跳转用的
-                //MineViewController*mineVc=[[MineViewController alloc] init];
-                //[self presentViewController:mineVc animated:YES completion:nil];
                 
                 
                 //返回登录界面
@@ -449,6 +445,7 @@
             {
   
                 [MBProgressHUD showError:responseObject[@"msg"]];
+                
             }
 
               _regButton.userInteractionEnabled=YES;
@@ -796,9 +793,8 @@ static int countNumber;
 
 -(void)logClick{
 
-    NSLog(@"登录成功");
-    
-     if (![self checkOutLogin]) return;
+ 
+    if (![self checkOutLogin]) return;
     
     self.logButton.userInteractionEnabled=NO;
 

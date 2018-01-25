@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSMotionUsageDescription</key>
-	<string>允许跑卷APP读取健康中心数据</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -39,6 +37,8 @@
 	<string>允许打开</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>需要打开定位功能</string>
+	<key>NSMotionUsageDescription</key>
+	<string>允许跑卷APP读取健康中心数据</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>可以添加图片</string>
 	<key>NSPhotoLibraryUsageDescription</key>

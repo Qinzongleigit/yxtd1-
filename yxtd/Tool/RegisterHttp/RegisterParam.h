@@ -10,7 +10,7 @@
 
 @interface RegisterParam : NSObject
 
-@property (nonatomic, copy) NSString *mobile;
+@property (nonatomic, copy) NSString *phone;
 @property (nonatomic, copy) NSString *password;
 @property (nonatomic, copy) NSString *smskey;
 
