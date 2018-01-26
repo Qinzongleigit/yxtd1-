@@ -40,6 +40,8 @@
     
     if (self=[super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
+        self.contentView.userInteractionEnabled=YES;
+        
         _iconImage=[[UIImageView alloc] init];
         _iconImage.backgroundColor=[UIColor purpleColor];
         [self.contentView addSubview:_iconImage];
@@ -61,13 +63,23 @@
         _guanzhuLabel.text=@"关注";
         _guanzhuLabel.textColor=BlackHexColor;
         _guanzhuLabel.font=[UIFont systemFontOfSize:12];
+        _guanzhuLabel.tag=1000;
+        _guanzhuLabel.userInteractionEnabled=YES;
         [self.contentView addSubview:_guanzhuLabel];
+        UITapGestureRecognizer*guanzhuTap=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
+        [_guanzhuLabel addGestureRecognizer:guanzhuTap];
+        
         
         _fensiLabel=[[UILabel alloc] init];
         _fensiLabel.text=@"粉丝";
         _fensiLabel.textColor=BlackHexColor;
         _fensiLabel.font=[UIFont systemFontOfSize:12];
+        _fensiLabel.tag=1001;
+        _fensiLabel.userInteractionEnabled=YES;
         [self.contentView addSubview:_fensiLabel];
+        UITapGestureRecognizer*fensiTap=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
+        [_fensiLabel addGestureRecognizer:fensiTap];
+        
         
         _dongtaiLabel=[[UILabel alloc] init];
         _dongtaiLabel.text=@"动态";
@@ -207,5 +219,16 @@
     self.codeBtBlock();
     
 }
+
+//关注粉丝点击
+-(void)tapAction:(UITapGestureRecognizer*)tap{
+    UIView *views = (UIView*) tap.view;
+    NSUInteger tag = views.tag;
+    
+    self.tapBlock(tag);
+    
+}
+
+
 
 @end

@@ -12,4 +12,7 @@
 
 @property (nonatomic,strong) void(^codeBtBlock)(void);
 
+@property (nonatomic,strong) void(^tapBlock)(NSInteger tapTag);
+
+
 @end

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		250078CA201B1F5500092463 /* TitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 250078C9201B1F5500092463 /* TitleView.m */; };
+		250078CE201B1FC200092463 /* GuanZhuFansViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 250078CD201B1FC200092463 /* GuanZhuFansViewController.m */; };
 		25130E3E1F99E59100E1E29A /* RunRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25130E3D1F99E59100E1E29A /* RunRootViewController.m */; };
 		25130E411F99E66E00E1E29A /* RunLocationGaoDeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 25130E401F99E66E00E1E29A /* RunLocationGaoDeManager.m */; };
 		25130E441F99E84200E1E29A /* JSCenterAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 25130E431F99E84200E1E29A /* JSCenterAnnotation.m */; };
@@ -172,6 +174,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		250078C8201B1F5500092463 /* TitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleView.h; sourceTree = "<group>"; };
+		250078C9201B1F5500092463 /* TitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleView.m; sourceTree = "<group>"; };
+		250078CC201B1FC200092463 /* GuanZhuFansViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GuanZhuFansViewController.h; sourceTree = "<group>"; };
+		250078CD201B1FC200092463 /* GuanZhuFansViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GuanZhuFansViewController.m; sourceTree = "<group>"; };
 		25130E3C1F99E59100E1E29A /* RunRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RunRootViewController.h; sourceTree = "<group>"; };
 		25130E3D1F99E59100E1E29A /* RunRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RunRootViewController.m; sourceTree = "<group>"; };
 		25130E3F1F99E66E00E1E29A /* RunLocationGaoDeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RunLocationGaoDeManager.h; sourceTree = "<group>"; };
@@ -485,6 +491,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		250078C6201B1EF700092463 /* GuanZhuAndFans */ = {
+			isa = PBXGroup;
+			children = (
+				250078CB201B1F6100092463 /* Controller */,
+				250078C7201B1F3C00092463 /* View */,
+			);
+			path = GuanZhuAndFans;
+			sourceTree = "<group>";
+		};
+		250078C7201B1F3C00092463 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				250078C8201B1F5500092463 /* TitleView.h */,
+				250078C9201B1F5500092463 /* TitleView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		250078CB201B1F6100092463 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				250078CC201B1FC200092463 /* GuanZhuFansViewController.h */,
+				250078CD201B1FC200092463 /* GuanZhuFansViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		2519B1E01FEB9DB500C706B6 /* ShangJiaGrade */ = {
 			isa = PBXGroup;
 			children = (
@@ -1549,6 +1582,7 @@
 		25D5A39B1FBED3EA00074447 /* Geren */ = {
 			isa = PBXGroup;
 			children = (
+				250078C6201B1EF700092463 /* GuanZhuAndFans */,
 				8FFB6D1A200BAC6A0033E9FA /* MySports */,
 				25649D062003224400002608 /* Feedback */,
 				25649D012003091500002608 /* AboutUs */,
@@ -2095,6 +2129,8 @@
 				25ABFB6E1FEA5A1D00C90BD0 /* FoodDetailTableViewCell.m in Sources */,
 				25ABFAF51FE3A48E00C90BD0 /* StepPaiHangViewController.m in Sources */,
 				25ABFB4F1FE8F3A900C90BD0 /* UnusedTableViewCell.m in Sources */,
+				250078CA201B1F5500092463 /* TitleView.m in Sources */,
+				250078CE201B1FC200092463 /* GuanZhuFansViewController.m in Sources */,
 				25ABFB6A1FEA4FE200C90BD0 /* FoodDetaliStarView.m in Sources */,
 				25130E411F99E66E00E1E29A /* RunLocationGaoDeManager.m in Sources */,
 				25AD8CCD1FA85B6800960732 /* StarView.m in Sources */,

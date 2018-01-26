@@ -8,6 +8,7 @@
 
 #import "MineViewController.h"
 #import "MineOneCell.h"
+#import "GuanZhuFansViewController.h"
 #import "GeRenZiLiaoViewController.h"
 #import "JiFenViewController.h"
 #import "TwoDimensionCodeVC.h"
@@ -186,6 +187,20 @@
            [self presentViewController:codeVC animated:YES completion:nil];
            
        };
+       
+       Onecell.tapBlock = ^(NSInteger tapTag) {
+           
+           GuanZhuFansViewController*guanzhuAndfansVC=[[GuanZhuFansViewController alloc] init];
+           
+           guanzhuAndfansVC.hidesBottomBarWhenPushed=YES;
+           
+           [self.navigationController pushViewController:guanzhuAndfansVC animated:YES];
+           
+       
+       };
+       
+       
+      
         return Onecell;
        
 
