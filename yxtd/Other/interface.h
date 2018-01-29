@@ -24,4 +24,9 @@
 //用户协议
 #define UserAgreement @""  httpUrl@"/admin/text"
 
+
+//我的信息(头像,昵称,关注,粉丝,动态)
+//用户协议
+#define MineUserMessage @""  httpUrl@"/admin/mydata"
+
 #endif /* interface_h */

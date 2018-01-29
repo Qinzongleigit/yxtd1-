@@ -17,6 +17,7 @@
 #import "LoginHttp.h"
 #import "WebViewController.h"
 #import "MineViewController.h"
+#import "UserInformationModel.h"
 
 @interface LoginViewController ()<UITextFieldDelegate,UIScrollViewDelegate>
 
@@ -50,11 +51,29 @@
 
 @property (nonatomic,strong) NSTimer *timer;
 
+@property (nonatomic,strong) NSMutableArray*dataSource;
+
 
 
 @end
 
 @implementation LoginViewController
+
+
+/**
+ *  存放登录成功后返回用户信息
+ *
+ *  @return _dataSource
+ */
+- (NSMutableArray *)dataSource
+{
+    if(!_dataSource)
+    {
+        _dataSource = [[NSMutableArray alloc] init];
+    }
+    return _dataSource;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -793,12 +812,11 @@ static int countNumber;
 
 -(void)logClick{
 
- 
     if (![self checkOutLogin]) return;
     
     self.logButton.userInteractionEnabled=NO;
-
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    
+ dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
         
 
@@ -810,13 +828,32 @@ static int countNumber;
 
         [LoginHttp httpLogin:param success:^(id responseObject) {
 
-            NSLog(@"登录:========================:%@",responseObject);
+            NSLog(@"登录返回接口数据:========================:%@",responseObject);
 
             NSString *code = responseObject[@"code"];
 
 
             if (code.integerValue == 200)
             {
+           
+                UserInformationModel*model=[[UserInformationModel alloc] initWithDictionary:responseObject error:nil];
+                
+               [self.dataSource addObject:model];
+                
+                NSLog(@"数组的信息：%@",model);
+                
+                /**
+                 *  用户登录时存账号、密码、用户id
+                 */
+                NSUserDefaults*userInformation=[NSUserDefaults standardUserDefaults];
+                [userInformation setObject:self.textField.text forKey:@"phone"];
+                [userInformation setObject:self.textField2.text forKey:@"password"];
+                [userInformation setObject:model.member_id forKey:@"member_id"];
+               [userInformation setObject:model.api_token forKey:@"api_token"];
+                
+               [userInformation synchronize];
+                
+                
                 [MBProgressHUD showSuccess:responseObject[@"msg"]];
 
 

@@ -7,28 +7,11 @@
 //
 
 #import "MineOneCell.h"
+#import "UIImageView+WebCache.h"
 
 @interface MineOneCell ()
 
-@property (nonatomic,strong) UIImageView*iconImage;
 
-@property (nonatomic,strong) UILabel*nameLabel;
-
-@property (nonatomic,strong) UIButton*codeImageBt;
-
-@property (nonatomic,strong) UILabel*guanzhuLabel;
-
-@property (nonatomic,strong) UILabel*fensiLabel;
-
-@property (nonatomic,strong) UILabel*dongtaiLabel;
-
-@property (nonatomic,strong) UILabel*guanzhuNumber;
-
-@property (nonatomic,strong) UILabel*fensiNumber;
-
-@property (nonatomic,strong) UILabel*dongtaiNumber;
-
-@property (nonatomic, strong) UIView *cutLineView;
 
 @end
 
@@ -42,13 +25,13 @@
         
         self.contentView.userInteractionEnabled=YES;
         
+        
         _iconImage=[[UIImageView alloc] init];
-        _iconImage.backgroundColor=[UIColor purpleColor];
+        _iconImage.backgroundColor=[UIColor whiteColor];
         [self.contentView addSubview:_iconImage];
         
         _nameLabel=[[UILabel alloc] init];
         _nameLabel.text=@"绥芬河开发商";
-        //_nameLabel.textColor=btnLineColor;
         _nameLabel.font=[UIFont boldSystemFontOfSize:18];
         [self.contentView addSubview:_nameLabel];
         
@@ -117,6 +100,12 @@
     return self;
 }
 
+
+-(void)setIconImageStr:(NSString *)iconImageStr{
+    
+    NSLog(@"图片的网址=============:%@",iconImageStr);
+    [_iconImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",iconImageStr]]];
+}
 
 
 

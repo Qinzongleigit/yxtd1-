@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		250078CA201B1F5500092463 /* TitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 250078C9201B1F5500092463 /* TitleView.m */; };
 		250078CE201B1FC200092463 /* GuanZhuFansViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 250078CD201B1FC200092463 /* GuanZhuFansViewController.m */; };
+		250078D2201EC2A000092463 /* UserInformationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 250078D1201EC2A000092463 /* UserInformationModel.m */; };
+		250078DD201F06C700092463 /* MineUserMessageParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 250078DC201F06C700092463 /* MineUserMessageParam.m */; };
+		250078E0201F071E00092463 /* MineUserMessageHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 250078DF201F071E00092463 /* MineUserMessageHttp.m */; };
+		250078E4201F0C3100092463 /* MineUserMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 250078E3201F0C3100092463 /* MineUserMessageModel.m */; };
 		25130E3E1F99E59100E1E29A /* RunRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25130E3D1F99E59100E1E29A /* RunRootViewController.m */; };
 		25130E411F99E66E00E1E29A /* RunLocationGaoDeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 25130E401F99E66E00E1E29A /* RunLocationGaoDeManager.m */; };
 		25130E441F99E84200E1E29A /* JSCenterAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 25130E431F99E84200E1E29A /* JSCenterAnnotation.m */; };
@@ -178,6 +182,14 @@
 		250078C9201B1F5500092463 /* TitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleView.m; sourceTree = "<group>"; };
 		250078CC201B1FC200092463 /* GuanZhuFansViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GuanZhuFansViewController.h; sourceTree = "<group>"; };
 		250078CD201B1FC200092463 /* GuanZhuFansViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GuanZhuFansViewController.m; sourceTree = "<group>"; };
+		250078D0201EC2A000092463 /* UserInformationModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInformationModel.h; sourceTree = "<group>"; };
+		250078D1201EC2A000092463 /* UserInformationModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInformationModel.m; sourceTree = "<group>"; };
+		250078DB201F06C700092463 /* MineUserMessageParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MineUserMessageParam.h; path = yxtd/Tool/MineUserMessageHttp/MineUserMessageParam.h; sourceTree = SOURCE_ROOT; };
+		250078DC201F06C700092463 /* MineUserMessageParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MineUserMessageParam.m; path = yxtd/Tool/MineUserMessageHttp/MineUserMessageParam.m; sourceTree = SOURCE_ROOT; };
+		250078DE201F071E00092463 /* MineUserMessageHttp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MineUserMessageHttp.h; path = yxtd/Tool/MineUserMessageHttp/MineUserMessageHttp.h; sourceTree = SOURCE_ROOT; };
+		250078DF201F071E00092463 /* MineUserMessageHttp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MineUserMessageHttp.m; path = yxtd/Tool/MineUserMessageHttp/MineUserMessageHttp.m; sourceTree = SOURCE_ROOT; };
+		250078E2201F0C3100092463 /* MineUserMessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineUserMessageModel.h; sourceTree = "<group>"; };
+		250078E3201F0C3100092463 /* MineUserMessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineUserMessageModel.m; sourceTree = "<group>"; };
 		25130E3C1F99E59100E1E29A /* RunRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RunRootViewController.h; sourceTree = "<group>"; };
 		25130E3D1F99E59100E1E29A /* RunRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RunRootViewController.m; sourceTree = "<group>"; };
 		25130E3F1F99E66E00E1E29A /* RunLocationGaoDeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RunLocationGaoDeManager.h; sourceTree = "<group>"; };
@@ -518,6 +530,36 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		250078CF201EBFD800092463 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				250078D0201EC2A000092463 /* UserInformationModel.h */,
+				250078D1201EC2A000092463 /* UserInformationModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		250078DA201F066D00092463 /* MIneUserMessageHttp */ = {
+			isa = PBXGroup;
+			children = (
+				250078DB201F06C700092463 /* MineUserMessageParam.h */,
+				250078DC201F06C700092463 /* MineUserMessageParam.m */,
+				250078DE201F071E00092463 /* MineUserMessageHttp.h */,
+				250078DF201F071E00092463 /* MineUserMessageHttp.m */,
+			);
+			name = MIneUserMessageHttp;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		250078E1201F0A1800092463 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				250078E2201F0C3100092463 /* MineUserMessageModel.h */,
+				250078E3201F0C3100092463 /* MineUserMessageModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		2519B1E01FEB9DB500C706B6 /* ShangJiaGrade */ = {
 			isa = PBXGroup;
 			children = (
@@ -779,6 +821,7 @@
 			children = (
 				25485B9A1F721BAD001122F7 /* ForgotPass */,
 				25485B961F721A78001122F7 /* Controller */,
+				250078CF201EBFD800092463 /* Model */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -1044,7 +1087,7 @@
 			isa = PBXGroup;
 			children = (
 				257D12061F68E183003DC1E4 /* Controller */,
-				257D12071F68E183003DC1E4 /* Model */,
+				250078E1201F0A1800092463 /* Model */,
 				257D12081F68E183003DC1E4 /* View */,
 			);
 			path = Mine;
@@ -1057,13 +1100,6 @@
 				25485B931F7219AB001122F7 /* MineViewController.m */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		257D12071F68E183003DC1E4 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		257D12081F68E183003DC1E4 /* View */ = {
@@ -1511,7 +1547,8 @@
 		25D5A26F1FB9942200074447 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
-				25D5A2F11FBC3D0000074447 /* Loginhttp */,
+				250078DA201F066D00092463 /* MIneUserMessageHttp */,
+				25D5A2F11FBC3D0000074447 /* LoginHttp */,
 				25D5A2831FBA89A600074447 /* SmsHttp */,
 				25D5A27C1FBA839000074447 /* RegisterHttp */,
 				25D5A2701FB9945B00074447 /* Http */,
@@ -1568,7 +1605,7 @@
 			path = WebView;
 			sourceTree = "<group>";
 		};
-		25D5A2F11FBC3D0000074447 /* Loginhttp */ = {
+		25D5A2F11FBC3D0000074447 /* LoginHttp */ = {
 			isa = PBXGroup;
 			children = (
 				25D5A2F21FBC3D0000074447 /* LoginHttp.h */,
@@ -1576,7 +1613,7 @@
 				25D5A2F41FBC3D0000074447 /* LoginParam.h */,
 				25D5A2F51FBC3D0000074447 /* LoginParam.m */,
 			);
-			path = Loginhttp;
+			path = LoginHttp;
 			sourceTree = "<group>";
 		};
 		25D5A39B1FBED3EA00074447 /* Geren */ = {
@@ -2062,6 +2099,7 @@
 				257D12591F690F9F003DC1E4 /* RankingViewController.m in Sources */,
 				25AB5B231FC7CCBF00BC4D6F /* UpdatePhoneNumberViewController.m in Sources */,
 				8FFB6D22200BAE710033E9FA /* MySportsTableViewCell.m in Sources */,
+				250078E4201F0C3100092463 /* MineUserMessageModel.m in Sources */,
 				2563D0D31FF3778D00E7448C /* MessageViewController.m in Sources */,
 				2532C1701F6F72A90064A28C /* PaiHangViewController.m in Sources */,
 				25ABFB5D1FEA370800C90BD0 /* EntertainmentTableViewCell.m in Sources */,
@@ -2069,6 +2107,7 @@
 				25649E362005AE8400002608 /* AGIPCAssetsController.m in Sources */,
 				25FE9F6A1F7E35BF00D9E420 /* CLTRoundView.m in Sources */,
 				8F263BC01FD060F300F89A45 /* ShowImageViewController.m in Sources */,
+				250078D2201EC2A000092463 /* UserInformationModel.m in Sources */,
 				25649E372005AE8400002608 /* AGIPCGridCell.m in Sources */,
 				25130E4A1F99EA1B00E1E29A /* SelectableOverlay.m in Sources */,
 				2575541A1FD79D7100B4EBB7 /* JiangZhangTableViewController.m in Sources */,
@@ -2131,6 +2170,7 @@
 				25ABFB4F1FE8F3A900C90BD0 /* UnusedTableViewCell.m in Sources */,
 				250078CA201B1F5500092463 /* TitleView.m in Sources */,
 				250078CE201B1FC200092463 /* GuanZhuFansViewController.m in Sources */,
+				250078E0201F071E00092463 /* MineUserMessageHttp.m in Sources */,
 				25ABFB6A1FEA4FE200C90BD0 /* FoodDetaliStarView.m in Sources */,
 				25130E411F99E66E00E1E29A /* RunLocationGaoDeManager.m in Sources */,
 				25AD8CCD1FA85B6800960732 /* StarView.m in Sources */,
@@ -2149,6 +2189,7 @@
 				258FC174200DD3E400490F86 /* JiFenShuoMingViewController.m in Sources */,
 				2563D0D61FF37CAE00E7448C /* MessageTableViewCell.m in Sources */,
 				25D5A27A1FB9957900074447 /* Reachability.m in Sources */,
+				250078DD201F06C700092463 /* MineUserMessageParam.m in Sources */,
 				25AB5B951FCE8D1400BC4D6F /* NaviBarRootViewController.m in Sources */,
 				8F1BBE3E1FE95ED800602C3B /* FavoriteViewController.m in Sources */,
 				25BED2361F7C9CE300A0A07A /* FindTwoCell.m in Sources */,
@@ -2331,6 +2372,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = yxtd/yxtd.entitlements;
 				DEVELOPMENT_TEAM = 83K7JYL422;
+				ENABLE_BITCODE = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/yxtd/Other/yxtd.pch";
 				INFOPLIST_FILE = yxtd/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
@@ -2348,6 +2390,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = yxtd/yxtd.entitlements;
 				DEVELOPMENT_TEAM = 83K7JYL422;
+				ENABLE_BITCODE = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/yxtd/Other/yxtd.pch";
 				INFOPLIST_FILE = yxtd/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;

@@ -26,6 +26,9 @@
 #import "FeedbackViewController.h"
 #import "MySportsController.h"
 
+#import "MineUserMessageHttp.h"
+#import "MineUserMessageParam.h"
+#import "MineUserMessageModel.h"
 
 
 
@@ -42,6 +45,19 @@
 
 @property (nonatomic,strong) UIButton*publishBt;
 
+@property (nonatomic,strong) NSString*api_token;
+
+@property (nonatomic,strong) NSString*member_id;
+
+@property (nonatomic,strong) NSString *phone;
+
+@property (nonatomic,strong) NSString *password;
+
+/**
+ *  存放用户信息的模型
+ */
+@property (nonatomic, strong) MineUserMessageModel *userModel;
+
 @end
 
 @implementation MineViewController
@@ -56,6 +72,18 @@
    self.navigationController.navigationBar.hidden=NO;
     
  
+}
+
+/**
+ *  懒加载-当前登录用户的信息模型
+ */
+- (MineUserMessageModel *)userModel:(NSDictionary *)dict
+{
+    if(!_userModel)
+    {
+        _userModel = [[MineUserMessageModel alloc] initWithDictionary:dict error:nil];
+    }
+    return _userModel;
 }
 
 - (void)viewDidLoad {
@@ -89,7 +117,58 @@
     _dataSource2_=@[@"guanyu_Image",@"pingjia_Image",@"yijian_Image"];
     
     [self initNavi];
+    
+   [self getUserMessageData];
 
+    
+}
+
+#pragma mark -获取我的信息(头像,昵称,关注,粉丝,动态）
+-(void)getUserMessageData{
+
+    //检测用户登录转态，看用户有没有登录
+    NSUserDefaults *userInformation = [NSUserDefaults standardUserDefaults];
+
+    _phone = [userInformation objectForKey:@"phone"];
+    _password = [userInformation objectForKey:@"password"];
+
+    _api_token=[userInformation objectForKey:@"api_token"];
+    _member_id=[userInformation objectForKey:@"member_id"];
+
+    MineUserMessageParam*params=[[MineUserMessageParam alloc] init];
+    params.api_token=self.api_token;
+    params.member_id=self.member_id;
+
+    [MineUserMessageHttp httpMineUserMessage:params success:^(id responseObject) {
+
+        NSLog(@"获取我的信息(头像,昵称,关注,粉丝,动态）====：%@",responseObject);
+       
+        if ([responseObject[@"code"] integerValue]==200) {
+            
+            self.userModel=nil;
+            NSDictionary*info =responseObject[@"data"];
+            
+            [self userModel:info];
+            
+            //登录成功界面显示
+            [self didLoging];
+        }
+
+    } failure:^(NSError *error) {
+
+
+    }];
+
+
+
+}
+
+#pragma mark - 已经登录，显示用户信息
+- (void)didLoging{
+    
+  
+    
+  
     
 }
 
@@ -166,6 +245,9 @@
    if (indexPath.section==0&&indexPath.row==0) {
        
        MineOneCell*Onecell=[tableView dequeueReusableCellWithIdentifier:oneCell];
+       
+       Onecell.nameLabel.text=self.userModel.nickname;
+       Onecell.iconImageStr=self.userModel.avatar;
        
        UIImageView*imageView=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cee_rightImage"]];
        
