@@ -52,7 +52,6 @@
     
     UIImageView*headerImageView=[[UIImageView alloc] initWithFrame:self.bounds];
     self.headerImageView=headerImageView;
-   // headerImageView.backgroundColor=[UIColor grayColor];
     headerImageView.image=[UIImage imageWithoriginName:@"jifenheader_Image"];
     headerImageView.userInteractionEnabled=YES;
     [self addSubview:headerImageView];
@@ -87,8 +86,6 @@
     jifenNumberLabel.textColor = [UIColor whiteColor];
 
     [self addSubview:jifenNumberLabel];
-    //设置跳动时间和跳动范围
-    [jifenNumberLabel jumpNumberWithDuration:1.0f fromNumber:0 toNumber:6321];
 
 
     UILabel*myjifenLabel=[[UILabel alloc] init];
@@ -102,6 +99,13 @@
     [self creatButton];
     
     
+}
+
+//获取个人积分值
+-(void)setJifenStr:(NSString *)jifenStr{
+    
+    //设置跳动时间和跳动范围
+    [self.jifenNumberLabel jumpNumberWithDuration:1.0f fromNumber:0 toNumber:[jifenStr integerValue]];
 }
 
 #pragma mark -创建按钮

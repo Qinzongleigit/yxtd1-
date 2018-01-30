@@ -7,7 +7,7 @@
 //
 
 #import "OverDuihuanCell.h"
-
+#import "UIImageView+WebCache.h"
 
 @interface OverDuihuanCell()
 
@@ -17,6 +17,7 @@
 @property (nonatomic,strong) UILabel*nameLabe;
 @property (nonatomic,strong) UIButton*duihuanBt;
 @property (nonatomic,strong) UILabel*overLabel;
+@property (nonatomic,assign) NSIndexPath* row;
 @end
 
 @implementation OverDuihuanCell
@@ -39,7 +40,7 @@
     
     UIImageView*mainImageView=[[UIImageView alloc] init];
     self.mainImageView=mainImageView;
-    mainImageView.backgroundColor=[UIColor redColor];
+    mainImageView.backgroundColor=[UIColor clearColor];
     mainImageView.layer.cornerRadius=5;
     mainImageView.clipsToBounds=YES;
     [self addSubview:mainImageView];
@@ -84,6 +85,18 @@
     duihuanBt.enabled=NO;
     
     [self addSubview:duihuanBt];
+    
+}
+
+
+#pragma mark -赋值操作
+-(void)fillCellWithModel:(JiFenCanDuiHuanModel *)model indexPath:(NSIndexPath *)path{
+    
+    self.row = path;
+    
+    [_mainImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",model.img_url]]];
+    _nameLabe.text=[NSString stringWithFormat:@"%@",model.trade_name] ;
+    _jifenLabel.text=[NSString stringWithFormat:@"%@ 积分",model.integral_price];
     
 }
 

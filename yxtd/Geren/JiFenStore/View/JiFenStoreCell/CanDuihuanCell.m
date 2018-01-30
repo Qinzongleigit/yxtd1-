@@ -8,6 +8,7 @@
 
 #import "CanDuihuanCell.h"
 #import "DuiHuanAlter.h"
+#import "UIImageView+WebCache.h"
 
 @interface CanDuihuanCell()
 
@@ -19,6 +20,7 @@
 
 @property (nonatomic,strong) DuiHuanAlter*alterView;
 
+@property (nonatomic,assign) NSIndexPath *row;//当前第是几个item
 
 @end
 
@@ -41,7 +43,7 @@
     
     UIImageView*mainImageView=[[UIImageView alloc] init];
     self.mainImageView=mainImageView;
-    mainImageView.backgroundColor=[UIColor redColor];
+    mainImageView.backgroundColor=[UIColor clearColor];
     mainImageView.layer.cornerRadius=5;
     mainImageView.clipsToBounds=YES;
     [self addSubview:mainImageView];
@@ -55,12 +57,12 @@
     jifenLabel.font=[UIFont systemFontOfSize:9];
     [self addSubview:jifenLabel];
     
-    UILabel*moneyLabel=[[UILabel alloc] init];
-    self.moneyLabel=moneyLabel;
-    moneyLabel.text=@"+20";
-    moneyLabel.textColor=BlackHexColor;
-    moneyLabel.font=[UIFont systemFontOfSize:9];
-    [self addSubview:moneyLabel];
+//    UILabel*moneyLabel=[[UILabel alloc] init];
+//    self.moneyLabel=moneyLabel;
+//    moneyLabel.text=@"+20元";
+//    moneyLabel.textColor=BlackHexColor;
+//    moneyLabel.font=[UIFont systemFontOfSize:9];
+//    [self addSubview:moneyLabel];
     
     
     UILabel*nameLabe=[[UILabel alloc] init];
@@ -83,6 +85,17 @@
     
 }
 
+#pragma mark -赋值操作
+-(void)fillCellWithModel:(JiFenCanDuiHuanModel *)model indexPath:(NSIndexPath *)path{
+    
+      self.row = path;
+    
+    [_mainImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",model.img_url]]];
+    _nameLabe.text=[NSString stringWithFormat:@"%@",model.trade_name] ;
+    _jifenLabel.text=[NSString stringWithFormat:@"%@ 积分",model.integral_price];
+    
+}
+
 
 -(void)layoutSubviews{
     
@@ -96,16 +109,16 @@
     
     [self.jifenLabel mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.left.equalTo(self.mainImageView. mas_left).offset(20);
+         make.centerX.mas_equalTo(self.mainImageView);
         make.top.equalTo(self.mainImageView.mas_bottom).offset(5);
         
     }];
     
-    [self.moneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.centerY.equalTo(self.jifenLabel);
-        make.left.equalTo(self.jifenLabel.mas_right).offset(1);
-    }];
+//    [self.moneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//        make.centerY.equalTo(self.jifenLabel);
+//        make.left.equalTo(self.jifenLabel.mas_right).offset(1);
+//    }];
     
     
     

@@ -16,11 +16,13 @@ typedef void(^jifenRight)(void);
 
 @interface JiFenHeaderView : UIView
 
-@property (nonatomic,copy) gotoBack gotoBack;
+@property (nonatomic, copy) gotoBack gotoBack;
 
-@property (nonatomic,copy) jifenRight jifenRight;
+@property (nonatomic, copy) jifenRight jifenRight;
 
-@property(nonatomic,strong) void(^headerBtClick)(NSInteger tag);
+@property (nonatomic, strong) void(^headerBtClick)(NSInteger tag);
+
+@property (nonatomic,strong) NSString*jifenStr;
 
 
 

@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JiFenCanDuiHuanModel.h"
 
 @interface OverDuihuanCell : UICollectionViewCell
+
+- (void)fillCellWithModel:(JiFenCanDuiHuanModel *)model indexPath:(NSIndexPath *)path;
 
 @end

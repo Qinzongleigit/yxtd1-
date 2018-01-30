@@ -10,9 +10,13 @@
 		250078CA201B1F5500092463 /* TitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 250078C9201B1F5500092463 /* TitleView.m */; };
 		250078CE201B1FC200092463 /* GuanZhuFansViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 250078CD201B1FC200092463 /* GuanZhuFansViewController.m */; };
 		250078D2201EC2A000092463 /* UserInformationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 250078D1201EC2A000092463 /* UserInformationModel.m */; };
-		250078DD201F06C700092463 /* MineUserMessageParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 250078DC201F06C700092463 /* MineUserMessageParam.m */; };
-		250078E0201F071E00092463 /* MineUserMessageHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 250078DF201F071E00092463 /* MineUserMessageHttp.m */; };
 		250078E4201F0C3100092463 /* MineUserMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 250078E3201F0C3100092463 /* MineUserMessageModel.m */; };
+		250078EA20200EC200092463 /* MineUserMessageHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 250078E720200EC100092463 /* MineUserMessageHttp.m */; };
+		250078EB20200EC200092463 /* MineUserMessageParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 250078E920200EC100092463 /* MineUserMessageParam.m */; };
+		250078F220200F3E00092463 /* JiFenStoreHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 250078F120200F3E00092463 /* JiFenStoreHttp.m */; };
+		250078F62020182300092463 /* JiFenCanDuiHuanModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 250078F52020182300092463 /* JiFenCanDuiHuanModel.m */; };
+		250078F92020503E00092463 /* JiFenStoreOverHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 250078F82020503E00092463 /* JiFenStoreOverHttp.m */; };
+		250078FC202057BC00092463 /* JiFenSaiShiGoodsHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 250078FB202057BC00092463 /* JiFenSaiShiGoodsHttp.m */; };
 		25130E3E1F99E59100E1E29A /* RunRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25130E3D1F99E59100E1E29A /* RunRootViewController.m */; };
 		25130E411F99E66E00E1E29A /* RunLocationGaoDeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 25130E401F99E66E00E1E29A /* RunLocationGaoDeManager.m */; };
 		25130E441F99E84200E1E29A /* JSCenterAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 25130E431F99E84200E1E29A /* JSCenterAnnotation.m */; };
@@ -184,12 +188,20 @@
 		250078CD201B1FC200092463 /* GuanZhuFansViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GuanZhuFansViewController.m; sourceTree = "<group>"; };
 		250078D0201EC2A000092463 /* UserInformationModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInformationModel.h; sourceTree = "<group>"; };
 		250078D1201EC2A000092463 /* UserInformationModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInformationModel.m; sourceTree = "<group>"; };
-		250078DB201F06C700092463 /* MineUserMessageParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MineUserMessageParam.h; path = yxtd/Tool/MineUserMessageHttp/MineUserMessageParam.h; sourceTree = SOURCE_ROOT; };
-		250078DC201F06C700092463 /* MineUserMessageParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MineUserMessageParam.m; path = yxtd/Tool/MineUserMessageHttp/MineUserMessageParam.m; sourceTree = SOURCE_ROOT; };
-		250078DE201F071E00092463 /* MineUserMessageHttp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MineUserMessageHttp.h; path = yxtd/Tool/MineUserMessageHttp/MineUserMessageHttp.h; sourceTree = SOURCE_ROOT; };
-		250078DF201F071E00092463 /* MineUserMessageHttp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MineUserMessageHttp.m; path = yxtd/Tool/MineUserMessageHttp/MineUserMessageHttp.m; sourceTree = SOURCE_ROOT; };
 		250078E2201F0C3100092463 /* MineUserMessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineUserMessageModel.h; sourceTree = "<group>"; };
 		250078E3201F0C3100092463 /* MineUserMessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineUserMessageModel.m; sourceTree = "<group>"; };
+		250078E620200EC100092463 /* MineUserMessageHttp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineUserMessageHttp.h; sourceTree = "<group>"; };
+		250078E720200EC100092463 /* MineUserMessageHttp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineUserMessageHttp.m; sourceTree = "<group>"; };
+		250078E820200EC100092463 /* MineUserMessageParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineUserMessageParam.h; sourceTree = "<group>"; };
+		250078E920200EC100092463 /* MineUserMessageParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineUserMessageParam.m; sourceTree = "<group>"; };
+		250078F020200F3E00092463 /* JiFenStoreHttp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JiFenStoreHttp.h; sourceTree = "<group>"; };
+		250078F120200F3E00092463 /* JiFenStoreHttp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JiFenStoreHttp.m; sourceTree = "<group>"; };
+		250078F42020182300092463 /* JiFenCanDuiHuanModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JiFenCanDuiHuanModel.h; sourceTree = "<group>"; };
+		250078F52020182300092463 /* JiFenCanDuiHuanModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JiFenCanDuiHuanModel.m; sourceTree = "<group>"; };
+		250078F72020503E00092463 /* JiFenStoreOverHttp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JiFenStoreOverHttp.h; sourceTree = "<group>"; };
+		250078F82020503E00092463 /* JiFenStoreOverHttp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JiFenStoreOverHttp.m; sourceTree = "<group>"; };
+		250078FA202057BC00092463 /* JiFenSaiShiGoodsHttp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JiFenSaiShiGoodsHttp.h; sourceTree = "<group>"; };
+		250078FB202057BC00092463 /* JiFenSaiShiGoodsHttp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JiFenSaiShiGoodsHttp.m; sourceTree = "<group>"; };
 		25130E3C1F99E59100E1E29A /* RunRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RunRootViewController.h; sourceTree = "<group>"; };
 		25130E3D1F99E59100E1E29A /* RunRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RunRootViewController.m; sourceTree = "<group>"; };
 		25130E3F1F99E66E00E1E29A /* RunLocationGaoDeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RunLocationGaoDeManager.h; sourceTree = "<group>"; };
@@ -539,23 +551,44 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		250078DA201F066D00092463 /* MIneUserMessageHttp */ = {
-			isa = PBXGroup;
-			children = (
-				250078DB201F06C700092463 /* MineUserMessageParam.h */,
-				250078DC201F06C700092463 /* MineUserMessageParam.m */,
-				250078DE201F071E00092463 /* MineUserMessageHttp.h */,
-				250078DF201F071E00092463 /* MineUserMessageHttp.m */,
-			);
-			name = MIneUserMessageHttp;
-			path = "New Group";
-			sourceTree = "<group>";
-		};
 		250078E1201F0A1800092463 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				250078E2201F0C3100092463 /* MineUserMessageModel.h */,
 				250078E3201F0C3100092463 /* MineUserMessageModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		250078E520200EC100092463 /* MineUserMessageHttp */ = {
+			isa = PBXGroup;
+			children = (
+				250078E620200EC100092463 /* MineUserMessageHttp.h */,
+				250078E720200EC100092463 /* MineUserMessageHttp.m */,
+				250078E820200EC100092463 /* MineUserMessageParam.h */,
+				250078E920200EC100092463 /* MineUserMessageParam.m */,
+			);
+			path = MineUserMessageHttp;
+			sourceTree = "<group>";
+		};
+		250078EC20200ED200092463 /* JiFenStoreHttp */ = {
+			isa = PBXGroup;
+			children = (
+				250078F020200F3E00092463 /* JiFenStoreHttp.h */,
+				250078F120200F3E00092463 /* JiFenStoreHttp.m */,
+				250078F72020503E00092463 /* JiFenStoreOverHttp.h */,
+				250078F82020503E00092463 /* JiFenStoreOverHttp.m */,
+				250078FA202057BC00092463 /* JiFenSaiShiGoodsHttp.h */,
+				250078FB202057BC00092463 /* JiFenSaiShiGoodsHttp.m */,
+			);
+			path = JiFenStoreHttp;
+			sourceTree = "<group>";
+		};
+		250078F3202017D500092463 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				250078F42020182300092463 /* JiFenCanDuiHuanModel.h */,
+				250078F52020182300092463 /* JiFenCanDuiHuanModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1547,7 +1580,8 @@
 		25D5A26F1FB9942200074447 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
-				250078DA201F066D00092463 /* MIneUserMessageHttp */,
+				250078EC20200ED200092463 /* JiFenStoreHttp */,
+				250078E520200EC100092463 /* MineUserMessageHttp */,
 				25D5A2F11FBC3D0000074447 /* LoginHttp */,
 				25D5A2831FBA89A600074447 /* SmsHttp */,
 				25D5A27C1FBA839000074447 /* RegisterHttp */,
@@ -1653,6 +1687,7 @@
 			children = (
 				258FC171200DD36F00490F86 /* JiFenShuoMing */,
 				25AB5BEA1FD13EC300BC4D6F /* Controller */,
+				250078F3202017D500092463 /* Model */,
 				25AB5BE91FD13EB700BC4D6F /* View */,
 			);
 			path = JiFenStore;
@@ -2116,8 +2151,10 @@
 				25649D052003096500002608 /* AboutUsViewController.m in Sources */,
 				2575540F1FD7812200B4EBB7 /* CanDuihuanCell.m in Sources */,
 				25BED2321F7C9CCC00A0A07A /* FindOneCell.m in Sources */,
+				250078F92020503E00092463 /* JiFenStoreOverHttp.m in Sources */,
 				257D377E1F74B47A00C25FE4 /* CDFindImgScrollView.m in Sources */,
 				25AB5B351FC7FFB800BC4D6F /* AddressCell.m in Sources */,
+				250078F62020182300092463 /* JiFenCanDuiHuanModel.m in Sources */,
 				25649C401FFB800300002608 /* FootView.m in Sources */,
 				25AB5B311FC7FBB000BC4D6F /* AddAddressVC.m in Sources */,
 				25130E441F99E84200E1E29A /* JSCenterAnnotation.m in Sources */,
@@ -2159,6 +2196,7 @@
 				25D5A2F71FBC3D0000074447 /* LoginParam.m in Sources */,
 				251CF2DA1FC50EB200867046 /* NickNameView.m in Sources */,
 				257D120F1F68E18E003DC1E4 /* ViewController.m in Sources */,
+				250078EB20200EC200092463 /* MineUserMessageParam.m in Sources */,
 				258FC177200F2F3E00490F86 /* PedometerData.m in Sources */,
 				25ABFB641FEA3AE000C90BD0 /* FoodDetailsViewController.m in Sources */,
 				257D38371F74E70C00C25FE4 /* CDFindHeaderView.m in Sources */,
@@ -2169,8 +2207,8 @@
 				25ABFAF51FE3A48E00C90BD0 /* StepPaiHangViewController.m in Sources */,
 				25ABFB4F1FE8F3A900C90BD0 /* UnusedTableViewCell.m in Sources */,
 				250078CA201B1F5500092463 /* TitleView.m in Sources */,
+				250078EA20200EC200092463 /* MineUserMessageHttp.m in Sources */,
 				250078CE201B1FC200092463 /* GuanZhuFansViewController.m in Sources */,
-				250078E0201F071E00092463 /* MineUserMessageHttp.m in Sources */,
 				25ABFB6A1FEA4FE200C90BD0 /* FoodDetaliStarView.m in Sources */,
 				25130E411F99E66E00E1E29A /* RunLocationGaoDeManager.m in Sources */,
 				25AD8CCD1FA85B6800960732 /* StarView.m in Sources */,
@@ -2178,6 +2216,7 @@
 				25485B9D1F721BC4001122F7 /* ForgotPassViewController.m in Sources */,
 				8F5FCE0A1FCB23340013C119 /* RankingModel.m in Sources */,
 				25649E422005F4B600002608 /* CustomTextField.m in Sources */,
+				250078F220200F3E00092463 /* JiFenStoreHttp.m in Sources */,
 				25D5A3A31FBED5A000074447 /* JiFenViewController.m in Sources */,
 				257D12561F690F73003DC1E4 /* RunViewController.m in Sources */,
 				25AB5B9A1FCE90D900BC4D6F /* HuatiDongtaiViewController.m in Sources */,
@@ -2189,7 +2228,6 @@
 				258FC174200DD3E400490F86 /* JiFenShuoMingViewController.m in Sources */,
 				2563D0D61FF37CAE00E7448C /* MessageTableViewCell.m in Sources */,
 				25D5A27A1FB9957900074447 /* Reachability.m in Sources */,
-				250078DD201F06C700092463 /* MineUserMessageParam.m in Sources */,
 				25AB5B951FCE8D1400BC4D6F /* NaviBarRootViewController.m in Sources */,
 				8F1BBE3E1FE95ED800602C3B /* FavoriteViewController.m in Sources */,
 				25BED2361F7C9CE300A0A07A /* FindTwoCell.m in Sources */,
@@ -2203,6 +2241,7 @@
 				2532C1611F6F6EEF0064A28C /* TopSliderVIew.m in Sources */,
 				25ABFB591FEA110100C90BD0 /* FoodStarView.m in Sources */,
 				25649E3B2005AE8400002608 /* AGPreviewScrollView.m in Sources */,
+				250078FC202057BC00092463 /* JiFenSaiShiGoodsHttp.m in Sources */,
 				25D5A27F1FBA846400074447 /* RegisterParam.m in Sources */,
 				2532C1BB1F70BB000064A28C /* SaiShiDetailedHeaderView.m in Sources */,
 				2532C1771F6F77FF0064A28C /* SaiShiDetailedViewController.m in Sources */,

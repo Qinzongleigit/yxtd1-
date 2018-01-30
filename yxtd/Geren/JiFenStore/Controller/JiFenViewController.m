@@ -12,6 +12,11 @@
 #import "OverDuihuanCell.h"
 #import "SaishiGoodsCell.h"
 #import "JiFenShuoMingViewController.h"
+#import "MineUserMessageParam.h"
+#import "JiFenStoreHttp.h"
+#import "JiFenStoreOverHttp.h"
+#import "JiFenSaiShiGoodsHttp.h"
+#import "JiFenCanDuiHuanModel.h"
 
 @interface JiFenViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
@@ -19,7 +24,17 @@
 
 @property (nonatomic,strong) JiFenHeaderView*headerView;
 
-@property (nonatomic,assign)NSInteger selectTag;
+@property (nonatomic,assign) NSInteger selectTag;
+
+//可兑换数组
+@property (nonatomic,strong) NSMutableArray*dataArray;
+
+//已兑换数组
+@property (nonatomic,strong) NSMutableArray*dataSource;
+
+@property (nonatomic,strong) NSMutableArray*saishiArray;
+
+
 
 
 @end
@@ -28,12 +43,47 @@
 
  static NSString*cellString=@"cell";
 
+
+//可兑换懒加载
+- (NSMutableArray *)dataArray{
+    if (_dataArray == nil) {
+        _dataArray = [NSMutableArray array];
+    }
+    
+    return _dataArray;
+}
+//已兑换了懒加载
+-(NSMutableArray*)dataSource{
+    
+    if (_dataSource==nil) {
+        
+        _dataSource=[NSMutableArray array];
+        
+    }
+    
+    return _dataSource;
+}
+
+//赛事懒加载
+-(NSMutableArray*)saishiArray{
+    
+    if (!_saishiArray) {
+        
+        _saishiArray=[NSMutableArray array];
+    }
+    
+    return _saishiArray;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     self.view.backgroundColor=[UIColor whiteColor];
     
+    
+    //获取可兑换数据
+    [self getCanDuiHuanHttpData];
     
     //添加头视图的内容
     [self addHeaderView];
@@ -58,9 +108,8 @@
     [self.collectionView registerClass:[CanDuihuanCell class] forCellWithReuseIdentifier:@"CanDuihuanCell"];
     [self.collectionView registerClass:[OverDuihuanCell class] forCellWithReuseIdentifier:@"OverDuihuanCell"];
     [self.collectionView registerClass:[SaishiGoodsCell class] forCellWithReuseIdentifier:@"SaishiGoodsCell"];
-   
- 
     
+   
 }
 
 #pragma mark--代理方法的实现
@@ -75,8 +124,21 @@
 //item的个数
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
   
-        return 10;
-   
+    
+    if (self.selectTag==101) {
+        
+        return self.dataSource.count;
+        
+    }else if (self.selectTag==102){
+        
+        return 5;
+        
+    }else{
+        
+        return self.dataArray.count;
+    }
+    
+
 }
 
 
@@ -91,6 +153,7 @@
     if (self.selectTag==101){
         
         OverDuihuanCell*overCell=[collectionView dequeueReusableCellWithReuseIdentifier:@"OverDuihuanCell" forIndexPath:indexPath];
+        [overCell fillCellWithModel:_dataSource[indexPath.row] indexPath:indexPath];
         return overCell;
         
     }else if(self.selectTag==102){
@@ -101,7 +164,9 @@
         
     }else{
         
-        CanDuihuanCell*duihuanCell=[collectionView dequeueReusableCellWithReuseIdentifier:@"CanDuihuanCell" forIndexPath:indexPath];
+       CanDuihuanCell*duihuanCell=[collectionView dequeueReusableCellWithReuseIdentifier:@"CanDuihuanCell" forIndexPath:indexPath];
+        
+        [duihuanCell fillCellWithModel:_dataArray[indexPath.row] indexPath:indexPath];
         
         return duihuanCell;
     }
@@ -118,8 +183,10 @@
     JiFenHeaderView*headerView=[[JiFenHeaderView alloc] initWithFrame:CGRectMake(0, 0, KscreenW, SYRealValueHeight(205))];
     headerView.backgroundColor=[UIColor redColor];
     self.headerView=headerView;
+    
     [self.view addSubview:headerView];
     
+   
     headerView.gotoBack = ^{
      
         [self dismissViewControllerAnimated:YES completion:nil];
@@ -138,13 +205,158 @@
         self.selectTag=tag;
         
        [self.collectionView reloadData];
+        //已兑换点击
+        if (self.selectTag==101) {
+            
+            [self getOverDuiHuanHttpData];
+           //赛事奖品点击
+        }else if (self.selectTag==102){
+            
+            [self getSaiShiGoodsHttpData];
+           //可兑换点击
+        }else{
+            [self getCanDuiHuanHttpData];
+        }
 
 
     };
 
 }
 
+#pragma mark - 获取积分商场赛事奖品接口数据
+-(void)getSaiShiGoodsHttpData{
+    
+    NSUserDefaults *userInformation = [NSUserDefaults standardUserDefaults];
+    
+    NSString*api_tokenStr=[userInformation objectForKey:@"api_token"];
+  
 
+   MineUserMessageParam*params=[[MineUserMessageParam alloc] init];
+ 
+    params.member_id=api_tokenStr;
+    
+    
+    NSLog(@"api_tokenStr=========:%@",api_tokenStr);
+    
+    [JiFenSaiShiGoodsHttp httpJiFenStoreSaiShiGoods:params success:^(id responseObject) {
+      
+        NSLog(@"积分商城赛事数据====================：%@",responseObject);
+        
+    } failure:^(NSError *error) {
+       
+        NSLog(@"积分商城赛事奖品数据获取失败");
+        
+    }];
+    
+   
+}
+
+#pragma mark -获取积分商城已兑换接口数据
+-(void)getOverDuiHuanHttpData{
+    
+    NSUserDefaults *userInformation = [NSUserDefaults standardUserDefaults];
+    
+    NSString*api_tokenStr=[userInformation objectForKey:@"api_token"];
+    
+    NSString*member_idStr=[userInformation objectForKey:@"member_id"];
+    
+    MineUserMessageParam*params=[[MineUserMessageParam alloc] init];
+    
+    params.api_token=api_tokenStr;
+    
+    //先用member_id为1来测试
+    params.member_id=@"1";
+    
+    [self.dataSource removeAllObjects];
+    
+    [JiFenStoreOverHttp httpJiFenStoreOver:params success:^(id responseObject) {
+        
+        
+        if ([responseObject[@"code"] integerValue]==200) {
+            
+            NSDictionary*dict=responseObject[@"data"];
+ 
+            
+            NSArray *array = dict[@"list"];
+            // 字段转模型
+            for(NSDictionary *tempDict in array){
+                
+                JiFenCanDuiHuanModel *model = [[JiFenCanDuiHuanModel alloc] init];
+                
+                [model setValuesForKeysWithDictionary:tempDict];
+                
+                [self.dataSource addObject:model];
+                
+                [_collectionView reloadData];
+                
+            }
+        }
+        
+        
+    } failure:^(NSError *error) {
+        
+        NSLog(@"积分商城获取已兑换数据失败");
+        
+    }];
+    
+    
+    
+}
+
+#pragma  mark -获取积分商城可兑换接口数据
+-(void)getCanDuiHuanHttpData{
+    
+    NSUserDefaults *userInformation = [NSUserDefaults standardUserDefaults];
+    
+    NSString*api_tokenStr=[userInformation objectForKey:@"api_token"];
+    
+    NSString*member_idStr=[userInformation objectForKey:@"member_id"];
+    
+    MineUserMessageParam*params=[[MineUserMessageParam alloc] init];
+    
+    params.api_token=api_tokenStr;
+    
+    params.member_id=member_idStr;
+    
+    [self.dataArray removeAllObjects];
+    
+    [JiFenStoreHttp httpJiFenStore:params success:^(id responseObject) {
+
+        if ([responseObject[@"code"] integerValue]==200) {
+            
+            NSDictionary*dict=responseObject[@"data"];
+            
+        
+      self.headerView.jifenStr=dict[@"integral"];
+              
+            
+            NSArray *array = dict[@"list"];
+            // 字段转模型
+            for(NSDictionary *tempDict in array){
+                
+                JiFenCanDuiHuanModel *model = [[JiFenCanDuiHuanModel alloc] init];
+                
+                [model setValuesForKeysWithDictionary:tempDict];
+                
+                [self.dataArray addObject:model];
+                
+                [_collectionView reloadData];
+                
+            }
+        }
+        
+    } failure:^(NSError *error) {
+        
+        
+        NSLog(@"积分商城可兑换获取数据失败");
+        
+    }];
+
+
+
+
+
+}
 
 
 @end

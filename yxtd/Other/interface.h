@@ -26,7 +26,15 @@
 
 
 //我的信息(头像,昵称,关注,粉丝,动态)
-//用户协议
 #define MineUserMessage @""  httpUrl@"/admin/mydata"
+
+//积分商城的可兑换商品
+#define JiFenStoreCanDuiHuan @""  httpUrl@"admin/convertible"
+
+//积分商城已兑换商品
+#define JiFenStoreOverDuiHuan @""  httpUrl@"admin/hasChange"
+
+//积分商城赛事奖品
+#define JiFenStoreSaiShiGoods @""  httpUrl@"admin/ActivityPrizes/"
 
 #endif /* interface_h */

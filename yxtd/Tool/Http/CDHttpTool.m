@@ -55,6 +55,8 @@ static Reachability *reach;
     //超时连接
     [manager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
     
+    //[manager.requestSerializer setValue:@"text/javascript" forHTTPHeaderField:@"Content-Type"];
+    
    //设置允许接收返回数据类型：
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/html", @"text/json", @"text/javascript", nil];
     

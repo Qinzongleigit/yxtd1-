@@ -146,12 +146,11 @@
         if ([responseObject[@"code"] integerValue]==200) {
             
             self.userModel=nil;
-            NSDictionary*info =responseObject[@"data"];
+            
+            NSDictionary*info=responseObject[@"data"];
             
             [self userModel:info];
             
-            //登录成功界面显示
-            [self didLoging];
         }
 
     } failure:^(NSError *error) {
@@ -162,16 +161,6 @@
 
 
 }
-
-#pragma mark - 已经登录，显示用户信息
-- (void)didLoging{
-    
-  
-    
-  
-    
-}
-
 
 //设置段尾高度
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -246,8 +235,8 @@
        
        MineOneCell*Onecell=[tableView dequeueReusableCellWithIdentifier:oneCell];
        
-       Onecell.nameLabel.text=self.userModel.nickname;
-       Onecell.iconImageStr=self.userModel.avatar;
+       //数据转递
+       Onecell.model=self.userModel;
        
        UIImageView*imageView=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cee_rightImage"]];
        

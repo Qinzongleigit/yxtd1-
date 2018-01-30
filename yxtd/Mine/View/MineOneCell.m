@@ -12,6 +12,27 @@
 @interface MineOneCell ()
 
 
+@property (nonatomic,strong) UIImageView*iconImage;
+
+@property (nonatomic,strong) UILabel*nameLabel;
+
+@property (nonatomic,strong) UIButton*codeImageBt;
+
+@property (nonatomic,strong) UILabel*guanzhuLabel;
+
+@property (nonatomic,strong) UILabel*fensiLabel;
+
+@property (nonatomic,strong) UILabel*dongtaiLabel;
+
+@property (nonatomic,strong) UILabel*guanzhuNumber;
+
+@property (nonatomic,strong) UILabel*fensiNumber;
+
+@property (nonatomic,strong) UILabel*dongtaiNumber;
+
+@property (nonatomic, strong) UIView *cutLineView;
+
+
 
 @end
 
@@ -24,7 +45,6 @@
     if (self=[super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
         self.contentView.userInteractionEnabled=YES;
-        
         
         _iconImage=[[UIImageView alloc] init];
         _iconImage.backgroundColor=[UIColor whiteColor];
@@ -88,7 +108,7 @@
         _dongtaiNumber=[[UILabel alloc] init];
         _dongtaiNumber.text=@"100";
         _dongtaiNumber.textColor=BlackHexColor;
-       _dongtaiNumber.font=[UIFont systemFontOfSize:15];
+        _dongtaiNumber.font=[UIFont systemFontOfSize:15];
         [self.contentView addSubview:_dongtaiNumber];
         
         
@@ -100,12 +120,28 @@
     return self;
 }
 
-
--(void)setIconImageStr:(NSString *)iconImageStr{
+//赋值操作
+-(void)setModel:(MineUserMessageModel *)model{
     
-    NSLog(@"图片的网址=============:%@",iconImageStr);
-    [_iconImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",iconImageStr]]];
+      _model=model;
+    
+     [_iconImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",model.avatar]]];
+    
+     _nameLabel.text=model.nickname;
+    
+    _guanzhuNumber.text=model.friends;
+    
+    _fensiNumber.text=model.fans;
+    
+    _dongtaiNumber.text=model.dynum;
+    
+    
+    
+    
+    
 }
+
+
 
 
 
