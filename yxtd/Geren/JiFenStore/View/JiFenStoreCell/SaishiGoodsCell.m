@@ -7,6 +7,7 @@
 //
 
 #import "SaishiGoodsCell.h"
+#import "UIImageView+WebCache.h"
 
 @interface SaishiGoodsCell()
 
@@ -15,6 +16,7 @@
 @property (nonatomic,strong) UILabel*moneyLabel;
 @property (nonatomic,strong) UILabel*nameLabe;
 @property (nonatomic,strong) UIButton*duihuanBt;
+@property (nonatomic,assign) NSIndexPath* row;
 
 
 @end
@@ -38,7 +40,7 @@
     
     UIImageView*mainImageView=[[UIImageView alloc] init];
     self.mainImageView=mainImageView;
-    mainImageView.backgroundColor=[UIColor redColor];
+    mainImageView.backgroundColor=[UIColor clearColor];
     mainImageView.layer.cornerRadius=5;
     mainImageView.clipsToBounds=YES;
     [self addSubview:mainImageView];
@@ -79,6 +81,19 @@
     [self addSubview:duihuanBt];
     
 }
+
+
+#pragma mark -赋值操作
+-(void)fillCellWithModel:(JiFenSaiShiModel *)model indexPath:(NSIndexPath *)path{
+    
+    self.row = path;
+    
+    [_mainImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",model.img_url]]];
+    _nameLabe.text=[NSString stringWithFormat:@"%@",model.note] ;
+    _jifenLabel.text=[NSString stringWithFormat:@"%@ 元",model.price];
+    
+}
+
 
 
 -(void)layoutSubviews{

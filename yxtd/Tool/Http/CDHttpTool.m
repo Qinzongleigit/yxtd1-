@@ -54,9 +54,7 @@ static Reachability *reach;
     
     //超时连接
     [manager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
-    
-    //[manager.requestSerializer setValue:@"text/javascript" forHTTPHeaderField:@"Content-Type"];
-    
+
    //设置允许接收返回数据类型：
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/html", @"text/json", @"text/javascript", nil];
     
@@ -67,7 +65,7 @@ static Reachability *reach;
             
             success(responseObject);
             
-            NSLog(@"--------------------------:%@",responseObject);
+            NSLog(@"接口请求成功返回的数据信息：--------------------------:%@",responseObject);
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JiFenSaiShiModel.h"
 
 @interface SaishiGoodsCell : UICollectionViewCell
+
+- (void)fillCellWithModel:(JiFenSaiShiModel *)model indexPath:(NSIndexPath *)path;
 
 @end

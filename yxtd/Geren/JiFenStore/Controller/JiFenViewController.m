@@ -15,8 +15,8 @@
 #import "MineUserMessageParam.h"
 #import "JiFenStoreHttp.h"
 #import "JiFenStoreOverHttp.h"
-#import "JiFenSaiShiGoodsHttp.h"
 #import "JiFenCanDuiHuanModel.h"
+
 
 @interface JiFenViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
@@ -131,7 +131,7 @@
         
     }else if (self.selectTag==102){
         
-        return 5;
+        return self.saishiArray.count;
         
     }else{
         
@@ -160,6 +160,9 @@
     
     
         SaishiGoodsCell*saishiCell=[collectionView dequeueReusableCellWithReuseIdentifier:@"SaishiGoodsCell" forIndexPath:indexPath];
+        
+        [saishiCell fillCellWithModel:_saishiArray[indexPath.row] indexPath:indexPath];
+        
         return saishiCell;
         
     }else{
@@ -229,18 +232,31 @@
     NSUserDefaults *userInformation = [NSUserDefaults standardUserDefaults];
     
     NSString*api_tokenStr=[userInformation objectForKey:@"api_token"];
-  
 
-   MineUserMessageParam*params=[[MineUserMessageParam alloc] init];
- 
-    params.member_id=api_tokenStr;
-    
-    
-    NSLog(@"api_tokenStr=========:%@",api_tokenStr);
-    
-    [JiFenSaiShiGoodsHttp httpJiFenStoreSaiShiGoods:params success:^(id responseObject) {
-      
+   [CDHttpTool GET:[NSString stringWithFormat:@"%@?api_token=%@",JiFenStoreSaiShiGoods,api_tokenStr] parameters:nil success:^(id responseObject) {
+   
+        
         NSLog(@"积分商城赛事数据====================：%@",responseObject);
+       
+       [self.saishiArray removeAllObjects];
+       
+       if ([responseObject[@"code"] integerValue]==200) {
+           
+        NSArray *array=responseObject[@"data"];
+
+           // 字段转模型
+           for(NSDictionary *tempDict in array){
+               
+               JiFenCanDuiHuanModel *model = [[JiFenCanDuiHuanModel alloc] init];
+               
+               [model setValuesForKeysWithDictionary:tempDict];
+               
+               [self.saishiArray addObject:model];
+               
+               [_collectionView reloadData];
+               
+           }
+       }
         
     } failure:^(NSError *error) {
        

@@ -16,7 +16,7 @@
 		250078F220200F3E00092463 /* JiFenStoreHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 250078F120200F3E00092463 /* JiFenStoreHttp.m */; };
 		250078F62020182300092463 /* JiFenCanDuiHuanModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 250078F52020182300092463 /* JiFenCanDuiHuanModel.m */; };
 		250078F92020503E00092463 /* JiFenStoreOverHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 250078F82020503E00092463 /* JiFenStoreOverHttp.m */; };
-		250078FC202057BC00092463 /* JiFenSaiShiGoodsHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 250078FB202057BC00092463 /* JiFenSaiShiGoodsHttp.m */; };
+		250079562021BC1B00092463 /* JiFenSaiShiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 250079552021BC1B00092463 /* JiFenSaiShiModel.m */; };
 		25130E3E1F99E59100E1E29A /* RunRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25130E3D1F99E59100E1E29A /* RunRootViewController.m */; };
 		25130E411F99E66E00E1E29A /* RunLocationGaoDeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 25130E401F99E66E00E1E29A /* RunLocationGaoDeManager.m */; };
 		25130E441F99E84200E1E29A /* JSCenterAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 25130E431F99E84200E1E29A /* JSCenterAnnotation.m */; };
@@ -200,8 +200,8 @@
 		250078F52020182300092463 /* JiFenCanDuiHuanModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JiFenCanDuiHuanModel.m; sourceTree = "<group>"; };
 		250078F72020503E00092463 /* JiFenStoreOverHttp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JiFenStoreOverHttp.h; sourceTree = "<group>"; };
 		250078F82020503E00092463 /* JiFenStoreOverHttp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JiFenStoreOverHttp.m; sourceTree = "<group>"; };
-		250078FA202057BC00092463 /* JiFenSaiShiGoodsHttp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JiFenSaiShiGoodsHttp.h; sourceTree = "<group>"; };
-		250078FB202057BC00092463 /* JiFenSaiShiGoodsHttp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JiFenSaiShiGoodsHttp.m; sourceTree = "<group>"; };
+		250079542021BC1B00092463 /* JiFenSaiShiModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JiFenSaiShiModel.h; sourceTree = "<group>"; };
+		250079552021BC1B00092463 /* JiFenSaiShiModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JiFenSaiShiModel.m; sourceTree = "<group>"; };
 		25130E3C1F99E59100E1E29A /* RunRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RunRootViewController.h; sourceTree = "<group>"; };
 		25130E3D1F99E59100E1E29A /* RunRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RunRootViewController.m; sourceTree = "<group>"; };
 		25130E3F1F99E66E00E1E29A /* RunLocationGaoDeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RunLocationGaoDeManager.h; sourceTree = "<group>"; };
@@ -578,8 +578,6 @@
 				250078F120200F3E00092463 /* JiFenStoreHttp.m */,
 				250078F72020503E00092463 /* JiFenStoreOverHttp.h */,
 				250078F82020503E00092463 /* JiFenStoreOverHttp.m */,
-				250078FA202057BC00092463 /* JiFenSaiShiGoodsHttp.h */,
-				250078FB202057BC00092463 /* JiFenSaiShiGoodsHttp.m */,
 			);
 			path = JiFenStoreHttp;
 			sourceTree = "<group>";
@@ -589,6 +587,8 @@
 			children = (
 				250078F42020182300092463 /* JiFenCanDuiHuanModel.h */,
 				250078F52020182300092463 /* JiFenCanDuiHuanModel.m */,
+				250079542021BC1B00092463 /* JiFenSaiShiModel.h */,
+				250079552021BC1B00092463 /* JiFenSaiShiModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2194,6 +2194,7 @@
 				257D12641F6918CE003DC1E4 /* UIImage+TZRenderImage.m in Sources */,
 				2519B1EB1FEBA8E000C706B6 /* ShanJiaGradeViewController.m in Sources */,
 				25D5A2F71FBC3D0000074447 /* LoginParam.m in Sources */,
+				250079562021BC1B00092463 /* JiFenSaiShiModel.m in Sources */,
 				251CF2DA1FC50EB200867046 /* NickNameView.m in Sources */,
 				257D120F1F68E18E003DC1E4 /* ViewController.m in Sources */,
 				250078EB20200EC200092463 /* MineUserMessageParam.m in Sources */,
@@ -2241,7 +2242,6 @@
 				2532C1611F6F6EEF0064A28C /* TopSliderVIew.m in Sources */,
 				25ABFB591FEA110100C90BD0 /* FoodStarView.m in Sources */,
 				25649E3B2005AE8400002608 /* AGPreviewScrollView.m in Sources */,
-				250078FC202057BC00092463 /* JiFenSaiShiGoodsHttp.m in Sources */,
 				25D5A27F1FBA846400074447 /* RegisterParam.m in Sources */,
 				2532C1BB1F70BB000064A28C /* SaiShiDetailedHeaderView.m in Sources */,
 				2532C1771F6F77FF0064A28C /* SaiShiDetailedViewController.m in Sources */,

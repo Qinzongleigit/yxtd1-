@@ -35,6 +35,6 @@
 #define JiFenStoreOverDuiHuan @""  httpUrl@"admin/hasChange"
 
 //积分商城赛事奖品
-#define JiFenStoreSaiShiGoods @""  httpUrl@"admin/ActivityPrizes/"
+#define JiFenStoreSaiShiGoods @""  httpUrl@"admin/ActivityPrizes"
 
 #endif /* interface_h */
