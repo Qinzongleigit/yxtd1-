@@ -10,6 +10,8 @@
 
 @interface JiFenSaiShiModel : NSObject
 
+@property (nonatomic,strong) NSString*activity_prizes_id;
+
 @property (nonatomic,strong) NSString*img_url;
 
 @property (nonatomic,strong) NSString*note;

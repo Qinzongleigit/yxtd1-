@@ -16,7 +16,7 @@
 #import "JiFenStoreHttp.h"
 #import "JiFenStoreOverHttp.h"
 #import "JiFenCanDuiHuanModel.h"
-
+#import "JiFenSaiShiModel.h"
 
 @interface JiFenViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
@@ -247,7 +247,7 @@
            // 字段转模型
            for(NSDictionary *tempDict in array){
                
-               JiFenCanDuiHuanModel *model = [[JiFenCanDuiHuanModel alloc] init];
+         JiFenSaiShiModel*model = [[JiFenSaiShiModel alloc] init];
                
                [model setValuesForKeysWithDictionary:tempDict];
                

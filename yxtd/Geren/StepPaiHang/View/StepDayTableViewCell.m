@@ -118,16 +118,20 @@
         make.height.mas_equalTo(13);
     }];
 
-    [self.jinduImage mas_makeConstraints:^(MASConstraintMaker *make) {
-   make.left.mas_equalTo(self.iconImageV.mas_right).offset(12);
-        make.top.mas_equalTo(self.nichengLabel.mas_bottom).offset(5);
-       make.width.equalTo(self.jinduBgImage.mas_width).multipliedBy(0.5);
+  
         
-    
-        make.height.mas_equalTo(13);
+        [self.jinduImage mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.iconImageV.mas_right).offset(12);
+            make.top.mas_equalTo(self.nichengLabel.mas_bottom).offset(5);
+            make.width.equalTo(self.jinduBgImage.mas_width).multipliedBy(0.5);
+ 
+            make.height.mas_equalTo(13);
+        
 
+        
     }];
-
+    
+    
     
     [self.zongshuLabel mas_makeConstraints:^(MASConstraintMaker *make) {
 

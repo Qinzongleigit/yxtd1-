@@ -89,7 +89,7 @@
     self.row = path;
     
     [_mainImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",model.img_url]]];
-    _nameLabe.text=[NSString stringWithFormat:@"%@",model.note] ;
+    _nameLabe.text=model.note;
     _jifenLabel.text=[NSString stringWithFormat:@"%@ 元",model.price];
     
 }
