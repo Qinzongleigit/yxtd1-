@@ -9,13 +9,17 @@
 #import "GuanZhuFansViewController.h"
 #import "TitleView.h"
 
-@interface GuanZhuFansViewController ()
+@interface GuanZhuFansViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) TitleView*titleView;
+
+@property (nonatomic,strong) UITableView*tableView;
 
 @end
 
 @implementation GuanZhuFansViewController
+
+  NSString*cellStr=@"ID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,7 +36,45 @@
         make.size.mas_equalTo(CGSizeMake(200, 44));
     }];
     
+    [self.rightBt setBackgroundImage:[UIImage imageNamed:@"addguanzhu_Image"] forState:UIControlStateNormal];
 
+    [self creatTableView];
+    
+}
+
+-(void)creatTableView{
+    
+    
+    UITableView*tableView=[[UITableView alloc] initWithFrame:self.view.bounds];
+    self.tableView=tableView;
+    tableView.delegate=self;
+    tableView.dataSource=self;
+    [self.view addSubview:tableView];
+}
+    
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    return 10;
+}
+
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    UITableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:cellStr];
+    if (!cell) {
+        
+        cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStr];
+    }
+    cell.textLabel.text=@"IIIIIIIIIII";
+    
+    return cell;
+}
+
+
+-(void)rightBtnClick{
+    
+    NSLog(@"添加了关注");
+    
     
 }
 
