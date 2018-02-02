@@ -75,6 +75,8 @@
      bt.selected=YES;
      bt.transform= CGAffineTransformMakeScale(1.2, 1.2);
     
+    self.titleBtBlock(bt.tag);
+    
 }
 
 @end

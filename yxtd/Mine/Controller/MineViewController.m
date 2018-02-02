@@ -264,6 +264,13 @@
            GuanZhuFansViewController*guanzhuAndfansVC=[[GuanZhuFansViewController alloc] init];
            
            guanzhuAndfansVC.hidesBottomBarWhenPushed=YES;
+           if (tapTag==1001) {
+               
+               guanzhuAndfansVC.tag=1001;
+           }else{
+               
+               guanzhuAndfansVC.tag=1000;
+           }
            
            [self.navigationController pushViewController:guanzhuAndfansVC animated:YES];
            

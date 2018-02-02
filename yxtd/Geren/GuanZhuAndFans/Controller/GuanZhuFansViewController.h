@@ -10,4 +10,6 @@
 
 @interface GuanZhuFansViewController : NaviBarRootViewController
 
+@property (nonatomic,assign) NSInteger tag;
+
 @end

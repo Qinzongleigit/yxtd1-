@@ -10,6 +10,9 @@
 
 @interface TitleView : UIView
 
+@property (nonatomic,strong) void(^titleBtBlock)(NSInteger tag);
+
+
 @property (nonatomic,strong) NSArray*titleArr;
 
 @end

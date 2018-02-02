@@ -37,4 +37,10 @@
 //积分商城赛事奖品
 #define JiFenStoreSaiShiGoods @""  httpUrl@"admin/ActivityPrizes"
 
+//关注列表
+#define Guanzhu @""  httpUrl@"admin/my_focus"
+
+//粉丝列表
+#define Fans @""  httpUrl@"admin/my_fans"
+
 #endif /* interface_h */

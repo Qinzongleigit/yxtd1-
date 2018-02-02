@@ -207,7 +207,6 @@
       
         self.selectTag=tag;
         
-       [self.collectionView reloadData];
         //已兑换点击
         if (self.selectTag==101) {
             

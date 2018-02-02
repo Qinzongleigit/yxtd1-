@@ -43,6 +43,11 @@
 		25393CAA1F68DA5E006905CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25393CA81F68DA5E006905CB /* LaunchScreen.storyboard */; };
 		25393CB51F68DA5F006905CB /* yxtdTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 25393CB41F68DA5F006905CB /* yxtdTests.m */; };
 		25393CC01F68DA5F006905CB /* yxtdUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 25393CBF1F68DA5F006905CB /* yxtdUITests.m */; };
+		2540523B2023F6C600B0162A /* libJSONModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2540523C2023F6C600B0162A /* libJSONModel.a */; };
+		2540523F2024056200B0162A /* GuanZhuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2540523E2024056200B0162A /* GuanZhuTableViewCell.m */; };
+		2540524320240BD800B0162A /* GuanZhuHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 2540524220240BD800B0162A /* GuanZhuHttp.m */; };
+		254052472024145A00B0162A /* GuanZhuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 254052462024145A00B0162A /* GuanZhuModel.m */; };
+		2540524A20244F9200B0162A /* FansHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 2540524920244F9200B0162A /* FansHttp.m */; };
 		2542680B1F73A95600E54A5E /* NSDate+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 2542680A1F73A95600E54A5E /* NSDate+MJ.m */; };
 		25485B941F7219AB001122F7 /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25485B931F7219AB001122F7 /* MineViewController.m */; };
 		25485B991F721AFE001122F7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25485B981F721AFE001122F7 /* LoginViewController.m */; };
@@ -254,6 +259,15 @@
 		25393CBB1F68DA5F006905CB /* yxtdUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = yxtdUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		25393CBF1F68DA5F006905CB /* yxtdUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = yxtdUITests.m; sourceTree = "<group>"; };
 		25393CC11F68DA5F006905CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2540523C2023F6C600B0162A /* libJSONModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libJSONModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2540523D2024056200B0162A /* GuanZhuTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GuanZhuTableViewCell.h; sourceTree = "<group>"; };
+		2540523E2024056200B0162A /* GuanZhuTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GuanZhuTableViewCell.m; sourceTree = "<group>"; };
+		2540524120240BD800B0162A /* GuanZhuHttp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GuanZhuHttp.h; sourceTree = "<group>"; };
+		2540524220240BD800B0162A /* GuanZhuHttp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GuanZhuHttp.m; sourceTree = "<group>"; };
+		254052452024145A00B0162A /* GuanZhuModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GuanZhuModel.h; sourceTree = "<group>"; };
+		254052462024145A00B0162A /* GuanZhuModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GuanZhuModel.m; sourceTree = "<group>"; };
+		2540524820244F9200B0162A /* FansHttp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FansHttp.h; sourceTree = "<group>"; };
+		2540524920244F9200B0162A /* FansHttp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FansHttp.m; sourceTree = "<group>"; };
 		254268091F73A95600E54A5E /* NSDate+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+MJ.h"; sourceTree = "<group>"; };
 		2542680A1F73A95600E54A5E /* NSDate+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+MJ.m"; sourceTree = "<group>"; };
 		25485B921F7219AB001122F7 /* MineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineViewController.h; sourceTree = "<group>"; };
@@ -493,6 +507,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2540523B2023F6C600B0162A /* libJSONModel.a in Frameworks */,
 				30AE89C1A250834E9DB980BB /* libPods-yxtd.a in Frameworks */,
 				253869DC1F7F455C00D34B18 /* HealthKit.framework in Frameworks */,
 			);
@@ -519,6 +534,7 @@
 			isa = PBXGroup;
 			children = (
 				250078CB201B1F6100092463 /* Controller */,
+				2540524420240E4600B0162A /* Model */,
 				250078C7201B1F3C00092463 /* View */,
 			);
 			path = GuanZhuAndFans;
@@ -527,6 +543,8 @@
 		250078C7201B1F3C00092463 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2540523D2024056200B0162A /* GuanZhuTableViewCell.h */,
+				2540523E2024056200B0162A /* GuanZhuTableViewCell.m */,
 				250078C8201B1F5500092463 /* TitleView.h */,
 				250078C9201B1F5500092463 /* TitleView.m */,
 			);
@@ -847,6 +865,26 @@
 				25393CC11F68DA5F006905CB /* Info.plist */,
 			);
 			path = yxtdUITests;
+			sourceTree = "<group>";
+		};
+		2540524020240BA500B0162A /* GuanzhuAndFans */ = {
+			isa = PBXGroup;
+			children = (
+				2540524120240BD800B0162A /* GuanZhuHttp.h */,
+				2540524220240BD800B0162A /* GuanZhuHttp.m */,
+				2540524820244F9200B0162A /* FansHttp.h */,
+				2540524920244F9200B0162A /* FansHttp.m */,
+			);
+			path = GuanzhuAndFans;
+			sourceTree = "<group>";
+		};
+		2540524420240E4600B0162A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				254052452024145A00B0162A /* GuanZhuModel.h */,
+				254052462024145A00B0162A /* GuanZhuModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		25485B951F721A78001122F7 /* Login */ = {
@@ -1580,6 +1618,7 @@
 		25D5A26F1FB9942200074447 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				2540524020240BA500B0162A /* GuanzhuAndFans */,
 				250078EC20200ED200092463 /* JiFenStoreHttp */,
 				250078E520200EC100092463 /* MineUserMessageHttp */,
 				25D5A2F11FBC3D0000074447 /* LoginHttp */,
@@ -1707,6 +1746,7 @@
 		4DD379518A7EF30081CBBE4A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2540523C2023F6C600B0162A /* libJSONModel.a */,
 				253869DB1F7F455C00D34B18 /* HealthKit.framework */,
 				D34E885CCE21FBB8C41A8408 /* libPods-yxtd.a */,
 			);
@@ -2125,6 +2165,7 @@
 				8F1BBE431FE962A400602C3B /* FoodViewController.m in Sources */,
 				8FFB6D1E200BAD860033E9FA /* MySportsController.m in Sources */,
 				257D125F1F69172B003DC1E4 /* MyTabarController.m in Sources */,
+				2540524320240BD800B0162A /* GuanZhuHttp.m in Sources */,
 				2519B1E51FEB9F8200C706B6 /* ShangJiaGradeHeaderView.m in Sources */,
 				25649E342005AE8400002608 /* AGImagePreviewController.m in Sources */,
 				25649CF51FFF559400002608 /* NotEvaluatedViewController.m in Sources */,
@@ -2152,10 +2193,12 @@
 				2575540F1FD7812200B4EBB7 /* CanDuihuanCell.m in Sources */,
 				25BED2321F7C9CCC00A0A07A /* FindOneCell.m in Sources */,
 				250078F92020503E00092463 /* JiFenStoreOverHttp.m in Sources */,
+				254052472024145A00B0162A /* GuanZhuModel.m in Sources */,
 				257D377E1F74B47A00C25FE4 /* CDFindImgScrollView.m in Sources */,
 				25AB5B351FC7FFB800BC4D6F /* AddressCell.m in Sources */,
 				250078F62020182300092463 /* JiFenCanDuiHuanModel.m in Sources */,
 				25649C401FFB800300002608 /* FootView.m in Sources */,
+				2540523F2024056200B0162A /* GuanZhuTableViewCell.m in Sources */,
 				25AB5B311FC7FBB000BC4D6F /* AddAddressVC.m in Sources */,
 				25130E441F99E84200E1E29A /* JSCenterAnnotation.m in Sources */,
 				25D5A39F1FBED44300074447 /* GeRenZiLiaoViewController.m in Sources */,
@@ -2177,6 +2220,7 @@
 				25649E382005AE8400002608 /* AGIPCGridItem.m in Sources */,
 				25313DDE1FB5493D008C9ED5 /* ExchangeVC.m in Sources */,
 				8F1BBE4B1FE965A100602C3B /* FavoriteSliderTopView.m in Sources */,
+				2540524A20244F9200B0162A /* FansHttp.m in Sources */,
 				257D12601F69172B003DC1E4 /* MyUINavigationController.m in Sources */,
 				25ABFB671FEA3BE000C90BD0 /* FoodDetailHeaderView.m in Sources */,
 				25D5A26D1FB9837A00074447 /* MBProgressHUD+MJ.m in Sources */,
@@ -2416,6 +2460,16 @@
 				INFOPLIST_FILE = yxtd/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/AFNetworking\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/MBProgressHUD\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/MJExtension\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Masonry\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SDCycleScrollView\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SDWebImage\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/JSONModel",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = yixitongda.yxtd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -2434,6 +2488,16 @@
 				INFOPLIST_FILE = yxtd/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/AFNetworking\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/MBProgressHUD\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/MJExtension\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Masonry\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SDCycleScrollView\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SDWebImage\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/JSONModel",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = yixitongda.yxtd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
