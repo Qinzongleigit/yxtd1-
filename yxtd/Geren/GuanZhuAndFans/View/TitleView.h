@@ -15,4 +15,6 @@
 
 @property (nonatomic,strong) NSArray*titleArr;
 
+@property (nonatomic,assign) NSInteger numTag;
+
 @end

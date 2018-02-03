@@ -65,7 +65,7 @@ static Reachability *reach;
             
             success(responseObject);
             
-            NSLog(@"接口请求成功返回的数据信息：--------------------------:%@",responseObject);
+//            NSLog(@"接口请求成功返回的数据信息：--------------------------:%@",responseObject);
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

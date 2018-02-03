@@ -27,7 +27,6 @@
 
 //高德地图key
 #define kAPIKey @"4166d89247116be10d43d37df3532fa1"
-
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import <MAMapKit/MAMapKit.h>
 #import <AMapNaviKit/AMapNaviKit.h>
@@ -67,7 +66,7 @@
 
 #define SYRealValueWidth(Width) ((Width)/375.0f*[UIScreen mainScreen].bounds.size.width)
 
-
+#define _strongSelf(...) \
 
 
 #endif /* yxtd_pch */

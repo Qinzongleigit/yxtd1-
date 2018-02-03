@@ -48,6 +48,7 @@
 		2540524320240BD800B0162A /* GuanZhuHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 2540524220240BD800B0162A /* GuanZhuHttp.m */; };
 		254052472024145A00B0162A /* GuanZhuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 254052462024145A00B0162A /* GuanZhuModel.m */; };
 		2540524A20244F9200B0162A /* FansHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 2540524920244F9200B0162A /* FansHttp.m */; };
+		2540524F2025846400B0162A /* AddGuanZhuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2540524E2025846400B0162A /* AddGuanZhuViewController.m */; };
 		2542680B1F73A95600E54A5E /* NSDate+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 2542680A1F73A95600E54A5E /* NSDate+MJ.m */; };
 		25485B941F7219AB001122F7 /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25485B931F7219AB001122F7 /* MineViewController.m */; };
 		25485B991F721AFE001122F7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25485B981F721AFE001122F7 /* LoginViewController.m */; };
@@ -268,6 +269,8 @@
 		254052462024145A00B0162A /* GuanZhuModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GuanZhuModel.m; sourceTree = "<group>"; };
 		2540524820244F9200B0162A /* FansHttp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FansHttp.h; sourceTree = "<group>"; };
 		2540524920244F9200B0162A /* FansHttp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FansHttp.m; sourceTree = "<group>"; };
+		2540524D2025846400B0162A /* AddGuanZhuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddGuanZhuViewController.h; sourceTree = "<group>"; };
+		2540524E2025846400B0162A /* AddGuanZhuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddGuanZhuViewController.m; sourceTree = "<group>"; };
 		254268091F73A95600E54A5E /* NSDate+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+MJ.h"; sourceTree = "<group>"; };
 		2542680A1F73A95600E54A5E /* NSDate+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+MJ.m"; sourceTree = "<group>"; };
 		25485B921F7219AB001122F7 /* MineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineViewController.h; sourceTree = "<group>"; };
@@ -533,6 +536,7 @@
 		250078C6201B1EF700092463 /* GuanZhuAndFans */ = {
 			isa = PBXGroup;
 			children = (
+				2540524B2025830800B0162A /* AddGuanZhu */,
 				250078CB201B1F6100092463 /* Controller */,
 				2540524420240E4600B0162A /* Model */,
 				250078C7201B1F3C00092463 /* View */,
@@ -885,6 +889,23 @@
 				254052462024145A00B0162A /* GuanZhuModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		2540524B2025830800B0162A /* AddGuanZhu */ = {
+			isa = PBXGroup;
+			children = (
+				2540524C2025832400B0162A /* Controller */,
+			);
+			path = AddGuanZhu;
+			sourceTree = "<group>";
+		};
+		2540524C2025832400B0162A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2540524D2025846400B0162A /* AddGuanZhuViewController.h */,
+				2540524E2025846400B0162A /* AddGuanZhuViewController.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		25485B951F721A78001122F7 /* Login */ = {
@@ -2186,6 +2207,7 @@
 				250078D2201EC2A000092463 /* UserInformationModel.m in Sources */,
 				25649E372005AE8400002608 /* AGIPCGridCell.m in Sources */,
 				25130E4A1F99EA1B00E1E29A /* SelectableOverlay.m in Sources */,
+				2540524F2025846400B0162A /* AddGuanZhuViewController.m in Sources */,
 				2575541A1FD79D7100B4EBB7 /* JiangZhangTableViewController.m in Sources */,
 				25ABFB481FE7B98100C90BD0 /* MyDiscountViewController.m in Sources */,
 				251CF2881FC2D04300867046 /* SexView.m in Sources */,

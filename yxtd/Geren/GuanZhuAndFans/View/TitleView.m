@@ -10,6 +10,8 @@
 
 @interface TitleView ()
 
+@property (nonatomic,strong)UIButton*bt;
+
 
 @end
 
@@ -35,6 +37,7 @@
     for (int i = 0; i < _titleArr.count ; i ++) {
         
         UIButton*bt=[UIButton buttonWithType:UIButtonTypeCustom];
+        self.bt=bt;
         [bt setTitle:self.titleArr[i] forState:UIControlStateNormal];
         [bt setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         bt.backgroundColor=[UIColor clearColor];
@@ -60,6 +63,23 @@
         make.height.equalTo(@35);
     }];
   
+}
+
+-(void)setNumTag:(NSInteger)numTag{
+    
+    if (numTag==1001) {
+        
+        for (int i=0; i<_titleArr.count; i++) {
+            
+            UIButton*btn=(UIButton*)[self viewWithTag:100+i];
+            btn.selected=NO;
+            
+            btn.transform= CGAffineTransformMakeScale(1.0,1.0);
+            
+        }
+        self.bt.selected=YES;
+        self.bt.transform= CGAffineTransformMakeScale(1.2, 1.2);
+    }
 }
 
 -(void)btClick:(UIButton*)bt{

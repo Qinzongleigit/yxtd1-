@@ -7,6 +7,7 @@
 //
 
 #import "GuanZhuFansViewController.h"
+#import "AddGuanZhuViewController.h"
 #import "TitleView.h"
 #import "GuanZhuTableViewCell.h"
 #import "MineUserMessageParam.h"
@@ -63,9 +64,13 @@
 
     [self creatTableView];
     
-    [self getGuanZhuHttpData];
-    
-  
+    if (self.tag==1001) {
+        
+        [self getFansHttpData];
+    }else{
+        
+        [self getGuanZhuHttpData];
+    }
     
 }
 
@@ -92,7 +97,6 @@
     
     [FansHttp httpFans:params success:^(id responseObject) {
         
-           NSLog(@"粉丝接口返回的信息==================:%@",responseObject);
         if ([responseObject[@"code"] integerValue]==200) {
             
             NSArray *array=responseObject[@"data"];
@@ -139,9 +143,7 @@
     
     [GuanZhuHttp httpGuanzhu:params success:^(id responseObject) {
         
-        NSLog(@"关注接口返回的信息==================:%@",responseObject);
-        
-        
+  
         if ([responseObject[@"code"] integerValue]==200) {
             
            NSArray *array=responseObject[@"data"];
@@ -185,15 +187,26 @@
     
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    if (self.selectTag==101) {
+
+    if (self.selectTag==101||self.tag==1001) {
         
+          //从粉丝点击进入
+        if (self.selectTag==100) {
+            
+            return self.dataArr.count;
+        }else{
+            
         return self.dataFansArr.count;
+            
+        }
         
     }else{
         
+      
     return self.dataArr.count;
         
     }
+    return 0;
 }
 
 
@@ -202,9 +215,15 @@
   
     GuanZhuTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:cellStr forIndexPath:indexPath];
     
-    if (self.selectTag==101) {
+    if (self.selectTag==101||self.tag==1001) {
+        //从粉丝点击进入
+        if (self.selectTag==100) {
+             [cell fillCellWithModel:_dataArr[indexPath.row] indexPath:indexPath];
+            
+        }else{
 
        [cell fillCellWithModel:_dataFansArr[indexPath.row] indexPath:indexPath];
+        }
 
     }else{
     
@@ -223,6 +242,7 @@
     TitleView*titleView =[[TitleView alloc] init];
     titleView.backgroundColor=[UIColor clearColor];
     self.titleView=titleView;
+    self.titleView.numTag=self.tag;
     self.navigationItem.titleView = self.titleView;
     [titleView mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -237,10 +257,9 @@
         
            //粉丝点击
            if (blockSelf.selectTag==101) {
-     
+              
                 [blockSelf getFansHttpData];
                
-                 //粉丝点击
                }else{
                      //关注点击
                    [blockSelf getGuanZhuHttpData];
@@ -254,7 +273,11 @@
 
 -(void)rightBtnClick{
     
-    NSLog(@"添加了关注");
+    
+    AddGuanZhuViewController*addguanzhuVC=[[AddGuanZhuViewController alloc] init];
+    addguanzhuVC.hidesBottomBarWhenPushed=YES;
+    
+    [self.navigationController pushViewController:addguanzhuVC animated:YES];
     
     
 }
