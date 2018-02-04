@@ -146,6 +146,9 @@
 		25D5A39F1FBED44300074447 /* GeRenZiLiaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25D5A39E1FBED44300074447 /* GeRenZiLiaoViewController.m */; };
 		25D5A3A31FBED5A000074447 /* JiFenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25D5A3A21FBED5A000074447 /* JiFenViewController.m */; };
 		25D88F341FD5420700405F8D /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 25D88F331FD5420600405F8D /* UICountingLabel.m */; };
+		25F836582026B6E400F3ACC2 /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F836572026B6E400F3ACC2 /* DataModel.m */; };
+		25F8365B2026E7EC00F3ACC2 /* SearchUserHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F8365A2026E7EC00F3ACC2 /* SearchUserHttp.m */; };
+		25F8365F2026F2CC00F3ACC2 /* SearchUserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F8365E2026F2CC00F3ACC2 /* SearchUserTableViewCell.m */; };
 		25FD1ADA1F6A163A00D7957E /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FD1AD91F6A163900D7957E /* UIColor+Hex.m */; };
 		25FE9F6A1F7E35BF00D9E420 /* CLTRoundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FE9F691F7E35BF00D9E420 /* CLTRoundView.m */; };
 		30AE89C1A250834E9DB980BB /* libPods-yxtd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D34E885CCE21FBB8C41A8408 /* libPods-yxtd.a */; };
@@ -462,6 +465,12 @@
 		25D5A3A21FBED5A000074447 /* JiFenViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JiFenViewController.m; sourceTree = "<group>"; };
 		25D88F321FD5420600405F8D /* UICountingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICountingLabel.h; sourceTree = "<group>"; };
 		25D88F331FD5420600405F8D /* UICountingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICountingLabel.m; sourceTree = "<group>"; };
+		25F836562026B6E400F3ACC2 /* DataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModel.h; sourceTree = "<group>"; };
+		25F836572026B6E400F3ACC2 /* DataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModel.m; sourceTree = "<group>"; };
+		25F836592026E7EC00F3ACC2 /* SearchUserHttp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchUserHttp.h; sourceTree = "<group>"; };
+		25F8365A2026E7EC00F3ACC2 /* SearchUserHttp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchUserHttp.m; sourceTree = "<group>"; };
+		25F8365D2026F2CC00F3ACC2 /* SearchUserTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchUserTableViewCell.h; sourceTree = "<group>"; };
+		25F8365E2026F2CC00F3ACC2 /* SearchUserTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchUserTableViewCell.m; sourceTree = "<group>"; };
 		25FD1AD81F6A163900D7957E /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		25FD1AD91F6A163900D7957E /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		25FE9F681F7E35BF00D9E420 /* CLTRoundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTRoundView.h; sourceTree = "<group>"; };
@@ -878,6 +887,8 @@
 				2540524220240BD800B0162A /* GuanZhuHttp.m */,
 				2540524820244F9200B0162A /* FansHttp.h */,
 				2540524920244F9200B0162A /* FansHttp.m */,
+				25F836592026E7EC00F3ACC2 /* SearchUserHttp.h */,
+				25F8365A2026E7EC00F3ACC2 /* SearchUserHttp.m */,
 			);
 			path = GuanzhuAndFans;
 			sourceTree = "<group>";
@@ -895,6 +906,8 @@
 			isa = PBXGroup;
 			children = (
 				2540524C2025832400B0162A /* Controller */,
+				25F836552026B6C900F3ACC2 /* Model */,
+				25F8365C2026F26F00F3ACC2 /* View */,
 			);
 			path = AddGuanZhu;
 			sourceTree = "<group>";
@@ -1753,6 +1766,24 @@
 			path = JiFenStore;
 			sourceTree = "<group>";
 		};
+		25F836552026B6C900F3ACC2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				25F836562026B6E400F3ACC2 /* DataModel.h */,
+				25F836572026B6E400F3ACC2 /* DataModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		25F8365C2026F26F00F3ACC2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				25F8365D2026F2CC00F3ACC2 /* SearchUserTableViewCell.h */,
+				25F8365E2026F2CC00F3ACC2 /* SearchUserTableViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		25FE9F671F7E357600D9E420 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -2186,6 +2217,7 @@
 				8F1BBE431FE962A400602C3B /* FoodViewController.m in Sources */,
 				8FFB6D1E200BAD860033E9FA /* MySportsController.m in Sources */,
 				257D125F1F69172B003DC1E4 /* MyTabarController.m in Sources */,
+				25F8365F2026F2CC00F3ACC2 /* SearchUserTableViewCell.m in Sources */,
 				2540524320240BD800B0162A /* GuanZhuHttp.m in Sources */,
 				2519B1E51FEB9F8200C706B6 /* ShangJiaGradeHeaderView.m in Sources */,
 				25649E342005AE8400002608 /* AGImagePreviewController.m in Sources */,
@@ -2216,6 +2248,7 @@
 				25BED2321F7C9CCC00A0A07A /* FindOneCell.m in Sources */,
 				250078F92020503E00092463 /* JiFenStoreOverHttp.m in Sources */,
 				254052472024145A00B0162A /* GuanZhuModel.m in Sources */,
+				25F8365B2026E7EC00F3ACC2 /* SearchUserHttp.m in Sources */,
 				257D377E1F74B47A00C25FE4 /* CDFindImgScrollView.m in Sources */,
 				25AB5B351FC7FFB800BC4D6F /* AddressCell.m in Sources */,
 				250078F62020182300092463 /* JiFenCanDuiHuanModel.m in Sources */,
@@ -2233,6 +2266,7 @@
 				25D5A2D71FBBDD2200074447 /* WebViewController.m in Sources */,
 				25AD8CD11FA85F9C00960732 /* DetailedView.m in Sources */,
 				25AD8CB81FA8156D00960732 /* DetailedViewController.m in Sources */,
+				25F836582026B6E400F3ACC2 /* DataModel.m in Sources */,
 				25649E392005AE8400002608 /* AGIPCPreviewController.m in Sources */,
 				25313DE21FB54D2F008C9ED5 /* TopicVC.m in Sources */,
 				25D5A2F61FBC3D0000074447 /* LoginHttp.m in Sources */,

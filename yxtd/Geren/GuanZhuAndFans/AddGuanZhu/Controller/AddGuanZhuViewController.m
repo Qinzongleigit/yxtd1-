@@ -7,6 +7,9 @@
 //
 
 #import "AddGuanZhuViewController.h"
+#import "SearchUserHttp.h"
+#import "SearchUserTableViewCell.h"
+#import "DataModel.h"
 
 @interface AddGuanZhuViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 
@@ -14,28 +17,22 @@
 
 @property (nonatomic,strong) UISearchBar*searchBar;
 
-@property (nonatomic, strong) UIView *searchBgView;
+@property(nonatomic,strong)  NSMutableArray *resultArray;
 
-@property (nonatomic, strong) UIButton *cancleBtn;
+@property (nonatomic,strong)  NSString*searchBarText;
+
 
 @end
 
 @implementation AddGuanZhuViewController
 
--(UITableView*)tableView{
-    
-    if (!_tableView) {
-       _tableView=[[UITableView alloc] init];
-        _tableView.delegate=self;
-        _tableView.dataSource=self;
-        
-    }
-  
-    return _tableView;
-    
-    
-}
+-(NSMutableArray *)resultArray{
 
+    if (!_resultArray) {
+        _resultArray = [NSMutableArray array];
+    }
+    return _resultArray;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -43,158 +40,254 @@
   
     self.title=@"添加关注";
     
-    
     self.rightBt.hidden=YES;
     
-    [self.view addSubview:self.searchBgView];
+
+    [self.view addSubview:self.searchBar];
     
     [self.view addSubview:self.tableView];
     
+    [self.searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
 
-    [self.searchBgView mas_makeConstraints:^(MASConstraintMaker *make) {
-     
-        make.top.mas_equalTo(0);
-        make.left.and.right.mas_equalTo(0);
-        make.height.mas_equalTo(60);
+        make.left.mas_equalTo(8);
+        make.right.mas_equalTo(-8);
+        make.height.mas_equalTo(44);
+       make.top.mas_equalTo(15);
+
     }];
     
+    
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-      
-        make.top.mas_equalTo(self.searchBgView.mas_bottom);
-        make.left.and.right.mas_equalTo(0);
+
+        make.top.mas_equalTo(64);
+        make.left.right.mas_equalTo(0);
         make.bottom.mas_equalTo(0);
+
     }];
 
-    [self.searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
-     
-        make.left.mas_equalTo(8);
-        make.top.mas_equalTo(15);
-        make.height.mas_equalTo(30);
-        make.right.mas_equalTo(-8);
-        //make.right.mas_equalTo(_cancleBtn.mas_left).with.offset(-10);
-    }];
-//
-//    [self.cancleBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.centerY.mas_equalTo(self.searchBar.mas_centerY);
-//        make.right.mas_equalTo(-15);
-//        make.height.mas_equalTo(30);
-//        make.left.mas_equalTo(self.searchBar.mas_right).with.offset(10);
-//    }];
     
 }
 
-#pragma  mark 搜索栏
-- (UIView *)searchBgView
-{
-    if (!_searchBgView) {
-        _searchBgView = [[UIView alloc] init];
-        _searchBgView.backgroundColor = [UIColor whiteColor];
-        _searchBar = [[UISearchBar alloc] init];
-        _searchBar.backgroundColor = [UIColor clearColor];
-        _searchBar.showsCancelButton = NO;
-        _searchBar.tintColor = BlackHexColor;
-        _searchBar.placeholder = @"搜索券友";
-        _searchBar.delegate = self;
-        for (UIView *subView in _searchBar.subviews) {
-            if ([subView isKindOfClass:[UIView  class]]) {
-                [[subView.subviews objectAtIndex:0] removeFromSuperview];
-                if ([[subView.subviews objectAtIndex:0] isKindOfClass:[UITextField class]]) {
-                    UITextField *textField = [subView.subviews objectAtIndex:0];
-                    textField.backgroundColor = [UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1];
-                    
-                    //设置默认文字颜色
-                    UIColor *color = [UIColor grayColor];
-                    [textField setAttributedPlaceholder:[[NSAttributedString alloc] initWithString:@"搜索券友"
-                                                                                        attributes:@{NSForegroundColorAttributeName:color}]];
-                    //修改默认的放大镜图片
-                    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 13, 13)];
-                    imageView.backgroundColor = [UIColor clearColor];
-                    imageView.image = [UIImage imageNamed:@"search_ misplaces_Image"];
-                    textField.leftView = imageView;
-                }
+
+#pragma mark -搜索关注接口
+-(void)getSearchUserGetData{
+    
+    NSUserDefaults *userInformation = [NSUserDefaults standardUserDefaults];
+    
+    NSString*api_tokenStr=[userInformation objectForKey:@"api_token"];
+    
+    NSString*member_idStr=[userInformation objectForKey:@"member_id"];
+    
+    MineUserMessageParam*params=[[MineUserMessageParam alloc] init];
+    
+    params.api_token=api_tokenStr;
+    
+    params.member_id=member_idStr;
+    
+    params.nickname=self.searchBarText;
+    
+    [self.resultArray removeAllObjects];
+    
+    [SearchUserHttp  httpSearchUser:params success:^(id responseObject) {
+        
+        NSLog(@"搜索犯坏=========：%@",responseObject);
+
+        if ([responseObject[@"code"] integerValue]==200) {
+            
+            NSArray *array=responseObject[@"data"];
+            
+            // 字段转模型
+            for(NSDictionary *tempDict in array){
+                
+                DataModel *model = [[DataModel alloc] init];
+                
+                [model setValuesForKeysWithDictionary:tempDict];
+                
+                [self.resultArray addObject:model];
+                
+                
+                [_tableView reloadData];
+                
             }
         }
         
-        UIImage *image = [UIImage imageNamed:@"search_cancle_button_Image"];
-        [_searchBar setImage:image forSearchBarIcon:UISearchBarIconClear state:UIControlStateNormal];
+        
+    } failure:^(NSError *error) {
+        
+        NSLog(@"搜索用户失败");
+       
+        
+    }];
+    
+    
+    
+}
 
-       [_searchBgView addSubview:_searchBar];
-        
-        _cancleBtn = [[UIButton alloc] init];
-        _cancleBtn.backgroundColor = [UIColor clearColor];
-        _cancleBtn.titleLabel.font = [UIFont systemFontOfSize:16.0];
-        [_cancleBtn setTitle:@"取消" forState:UIControlStateNormal];
-        [_cancleBtn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
-        [_cancleBtn setTitleColor:[UIColor orangeColor] forState:UIControlStateHighlighted];
-        [_searchBgView addSubview:_cancleBtn];
-        
-        [_cancleBtn addTarget:self action:@selector(cancleBtnTouched) forControlEvents:UIControlEventTouchUpInside];
-        
+#pragma mark -搜索框
+-(UISearchBar*)searchBar{
+    if (!_searchBar) {
+
+        _searchBar = [[UISearchBar alloc]init];
+        _searchBar.keyboardType = UIKeyboardAppearanceDefault;
+        _searchBar.placeholder = @"请输入搜索关键字";
+        _searchBar.delegate = self;
+        //光标的颜色
+        _searchBar.tintColor=[UIColor yellowColor];
+        _searchBar.searchBarStyle = UISearchBarStyleMinimal;
     }
-    return _searchBgView;
-    
-    
+
+    return _searchBar;
+
 }
 
-#pragma mark ---searchBar delegate
-//限制20个字符
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
-{
-    if ([searchText length] > 20) {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:@"字数不能超过20" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
-        [alertController addAction:alertAction];
-        [self presentViewController:alertController animated:nil completion:nil];
-        [_searchBar setText:[searchText substringToIndex:20]];
+//表格
+-(UITableView*)tableView{
+    
+    if (!_tableView) {
+        _tableView=[[UITableView alloc] init];
+        _tableView.delegate=self;
+        _tableView.dataSource=self;
+        _tableView.rowHeight = 60;
+        _tableView.layer.cornerRadius = 5;
+        _tableView.tableFooterView = [[UIView alloc]init];
+        [_tableView registerClass:[SearchUserTableViewCell class] forCellReuseIdentifier:@"ID"];
     }
+    return _tableView;
     
-   // [self.viewModel filterObjectsWithKeyWords:searchText];
 }
 
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{
-    NSLog(@"========search");
-    [self.searchBar resignFirstResponder];
-    
-   
-}
-
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
-{
-    NSLog(@"9999999999999999");
-    
-    [self.searchBar becomeFirstResponder];
-}
-
-
+#pragma mark -表格视图代理方法
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 20;
+     return self.resultArray.count;
+
 }
-
-
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     NSString*cellStrID=@"ID";
     
-    UITableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:cellStrID];
-    if (!cell) {
-        
-        cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStrID];
-    }
-    
-    cell.textLabel.text=@"添加关注";
+   
+    SearchUserTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:cellStrID forIndexPath:indexPath];
+   
+        [cell fillCellWithModel:_resultArray[indexPath.row] indexPath:indexPath];
+    //消除重影
+//    for (UIView *view in cell.contentView.subviews) {
+//        [view removeFromSuperview];
+//    }
+//
+   
     return cell;
 }
 
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+//点击选中
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
 }
+
+
+#pragma mark-搜索框代理方法
+//在搜索框中修改搜索内容时，自动触发下面的方法
+-(BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar{
+    return YES;
+}
+
+-(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
+    
+    NSLog(@"开始输入搜索内容");
+    searchBar.showsCancelButton = YES;//取消的字体颜色，
+    [searchBar setShowsCancelButton:YES animated:YES];
+    
+    //改变取消的文本
+    for(UIView *view in [[[searchBar subviews] objectAtIndex:0] subviews]) {
+        if ([view isKindOfClass:[UIButton class]]) {
+            UIButton *cancel =(UIButton *)view;
+            [cancel setTitle:@"取消" forState:UIControlStateNormal];
+            [cancel setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        }
+    }
+}
+
+-(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
+    
+    NSLog(@"输入搜索内容完毕");
+}
+
+
+//搜框中输入关键字的事件响应
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    
+    self.searchBarText=searchText;
+    
+  
+}
+
+
+//取消的响应事件
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+    
+    NSLog(@"取消搜索");
+    [searchBar setShowsCancelButton:NO animated:YES];
+    [searchBar resignFirstResponder];
+}
+
+//键盘上搜索事件的响应
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    
+    NSLog(@"搜索");
+    [searchBar setShowsCancelButton:NO animated:YES];
+    [searchBar resignFirstResponder];
+    [self getSearchUserGetData];
+}
+
+#pragma mark--获取汉字转成拼音字符串 通讯录模糊搜索 支持拼音检索 首字母 全拼 汉字 搜索
+- (NSString *)transformToPinyin:(NSString *)aString{
+    //转成了可变字符串
+    NSMutableString *str = [NSMutableString stringWithString:aString];
+    CFStringTransform((CFMutableStringRef)str,NULL, kCFStringTransformMandarinLatin,NO);
+    //再转换为不带声调的拼音
+    CFStringTransform((CFMutableStringRef)str,NULL, kCFStringTransformStripDiacritics,NO);
+    NSArray *pinyinArray = [str componentsSeparatedByString:@" "];
+    NSMutableString *allString = [NSMutableString new];
+    
+    int count = 0;
+    
+    for (int  i = 0; i < pinyinArray.count; i++)
+    {
+        
+        for(int i = 0; i < pinyinArray.count;i++)
+        {
+            if (i == count) {
+                [allString appendString:@"#"];//区分第几个字母
+            }
+            [allString appendFormat:@"%@",pinyinArray[i]];
+            
+        }
+        [allString appendString:@","];
+        count ++;
+        
+    }
+    
+    NSMutableString *initialStr = [NSMutableString new];//拼音首字母
+    
+    for (NSString *s in pinyinArray)
+    {
+        if (s.length > 0)
+        {
+            
+            [initialStr appendString:  [s substringToIndex:1]];
+        }
+    }
+    
+    [allString appendFormat:@"#%@",initialStr];
+    [allString appendFormat:@",#%@",aString];
+    
+    return allString;
+}
+
+
 
 
 

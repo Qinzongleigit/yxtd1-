@@ -43,4 +43,9 @@
 //粉丝列表
 #define Fans @""  httpUrl@"admin/my_fans"
 
+//搜索(搜索用户)
+#define SearchuUser @""  httpUrl@"admin/search_user"
+
+
+
 #endif /* interface_h */

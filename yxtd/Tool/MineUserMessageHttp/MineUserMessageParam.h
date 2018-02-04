@@ -13,5 +13,7 @@
 @property (nonatomic, copy) NSString *member_id;
 @property (nonatomic, copy) NSString *api_token;
 
+@property (nonatomic, copy) NSString *nickname;
+
 
 @end
