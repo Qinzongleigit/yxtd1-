@@ -90,7 +90,7 @@
     
     [SearchUserHttp  httpSearchUser:params success:^(id responseObject) {
         
-        NSLog(@"搜索犯坏=========：%@",responseObject);
+        NSLog(@"搜索返回结果=========：%@",responseObject);
 
         if ([responseObject[@"code"] integerValue]==200) {
             

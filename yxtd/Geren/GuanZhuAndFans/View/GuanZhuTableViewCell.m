@@ -78,7 +78,7 @@
         
     }else if ([model.flag integerValue]==2){
         
-         [_sexBtImage setBackgroundImage:[UIImage imageWithoriginName:@"guznzhu_man_Image"] forState:UIControlStateNormal];
+         [_sexBtImage setBackgroundImage:[UIImage imageWithoriginName:@"guanzhu_man_Image"] forState:UIControlStateNormal];
    
     }else{
         

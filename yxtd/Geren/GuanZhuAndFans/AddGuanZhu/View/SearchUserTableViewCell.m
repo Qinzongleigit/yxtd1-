@@ -21,6 +21,10 @@
 
 @property (nonatomic,assign) NSIndexPath*row;
 
+@property (nonatomic,assign) NSInteger index;
+
+@property (nonatomic,assign) BOOL isFocus;
+
 
 
 @end
@@ -67,12 +71,12 @@
     
     
     _foucsButton=[UIButton buttonWithType:UIButtonTypeCustom];
-    _foucsButton.layer.cornerRadius=5;
-    _foucsButton.clipsToBounds=YES;
     _foucsButton.titleLabel.font=[UIFont systemFontOfSize:12];
+    [_foucsButton addTarget:self action:@selector(focusbuttonClick:) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.contentView addSubview:_foucsButton];
     
-    
+    self.isFocus=NO;
     
 }
 
@@ -91,7 +95,7 @@
         
     }else if ([model.flag integerValue]==2){
         
-        [_sexBtImage setBackgroundImage:[UIImage imageWithoriginName:@"guznzhu_man_Image"] forState:UIControlStateNormal];
+        [_sexBtImage setBackgroundImage:[UIImage imageWithoriginName:@"guanzhu_man_Image"] forState:UIControlStateNormal];
         
     }else{
         
@@ -99,22 +103,62 @@
         
     }
     
+    self.index=[model.is_focus integerValue];
+    
     if ([model.is_focus integerValue]==1) {
         
-        _foucsButton.backgroundColor=COLORWITHRGB(0, 219, 220);
-        [_foucsButton setTitle:@"已关注" forState:UIControlStateNormal];
-        [_foucsButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+     
+       [_foucsButton setImage:[UIImage imageNamed:@"yiguznzhu_Image"] forState:UIControlStateNormal];
+       
         
         
     }else{
-    
-        [_foucsButton setTitle:@"关注" forState:UIControlStateNormal];
-        [_foucsButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        _foucsButton.layer.borderWidth=1;
-        _foucsButton.layer.borderColor=[UIColor blackColor].CGColor;
+        
+    [_foucsButton setImage:[UIImage imageNamed:@"guanzhu_Image"] forState:UIControlStateNormal];
+        
+       
         
     }
  
+}
+
+
+-(void)focusbuttonClick:(UIButton*)btn{
+
+    self.isFocus=!self.isFocus;
+    
+    if (self.index==1) {
+
+
+        if (self.isFocus) {
+
+            [btn setImage:[UIImage imageNamed:@"guanzhu_Image"] forState:UIControlStateNormal];
+
+        }else{
+
+            [btn setImage:[UIImage imageNamed:@"yiguanzhu_Image"] forState:UIControlStateNormal];
+
+        }
+
+
+    }else{
+
+        
+        if (self.isFocus) {
+            
+            [btn setImage:[UIImage imageNamed:@"yiguanzhu_Image"] forState:UIControlStateNormal];
+
+        }else{
+
+            [btn setImage:[UIImage imageNamed:@"guanzhu_Image"] forState:UIControlStateNormal];
+            
+            
+       }
+        
+        
+    }
+    
+   
 }
 
 
