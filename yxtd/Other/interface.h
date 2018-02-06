@@ -46,6 +46,12 @@
 //搜索(搜索用户)
 #define SearchuUser @""  httpUrl@"admin/search_user"
 
+//关注某个用户
+#define MyFocus @""  httpUrl@"admin/focus"
+
+//取消关注某个用户
+#define CancleMyFocus @""  httpUrl@"admin/cancel_focus"
+
 
 
 #endif /* interface_h */

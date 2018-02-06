@@ -7,6 +7,9 @@
 //
 
 #import "SearchUserTableViewCell.h"
+#import "MyFocusHttp.h"
+#import "MyFocusParam.h"
+#import "CancleMyFocusHttp.h"
 
 @interface SearchUserTableViewCell ()
 
@@ -24,6 +27,10 @@
 @property (nonatomic,assign) NSInteger index;
 
 @property (nonatomic,assign) BOOL isFocus;
+
+@property (nonatomic,strong) NSString*user_id;
+
+@property (nonatomic,strong) NSString*is_admin;
 
 
 
@@ -85,6 +92,10 @@
     
     self.row=path;
     
+    self.user_id=model.user_id;
+    
+    self.is_admin=model.flag;
+    
     [_iconImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",model.avatar]]];
     _nickNameLabel.text=model.nickname;
     
@@ -108,7 +119,7 @@
     if ([model.is_focus integerValue]==1) {
         
      
-       [_foucsButton setImage:[UIImage imageNamed:@"yiguznzhu_Image"] forState:UIControlStateNormal];
+       [_foucsButton setImage:[UIImage imageNamed:@"yiguanzhu_Image"] forState:UIControlStateNormal];
        
         
         
@@ -133,13 +144,20 @@
         if (self.isFocus) {
 
             [btn setImage:[UIImage imageNamed:@"guanzhu_Image"] forState:UIControlStateNormal];
+            
+            
+               [self getCancelMyFocusHttpData];
 
         }else{
 
             [btn setImage:[UIImage imageNamed:@"yiguanzhu_Image"] forState:UIControlStateNormal];
-
+            
+              [self  getMyFocusHttpData];
+            
+         
+            
+            
         }
-
 
     }else{
 
@@ -147,14 +165,17 @@
         if (self.isFocus) {
             
             [btn setImage:[UIImage imageNamed:@"yiguanzhu_Image"] forState:UIControlStateNormal];
+            
+            [self  getMyFocusHttpData];
 
         }else{
 
             [btn setImage:[UIImage imageNamed:@"guanzhu_Image"] forState:UIControlStateNormal];
             
+            [self getCancelMyFocusHttpData];
+            
             
        }
-        
         
     }
     
@@ -197,10 +218,71 @@
 }
 
 
+#pragma mark -取消关注数据接口
+-(void)getCancelMyFocusHttpData{
+    
+    NSUserDefaults *userInformation = [NSUserDefaults standardUserDefaults];
+    
+    NSString*api_tokenStr=[userInformation objectForKey:@"api_token"];
+    
+    NSString*member_idStr=[userInformation objectForKey:@"member_id"];
+    
+    MyFocusParam*params=[[MyFocusParam alloc] init];
+    
+    params.api_token=api_tokenStr;
+    
+    params.member_id=member_idStr;
+    
+    params.user_id=self.user_id;
+    
+    params.is_admin=self.is_admin;
+    
+   [ CancleMyFocusHttp httpCancleMyFocus:params success:^(id responseObject) {
+       
+       NSLog(@"取消关注成功返回的数据=============:%@",responseObject);
+        
+    } failure:^(NSError *error) {
+        
+        NSLog(@"取消关注失败");
+        
+    }];
+    
+    
+}
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
+
+
+#pragma mark -添加关注数据接口
+-(void)getMyFocusHttpData{
+    
+    NSUserDefaults *userInformation = [NSUserDefaults standardUserDefaults];
+    
+    NSString*api_tokenStr=[userInformation objectForKey:@"api_token"];
+    
+    NSString*member_idStr=[userInformation objectForKey:@"member_id"];
+    
+    MyFocusParam*params=[[MyFocusParam alloc] init];
+    
+    params.api_token=api_tokenStr;
+    
+    params.member_id=member_idStr;
+    
+    params.user_id=self.user_id;
+    
+    params.is_admin=self.is_admin;
+    
+    
+    [MyFocusHttp httpMyFocus:params success:^(id responseObject) {
+        
+        NSLog(@"关注成功返回的接口数据显示===========：%@",responseObject);
+        
+    } failure:^(NSError *error) {
+       
+        
+        NSLog(@"关注失败");
+    }];
+    
+    
 }
 
 @end

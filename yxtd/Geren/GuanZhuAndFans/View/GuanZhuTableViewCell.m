@@ -8,6 +8,7 @@
 
 #import "GuanZhuTableViewCell.h"
 
+
 @interface GuanZhuTableViewCell ()
 
 @property (nonatomic,strong) UIImageView*iconImage;
@@ -117,10 +118,6 @@
 }
 
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
 
 
 @end

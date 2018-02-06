@@ -51,7 +51,7 @@
 
         make.left.mas_equalTo(8);
         make.right.mas_equalTo(-8);
-        make.height.mas_equalTo(44);
+        make.height.mas_equalTo(30);
        make.top.mas_equalTo(15);
 
     }];
@@ -59,7 +59,7 @@
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
 
-        make.top.mas_equalTo(64);
+        make.top.mas_equalTo(self.searchBar.mas_bottom).offset(15);
         make.left.right.mas_equalTo(0);
         make.bottom.mas_equalTo(0);
 
@@ -77,8 +77,7 @@
     NSString*api_tokenStr=[userInformation objectForKey:@"api_token"];
     
     NSString*member_idStr=[userInformation objectForKey:@"member_id"];
-    
-    MineUserMessageParam*params=[[MineUserMessageParam alloc] init];
+  MineUserMessageParam*params=[[MineUserMessageParam alloc] init];
     
     params.api_token=api_tokenStr;
     
@@ -129,10 +128,10 @@
 
         _searchBar = [[UISearchBar alloc]init];
         _searchBar.keyboardType = UIKeyboardAppearanceDefault;
-        _searchBar.placeholder = @"请输入搜索关键字";
+        _searchBar.placeholder = @"搜索券友";
         _searchBar.delegate = self;
         //光标的颜色
-        _searchBar.tintColor=[UIColor yellowColor];
+        _searchBar.tintColor=[UIColor blueColor];
         _searchBar.searchBarStyle = UISearchBarStyleMinimal;
     }
 

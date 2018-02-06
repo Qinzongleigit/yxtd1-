@@ -149,6 +149,11 @@
 		25F836582026B6E400F3ACC2 /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F836572026B6E400F3ACC2 /* DataModel.m */; };
 		25F8365B2026E7EC00F3ACC2 /* SearchUserHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F8365A2026E7EC00F3ACC2 /* SearchUserHttp.m */; };
 		25F8365F2026F2CC00F3ACC2 /* SearchUserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F8365E2026F2CC00F3ACC2 /* SearchUserTableViewCell.m */; };
+		25F8366720294DFC00F3ACC2 /* MyFocusParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F8366620294DFC00F3ACC2 /* MyFocusParam.m */; };
+		25F8366A20294E6B00F3ACC2 /* MyFocusHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F8366920294E6B00F3ACC2 /* MyFocusHttp.m */; };
+		25F8366D2029873000F3ACC2 /* CancleMyFocusHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F8366C2029873000F3ACC2 /* CancleMyFocusHttp.m */; };
+		25F836742029929100F3ACC2 /* GuanZhuFansDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F836732029929100F3ACC2 /* GuanZhuFansDetailViewController.m */; };
+		25F83677202992D500F3ACC2 /* DetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F83676202992D500F3ACC2 /* DetailHeaderView.m */; };
 		25FD1ADA1F6A163A00D7957E /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FD1AD91F6A163900D7957E /* UIColor+Hex.m */; };
 		25FE9F6A1F7E35BF00D9E420 /* CLTRoundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FE9F691F7E35BF00D9E420 /* CLTRoundView.m */; };
 		30AE89C1A250834E9DB980BB /* libPods-yxtd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D34E885CCE21FBB8C41A8408 /* libPods-yxtd.a */; };
@@ -471,6 +476,16 @@
 		25F8365A2026E7EC00F3ACC2 /* SearchUserHttp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchUserHttp.m; sourceTree = "<group>"; };
 		25F8365D2026F2CC00F3ACC2 /* SearchUserTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchUserTableViewCell.h; sourceTree = "<group>"; };
 		25F8365E2026F2CC00F3ACC2 /* SearchUserTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchUserTableViewCell.m; sourceTree = "<group>"; };
+		25F8366520294DFC00F3ACC2 /* MyFocusParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyFocusParam.h; sourceTree = "<group>"; };
+		25F8366620294DFC00F3ACC2 /* MyFocusParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyFocusParam.m; sourceTree = "<group>"; };
+		25F8366820294E6B00F3ACC2 /* MyFocusHttp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyFocusHttp.h; sourceTree = "<group>"; };
+		25F8366920294E6B00F3ACC2 /* MyFocusHttp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyFocusHttp.m; sourceTree = "<group>"; };
+		25F8366B2029873000F3ACC2 /* CancleMyFocusHttp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CancleMyFocusHttp.h; sourceTree = "<group>"; };
+		25F8366C2029873000F3ACC2 /* CancleMyFocusHttp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CancleMyFocusHttp.m; sourceTree = "<group>"; };
+		25F836722029929100F3ACC2 /* GuanZhuFansDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GuanZhuFansDetailViewController.h; sourceTree = "<group>"; };
+		25F836732029929100F3ACC2 /* GuanZhuFansDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GuanZhuFansDetailViewController.m; sourceTree = "<group>"; };
+		25F83675202992D500F3ACC2 /* DetailHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailHeaderView.h; sourceTree = "<group>"; };
+		25F83676202992D500F3ACC2 /* DetailHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailHeaderView.m; sourceTree = "<group>"; };
 		25FD1AD81F6A163900D7957E /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		25FD1AD91F6A163900D7957E /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		25FE9F681F7E35BF00D9E420 /* CLTRoundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTRoundView.h; sourceTree = "<group>"; };
@@ -545,6 +560,7 @@
 		250078C6201B1EF700092463 /* GuanZhuAndFans */ = {
 			isa = PBXGroup;
 			children = (
+				25F8366E2029919400F3ACC2 /* GuanZhuFansDetail */,
 				2540524B2025830800B0162A /* AddGuanZhu */,
 				250078CB201B1F6100092463 /* Controller */,
 				2540524420240E4600B0162A /* Model */,
@@ -1652,6 +1668,7 @@
 		25D5A26F1FB9942200074447 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				25F8366420294DD500F3ACC2 /* MyFocus */,
 				2540524020240BA500B0162A /* GuanzhuAndFans */,
 				250078EC20200ED200092463 /* JiFenStoreHttp */,
 				250078E520200EC100092463 /* MineUserMessageHttp */,
@@ -1782,6 +1799,54 @@
 				25F8365E2026F2CC00F3ACC2 /* SearchUserTableViewCell.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		25F8366420294DD500F3ACC2 /* MyFocus */ = {
+			isa = PBXGroup;
+			children = (
+				25F8366520294DFC00F3ACC2 /* MyFocusParam.h */,
+				25F8366620294DFC00F3ACC2 /* MyFocusParam.m */,
+				25F8366820294E6B00F3ACC2 /* MyFocusHttp.h */,
+				25F8366920294E6B00F3ACC2 /* MyFocusHttp.m */,
+				25F8366B2029873000F3ACC2 /* CancleMyFocusHttp.h */,
+				25F8366C2029873000F3ACC2 /* CancleMyFocusHttp.m */,
+			);
+			path = MyFocus;
+			sourceTree = "<group>";
+		};
+		25F8366E2029919400F3ACC2 /* GuanZhuFansDetail */ = {
+			isa = PBXGroup;
+			children = (
+				25F8366F202991F800F3ACC2 /* Controller */,
+				25F836712029921200F3ACC2 /* Model */,
+				25F836702029920B00F3ACC2 /* View */,
+			);
+			path = GuanZhuFansDetail;
+			sourceTree = "<group>";
+		};
+		25F8366F202991F800F3ACC2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				25F836722029929100F3ACC2 /* GuanZhuFansDetailViewController.h */,
+				25F836732029929100F3ACC2 /* GuanZhuFansDetailViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		25F836702029920B00F3ACC2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				25F83675202992D500F3ACC2 /* DetailHeaderView.h */,
+				25F83676202992D500F3ACC2 /* DetailHeaderView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		25F836712029921200F3ACC2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		25FE9F671F7E357600D9E420 /* View */ = {
@@ -2207,6 +2272,7 @@
 				25ABFB4B1FE8BA1400C90BD0 /* UIView+XMGExtension.m in Sources */,
 				2575541E1FD7D78B00B4EBB7 /* JiangZhangCellView.m in Sources */,
 				25393C9C1F68DA5E006905CB /* main.m in Sources */,
+				25F836742029929100F3ACC2 /* GuanZhuFansDetailViewController.m in Sources */,
 				25D88F341FD5420700405F8D /* UICountingLabel.m in Sources */,
 				257D38341F74DB5500C25FE4 /* UIView+Frame.m in Sources */,
 				25AD8CAE1FA1B3A500960732 /* HYSwitch.m in Sources */,
@@ -2234,6 +2300,7 @@
 				25ABFB5D1FEA370800C90BD0 /* EntertainmentTableViewCell.m in Sources */,
 				8F0D8A3D1FE81A360064B514 /* DiscountExpiredViewController.m in Sources */,
 				25649E362005AE8400002608 /* AGIPCAssetsController.m in Sources */,
+				25F83677202992D500F3ACC2 /* DetailHeaderView.m in Sources */,
 				25FE9F6A1F7E35BF00D9E420 /* CLTRoundView.m in Sources */,
 				8F263BC01FD060F300F89A45 /* ShowImageViewController.m in Sources */,
 				250078D2201EC2A000092463 /* UserInformationModel.m in Sources */,
@@ -2250,6 +2317,7 @@
 				254052472024145A00B0162A /* GuanZhuModel.m in Sources */,
 				25F8365B2026E7EC00F3ACC2 /* SearchUserHttp.m in Sources */,
 				257D377E1F74B47A00C25FE4 /* CDFindImgScrollView.m in Sources */,
+				25F8366D2029873000F3ACC2 /* CancleMyFocusHttp.m in Sources */,
 				25AB5B351FC7FFB800BC4D6F /* AddressCell.m in Sources */,
 				250078F62020182300092463 /* JiFenCanDuiHuanModel.m in Sources */,
 				25649C401FFB800300002608 /* FootView.m in Sources */,
@@ -2262,6 +2330,7 @@
 				25D5A2861FBA89D300074447 /* SmsParam.m in Sources */,
 				8F1BBE461FE962C600602C3B /* EntertainmentViewController.m in Sources */,
 				25649CF81FFF55CA00002608 /* AlreadyEvaluatedViewController.m in Sources */,
+				25F8366720294DFC00F3ACC2 /* MyFocusParam.m in Sources */,
 				2563D0841FF1FA2E00E7448C /* ExchangeRecordsViewController.m in Sources */,
 				25D5A2D71FBBDD2200074447 /* WebViewController.m in Sources */,
 				25AD8CD11FA85F9C00960732 /* DetailedView.m in Sources */,
@@ -2336,6 +2405,7 @@
 				25649D001FFF637900002608 /* ShangJiaTableViewCell.m in Sources */,
 				25ABFAF81FE3C3E700C90BD0 /* StepDayTableViewCell.m in Sources */,
 				8F263BC41FD0615500F89A45 /* ShowImageView.m in Sources */,
+				25F8366A20294E6B00F3ACC2 /* MyFocusHttp.m in Sources */,
 				25485B991F721AFE001122F7 /* LoginViewController.m in Sources */,
 				25649CF11FFF52A900002608 /* ShangJiaViewController.m in Sources */,
 				2563D07F1FF0A17A00E7448C /* RatingStarView.m in Sources */,
