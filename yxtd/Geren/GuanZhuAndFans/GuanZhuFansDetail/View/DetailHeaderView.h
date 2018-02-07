@@ -10,4 +10,6 @@
 
 @interface DetailHeaderView : UIView
 
+@property (nonatomic,strong) void(^buttonBackBlock)(void);
+
 @end

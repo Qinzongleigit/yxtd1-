@@ -7,6 +7,7 @@
 //
 
 #import "AddGuanZhuViewController.h"
+#import "GuanZhuFansDetailViewController.h"
 #import "SearchUserHttp.h"
 #import "SearchUserTableViewCell.h"
 #import "DataModel.h"
@@ -75,6 +76,7 @@
     NSUserDefaults *userInformation = [NSUserDefaults standardUserDefaults];
     
     NSString*api_tokenStr=[userInformation objectForKey:@"api_token"];
+    
     
     NSString*member_idStr=[userInformation objectForKey:@"member_id"];
   MineUserMessageParam*params=[[MineUserMessageParam alloc] init];
@@ -170,17 +172,16 @@
     SearchUserTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:cellStrID forIndexPath:indexPath];
    
         [cell fillCellWithModel:_resultArray[indexPath.row] indexPath:indexPath];
-    //消除重影
-//    for (UIView *view in cell.contentView.subviews) {
-//        [view removeFromSuperview];
-//    }
-//
-   
+
     return cell;
 }
 
 //点击选中
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    GuanZhuFansDetailViewController*detailVC=[[GuanZhuFansDetailViewController alloc] init];
+    
+    [self.navigationController presentViewController:detailVC animated:YES completion:nil];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     

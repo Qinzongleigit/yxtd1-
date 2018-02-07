@@ -14,6 +14,7 @@
 #import "GuanZhuHttp.h"
 #import "FansHttp.h"
 #import "GuanZhuModel.h"
+#import "GuanZhuFansDetailViewController.h"
 
 @interface GuanZhuFansViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -232,6 +233,18 @@
     
     
     return cell;
+}
+
+
+//点击选中
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    GuanZhuFansDetailViewController*detailVC=[[GuanZhuFansDetailViewController alloc] init];
+    
+    [self.navigationController presentViewController:detailVC animated:YES completion:nil];
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
 }
 
 

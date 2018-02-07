@@ -154,6 +154,7 @@
 		25F8366D2029873000F3ACC2 /* CancleMyFocusHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F8366C2029873000F3ACC2 /* CancleMyFocusHttp.m */; };
 		25F836742029929100F3ACC2 /* GuanZhuFansDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F836732029929100F3ACC2 /* GuanZhuFansDetailViewController.m */; };
 		25F83677202992D500F3ACC2 /* DetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F83676202992D500F3ACC2 /* DetailHeaderView.m */; };
+		25F8368D202AEB6300F3ACC2 /* DetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F8368C202AEB6300F3ACC2 /* DetailTableViewCell.m */; };
 		25FD1ADA1F6A163A00D7957E /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FD1AD91F6A163900D7957E /* UIColor+Hex.m */; };
 		25FE9F6A1F7E35BF00D9E420 /* CLTRoundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FE9F691F7E35BF00D9E420 /* CLTRoundView.m */; };
 		30AE89C1A250834E9DB980BB /* libPods-yxtd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D34E885CCE21FBB8C41A8408 /* libPods-yxtd.a */; };
@@ -486,6 +487,8 @@
 		25F836732029929100F3ACC2 /* GuanZhuFansDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GuanZhuFansDetailViewController.m; sourceTree = "<group>"; };
 		25F83675202992D500F3ACC2 /* DetailHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailHeaderView.h; sourceTree = "<group>"; };
 		25F83676202992D500F3ACC2 /* DetailHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailHeaderView.m; sourceTree = "<group>"; };
+		25F8368B202AEB6300F3ACC2 /* DetailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailTableViewCell.h; sourceTree = "<group>"; };
+		25F8368C202AEB6300F3ACC2 /* DetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailTableViewCell.m; sourceTree = "<group>"; };
 		25FD1AD81F6A163900D7957E /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		25FD1AD91F6A163900D7957E /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		25FE9F681F7E35BF00D9E420 /* CLTRoundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTRoundView.h; sourceTree = "<group>"; };
@@ -1836,6 +1839,7 @@
 		25F836702029920B00F3ACC2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				25F8368E202AEB7E00F3ACC2 /* Cell */,
 				25F83675202992D500F3ACC2 /* DetailHeaderView.h */,
 				25F83676202992D500F3ACC2 /* DetailHeaderView.m */,
 			);
@@ -1847,6 +1851,15 @@
 			children = (
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		25F8368E202AEB7E00F3ACC2 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				25F8368B202AEB6300F3ACC2 /* DetailTableViewCell.h */,
+				25F8368C202AEB6300F3ACC2 /* DetailTableViewCell.m */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		25FE9F671F7E357600D9E420 /* View */ = {
@@ -2334,6 +2347,7 @@
 				2563D0841FF1FA2E00E7448C /* ExchangeRecordsViewController.m in Sources */,
 				25D5A2D71FBBDD2200074447 /* WebViewController.m in Sources */,
 				25AD8CD11FA85F9C00960732 /* DetailedView.m in Sources */,
+				25F8368D202AEB6300F3ACC2 /* DetailTableViewCell.m in Sources */,
 				25AD8CB81FA8156D00960732 /* DetailedViewController.m in Sources */,
 				25F836582026B6E400F3ACC2 /* DataModel.m in Sources */,
 				25649E392005AE8400002608 /* AGIPCPreviewController.m in Sources */,
