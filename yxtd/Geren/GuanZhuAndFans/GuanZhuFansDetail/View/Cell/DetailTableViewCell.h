@@ -7,8 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DetailImageCellView.h"
 
 @interface DetailTableViewCell : UITableViewCell
+
+@property (nonatomic,strong) DetailImageCellView*cellView;
+
+@property (nonatomic,strong) NSArray * dataArray;
+
+@property (nonatomic,strong) NSIndexPath * indexPath;
 
 
 

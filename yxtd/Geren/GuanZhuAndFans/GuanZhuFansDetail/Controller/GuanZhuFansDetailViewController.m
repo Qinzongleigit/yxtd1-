@@ -9,12 +9,20 @@
 #import "GuanZhuFansDetailViewController.h"
 #import "DetailHeaderView.h"
 #import "DetailTableViewCell.h"
+#import "DetailImageCellView.h"
 
 @interface GuanZhuFansDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) DetailHeaderView*headerView;
 
 @property (nonatomic,strong)UITableView*tableView;
+
+
+@property (nonatomic,strong) NSArray * allkeys;
+
+@property (nonatomic,strong) NSMutableDictionary * dataDictionary;
+
+
 
 @end
 
@@ -72,21 +80,34 @@
         make.top.mas_equalTo(self.headerView.mas_bottom).mas_offset(0);
     }];
     
- 
+    
+    self.allkeys = @[@"A",@"B",@"C"];
+    
+    
+    self.dataDictionary = [NSMutableDictionary dictionary];
+    
+    for (NSString * keyStr in self.allkeys) {
+        
+        NSMutableArray * array = [NSMutableArray array];
+        int count = arc4random() % 9 + 1;
+        
+        for (int i = 1; i <= count; i++) {
+            
+            [array addObject:[NSString stringWithFormat:@"%2d",i]];
+        }
+        
+        [self.dataDictionary setObject:array forKey:keyStr];
+    }
+    
+
     
 }
 
 #pragma mark -表格视图的代理方法
 
-//行高
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    return 100;
-}
-
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 10;
+    return self.allkeys.count;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -94,8 +115,34 @@
     
     DetailTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:detailCellID];
     
+    cell.indexPath = indexPath;
+    NSString * keyStr = self.allkeys[indexPath.row];
+    NSArray * array = [self.dataDictionary objectForKey:keyStr];
+    cell.dataArray = array;
+    cell.cellView.ReturnImageClickItemIndex = ^(NSIndexPath *itemtIP, NSInteger itemIndex) {
+        
+         NSLog(@"----###----###---(%ld,%ld)----##---%ld----###-----",itemtIP.section,itemtIP.row,itemIndex);
+    };
+    cell.backgroundColor=[UIColor lightGrayColor];
     return cell;
     
+    
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    CGFloat cellHt = 0.0;
+    
+    NSString * keyStr = self.allkeys[indexPath.row];
+    NSArray * array = [self.dataDictionary objectForKey:keyStr];
+    
+    if (array.count != 0) {
+        DetailImageCellView * cellView = [[DetailImageCellView alloc] init];
+        cellView.dataArrayCount = array.count;
+        cellHt += cellView.cellHeight;
+    }
+    
+    return cellHt+220;
     
 }
 

@@ -155,6 +155,7 @@
 		25F836742029929100F3ACC2 /* GuanZhuFansDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F836732029929100F3ACC2 /* GuanZhuFansDetailViewController.m */; };
 		25F83677202992D500F3ACC2 /* DetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F83676202992D500F3ACC2 /* DetailHeaderView.m */; };
 		25F8368D202AEB6300F3ACC2 /* DetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F8368C202AEB6300F3ACC2 /* DetailTableViewCell.m */; };
+		25F83691202BF58600F3ACC2 /* DetailImageCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F83690202BF58600F3ACC2 /* DetailImageCellView.m */; };
 		25FD1ADA1F6A163A00D7957E /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FD1AD91F6A163900D7957E /* UIColor+Hex.m */; };
 		25FE9F6A1F7E35BF00D9E420 /* CLTRoundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FE9F691F7E35BF00D9E420 /* CLTRoundView.m */; };
 		30AE89C1A250834E9DB980BB /* libPods-yxtd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D34E885CCE21FBB8C41A8408 /* libPods-yxtd.a */; };
@@ -489,6 +490,8 @@
 		25F83676202992D500F3ACC2 /* DetailHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailHeaderView.m; sourceTree = "<group>"; };
 		25F8368B202AEB6300F3ACC2 /* DetailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailTableViewCell.h; sourceTree = "<group>"; };
 		25F8368C202AEB6300F3ACC2 /* DetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailTableViewCell.m; sourceTree = "<group>"; };
+		25F8368F202BF58600F3ACC2 /* DetailImageCellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailImageCellView.h; sourceTree = "<group>"; };
+		25F83690202BF58600F3ACC2 /* DetailImageCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailImageCellView.m; sourceTree = "<group>"; };
 		25FD1AD81F6A163900D7957E /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		25FD1AD91F6A163900D7957E /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		25FE9F681F7E35BF00D9E420 /* CLTRoundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTRoundView.h; sourceTree = "<group>"; };
@@ -1858,6 +1861,8 @@
 			children = (
 				25F8368B202AEB6300F3ACC2 /* DetailTableViewCell.h */,
 				25F8368C202AEB6300F3ACC2 /* DetailTableViewCell.m */,
+				25F8368F202BF58600F3ACC2 /* DetailImageCellView.h */,
+				25F83690202BF58600F3ACC2 /* DetailImageCellView.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -2320,6 +2325,7 @@
 				25649E372005AE8400002608 /* AGIPCGridCell.m in Sources */,
 				25130E4A1F99EA1B00E1E29A /* SelectableOverlay.m in Sources */,
 				2540524F2025846400B0162A /* AddGuanZhuViewController.m in Sources */,
+				25F83691202BF58600F3ACC2 /* DetailImageCellView.m in Sources */,
 				2575541A1FD79D7100B4EBB7 /* JiangZhangTableViewController.m in Sources */,
 				25ABFB481FE7B98100C90BD0 /* MyDiscountViewController.m in Sources */,
 				251CF2881FC2D04300867046 /* SexView.m in Sources */,

@@ -154,6 +154,7 @@
         make.centerX.mas_equalTo(self.nickNamelabel);
         make.top.mas_equalTo(self.nickNamelabel.mas_bottom).offset(22);
 
+        
         make.width.mas_equalTo(1);
         make.height.mas_equalTo(self.fansLabel.mas_height);
     }];
