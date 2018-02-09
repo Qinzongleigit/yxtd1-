@@ -40,20 +40,12 @@
 //布局动态图片界面
 -(void)loadSetUpViewLayout{
     
-    self.backgroundColor=[UIColor grayColor];
-    
-    CGRect mainScreen=[UIScreen mainScreen].bounds;
+    self.backgroundColor=[UIColor whiteColor];
     
     //一行有多少个图片显示
-    if (mainScreen.size.width==320) {
-        
         self.columns=3;
-    }else{
-        
-        self.columns=4;
-        
-    }
     
+
     //每张图片的宽度
     self.height=(KscreenW-(self.columns+1)*ImageJianXi)/self.columns;
     
@@ -132,12 +124,10 @@
     long row = count/self.columns;
     
     if (count%self.columns != 0) {
-        
+
         row++;
     }
     
-    //每个图片的宽度
-    //    CGFloat itemW = (kViewWidth - (self.columns+1)*kJianXi)/self.columns;
     CGFloat height = _height * row +ImageJianXi*(row+1);
     
     return height;

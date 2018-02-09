@@ -52,6 +52,10 @@
 //取消关注某个用户
 #define CancleMyFocus @""  httpUrl@"admin/cancel_focus"
 
+//关注和粉丝发布动态话题详情页
+
+#define ShowUserContent @""  httpUrl@"admin/show_user_content"
+
 
 
 #endif /* interface_h */

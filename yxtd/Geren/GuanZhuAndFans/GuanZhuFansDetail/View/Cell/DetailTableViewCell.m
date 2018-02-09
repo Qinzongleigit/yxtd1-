@@ -77,12 +77,14 @@
     
     //是否为官方标识
     _button=[UIButton buttonWithType:UIButtonTypeCustom];
-    [_button setBackgroundColor:[UIColor purpleColor]];
+    [_button setBackgroundColor:[UIColor clearColor]];
+     [_button setBackgroundImage:[UIImage imageWithoriginName:@"guanzhu_Guanfang_Image"] forState:UIControlStateNormal];
     [_cellBgView addSubview:_button];
     
     //地图标识
     _mapImageView=[[UIImageView alloc] init];
-    _mapImageView.backgroundColor=[UIColor yellowColor];
+    _mapImageView.backgroundColor=[UIColor clearColor];
+    _mapImageView.image=[UIImage imageWithoriginName:@"gray_map_Image"];
     [_cellBgView addSubview:_mapImageView];
     
     //发布城市
@@ -110,7 +112,7 @@
     
     // 行间距设置为5
     [paragraphStyle setLineSpacing:5];
-    NSString*labelStr=@"发疯地爱生活、爱斗争、建设的人，只有我们这些看透了生活的全部意义的人，才不会随便死去，哪怕只有一点机会就不能放弃生活.";
+    NSString*labelStr=@"发疯爱山科哈手机卡士大夫看见了撒大黄蜂会计师电话费空间撒拉黑发的看见爱上的房间卡士大夫撒旦速度快发货撒合法身份哈三联返回的";
     NSMutableAttributedString*setString=[[NSMutableAttributedString alloc] initWithString:labelStr];
     [setString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [labelStr length])];
     
@@ -177,6 +179,16 @@
     _dataArray=dataArray;
     self.cellView.indexPath=self.indexPath;
     self.cellView.dataImageArray=_dataArray;
+    
+}
+
+//计算label自适应高度
+-(CGFloat)getLabelCellHeight{
+    
+    NSString*str=@"爱山科哈手机卡士大夫看见了撒大黄蜂会计师电话费空间撒拉黑发的看见爱上的房间卡士大夫撒旦速度快发货撒合法身份哈三联返回的";
+    CGFloat contentHight=[str boundingRectWithSize:CGSizeMake(KscreenW-30, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil].size.height;
+   
+    return contentHight;
     
 }
 
@@ -250,7 +262,7 @@
         make.top.mas_equalTo(self.iconImageView.mas_bottom).offset(17);
     }];
     
-    
+  
     [_cellView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.right.mas_equalTo(0);

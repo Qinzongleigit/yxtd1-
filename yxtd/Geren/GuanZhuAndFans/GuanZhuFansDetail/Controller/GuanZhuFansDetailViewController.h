@@ -10,4 +10,8 @@
 
 @interface GuanZhuFansDetailViewController : UIViewController
 
+@property (nonatomic,strong) NSString*user_id;
+@property (nonatomic,strong)
+  NSString*is_admin;
+
 @end

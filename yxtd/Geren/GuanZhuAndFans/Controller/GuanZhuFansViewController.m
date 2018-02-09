@@ -239,7 +239,11 @@
 //点击选中
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    GuanZhuModel *model= self.dataArr[indexPath.row];
     GuanZhuFansDetailViewController*detailVC=[[GuanZhuFansDetailViewController alloc] init];
+    
+    detailVC.user_id=model.focus_id;
+    detailVC.is_admin=model.flag;
     
     [self.navigationController presentViewController:detailVC animated:YES completion:nil];
     

@@ -80,6 +80,7 @@
 		25649E3C2005AE8400002608 /* ALAsset+AGIPC.m in Sources */ = {isa = PBXBuildFile; fileRef = 25649E2E2005AE8400002608 /* ALAsset+AGIPC.m */; };
 		25649E3D2005AE8400002608 /* UIButton+AGIPC.m in Sources */ = {isa = PBXBuildFile; fileRef = 25649E302005AE8400002608 /* UIButton+AGIPC.m */; };
 		25649E422005F4B600002608 /* CustomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 25649E412005F4B600002608 /* CustomTextField.m */; };
+		25689C1F202DAF3D0050DEE2 /* ShowUserContentHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 25689C1E202DAF3D0050DEE2 /* ShowUserContentHttp.m */; };
 		2575540F1FD7812200B4EBB7 /* CanDuihuanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2575540E1FD7812200B4EBB7 /* CanDuihuanCell.m */; };
 		257554121FD7816900B4EBB7 /* OverDuihuanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 257554111FD7816900B4EBB7 /* OverDuihuanCell.m */; };
 		257554151FD781BA00B4EBB7 /* SaishiGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 257554141FD781BA00B4EBB7 /* SaishiGoodsCell.m */; };
@@ -342,6 +343,8 @@
 		25649E302005AE8400002608 /* UIButton+AGIPC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+AGIPC.m"; sourceTree = "<group>"; };
 		25649E402005F4B600002608 /* CustomTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTextField.h; sourceTree = "<group>"; };
 		25649E412005F4B600002608 /* CustomTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTextField.m; sourceTree = "<group>"; };
+		25689C1D202DAF3D0050DEE2 /* ShowUserContentHttp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowUserContentHttp.h; sourceTree = "<group>"; };
+		25689C1E202DAF3D0050DEE2 /* ShowUserContentHttp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowUserContentHttp.m; sourceTree = "<group>"; };
 		2575540D1FD7812200B4EBB7 /* CanDuihuanCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanDuihuanCell.h; sourceTree = "<group>"; };
 		2575540E1FD7812200B4EBB7 /* CanDuihuanCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CanDuihuanCell.m; sourceTree = "<group>"; };
 		257554101FD7816900B4EBB7 /* OverDuihuanCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OverDuihuanCell.h; sourceTree = "<group>"; };
@@ -1125,6 +1128,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		25689C1C202DAEDE0050DEE2 /* DetailFansAndFocus */ = {
+			isa = PBXGroup;
+			children = (
+				25689C1D202DAF3D0050DEE2 /* ShowUserContentHttp.h */,
+				25689C1E202DAF3D0050DEE2 /* ShowUserContentHttp.m */,
+			);
+			path = DetailFansAndFocus;
+			sourceTree = "<group>";
+		};
 		2575540C1FD7800200B4EBB7 /* JiFenStoreCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1674,6 +1686,7 @@
 		25D5A26F1FB9942200074447 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				25689C1C202DAEDE0050DEE2 /* DetailFansAndFocus */,
 				25F8366420294DD500F3ACC2 /* MyFocus */,
 				2540524020240BA500B0162A /* GuanzhuAndFans */,
 				250078EC20200ED200092463 /* JiFenStoreHttp */,
@@ -2309,6 +2322,7 @@
 				25D5A2821FBA857C00074447 /* RegisterHttp.m in Sources */,
 				25313D9C1FB402D4008C9ED5 /* HQPickerView.m in Sources */,
 				25649E3C2005AE8400002608 /* ALAsset+AGIPC.m in Sources */,
+				25689C1F202DAF3D0050DEE2 /* ShowUserContentHttp.m in Sources */,
 				257D12591F690F9F003DC1E4 /* RankingViewController.m in Sources */,
 				25AB5B231FC7CCBF00BC4D6F /* UpdatePhoneNumberViewController.m in Sources */,
 				8FFB6D22200BAE710033E9FA /* MySportsTableViewCell.m in Sources */,

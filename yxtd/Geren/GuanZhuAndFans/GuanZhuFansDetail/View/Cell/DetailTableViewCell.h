@@ -18,5 +18,8 @@
 @property (nonatomic,strong) NSIndexPath * indexPath;
 
 
+@property (nonatomic,assign) CGFloat  getLabelCellHeight;
+
+
 
 @end

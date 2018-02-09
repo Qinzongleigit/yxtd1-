@@ -178,8 +178,12 @@
 
 //点击选中
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+   
+    DataModel*model=self.resultArray[indexPath.row];
     GuanZhuFansDetailViewController*detailVC=[[GuanZhuFansDetailViewController alloc] init];
+    
+    detailVC.user_id=model.user_id;
+    detailVC.is_admin=model.flag;
     
     [self.navigationController presentViewController:detailVC animated:YES completion:nil];
     

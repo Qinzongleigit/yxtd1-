@@ -10,6 +10,8 @@
 #import "DetailHeaderView.h"
 #import "DetailTableViewCell.h"
 #import "DetailImageCellView.h"
+#import "ShowUserContentHttp.h"
+#import "MyFocusParam.h"
 
 @interface GuanZhuFansDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -22,6 +24,7 @@
 
 @property (nonatomic,strong) NSMutableDictionary * dataDictionary;
 
+@property (nonatomic,assign) CGFloat labelHeight;
 
 
 @end
@@ -99,7 +102,47 @@
         [self.dataDictionary setObject:array forKey:keyStr];
     }
     
+    
+    [self getFansAndFocusDetailHttpData];
 
+    
+}
+
+#pragma mark -获取关注和粉丝发布话题的详情数据接口
+-(void)getFansAndFocusDetailHttpData{
+    
+    
+    
+    NSUserDefaults *userInformation = [NSUserDefaults standardUserDefaults];
+    
+    NSString*api_tokenStr=[userInformation objectForKey:@"api_token"];
+    
+    NSString*member_idStr=[userInformation objectForKey:@"member_id"];
+    
+    MyFocusParam*params=[[MyFocusParam alloc] init];
+    
+    params.api_token=api_tokenStr;
+    
+    params.member_id=member_idStr;
+    
+    params.user_id=self.user_id;
+    
+    params.is_admin=self.is_admin;
+    
+    NSLog(@"%@",self.user_id);
+    NSLog(@"%@",self.is_admin);
+    NSLog(@"%@",member_idStr);
+    NSLog(@"%@",api_tokenStr);
+    
+    [ShowUserContentHttp httpShowUserContent:params success:^(id responseObject) {
+        
+        NSLog(@"粉丝和关注详情页的数据显示================：%@",responseObject);
+        
+    } failure:^(NSError *error) {
+        
+    }];
+    
+    
     
 }
 
@@ -124,6 +167,9 @@
          NSLog(@"----###----###---(%ld,%ld)----##---%ld----###-----",itemtIP.section,itemtIP.row,itemIndex);
     };
     cell.backgroundColor=[UIColor lightGrayColor];
+    
+    self.labelHeight=cell.getLabelCellHeight;
+    
     return cell;
     
     
@@ -142,7 +188,10 @@
         cellHt += cellView.cellHeight;
     }
     
-    return cellHt+220;
+    
+    return cellHt+160+self.labelHeight;
+    
+   
     
 }
 
