@@ -7,6 +7,10 @@
 //
 
 #import "DetailHeaderView.h"
+#import "UIImageView+WebCache.h"
+#import "MyFocusHttp.h"
+#import "MyFocusParam.h"
+#import "CancleMyFocusHttp.h"
 
 @interface DetailHeaderView ()
 
@@ -29,6 +33,10 @@
 @property (nonatomic,strong) UILabel*fansNumberlabel;
 
 @property (nonatomic,strong) UIView*lineView;
+
+@property (nonatomic,assign) BOOL isFocus;
+
+@property (nonatomic,assign) NSInteger index;
 
 @end
 
@@ -62,15 +70,16 @@
     
     
     _guanzhuBt=[UIButton buttonWithType:UIButtonTypeCustom];
-    [_guanzhuBt setBackgroundImage:[UIImage imageWithoriginName:@"leftLoginImage"] forState:UIControlStateNormal];
+    
     [_guanzhuBt addTarget:self action:@selector(guanzhuBtAction) forControlEvents:UIControlEventTouchUpInside];
+     [_guanzhuBt addTarget:self action:@selector(guanzhuBtClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_guanzhuBt];
     
     
     _iconImage=[[UIImageView alloc] init];
     _iconImage.layer.cornerRadius=46/2;
     _iconImage.clipsToBounds=YES;
-    _iconImage.backgroundColor=[UIColor purpleColor];
+    _iconImage.backgroundColor=[UIColor clearColor];
     [self addSubview:_iconImage];
     
     
@@ -115,6 +124,156 @@
     
     
 }
+
+-(void)setModel:(DetailFansAndFocusModel *)model{
+    
+    _model=model;
+    
+    NSLog(@"model:====================%@",model);
+    
+    _nickNamelabel.text=model.nickname;
+    
+   [_iconImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",model.avatar]]];
+    _guanzhuNunberlabel.text=model.friends;
+    _fansNumberlabel.text=model.fans;
+    
+    
+     self.index=[model.is_focus integerValue];
+    
+    if ([model.is_focus integerValue]==1) {
+        
+        
+        [_guanzhuBt setImage:[UIImage imageNamed:@"yiguanzhu_Image"] forState:UIControlStateNormal];
+        
+        
+        
+    }else{
+        
+        [_guanzhuBt setImage:[UIImage imageNamed:@"guanzhu_Image"] forState:UIControlStateNormal];
+            
+    }
+    
+}
+
+-(void)guanzhuBtClick:(UIButton*)guanzhuBtn{
+    
+    
+    self.isFocus=!self.isFocus;
+    
+    if (self.index==1) {
+        
+        
+        if (self.isFocus) {
+            
+            [guanzhuBtn setImage:[UIImage imageNamed:@"guanzhu_Image"] forState:UIControlStateNormal];
+            
+            
+            [self getCancelMyFocusHttpData];
+            
+        }else{
+            
+            [guanzhuBtn setImage:[UIImage imageNamed:@"yiguanzhu_Image"] forState:UIControlStateNormal];
+            
+            [self  getMyFocusHttpData];
+            
+            
+            
+            
+        }
+        
+    }else{
+        
+        
+        if (self.isFocus) {
+            
+            [guanzhuBtn setImage:[UIImage imageNamed:@"yiguanzhu_Image"] forState:UIControlStateNormal];
+            
+            [self  getMyFocusHttpData];
+            
+        }else{
+            
+            [guanzhuBtn setImage:[UIImage imageNamed:@"guanzhu_Image"] forState:UIControlStateNormal];
+            
+            [self getCancelMyFocusHttpData];
+            
+            
+        }
+        
+    }
+    
+    
+    
+}
+
+
+
+#pragma mark -取消关注数据接口
+-(void)getCancelMyFocusHttpData{
+    
+    NSUserDefaults *userInformation = [NSUserDefaults standardUserDefaults];
+    
+    NSString*api_tokenStr=[userInformation objectForKey:@"api_token"];
+    
+    NSString*member_idStr=[userInformation objectForKey:@"member_id"];
+    
+    MyFocusParam*params=[[MyFocusParam alloc] init];
+    
+    params.api_token=api_tokenStr;
+    
+    params.member_id=member_idStr;
+    
+    params.user_id=self.user_id;
+    
+    params.is_admin=self.is_admin;
+    
+    [CancleMyFocusHttp httpCancleMyFocus:params success:^(id responseObject) {
+        
+        NSLog(@"详情页取消关注成功返回的数据=============:%@",responseObject);
+        
+    } failure:^(NSError *error) {
+        
+        NSLog(@"取消关注失败");
+        
+    }];
+    
+    
+}
+
+
+
+#pragma mark -添加关注数据接口
+-(void)getMyFocusHttpData{
+    
+    NSUserDefaults *userInformation = [NSUserDefaults standardUserDefaults];
+    
+    NSString*api_tokenStr=[userInformation objectForKey:@"api_token"];
+    
+    NSString*member_idStr=[userInformation objectForKey:@"member_id"];
+    
+    MyFocusParam*params=[[MyFocusParam alloc] init];
+    
+    params.api_token=api_tokenStr;
+    
+    params.member_id=member_idStr;
+    
+    params.user_id=self.user_id;
+    
+    params.is_admin=self.is_admin;
+    
+    
+    [MyFocusHttp httpMyFocus:params success:^(id responseObject) {
+        
+        NSLog(@"详情页关注成功返回的接口数据显示===========：%@",responseObject);
+        
+    } failure:^(NSError *error) {
+        
+        
+        NSLog(@"关注失败");
+    }];
+    
+    
+}
+
 
 
 //位置坐标

@@ -119,6 +119,7 @@
     [self initNavi];
     
    [self getUserMessageData];
+    
 
     
 }
@@ -229,6 +230,7 @@
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     
     
    if (indexPath.section==0&&indexPath.row==0) {

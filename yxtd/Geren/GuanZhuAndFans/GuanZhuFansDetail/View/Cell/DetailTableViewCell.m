@@ -7,6 +7,7 @@
 //
 
 #import "DetailTableViewCell.h"
+#import "UIImageView+WebCache.h"
 
 @interface DetailTableViewCell ()
 
@@ -33,6 +34,8 @@
 @property (nonatomic,strong) UIButton*pinglunBt;
 
 @property (nonatomic,strong) UILabel*pinglunNumber;
+
+@property (nonatomic,assign) NSIndexPath*row;
 
 
 
@@ -63,7 +66,7 @@
     
     //头像
     _iconImageView=[[UIImageView alloc] init];
-    _iconImageView.backgroundColor=[UIColor redColor];
+    _iconImageView.backgroundColor=[UIColor clearColor];
     _iconImageView.layer.cornerRadius=22/2;
     _iconImageView.clipsToBounds=YES;
     [_cellBgView addSubview:_iconImageView];
@@ -163,6 +166,18 @@
     _pinglunNumber.textColor=[UIColor lightGrayColor];
     _pinglunNumber.font=[UIFont systemFontOfSize:12];
     [_cellBgView addSubview:_pinglunNumber];
+    
+    
+}
+
+
+//赋值操作
+- (void)fillCellWithModel:(DetailArrayModel*)model indexPath:(NSIndexPath *)path{
+    
+    
+//    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",model.]]];
+    
+   
     
     
 }

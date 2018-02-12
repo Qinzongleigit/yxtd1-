@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "DetailImageCellView.h"
+#import "DetailArrayModel.h"
+#import "DetailFansAndFocusModel.h"
+
 
 @interface DetailTableViewCell : UITableViewCell
 
@@ -19,6 +22,10 @@
 
 
 @property (nonatomic,assign) CGFloat  getLabelCellHeight;
+
+- (void)fillCellWithModel:(DetailArrayModel*)model indexPath:(NSIndexPath *)path;
+
+@property (nonatomic,strong) NSString*iconImageStr;
 
 
 

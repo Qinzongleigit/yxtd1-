@@ -12,8 +12,16 @@
 #import "DetailImageCellView.h"
 #import "ShowUserContentHttp.h"
 #import "MyFocusParam.h"
+#import "DetailFansAndFocusModel.h"
+#import "DetailArrayModel.h"
 
 @interface GuanZhuFansDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
+
+/**
+ *  存放详情页头部的模型
+ */
+@property (nonatomic, strong) DetailFansAndFocusModel *userHeaderModel;
+
 
 @property (nonatomic,strong) DetailHeaderView*headerView;
 
@@ -26,6 +34,10 @@
 
 @property (nonatomic,assign) CGFloat labelHeight;
 
+@property (nonatomic,strong) NSMutableArray*dataArray;
+
+@property (nonatomic,strong) NSString*cellIconImageStr;
+
 
 @end
 
@@ -33,12 +45,42 @@
 
     NSString*detailCellID=@"ID";
 
+
+//懒加载发布动态话题的内容
+-(NSMutableArray*)dataArray{
+    
+    if (!_dataArray) {
+        
+        _dataArray=[NSMutableArray array];
+    }
+    
+    return _dataArray;
+}
+
+/**
+ *  懒加载-当前查看用户的头部信息模型
+ */
+- (DetailFansAndFocusModel *)userHeaderModel:(NSDictionary *)dict
+{
+    if(!_userHeaderModel)
+    {
+        _userHeaderModel = [[DetailFansAndFocusModel alloc] initWithDictionary:dict error:nil];
+        
+        //传值
+        self.headerView.model=_userHeaderModel;
+    }
+    return _userHeaderModel;
+}
+
+
 -(DetailHeaderView*)headerView{
     
     if (_headerView==nil) {
         
         _headerView=[[DetailHeaderView alloc] initWithFrame:CGRectMake(0, 0, KscreenW, 205)];
         _headerView.backgroundColor=[UIColor lightGrayColor];
+        _headerView.is_admin=self.is_admin;
+        _headerView.user_id=self.user_id;
     }
     
     return _headerView;
@@ -66,12 +108,14 @@
     
     self.view.backgroundColor=[UIColor whiteColor];
     
+    
     __weak GuanZhuFansDetailViewController*blockSelf=self;
     self.headerView.buttonBackBlock = ^{
       
         [blockSelf dismissViewControllerAnimated:YES completion:nil];
     };
     
+   
     [self.view addSubview:self.headerView];
     
     [self.view addSubview:self.tableView];
@@ -102,8 +146,8 @@
         [self.dataDictionary setObject:array forKey:keyStr];
     }
     
-    
-    [self getFansAndFocusDetailHttpData];
+    //获取数据
+     [self getFansAndFocusDetailHttpData];
 
     
 }
@@ -128,17 +172,47 @@
     params.user_id=self.user_id;
     
     params.is_admin=self.is_admin;
-    
-    NSLog(@"%@",self.user_id);
-    NSLog(@"%@",self.is_admin);
-    NSLog(@"%@",member_idStr);
-    NSLog(@"%@",api_tokenStr);
+
     
     [ShowUserContentHttp httpShowUserContent:params success:^(id responseObject) {
         
         NSLog(@"粉丝和关注详情页的数据显示================：%@",responseObject);
         
+        
+        if ([responseObject[@"code"] integerValue]==200) {
+            
+
+                self.userHeaderModel=nil;
+                
+              NSDictionary*info=responseObject[@"data"];
+            
+                [self userHeaderModel:info];
+            
+//            NSUserDefaults*userInformation=[NSUserDefaults standardUserDefaults];
+//            [userInformation setObject:info[@""] forKey:@"phone"];
+           
+               NSArray*array=info[@"list"];
+     
+            
+            for (NSDictionary*tempDict in array) {
+                
+                DetailArrayModel*model=[[DetailArrayModel alloc] init];
+                [model setValuesForKeysWithDictionary:tempDict];
+                
+                [self.dataArray addObject:model];
+                
+                [self.tableView reloadData];
+                
+            }
+            
+        }
+        
+        
     } failure:^(NSError *error) {
+        
+        
+        NSLog(@"获取用户详情页头部信息失败");
+             
         
     }];
     
@@ -155,8 +229,10 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
     DetailTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:detailCellID];
+    
+    //头像传值
+    cell.iconImageStr=self.cellIconImageStr;
     
     cell.indexPath = indexPath;
     NSString * keyStr = self.allkeys[indexPath.row];

@@ -176,6 +176,8 @@
 		8F5AD9CF1FB88875007B5BA8 /* Welcome2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8F5AD9CC1FB88872007B5BA8 /* Welcome2.jpg */; };
 		8F5AD9D01FB88875007B5BA8 /* Welcome3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8F5AD9CD1FB88873007B5BA8 /* Welcome3.jpg */; };
 		8F5FCE0A1FCB23340013C119 /* RankingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F5FCE091FCB23340013C119 /* RankingModel.m */; };
+		8FACE402202E046200846166 /* DetailFansAndFocusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FACE401202E046200846166 /* DetailFansAndFocusModel.m */; };
+		8FACE4052030A81000846166 /* DetailArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FACE4042030A81000846166 /* DetailArrayModel.m */; };
 		8FEC15681FCDAE8D0081799A /* TwoDimensionCodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FEC15671FCDAE8D0081799A /* TwoDimensionCodeVC.m */; };
 		8FFB6D1E200BAD860033E9FA /* MySportsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FFB6D1D200BAD860033E9FA /* MySportsController.m */; };
 		8FFB6D22200BAE710033E9FA /* MySportsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FFB6D21200BAE710033E9FA /* MySportsTableViewCell.m */; };
@@ -528,6 +530,10 @@
 		8F5AD9CD1FB88873007B5BA8 /* Welcome3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Welcome3.jpg; sourceTree = "<group>"; };
 		8F5FCE081FCB23340013C119 /* RankingModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RankingModel.h; sourceTree = "<group>"; };
 		8F5FCE091FCB23340013C119 /* RankingModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RankingModel.m; sourceTree = "<group>"; };
+		8FACE400202E046200846166 /* DetailFansAndFocusModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailFansAndFocusModel.h; sourceTree = "<group>"; };
+		8FACE401202E046200846166 /* DetailFansAndFocusModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailFansAndFocusModel.m; sourceTree = "<group>"; };
+		8FACE4032030A81000846166 /* DetailArrayModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailArrayModel.h; sourceTree = "<group>"; };
+		8FACE4042030A81000846166 /* DetailArrayModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailArrayModel.m; sourceTree = "<group>"; };
 		8FEC15661FCDAE8D0081799A /* TwoDimensionCodeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TwoDimensionCodeVC.h; sourceTree = "<group>"; };
 		8FEC15671FCDAE8D0081799A /* TwoDimensionCodeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TwoDimensionCodeVC.m; sourceTree = "<group>"; };
 		8FFB6D1C200BAD860033E9FA /* MySportsController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MySportsController.h; sourceTree = "<group>"; };
@@ -1837,7 +1843,7 @@
 			isa = PBXGroup;
 			children = (
 				25F8366F202991F800F3ACC2 /* Controller */,
-				25F836712029921200F3ACC2 /* Model */,
+				8FACE3FF202E039B00846166 /* Model */,
 				25F836702029920B00F3ACC2 /* View */,
 			);
 			path = GuanZhuFansDetail;
@@ -1860,13 +1866,6 @@
 				25F83676202992D500F3ACC2 /* DetailHeaderView.m */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		25F836712029921200F3ACC2 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		25F8368E202AEB7E00F3ACC2 /* Cell */ = {
@@ -2036,6 +2035,17 @@
 			children = (
 				8F5FCE081FCB23340013C119 /* RankingModel.h */,
 				8F5FCE091FCB23340013C119 /* RankingModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8FACE3FF202E039B00846166 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8FACE400202E046200846166 /* DetailFansAndFocusModel.h */,
+				8FACE401202E046200846166 /* DetailFansAndFocusModel.m */,
+				8FACE4032030A81000846166 /* DetailArrayModel.h */,
+				8FACE4042030A81000846166 /* DetailArrayModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2351,6 +2361,7 @@
 				25F8365B2026E7EC00F3ACC2 /* SearchUserHttp.m in Sources */,
 				257D377E1F74B47A00C25FE4 /* CDFindImgScrollView.m in Sources */,
 				25F8366D2029873000F3ACC2 /* CancleMyFocusHttp.m in Sources */,
+				8FACE402202E046200846166 /* DetailFansAndFocusModel.m in Sources */,
 				25AB5B351FC7FFB800BC4D6F /* AddressCell.m in Sources */,
 				250078F62020182300092463 /* JiFenCanDuiHuanModel.m in Sources */,
 				25649C401FFB800300002608 /* FootView.m in Sources */,
@@ -2382,6 +2393,7 @@
 				2540524A20244F9200B0162A /* FansHttp.m in Sources */,
 				257D12601F69172B003DC1E4 /* MyUINavigationController.m in Sources */,
 				25ABFB671FEA3BE000C90BD0 /* FoodDetailHeaderView.m in Sources */,
+				8FACE4052030A81000846166 /* DetailArrayModel.m in Sources */,
 				25D5A26D1FB9837A00074447 /* MBProgressHUD+MJ.m in Sources */,
 				2532C16B1F6F70E20064A28C /* SportViewController.m in Sources */,
 				8F0D8A381FE819C00064B514 /* DiscountUnusedViewController.m in Sources */,
