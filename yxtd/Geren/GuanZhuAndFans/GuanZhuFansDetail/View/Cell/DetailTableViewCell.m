@@ -167,15 +167,22 @@
     _pinglunNumber.font=[UIFont systemFontOfSize:12];
     [_cellBgView addSubview:_pinglunNumber];
     
+
     
 }
 
+//头像赋值
+-(void)setModel:(DetailFansAndFocusModel *)model{
+    
+     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",model.avatar]]];
+}
 
-//赋值操作
+
+//cell赋值操作
 - (void)fillCellWithModel:(DetailArrayModel*)model indexPath:(NSIndexPath *)path{
     
     
-//    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",model.]]];
+
     
    
     

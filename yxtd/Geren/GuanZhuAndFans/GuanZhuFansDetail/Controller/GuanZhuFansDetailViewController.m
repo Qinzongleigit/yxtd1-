@@ -36,7 +36,6 @@
 
 @property (nonatomic,strong) NSMutableArray*dataArray;
 
-@property (nonatomic,strong) NSString*cellIconImageStr;
 
 
 @end
@@ -188,12 +187,9 @@
             
                 [self userHeaderModel:info];
             
-//            NSUserDefaults*userInformation=[NSUserDefaults standardUserDefaults];
-//            [userInformation setObject:info[@""] forKey:@"phone"];
-           
+            
                NSArray*array=info[@"list"];
      
-            
             for (NSDictionary*tempDict in array) {
                 
                 DetailArrayModel*model=[[DetailArrayModel alloc] init];
@@ -232,7 +228,7 @@
     DetailTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:detailCellID];
     
     //头像传值
-    cell.iconImageStr=self.cellIconImageStr;
+    cell.model=self.userHeaderModel;
     
     cell.indexPath = indexPath;
     NSString * keyStr = self.allkeys[indexPath.row];

@@ -23,10 +23,11 @@
 
 @property (nonatomic,assign) CGFloat  getLabelCellHeight;
 
+//接收头像赋值网址
+@property (nonatomic,strong) DetailFansAndFocusModel*model;
+
+
 - (void)fillCellWithModel:(DetailArrayModel*)model indexPath:(NSIndexPath *)path;
-
-@property (nonatomic,strong) NSString*iconImageStr;
-
 
 
 @end
