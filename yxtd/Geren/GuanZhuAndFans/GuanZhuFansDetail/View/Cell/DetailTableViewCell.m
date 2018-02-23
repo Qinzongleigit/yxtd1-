@@ -37,6 +37,8 @@
 
 @property (nonatomic,assign) NSIndexPath*row;
 
+@property (nonatomic,strong) NSString*labelStr;
+
 
 
 @end
@@ -111,15 +113,6 @@
     
     //动态内容
     _contentLable=[[UILabel alloc] init];
- NSMutableParagraphStyle*paragraphStyle=[[NSMutableParagraphStyle alloc] init];
-    
-    // 行间距设置为5
-    [paragraphStyle setLineSpacing:5];
-    NSString*labelStr=@"发疯爱山科哈手机卡士大夫看见了撒大黄蜂会计师电话费空间撒拉黑发的看见爱上的房间卡士大夫撒旦速度快发货撒合法身份哈三联返回的";
-    NSMutableAttributedString*setString=[[NSMutableAttributedString alloc] initWithString:labelStr];
-    [setString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [labelStr length])];
-    
-    [_contentLable setAttributedText:setString];
     _contentLable.textColor=BlackHexColor;
     _contentLable.font=[UIFont systemFontOfSize:14];
     _contentLable.numberOfLines=0;
@@ -167,24 +160,46 @@
     _pinglunNumber.font=[UIFont systemFontOfSize:12];
     [_cellBgView addSubview:_pinglunNumber];
     
-
     
 }
 
-//头像赋值
+
+//头像,昵称赋值
 -(void)setModel:(DetailFansAndFocusModel *)model{
     
      [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",model.avatar]]];
+    _nameLabel.text=model.nickname;
 }
 
 
 //cell赋值操作
 - (void)fillCellWithModel:(DetailArrayModel*)model indexPath:(NSIndexPath *)path{
     
-    
-
-    
+    if ([model.flag integerValue]==3) {
+        
+        [_button setBackgroundImage:[UIImage imageWithoriginName:@"guanzhu_Guanfang_Image"] forState:UIControlStateNormal];
+        
+        
+    }else if ([model.flag integerValue]==2){
+        
+        [_button setBackgroundImage:[UIImage imageWithoriginName:@"guanzhu_man_Image"] forState:UIControlStateNormal];
+        
+    }else{
+        
+        [_button setBackgroundImage:[UIImage imageWithoriginName:@"guanzhu_women_Image"] forState:UIControlStateNormal];
+        
+    }
    
+    _cityLabel.text=model.addres;
+    
+    _timeLabel.text=model.time;
+    
+ 
+    _dianzanNumber.text=[NSString stringWithFormat:@"%@",model.nice_num];
+    
+    _pinglunNumber.text=[NSString stringWithFormat:@"%@",model.comment_num];
+    
+    
     
     
 }
@@ -196,19 +211,41 @@
     _indexPath=indexPath;
 }
 
+
+//发布图片显示数组
 -(void)setDataArray:(NSArray *)dataArray{
     
     _dataArray=dataArray;
+    
+    //下标
     self.cellView.indexPath=self.indexPath;
+    
+    //图片数组
     self.cellView.dataImageArray=_dataArray;
     
 }
 
+-(void)setContentArray:(NSArray *)contentArray{
+    
+    
+    //发布内容
+     _labelStr=contentArray[0];
+  NSMutableParagraphStyle*paragraphStyle=[[NSMutableParagraphStyle alloc] init];
+    // 行间距设置为5
+    [paragraphStyle setLineSpacing:5]; NSMutableAttributedString*setString=[[NSMutableAttributedString alloc] initWithString:_labelStr];
+    
+    [setString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [_labelStr length])];
+    
+    [_contentLable setAttributedText:setString];
+    
+    
+}
+
+
 //计算label自适应高度
 -(CGFloat)getLabelCellHeight{
     
-    NSString*str=@"爱山科哈手机卡士大夫看见了撒大黄蜂会计师电话费空间撒拉黑发的看见爱上的房间卡士大夫撒旦速度快发货撒合法身份哈三联返回的";
-    CGFloat contentHight=[str boundingRectWithSize:CGSizeMake(KscreenW-30, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil].size.height;
+    CGFloat contentHight=[_labelStr boundingRectWithSize:CGSizeMake(KscreenW-30, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil].size.height;
    
     return contentHight;
     
@@ -295,8 +332,6 @@
     }];
     
    
-    
-    
     
     [_bgCommentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);

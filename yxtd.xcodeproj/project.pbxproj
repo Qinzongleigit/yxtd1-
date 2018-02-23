@@ -99,6 +99,7 @@
 		257D377E1F74B47A00C25FE4 /* CDFindImgScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 257D377D1F74B47A00C25FE4 /* CDFindImgScrollView.m */; };
 		257D38341F74DB5500C25FE4 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 257D38331F74DB5500C25FE4 /* UIView+Frame.m */; };
 		257D38371F74E70C00C25FE4 /* CDFindHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 257D38361F74E70C00C25FE4 /* CDFindHeaderView.m */; };
+		25827F2E203FFE5C004FA534 /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 25827F2D203FFE5C004FA534 /* UIButton+WebCache.m */; };
 		258A0E141F9B060D00EF9593 /* nearBicycle.json in Resources */ = {isa = PBXBuildFile; fileRef = 258A0E131F9B060D00EF9593 /* nearBicycle.json */; };
 		258FC174200DD3E400490F86 /* JiFenShuoMingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 258FC173200DD3E400490F86 /* JiFenShuoMingViewController.m */; };
 		258FC177200F2F3E00490F86 /* PedometerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 258FC176200F2F3E00490F86 /* PedometerData.m */; };
@@ -383,6 +384,8 @@
 		257D38331F74DB5500C25FE4 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 		257D38351F74E70C00C25FE4 /* CDFindHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDFindHeaderView.h; sourceTree = "<group>"; };
 		257D38361F74E70C00C25FE4 /* CDFindHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDFindHeaderView.m; sourceTree = "<group>"; };
+		25827F2C203FFE5C004FA534 /* UIButton+WebCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+WebCache.h"; sourceTree = "<group>"; };
+		25827F2D203FFE5C004FA534 /* UIButton+WebCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+WebCache.m"; sourceTree = "<group>"; };
 		258A0E131F9B060D00EF9593 /* nearBicycle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = nearBicycle.json; sourceTree = "<group>"; };
 		258FC172200DD3E400490F86 /* JiFenShuoMingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JiFenShuoMingViewController.h; sourceTree = "<group>"; };
 		258FC173200DD3E400490F86 /* JiFenShuoMingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JiFenShuoMingViewController.m; sourceTree = "<group>"; };
@@ -1387,6 +1390,8 @@
 				25D5A26B1FB9837900074447 /* MBProgressHUD+MJ.m */,
 				25ABFB491FE8BA1400C90BD0 /* UIView+XMGExtension.h */,
 				25ABFB4A1FE8BA1400C90BD0 /* UIView+XMGExtension.m */,
+				25827F2C203FFE5C004FA534 /* UIButton+WebCache.h */,
+				25827F2D203FFE5C004FA534 /* UIButton+WebCache.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -2425,6 +2430,7 @@
 				250078CA201B1F5500092463 /* TitleView.m in Sources */,
 				250078EA20200EC200092463 /* MineUserMessageHttp.m in Sources */,
 				250078CE201B1FC200092463 /* GuanZhuFansViewController.m in Sources */,
+				25827F2E203FFE5C004FA534 /* UIButton+WebCache.m in Sources */,
 				25ABFB6A1FEA4FE200C90BD0 /* FoodDetaliStarView.m in Sources */,
 				25130E411F99E66E00E1E29A /* RunLocationGaoDeManager.m in Sources */,
 				25AD8CCD1FA85B6800960732 /* StarView.m in Sources */,

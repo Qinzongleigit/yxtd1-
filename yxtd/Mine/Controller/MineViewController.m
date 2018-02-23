@@ -183,6 +183,7 @@
     
 }
 
+//行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     
@@ -202,6 +203,7 @@
    
 }
 
+//行数
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section==0) {
         
@@ -229,8 +231,8 @@
     return 5;
 }
 
+//填充cell
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     
     
    if (indexPath.section==0&&indexPath.row==0) {

@@ -28,21 +28,47 @@
 @property (nonatomic,strong)UITableView*tableView;
 
 
-@property (nonatomic,strong) NSArray * allkeys;
-
-@property (nonatomic,strong) NSMutableDictionary * dataDictionary;
-
 @property (nonatomic,assign) CGFloat labelHeight;
+
 
 @property (nonatomic,strong) NSMutableArray*dataArray;
 
 
+@property (nonatomic,strong) NSMutableArray*imageArray;
+
+@property (nonatomic,strong) NSMutableArray*contentArray;
 
 @end
 
 @implementation GuanZhuFansDetailViewController
 
     NSString*detailCellID=@"ID";
+
+
+-(NSMutableArray*)contentArray{
+    
+    
+    if (!_contentArray) {
+        
+        _contentArray=[NSMutableArray array];
+    }
+    
+    return _contentArray;
+    
+}
+
+//图片数组懒加载
+-(NSMutableArray*)imageArray{
+    
+    
+    if (_imageArray) {
+        
+        _imageArray=[NSMutableArray array];
+        
+    }
+    
+    return _imageArray;
+}
 
 
 //懒加载发布动态话题的内容
@@ -126,25 +152,6 @@
         make.top.mas_equalTo(self.headerView.mas_bottom).mas_offset(0);
     }];
     
-    
-    self.allkeys = @[@"A",@"B",@"C"];
-    
-    
-    self.dataDictionary = [NSMutableDictionary dictionary];
-    
-    for (NSString * keyStr in self.allkeys) {
-        
-        NSMutableArray * array = [NSMutableArray array];
-        int count = arc4random() % 9 + 1;
-        
-        for (int i = 1; i <= count; i++) {
-            
-            [array addObject:[NSString stringWithFormat:@"%2d",i]];
-        }
-        
-        [self.dataDictionary setObject:array forKey:keyStr];
-    }
-    
     //获取数据
      [self getFansAndFocusDetailHttpData];
 
@@ -154,8 +161,7 @@
 #pragma mark -获取关注和粉丝发布话题的详情数据接口
 -(void)getFansAndFocusDetailHttpData{
     
-    
-    
+
     NSUserDefaults *userInformation = [NSUserDefaults standardUserDefaults];
     
     NSString*api_tokenStr=[userInformation objectForKey:@"api_token"];
@@ -171,7 +177,12 @@
     params.user_id=self.user_id;
     
     params.is_admin=self.is_admin;
-
+    
+    
+    NSLog(@"api_token值-----------：%@",api_tokenStr);
+    NSLog(@"member_idStr----------:%@",member_idStr);
+    NSLog(@"user_id---------------:%@",self.user_id);
+    NSLog(@"is_admin--------------:%@",self.is_admin);
     
     [ShowUserContentHttp httpShowUserContent:params success:^(id responseObject) {
         
@@ -194,6 +205,13 @@
                 
                 DetailArrayModel*model=[[DetailArrayModel alloc] init];
                 [model setValuesForKeysWithDictionary:tempDict];
+            
+               //数组用来装发布的图片
+//                _imageArray=tempDict[@"img_url"];
+                
+                _imageArray=(NSMutableArray*)model.img_url;
+                
+                _contentArray=(NSMutableArray*)model.content;
                 
                 [self.dataArray addObject:model];
                 
@@ -220,20 +238,29 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return self.allkeys.count;
+    
+   return self.dataArray.count;
+    
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     DetailTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:detailCellID];
     
+    [cell fillCellWithModel:self.dataArray[indexPath.row] indexPath:indexPath];
+    
     //头像传值
     cell.model=self.userHeaderModel;
     
+    //图片点击的下标
     cell.indexPath = indexPath;
-    NSString * keyStr = self.allkeys[indexPath.row];
-    NSArray * array = [self.dataDictionary objectForKey:keyStr];
-    cell.dataArray = array;
+ 
+    //图片传值
+    cell.dataArray = _imageArray;
+    
+    //发布的内容
+    cell.contentArray=_contentArray;
+    
     cell.cellView.ReturnImageClickItemIndex = ^(NSIndexPath *itemtIP, NSInteger itemIndex) {
         
          NSLog(@"----###----###---(%ld,%ld)----##---%ld----###-----",itemtIP.section,itemtIP.row,itemIndex);
@@ -251,12 +278,10 @@
     
     CGFloat cellHt = 0.0;
     
-    NSString * keyStr = self.allkeys[indexPath.row];
-    NSArray * array = [self.dataDictionary objectForKey:keyStr];
     
-    if (array.count != 0) {
+    if (_imageArray.count != 0) {
         DetailImageCellView * cellView = [[DetailImageCellView alloc] init];
-        cellView.dataArrayCount = array.count;
+        cellView.dataArrayCount = _imageArray.count;
         cellHt += cellView.cellHeight;
     }
     

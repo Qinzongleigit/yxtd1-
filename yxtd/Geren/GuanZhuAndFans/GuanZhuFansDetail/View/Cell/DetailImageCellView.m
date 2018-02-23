@@ -9,6 +9,7 @@
 #define ImageJianXi 20.0f
 
 #import "DetailImageCellView.h"
+#import "UIButton+WebCache.h"
 
 @interface DetailImageCellView ()
 
@@ -86,12 +87,16 @@
         
     }else{
         for (NSInteger i = 0; i < self.dataImageArray.count ; i++) {
+       
+            UIImageView*imageView=[[UIImageView alloc] initWithFrame:[self frameForItemIndex:i]];
             
-            UIButton * selectBtn = [[UIButton alloc] initWithFrame:[self frameForItemIndex:i]];
-            selectBtn.backgroundColor = [UIColor greenColor];
-            [selectBtn addTarget:self action:@selector(clickBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-            [self addSubview:selectBtn];
-            selectBtn.tag = i+1000;
+            [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",self.dataImageArray[i]]]];
+            
+            imageView.userInteractionEnabled=YES;
+            imageView.tag=i+1000;
+             [self addSubview:imageView];
+            UITapGestureRecognizer*imageTap=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickTapAction:)];
+            [imageView addGestureRecognizer:imageTap];
             
         }
         
@@ -100,9 +105,13 @@
 }
 
 //btn的点击响应事件
-- (void)clickBtnAction:(UIButton *)sender {
+- (void)clickTapAction:(UITapGestureRecognizer *)tap {
     
-    self.ReturnImageClickItemIndex(self.indexPath, sender.tag - 1000);
+    //获取图片tag
+    UIView *views = (UIView*) tap.view;
+    NSUInteger tag = views.tag;
+    
+    self.ReturnImageClickItemIndex(self.indexPath, tag - 1000);
 }
 
 //计算每个UIButton的frame

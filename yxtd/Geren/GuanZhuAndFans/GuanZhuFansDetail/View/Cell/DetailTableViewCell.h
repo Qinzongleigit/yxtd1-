@@ -23,6 +23,8 @@
 
 @property (nonatomic,assign) CGFloat  getLabelCellHeight;
 
+@property (nonatomic,strong) NSArray * contentArray;
+
 //接收头像赋值网址
 @property (nonatomic,strong) DetailFansAndFocusModel*model;
 
