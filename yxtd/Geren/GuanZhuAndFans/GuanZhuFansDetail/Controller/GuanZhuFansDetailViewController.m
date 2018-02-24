@@ -249,6 +249,8 @@
     
     self.labelHeight=cell.getLabelCellHeight;
     
+    cell.selectionStyle=UITableViewCellSelectionStyleNone;
+    
     return cell;
     
     

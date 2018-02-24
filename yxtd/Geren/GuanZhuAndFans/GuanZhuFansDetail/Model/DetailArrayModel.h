@@ -20,6 +20,9 @@
 @property (nonatomic,copy) NSString*time;
 @property (nonatomic,copy) NSString*subject_catename;
 
+//是否点赞判断
+@property (nonatomic,copy) NSString*is_nice;
+
 
 @property (nonatomic,strong) NSArray*content;
 @property (nonatomic,strong) NSArray*img_url;

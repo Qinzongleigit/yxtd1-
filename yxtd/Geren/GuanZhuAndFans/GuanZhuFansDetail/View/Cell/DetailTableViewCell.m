@@ -49,6 +49,10 @@
 
 @property (nonatomic,strong) UILabel*commentLabel;
 
+//是否点赞
+@property (nonatomic,assign) NSInteger is_nice;
+
+@property (nonatomic,strong) UITextField*commnetText;
 
 @end
 
@@ -151,8 +155,17 @@
     //点赞图标
     _dianzanBt =[UIButton buttonWithType:UIButtonTypeCustom];
     _dianzanBt.backgroundColor=[UIColor whiteColor];
-    [_dianzanBt setBackgroundImage:[UIImage imageNamed:@"dianzan_Image"] forState:UIControlStateNormal];
     _dianzanBt.tag=1000;
+    
+    if (self.is_nice==2) {
+        
+        _dianzanBt.enabled=YES;
+        
+    }else{
+        
+        _dianzanBt.enabled=NO;
+    }
+   
      [_dianzanBt addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     [_cellBgView addSubview:_dianzanBt];
     
@@ -194,7 +207,29 @@
     
     if (btn.tag==1001) {
         
+        UIView*commnetView=[[UIView alloc] init];
+        commnetView.backgroundColor=[UIColor lightGrayColor];
+        [self addSubview:commnetView];
+        [self bringSubviewToFront:commnetView];
+        [commnetView mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.left.right.mas_equalTo(0);
+            make.bottom.mas_equalTo(-20);
+            make.top.mas_equalTo(_bgCommentView.mas_bottom).offset(2);
+        }];
         
+        
+        _commnetText=[[UITextField alloc] init];
+        _commnetText.placeholder=@"请输入评论内容";
+        [_commnetText becomeFirstResponder];
+        
+        [commnetView addSubview:_commnetText];
+        [_commnetText mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.left.right.mas_equalTo(0);
+            make.top.mas_equalTo(0);
+            make.height.mas_equalTo(30);
+        }];
         
     }else{
         
@@ -202,8 +237,7 @@
  
             _dianzanNumber.text=[NSString stringWithFormat:@"%ld",_dianzanNum+1];
         
-        
-        
+         //点赞接口
         [self getDianZanHttpData];
        
        
@@ -237,6 +271,22 @@
     }else{
         
         [_button setBackgroundImage:[UIImage imageWithoriginName:@"guanzhu_women_Image"] forState:UIControlStateNormal];
+        
+    }
+    
+   
+    
+   self.is_nice=[model.is_nice integerValue];
+    
+    if ([model.is_nice integerValue]==2) {
+
+        [_dianzanBt setBackgroundImage:[UIImage imageNamed:@"yidianzan_Image"] forState:UIControlStateNormal];
+       
+    }else{
+        
+        
+        
+        [_dianzanBt setBackgroundImage:[UIImage imageNamed:@"dianzan_Image"] forState:UIControlStateNormal];
         
     }
    
