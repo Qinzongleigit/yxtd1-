@@ -56,6 +56,8 @@
 
 #define ShowUserContent @""  httpUrl@"admin/show_user_content"
 
+//点赞
+#define DianZan @""  httpUrl@"admin/nice"
 
 
 #endif /* interface_h */

@@ -22,21 +22,16 @@
  */
 @property (nonatomic, strong) DetailFansAndFocusModel *userHeaderModel;
 
-
 @property (nonatomic,strong) DetailHeaderView*headerView;
 
 @property (nonatomic,strong)UITableView*tableView;
 
-
 @property (nonatomic,assign) CGFloat labelHeight;
-
 
 @property (nonatomic,strong) NSMutableArray*dataArray;
 
-
 @property (nonatomic,strong) NSMutableArray*imageArray;
 
-@property (nonatomic,strong) NSMutableArray*contentArray;
 
 @end
 
@@ -45,23 +40,11 @@
     NSString*detailCellID=@"ID";
 
 
--(NSMutableArray*)contentArray{
-    
-    
-    if (!_contentArray) {
-        
-        _contentArray=[NSMutableArray array];
-    }
-    
-    return _contentArray;
-    
-}
-
 //图片数组懒加载
 -(NSMutableArray*)imageArray{
     
     
-    if (_imageArray) {
+    if (!_imageArray) {
         
         _imageArray=[NSMutableArray array];
         
@@ -205,14 +188,7 @@
                 
                 DetailArrayModel*model=[[DetailArrayModel alloc] init];
                 [model setValuesForKeysWithDictionary:tempDict];
-            
-               //数组用来装发布的图片
-//                _imageArray=tempDict[@"img_url"];
-                
-                _imageArray=(NSMutableArray*)model.img_url;
-                
-                _contentArray=(NSMutableArray*)model.content;
-                
+
                 [self.dataArray addObject:model];
                 
                 [self.tableView reloadData];
@@ -249,6 +225,10 @@
     
     [cell fillCellWithModel:self.dataArray[indexPath.row] indexPath:indexPath];
     
+    DetailArrayModel*model=self.dataArray[indexPath.row];
+    
+    self.imageArray=(NSMutableArray*)model.img_url;
+    
     //头像传值
     cell.model=self.userHeaderModel;
     
@@ -256,10 +236,10 @@
     cell.indexPath = indexPath;
  
     //图片传值
-    cell.dataArray = _imageArray;
-    
+    cell.dataArray = model.img_url;
+
     //发布的内容
-    cell.contentArray=_contentArray;
+    cell.contentArray=model.content;
     
     cell.cellView.ReturnImageClickItemIndex = ^(NSIndexPath *itemtIP, NSInteger itemIndex) {
         
@@ -279,9 +259,9 @@
     CGFloat cellHt = 0.0;
     
     
-    if (_imageArray.count != 0) {
+    if (self.imageArray.count != 0) {
         DetailImageCellView * cellView = [[DetailImageCellView alloc] init];
-        cellView.dataArrayCount = _imageArray.count;
+        cellView.dataArrayCount = self.imageArray.count;
         cellHt += cellView.cellHeight;
     }
     

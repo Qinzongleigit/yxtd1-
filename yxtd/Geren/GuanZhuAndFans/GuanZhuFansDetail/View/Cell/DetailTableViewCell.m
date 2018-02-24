@@ -8,6 +8,8 @@
 
 #import "DetailTableViewCell.h"
 #import "UIImageView+WebCache.h"
+#import "DianZanParam.h"
+#import "DianZanHttp.h"
 
 @interface DetailTableViewCell ()
 
@@ -39,6 +41,13 @@
 
 @property (nonatomic,strong) NSString*labelStr;
 
+@property (nonatomic,assign) NSInteger dianzanNum;
+
+@property (nonatomic,strong) NSString*record_id;
+
+@property (nonatomic,strong) NSString*subject_catename;
+
+@property (nonatomic,strong) UILabel*commentLabel;
 
 
 @end
@@ -129,10 +138,22 @@
     _bgCommentView.backgroundColor=[UIColor lightGrayColor];
     [_cellBgView addSubview:_bgCommentView];
     
+    //评论内容
+    _commentLabel=[[UILabel alloc] init];
+    _commentLabel.text=@"sdk";
+    _commentLabel.textColor=[UIColor whiteColor];
+    _commentLabel.font=[UIFont systemFontOfSize:15];
+    [_bgCommentView addSubview:_commentLabel];
+    
+    
+    
     
     //点赞图标
     _dianzanBt =[UIButton buttonWithType:UIButtonTypeCustom];
-    _dianzanBt.backgroundColor=[UIColor redColor];
+    _dianzanBt.backgroundColor=[UIColor whiteColor];
+    [_dianzanBt setBackgroundImage:[UIImage imageNamed:@"dianzan_Image"] forState:UIControlStateNormal];
+    _dianzanBt.tag=1000;
+     [_dianzanBt addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     [_cellBgView addSubview:_dianzanBt];
     
     
@@ -150,8 +171,13 @@
     
     //评论图标
     _pinglunBt =[UIButton buttonWithType:UIButtonTypeCustom];
-    _pinglunBt.backgroundColor=[UIColor redColor];
+    _pinglunBt.backgroundColor=[UIColor whiteColor];
+    [_pinglunBt setBackgroundImage:[UIImage imageNamed:@"pinglun_Image"] forState:UIControlStateNormal];
+    _pinglunBt.tag=1001;
+    [_pinglunBt addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+    
     [_cellBgView addSubview:_pinglunBt];
+    
     
     //评论人数
     _pinglunNumber=[[UILabel alloc] init];
@@ -162,6 +188,30 @@
     
     
 }
+
+#pragma mark -点赞、评论按钮点击响应事件
+-(void)buttonClick:(UIButton*)btn{
+    
+    if (btn.tag==1001) {
+        
+        
+        
+    }else{
+        
+        [btn setBackgroundImage:[UIImage imageNamed:@"yidianzan_Image"] forState:UIControlStateNormal];
+ 
+            _dianzanNumber.text=[NSString stringWithFormat:@"%ld",_dianzanNum+1];
+        
+        
+        
+        [self getDianZanHttpData];
+       
+       
+    }
+    
+}
+
+
 
 
 //头像,昵称赋值
@@ -195,11 +245,17 @@
     _timeLabel.text=model.time;
     
  
+    _dianzanNum=[model.nice_num integerValue];
+    
     _dianzanNumber.text=[NSString stringWithFormat:@"%@",model.nice_num];
     
     _pinglunNumber.text=[NSString stringWithFormat:@"%@",model.comment_num];
     
+    self.record_id=model.record_id;
     
+    self.subject_catename=model.subject_catename;
+    
+    _commentLabel.text=[NSString stringWithFormat:@"%@:%@",model.comment_user,model.comment_content];
     
     
 }
@@ -341,6 +397,14 @@
         
     }];
     
+    
+    [_commentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.centerY.mas_equalTo(_bgCommentView);
+        make.left.mas_equalTo(20);
+    }];
+    
+    
     [_lineV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self);
         make.bottom.mas_equalTo(-13);
@@ -378,6 +442,43 @@
     
     
 }
+
+
+#pragma mark -点赞接口
+-(void)getDianZanHttpData{
+    
+    NSUserDefaults *userInformation = [NSUserDefaults standardUserDefaults];
+    
+    NSString*api_tokenStr=[userInformation objectForKey:@"api_token"];
+    
+    NSString*member_idStr=[userInformation objectForKey:@"member_id"];
+    
+    DianZanParam*params=[[DianZanParam alloc] init];
+    
+    params.api_token=api_tokenStr;
+    
+    params.member_id=member_idStr;
+    
+    params.record_id=self.record_id;
+    
+    params.subject_catename=self.subject_catename;
+
+    [DianZanHttp httpDianZan:params success:^(id responseObject) {
+ 
+        NSLog(@"点赞返回的数据显示%@",responseObject);
+        
+        
+    } failure:^(NSError *error) {
+        
+        NSLog(@"点赞数据获取失败");
+        
+        
+        
+    }];
+    
+    
+}
+    
 
 
 

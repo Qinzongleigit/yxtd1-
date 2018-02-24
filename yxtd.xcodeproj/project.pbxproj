@@ -99,7 +99,8 @@
 		257D377E1F74B47A00C25FE4 /* CDFindImgScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 257D377D1F74B47A00C25FE4 /* CDFindImgScrollView.m */; };
 		257D38341F74DB5500C25FE4 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 257D38331F74DB5500C25FE4 /* UIView+Frame.m */; };
 		257D38371F74E70C00C25FE4 /* CDFindHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 257D38361F74E70C00C25FE4 /* CDFindHeaderView.m */; };
-		25827F2E203FFE5C004FA534 /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 25827F2D203FFE5C004FA534 /* UIButton+WebCache.m */; };
+		25827F6F20414CCA004FA534 /* DianZanHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 25827F6E20414CCA004FA534 /* DianZanHttp.m */; };
+		25827F7220414CE4004FA534 /* DianZanParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 25827F7120414CE4004FA534 /* DianZanParam.m */; };
 		258A0E141F9B060D00EF9593 /* nearBicycle.json in Resources */ = {isa = PBXBuildFile; fileRef = 258A0E131F9B060D00EF9593 /* nearBicycle.json */; };
 		258FC174200DD3E400490F86 /* JiFenShuoMingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 258FC173200DD3E400490F86 /* JiFenShuoMingViewController.m */; };
 		258FC177200F2F3E00490F86 /* PedometerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 258FC176200F2F3E00490F86 /* PedometerData.m */; };
@@ -384,8 +385,10 @@
 		257D38331F74DB5500C25FE4 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 		257D38351F74E70C00C25FE4 /* CDFindHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDFindHeaderView.h; sourceTree = "<group>"; };
 		257D38361F74E70C00C25FE4 /* CDFindHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDFindHeaderView.m; sourceTree = "<group>"; };
-		25827F2C203FFE5C004FA534 /* UIButton+WebCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+WebCache.h"; sourceTree = "<group>"; };
-		25827F2D203FFE5C004FA534 /* UIButton+WebCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+WebCache.m"; sourceTree = "<group>"; };
+		25827F6D20414CCA004FA534 /* DianZanHttp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DianZanHttp.h; sourceTree = "<group>"; };
+		25827F6E20414CCA004FA534 /* DianZanHttp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DianZanHttp.m; sourceTree = "<group>"; };
+		25827F7020414CE4004FA534 /* DianZanParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DianZanParam.h; sourceTree = "<group>"; };
+		25827F7120414CE4004FA534 /* DianZanParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DianZanParam.m; sourceTree = "<group>"; };
 		258A0E131F9B060D00EF9593 /* nearBicycle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = nearBicycle.json; sourceTree = "<group>"; };
 		258FC172200DD3E400490F86 /* JiFenShuoMingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JiFenShuoMingViewController.h; sourceTree = "<group>"; };
 		258FC173200DD3E400490F86 /* JiFenShuoMingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JiFenShuoMingViewController.m; sourceTree = "<group>"; };
@@ -1142,6 +1145,10 @@
 			children = (
 				25689C1D202DAF3D0050DEE2 /* ShowUserContentHttp.h */,
 				25689C1E202DAF3D0050DEE2 /* ShowUserContentHttp.m */,
+				25827F6D20414CCA004FA534 /* DianZanHttp.h */,
+				25827F6E20414CCA004FA534 /* DianZanHttp.m */,
+				25827F7020414CE4004FA534 /* DianZanParam.h */,
+				25827F7120414CE4004FA534 /* DianZanParam.m */,
 			);
 			path = DetailFansAndFocus;
 			sourceTree = "<group>";
@@ -1390,8 +1397,6 @@
 				25D5A26B1FB9837900074447 /* MBProgressHUD+MJ.m */,
 				25ABFB491FE8BA1400C90BD0 /* UIView+XMGExtension.h */,
 				25ABFB4A1FE8BA1400C90BD0 /* UIView+XMGExtension.m */,
-				25827F2C203FFE5C004FA534 /* UIButton+WebCache.h */,
-				25827F2D203FFE5C004FA534 /* UIButton+WebCache.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -2321,6 +2326,7 @@
 				25F836742029929100F3ACC2 /* GuanZhuFansDetailViewController.m in Sources */,
 				25D88F341FD5420700405F8D /* UICountingLabel.m in Sources */,
 				257D38341F74DB5500C25FE4 /* UIView+Frame.m in Sources */,
+				25827F6F20414CCA004FA534 /* DianZanHttp.m in Sources */,
 				25AD8CAE1FA1B3A500960732 /* HYSwitch.m in Sources */,
 				25649E352005AE8400002608 /* AGIPCAlbumsController.m in Sources */,
 				8F0D8A331FE816EE0064B514 /* MyDiscountTopSliderView.m in Sources */,
@@ -2430,7 +2436,6 @@
 				250078CA201B1F5500092463 /* TitleView.m in Sources */,
 				250078EA20200EC200092463 /* MineUserMessageHttp.m in Sources */,
 				250078CE201B1FC200092463 /* GuanZhuFansViewController.m in Sources */,
-				25827F2E203FFE5C004FA534 /* UIButton+WebCache.m in Sources */,
 				25ABFB6A1FEA4FE200C90BD0 /* FoodDetaliStarView.m in Sources */,
 				25130E411F99E66E00E1E29A /* RunLocationGaoDeManager.m in Sources */,
 				25AD8CCD1FA85B6800960732 /* StarView.m in Sources */,
@@ -2445,6 +2450,7 @@
 				25130E3E1F99E59100E1E29A /* RunRootViewController.m in Sources */,
 				25D24D3F1F8F103A0096F765 /* MineOneCell.m in Sources */,
 				25D5A2891FBA89E100074447 /* SmsHttp.m in Sources */,
+				25827F7220414CE4004FA534 /* DianZanParam.m in Sources */,
 				25ABFB3D1FE7660C00C90BD0 /* DuiHuanAlter.m in Sources */,
 				2532C1681F6F70D10064A28C /* SaiShiViewController.m in Sources */,
 				258FC174200DD3E400490F86 /* JiFenShuoMingViewController.m in Sources */,

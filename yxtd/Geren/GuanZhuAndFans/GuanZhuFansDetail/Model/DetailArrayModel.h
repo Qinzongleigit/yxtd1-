@@ -11,7 +11,7 @@
 @interface DetailArrayModel : NSObject
 
 @property (nonatomic,copy) NSString*comment_num;
-@property (nonatomic,copy) NSString*comment_conten;
+@property (nonatomic,copy) NSString*comment_content;
 @property (nonatomic,copy) NSString*comment_user;
 @property (nonatomic,copy) NSString*record_id;
 @property (nonatomic,copy) NSString*nice_num;
