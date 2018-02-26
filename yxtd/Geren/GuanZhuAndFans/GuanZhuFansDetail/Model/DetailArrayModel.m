@@ -10,10 +10,25 @@
 
 @implementation DetailArrayModel
 
--(void)setValue:(id)value forUndefinedKey:(NSString *)key{
-    
-
-    
+-(id)initWithDict:(NSDictionary *)dict
+{
+    if (self = [super init]) {
+        [self setValuesForKeysWithDictionary:dict];
+    }
+    return self;
 }
+
++(id)familyGroupWithDict:(NSDictionary *)dict
+{
+    return [[self alloc]initWithDict:dict];
+}
+
+
+
+//-(void)setValue:(id)value forUndefinedKey:(NSString *)key{
+//
+//
+//
+//}
 
 @end

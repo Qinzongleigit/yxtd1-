@@ -7,29 +7,41 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DetailImageCellView.h"
 #import "DetailArrayModel.h"
 #import "DetailFansAndFocusModel.h"
 
 
+#import "DetailFansAndFocusCellFrame.h"
+
+
 @interface DetailTableViewCell : UITableViewCell
 
-@property (nonatomic,strong) DetailImageCellView*cellView;
 
-@property (nonatomic,strong) NSArray * dataArray;
+typedef void (^ImageBlock)(NSArray *imageViews,NSInteger clickTag);
 
-@property (nonatomic,strong) NSIndexPath * indexPath;
+@property (nonatomic,strong)DetailFansAndFocusCellFrame *cellFrame;
 
+@property (weak,nonatomic)UIButton *replyButton;
 
-@property (nonatomic,assign) CGFloat  getLabelCellHeight;
++(instancetype)cellWithTableView:(UITableView *)tableView;
 
-@property (nonatomic,strong) NSArray * contentArray;
-
-//接收头像赋值网址
-@property (nonatomic,strong) DetailFansAndFocusModel*model;
+@property (strong,nonatomic)ImageBlock imageBlock;
 
 
-- (void)fillCellWithModel:(DetailArrayModel*)model indexPath:(NSIndexPath *)path;
+//@property (nonatomic,strong) NSArray * dataArray;
+//
+//@property (nonatomic,strong) NSIndexPath * indexPath;
+//
+//
+//@property (nonatomic,assign) CGFloat  getLabelCellHeight;
+//
+//@property (nonatomic,strong) NSArray * contentArray;
+//
+////接收头像赋值网址
+//@property (nonatomic,strong) DetailFansAndFocusModel*model;
+//
+//
+//- (void)fillCellWithModel:(DetailArrayModel*)model indexPath:(NSIndexPath *)path;
 
 
 @end

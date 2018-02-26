@@ -10,6 +10,7 @@
 
 @interface DetailArrayModel : NSObject
 
+
 @property (nonatomic,copy) NSString*comment_num;
 @property (nonatomic,copy) NSString*comment_content;
 @property (nonatomic,copy) NSString*comment_user;
@@ -27,5 +28,7 @@
 @property (nonatomic,strong) NSArray*content;
 @property (nonatomic,strong) NSArray*img_url;
 
+#pragma mark - 最后要考虑是暂存coredata里还是plist文件里
++(id)familyGroupWithDict:(NSDictionary *)dict;
 
 @end

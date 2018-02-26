@@ -101,6 +101,12 @@
 		257D38371F74E70C00C25FE4 /* CDFindHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 257D38361F74E70C00C25FE4 /* CDFindHeaderView.m */; };
 		25827F6F20414CCA004FA534 /* DianZanHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 25827F6E20414CCA004FA534 /* DianZanHttp.m */; };
 		25827F7220414CE4004FA534 /* DianZanParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 25827F7120414CE4004FA534 /* DianZanParam.m */; };
+		25827FDC2043A6B3004FA534 /* DetailFansAndFocusCellFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 25827FDB2043A6B3004FA534 /* DetailFansAndFocusCellFrame.m */; };
+		25827FDF2043B5F2004FA534 /* DetailShowImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25827FDE2043B5F2004FA534 /* DetailShowImageViewController.m */; };
+		25827FE22043B64E004FA534 /* ShowBigImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25827FE12043B64E004FA534 /* ShowBigImageView.m */; };
+		25827FE52043B772004FA534 /* ReplyInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25827FE42043B772004FA534 /* ReplyInputView.m */; };
+		258280432043BB4A004FA534 /* reply.png in Resources */ = {isa = PBXBuildFile; fileRef = 2582803B2043BB48004FA534 /* reply.png */; };
+		258280492043BBFF004FA534 /* buttonSend@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 258280482043BBFF004FA534 /* buttonSend@2x.png */; };
 		258A0E141F9B060D00EF9593 /* nearBicycle.json in Resources */ = {isa = PBXBuildFile; fileRef = 258A0E131F9B060D00EF9593 /* nearBicycle.json */; };
 		258FC174200DD3E400490F86 /* JiFenShuoMingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 258FC173200DD3E400490F86 /* JiFenShuoMingViewController.m */; };
 		258FC177200F2F3E00490F86 /* PedometerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 258FC176200F2F3E00490F86 /* PedometerData.m */; };
@@ -158,7 +164,6 @@
 		25F836742029929100F3ACC2 /* GuanZhuFansDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F836732029929100F3ACC2 /* GuanZhuFansDetailViewController.m */; };
 		25F83677202992D500F3ACC2 /* DetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F83676202992D500F3ACC2 /* DetailHeaderView.m */; };
 		25F8368D202AEB6300F3ACC2 /* DetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F8368C202AEB6300F3ACC2 /* DetailTableViewCell.m */; };
-		25F83691202BF58600F3ACC2 /* DetailImageCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F83690202BF58600F3ACC2 /* DetailImageCellView.m */; };
 		25FD1ADA1F6A163A00D7957E /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FD1AD91F6A163900D7957E /* UIColor+Hex.m */; };
 		25FE9F6A1F7E35BF00D9E420 /* CLTRoundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FE9F691F7E35BF00D9E420 /* CLTRoundView.m */; };
 		30AE89C1A250834E9DB980BB /* libPods-yxtd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D34E885CCE21FBB8C41A8408 /* libPods-yxtd.a */; };
@@ -389,6 +394,16 @@
 		25827F6E20414CCA004FA534 /* DianZanHttp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DianZanHttp.m; sourceTree = "<group>"; };
 		25827F7020414CE4004FA534 /* DianZanParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DianZanParam.h; sourceTree = "<group>"; };
 		25827F7120414CE4004FA534 /* DianZanParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DianZanParam.m; sourceTree = "<group>"; };
+		25827FDA2043A6B3004FA534 /* DetailFansAndFocusCellFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailFansAndFocusCellFrame.h; sourceTree = "<group>"; };
+		25827FDB2043A6B3004FA534 /* DetailFansAndFocusCellFrame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailFansAndFocusCellFrame.m; sourceTree = "<group>"; };
+		25827FDD2043B5F2004FA534 /* DetailShowImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailShowImageViewController.h; sourceTree = "<group>"; };
+		25827FDE2043B5F2004FA534 /* DetailShowImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailShowImageViewController.m; sourceTree = "<group>"; };
+		25827FE02043B64E004FA534 /* ShowBigImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowBigImageView.h; sourceTree = "<group>"; };
+		25827FE12043B64E004FA534 /* ShowBigImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowBigImageView.m; sourceTree = "<group>"; };
+		25827FE32043B772004FA534 /* ReplyInputView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReplyInputView.h; sourceTree = "<group>"; };
+		25827FE42043B772004FA534 /* ReplyInputView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReplyInputView.m; sourceTree = "<group>"; };
+		2582803B2043BB48004FA534 /* reply.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reply.png; sourceTree = "<group>"; };
+		258280482043BBFF004FA534 /* buttonSend@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonSend@2x.png"; sourceTree = "<group>"; };
 		258A0E131F9B060D00EF9593 /* nearBicycle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = nearBicycle.json; sourceTree = "<group>"; };
 		258FC172200DD3E400490F86 /* JiFenShuoMingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JiFenShuoMingViewController.h; sourceTree = "<group>"; };
 		258FC173200DD3E400490F86 /* JiFenShuoMingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JiFenShuoMingViewController.m; sourceTree = "<group>"; };
@@ -501,8 +516,6 @@
 		25F83676202992D500F3ACC2 /* DetailHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailHeaderView.m; sourceTree = "<group>"; };
 		25F8368B202AEB6300F3ACC2 /* DetailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailTableViewCell.h; sourceTree = "<group>"; };
 		25F8368C202AEB6300F3ACC2 /* DetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailTableViewCell.m; sourceTree = "<group>"; };
-		25F8368F202BF58600F3ACC2 /* DetailImageCellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailImageCellView.h; sourceTree = "<group>"; };
-		25F83690202BF58600F3ACC2 /* DetailImageCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailImageCellView.m; sourceTree = "<group>"; };
 		25FD1AD81F6A163900D7957E /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		25FD1AD91F6A163900D7957E /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		25FE9F681F7E35BF00D9E420 /* CLTRoundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTRoundView.h; sourceTree = "<group>"; };
@@ -848,6 +861,8 @@
 				8F5AD9CB1FB88871007B5BA8 /* Welcome1.jpg */,
 				8F5AD9CC1FB88872007B5BA8 /* Welcome2.jpg */,
 				8F5AD9CD1FB88873007B5BA8 /* Welcome3.jpg */,
+				2582803B2043BB48004FA534 /* reply.png */,
+				258280482043BBFF004FA534 /* buttonSend@2x.png */,
 				25393C991F68DA5E006905CB /* yxtd */,
 				25393CB31F68DA5F006905CB /* yxtdTests */,
 				25393CBE1F68DA5F006905CB /* yxtdUITests */,
@@ -1864,6 +1879,8 @@
 			children = (
 				25F836722029929100F3ACC2 /* GuanZhuFansDetailViewController.h */,
 				25F836732029929100F3ACC2 /* GuanZhuFansDetailViewController.m */,
+				25827FDD2043B5F2004FA534 /* DetailShowImageViewController.h */,
+				25827FDE2043B5F2004FA534 /* DetailShowImageViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1883,8 +1900,10 @@
 			children = (
 				25F8368B202AEB6300F3ACC2 /* DetailTableViewCell.h */,
 				25F8368C202AEB6300F3ACC2 /* DetailTableViewCell.m */,
-				25F8368F202BF58600F3ACC2 /* DetailImageCellView.h */,
-				25F83690202BF58600F3ACC2 /* DetailImageCellView.m */,
+				25827FE02043B64E004FA534 /* ShowBigImageView.h */,
+				25827FE12043B64E004FA534 /* ShowBigImageView.m */,
+				25827FE32043B772004FA534 /* ReplyInputView.h */,
+				25827FE42043B772004FA534 /* ReplyInputView.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -2056,6 +2075,8 @@
 				8FACE401202E046200846166 /* DetailFansAndFocusModel.m */,
 				8FACE4032030A81000846166 /* DetailArrayModel.h */,
 				8FACE4042030A81000846166 /* DetailArrayModel.m */,
+				25827FDA2043A6B3004FA534 /* DetailFansAndFocusCellFrame.h */,
+				25827FDB2043A6B3004FA534 /* DetailFansAndFocusCellFrame.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2228,8 +2249,10 @@
 				25393CA71F68DA5E006905CB /* Assets.xcassets in Resources */,
 				25393CA51F68DA5E006905CB /* Main.storyboard in Resources */,
 				8F5AD9CF1FB88875007B5BA8 /* Welcome2.jpg in Resources */,
+				258280492043BBFF004FA534 /* buttonSend@2x.png in Resources */,
 				8F5AD9CE1FB88874007B5BA8 /* Welcome1.jpg in Resources */,
 				25AB5B361FC7FFB800BC4D6F /* AddressCell.xib in Resources */,
+				258280432043BB4A004FA534 /* reply.png in Resources */,
 				257554261FD7EAE400B4EBB7 /* JiangZhangTableViewCell.xib in Resources */,
 				25649E322005AE8400002608 /* AGImagePickerController.bundle in Resources */,
 				8F263BC61FD0675200F89A45 /* deletePhoto.png in Resources */,
@@ -2345,6 +2368,7 @@
 				25649E3C2005AE8400002608 /* ALAsset+AGIPC.m in Sources */,
 				25689C1F202DAF3D0050DEE2 /* ShowUserContentHttp.m in Sources */,
 				257D12591F690F9F003DC1E4 /* RankingViewController.m in Sources */,
+				25827FE22043B64E004FA534 /* ShowBigImageView.m in Sources */,
 				25AB5B231FC7CCBF00BC4D6F /* UpdatePhoneNumberViewController.m in Sources */,
 				8FFB6D22200BAE710033E9FA /* MySportsTableViewCell.m in Sources */,
 				250078E4201F0C3100092463 /* MineUserMessageModel.m in Sources */,
@@ -2360,7 +2384,6 @@
 				25649E372005AE8400002608 /* AGIPCGridCell.m in Sources */,
 				25130E4A1F99EA1B00E1E29A /* SelectableOverlay.m in Sources */,
 				2540524F2025846400B0162A /* AddGuanZhuViewController.m in Sources */,
-				25F83691202BF58600F3ACC2 /* DetailImageCellView.m in Sources */,
 				2575541A1FD79D7100B4EBB7 /* JiangZhangTableViewController.m in Sources */,
 				25ABFB481FE7B98100C90BD0 /* MyDiscountViewController.m in Sources */,
 				251CF2881FC2D04300867046 /* SexView.m in Sources */,
@@ -2425,10 +2448,12 @@
 				257D120F1F68E18E003DC1E4 /* ViewController.m in Sources */,
 				250078EB20200EC200092463 /* MineUserMessageParam.m in Sources */,
 				258FC177200F2F3E00490F86 /* PedometerData.m in Sources */,
+				25827FE52043B772004FA534 /* ReplyInputView.m in Sources */,
 				25ABFB641FEA3AE000C90BD0 /* FoodDetailsViewController.m in Sources */,
 				257D38371F74E70C00C25FE4 /* CDFindHeaderView.m in Sources */,
 				25D5A2761FB9945B00074447 /* CDHttpTool.m in Sources */,
 				25BED23A1F7CD5EF00A0A07A /* CDMyButton.m in Sources */,
+				25827FDF2043B5F2004FA534 /* DetailShowImageViewController.m in Sources */,
 				257D12481F690E16003DC1E4 /* FindViewController.m in Sources */,
 				25ABFB6E1FEA5A1D00C90BD0 /* FoodDetailTableViewCell.m in Sources */,
 				25ABFAF51FE3A48E00C90BD0 /* StepPaiHangViewController.m in Sources */,
@@ -2449,6 +2474,7 @@
 				25AB5B9A1FCE90D900BC4D6F /* HuatiDongtaiViewController.m in Sources */,
 				25130E3E1F99E59100E1E29A /* RunRootViewController.m in Sources */,
 				25D24D3F1F8F103A0096F765 /* MineOneCell.m in Sources */,
+				25827FDC2043A6B3004FA534 /* DetailFansAndFocusCellFrame.m in Sources */,
 				25D5A2891FBA89E100074447 /* SmsHttp.m in Sources */,
 				25827F7220414CE4004FA534 /* DianZanParam.m in Sources */,
 				25ABFB3D1FE7660C00C90BD0 /* DuiHuanAlter.m in Sources */,
