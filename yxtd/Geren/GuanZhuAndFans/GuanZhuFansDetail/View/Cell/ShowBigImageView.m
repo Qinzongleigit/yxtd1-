@@ -78,9 +78,10 @@
         imageScrollView.minimumZoomScale = 1;
         
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.bounds];
-        //NSLog(@"%f,%f,%f,%f",self.bounds.origin.x,self.bounds.origin.y,self.bounds.size.width,self.bounds.size.height);
-        UIImage *img = [UIImage imageNamed:[appendArray objectAtIndex:i]];
-        imageView.image = img;
+ 
+       
+         [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",appendArray[i]]]];
+        
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         [imageScrollView addSubview:imageView];
         [self.scrollView addSubview:imageScrollView];

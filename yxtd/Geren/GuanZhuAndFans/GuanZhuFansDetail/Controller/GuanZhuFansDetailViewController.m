@@ -201,22 +201,21 @@
 
                 [self userHeaderModel:info];
 
-
                NSArray*array=info[@"list"];
             
             NSMutableArray *models = [NSMutableArray arrayWithCapacity:[array count]];
-
+       
             for (NSDictionary*tempDict in array) {
 
                 DetailArrayModel*model=[DetailArrayModel familyGroupWithDict:tempDict];
                 
-                
                 DetailFansAndFocusCellFrame *familyGroupFrame = [[DetailFansAndFocusCellFrame alloc]init];
-                familyGroupFrame.modelGroup =model;
-//                familyGroupFrame.model=self.userHeaderModel;
+                
+                   familyGroupFrame.modelGroup =model;
+                familyGroupFrame.model=self.userHeaderModel;
                 
                 [models addObject:familyGroupFrame];
-            
+                
                self.dataArray=[models copy];
                 
                 [self.tableView reloadData];
@@ -244,7 +243,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"速度快撒活动空间十分快速========：%@",self.dataArray);
+   
     return self.dataArray.count;
 }
 
@@ -277,27 +276,7 @@
     return cell;
 }
 
-//
-//-(NSMutableArray *)familyGroupData
-//{
-//    if (!_familyGroupData) {
-//        NSString *fullPath = [[NSBundle mainBundle] pathForResource:@"FamilyGroup.plist" ofType:nil];
-//        NSArray *dictArray = [NSArray arrayWithContentsOfFile:fullPath];
-//        NSMutableArray *models = [NSMutableArray arrayWithCapacity:[dictArray count]];
-//        for (NSDictionary *dict in dictArray) {
-//
-//            DetailArrayModel *familyGroup = [DetailArrayModel familyGroupWithDict:dict];
-//
-//            DetailFansAndFocusCellFrame *familyGroupFrame = [[DetailFansAndFocusCellFrame alloc]init];
-//            familyGroupFrame.modelGroup = familyGroup;
-//
-//            [models addObject:familyGroupFrame];
-//        }
-//        _familyGroupData = [models copy];
-//    }
-//
-//    return _familyGroupData;
-//}
+
 
 
 -(void)replyAction:(UIButton *)sender
@@ -451,58 +430,7 @@
 
 
 
-//
-//-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-//
-//
-//   return self.dataArray.count;
-//
-//}
-//
-//-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-//
-//    DetailTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:detailCellID];
-//
-//    [cell fillCellWithModel:self.dataArray[indexPath.row] indexPath:indexPath];
-//
-//    DetailArrayModel*model=self.dataArray[indexPath.row];
-//
-//    self.imageArray=(NSMutableArray*)model.img_url;
-//
-//    //头像传值
-//    cell.model=self.userHeaderModel;
-//
-//    //图片点击的下标
-//    cell.indexPath = indexPath;
-//
-//    //图片传值
-//    cell.dataArray = model.img_url;
-//
-//    //发布的内容
-//    cell.contentArray=model.content;
-//
-//
-//    cell.backgroundColor=[UIColor lightGrayColor];
-//
-//    self.labelHeight=cell.getLabelCellHeight;
-//
-//    cell.selectionStyle=UITableViewCellSelectionStyleNone;
-//
-//    return cell;
-//
-//
-//}
-//
-//
-//
-//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//
-//
-//    return 300;
-//
-//
-//}
-//
+
 
 
 @end

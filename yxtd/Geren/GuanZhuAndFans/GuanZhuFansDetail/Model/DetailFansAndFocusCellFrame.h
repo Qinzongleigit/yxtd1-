@@ -22,7 +22,9 @@
 @property (nonatomic,assign) CGRect replyF;
 @property (nonatomic,strong) NSMutableArray *replysF;
 @property (nonatomic,assign) CGRect replyBackgroundF;
+
 @property (nonatomic,strong) DetailArrayModel *modelGroup;
-//@property (nonatomic,strong) DetailFansAndFocusModel*model;
+
+@property (nonatomic,strong) DetailFansAndFocusModel*model;
 
 @end

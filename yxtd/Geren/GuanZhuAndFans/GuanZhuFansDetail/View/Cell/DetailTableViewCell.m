@@ -162,29 +162,30 @@
     return self;
 }
 
-//头像,昵称赋值
--(void)setModel:(DetailFansAndFocusModel *)model{
-    
-    [self.iconView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",model.avatar]]];
-    
-}
+
+
+
 
 //赋值
 -(void)settingtData
 {
     
-    DetailArrayModel *modelGroup = self.cellFrame.modelGroup;
+     DetailArrayModel *modelGroup = self.cellFrame.modelGroup;
+   DetailFansAndFocusModel*model=self.cellFrame.model;
     
+    [self.iconView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",model.avatar]]];
     
-      _nameLabel.text=modelGroup.addres;
+    _nameLabel.text=model.nickname;
+    
     
     //创建正文
-    self.shuoshuotextLabel.text = modelGroup.comment_content;
+    self.shuoshuotextLabel.text = modelGroup.addres;
     
     //创建配图
     for (int i = 0; i < [modelGroup.img_url count]; i++) {
         
         UIImageView *pictureView = [[UIImageView alloc]init];
+        pictureView.backgroundColor=[UIColor redColor];
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapImageView:)];
         [pictureView addGestureRecognizer:tap];
         pictureView.tag = imageTag + i;
@@ -193,7 +194,7 @@
         pictureView.userInteractionEnabled = YES;
         [self.contentView addSubview:pictureView];
         [self.picturesView addObject:pictureView];
-        ((UIImageView *)[self.picturesView objectAtIndex:i]).image = [UIImage imageNamed:[modelGroup.img_url objectAtIndex:i]];
+        [pictureView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",modelGroup.img_url[i]]]];
     }
     
     //时间戳
@@ -273,7 +274,7 @@
     [self removeOldPicturesAndReplys];
     
     [self settingtData];
-    
+
     [self settingFrame];
 }
 

@@ -28,20 +28,5 @@ typedef void (^ImageBlock)(NSArray *imageViews,NSInteger clickTag);
 @property (strong,nonatomic)ImageBlock imageBlock;
 
 
-//@property (nonatomic,strong) NSArray * dataArray;
-//
-//@property (nonatomic,strong) NSIndexPath * indexPath;
-//
-//
-//@property (nonatomic,assign) CGFloat  getLabelCellHeight;
-//
-//@property (nonatomic,strong) NSArray * contentArray;
-//
-////接收头像赋值网址
-//@property (nonatomic,strong) DetailFansAndFocusModel*model;
-//
-//
-//- (void)fillCellWithModel:(DetailArrayModel*)model indexPath:(NSIndexPath *)path;
-
 
 @end

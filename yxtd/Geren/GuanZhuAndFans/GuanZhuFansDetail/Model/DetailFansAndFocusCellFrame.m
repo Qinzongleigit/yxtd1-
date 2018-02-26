@@ -39,13 +39,21 @@
 @implementation DetailFansAndFocusCellFrame
 
 
-//-(void)setModel:(DetailFansAndFocusModel *)model
-//{
-//    
-//    _model=model;
-//    
-//  
-//}
+-(void)setModel:(DetailFansAndFocusModel *)model
+{
+    
+    _model=model;
+
+    //nameF昵称
+    nameLabelX = CGRectGetMaxX(self.iconF) + padding;
+    CGSize nameLabelSize = [self sizeWithString:model.nickname font:nameFont maxSize:CGSizeMake(MAXFLOAT,MAXFLOAT)];
+    CGFloat nameLabelY = iconViewY;
+    CGFloat nameLabelWidth = nameLabelSize.width;
+    CGFloat nameLabelHeight = nameLabelSize.height;
+    self.nameF = CGRectMake(nameLabelX, nameLabelY, nameLabelWidth, nameLabelHeight);
+    
+  
+}
 
 
 -(void)setModelGroup:(DetailArrayModel *)modelGroup{
@@ -59,22 +67,12 @@
     CGFloat iconViewHeight = 40;
     self.iconF = CGRectMake(iconViewX, iconViewY, iconViewWidth, iconViewHeight);
     
-    
-    
-    //nameF昵称
-    nameLabelX = CGRectGetMaxX(self.iconF) + padding;
-    CGSize nameLabelSize = [self sizeWithString:modelGroup.comment_content font:nameFont maxSize:CGSizeMake(MAXFLOAT,MAXFLOAT)];
-    CGFloat nameLabelY = iconViewY;
-    CGFloat nameLabelWidth = nameLabelSize.width;
-    CGFloat nameLabelHeight = nameLabelSize.height;
-    self.nameF = CGRectMake(nameLabelX, nameLabelY, nameLabelWidth, nameLabelHeight);
-    
-    
+ 
     
     
     //shuoshuotextF正文
     CGFloat shuoshuotextLabelX = nameLabelX;
-    CGFloat shuoshuotextLabelY = CGRectGetMaxY(self.nameF) + padding/2;
+    CGFloat shuoshuotextLabelY = CGRectGetMaxY(self.iconF) + padding/2;
     CGSize shuoshuotextLabelSize = [self sizeWithString:self.modelGroup.addres font:shuoshuotextFont maxSize:CGSizeMake(screenWidth - nameLabelX - padding, MAXFLOAT)];
     CGFloat shuoshuotextLabelWidth = shuoshuotextLabelSize.width;
     CGFloat shuoshuotextLabelHeight = shuoshuotextLabelSize.height;
