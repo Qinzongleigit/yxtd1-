@@ -38,26 +38,19 @@
 @property (strong,nonatomic)NSMutableArray *replysView;
 @property (weak,nonatomic)UILabel *nameLabel;
 @property (weak,nonatomic)UILabel *timeLabel;
+@property (weak,nonatomic)UIView*lineH;
+@property (weak,nonatomic)UILabel *cityLabel;
 @property (weak,nonatomic)UILabel *shuoshuotextLabel;
 @property (weak,nonatomic)UIImageView *replyBackgroundView;
 
+@property (weak,nonatomic)UIImageView *mapLogoView;
 
+@property (weak,nonatomic)UIView*lineView;
 
-//@property (nonatomic,strong) UIView*cellBgView;
-//
-//@property (nonatomic,strong) UIImageView*iconImageView;
-//@property (nonatomic,strong) UILabel*nameLabel;
-//@property (nonatomic,strong) UIButton*button;
-//@property (nonatomic,strong) UIImageView*mapImageView;
-//@property (nonatomic,strong) UILabel*cityLabel;
-//@property (nonatomic,strong) UIView*lineView;
-//@property (nonatomic,strong) UILabel*timeLabel;
-//@property (nonatomic,strong) UILabel*contentLable;
-//
-//
-//@property (nonatomic,strong) UIView*bgCommentView;
-//
-//@property (nonatomic,strong) UIButton*dianzanBt;
+@property (weak,nonatomic)UILabel *dianzanNumberLabel;
+
+@property (nonatomic,strong) UIButton*dianzanBt;
+
 //
 //@property (nonatomic,strong) UILabel*dianzanNumber;
 //
@@ -129,6 +122,35 @@
         self.nameLabel = nameLabel;
         
         
+        //创建时间戳
+        UILabel *timeLabel = [[UILabel alloc]init];
+        timeLabel.font = timeFont;
+        timeLabel.textColor = [UIColor colorWithRed:152/255.0 green:152/255.0 blue:152/255.0 alpha:1];
+        [self.contentView addSubview:timeLabel];
+        self.timeLabel = timeLabel;
+        
+        //发布时间前竖线
+        UIView*lineH=[[UIView alloc] init];
+        lineH.backgroundColor=[UIColor lightGrayColor];
+        [self.contentView addSubview:lineH];
+        self.lineH=lineH;
+        
+        
+        //城市定位
+        UILabel *cityLabel = [[UILabel alloc]init];
+        cityLabel.font = timeFont;
+        cityLabel.textColor = [UIColor colorWithRed:152/255.0 green:152/255.0 blue:152/255.0 alpha:1];
+        cityLabel.textAlignment=NSTextAlignmentRight;
+        [self.contentView addSubview:cityLabel];
+        self.cityLabel = cityLabel;
+        
+        //地图标志
+        UIImageView*mapLogoView=[[UIImageView alloc] init];
+        mapLogoView.image=[UIImage imageNamed:@"gray_map_Image"];
+        [self.contentView addSubview:mapLogoView];
+        self.mapLogoView=mapLogoView;
+        
+        
         
         //创建正文
         UILabel *shuoshuotextLabel = [[UILabel alloc]init];
@@ -138,12 +160,7 @@
         [self.contentView addSubview:shuoshuotextLabel];
         self.shuoshuotextLabel = shuoshuotextLabel;
         
-        //创建时间戳
-        UILabel *timeLabel = [[UILabel alloc]init];
-        timeLabel.font = timeFont;
-        timeLabel.textColor = [UIColor colorWithRed:152/255.0 green:152/255.0 blue:152/255.0 alpha:1];
-        [self.contentView addSubview:timeLabel];
-        self.timeLabel = timeLabel;
+       
         
         //创建评论按钮
         UIButton *replyButton = [UIButton buttonWithType:0];
@@ -156,6 +173,30 @@
         replyBackgroundView.backgroundColor = [UIColor colorWithRed:242/255.0 green:242/255.0 blue:242/255.0 alpha:1.0];
         [self.contentView addSubview:replyBackgroundView];
         self.replyBackgroundView = replyBackgroundView;
+        
+        
+        //点赞lan竖线
+        UIView*lineView=[[UIView alloc] init];
+        lineView.backgroundColor=[UIColor lightGrayColor];
+        [self.contentView addSubview:lineView];
+        self.lineView=lineView;
+        
+        
+        UILabel *dianzanNumberLabel = [[UILabel alloc]init];
+        dianzanNumberLabel.font = timeFont;
+        dianzanNumberLabel.textColor = [UIColor colorWithRed:152/255.0 green:152/255.0 blue:152/255.0 alpha:1];
+        [self.contentView addSubview:dianzanNumberLabel];
+        self.dianzanNumberLabel = dianzanNumberLabel;
+        
+        //点赞图标
+         UIButton*dianzanBt =[UIButton buttonWithType:UIButtonTypeCustom];
+          dianzanBt.backgroundColor=[UIColor clearColor];
+ 
+       [dianzanBt addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+         [dianzanBt setBackgroundImage:[UIImage imageNamed:@"yidianzan_Image"] forState:UIControlStateNormal];
+        [self.contentView addSubview:dianzanBt];
+        self.dianzanBt=dianzanBt;
+     
         
     }
     
@@ -177,15 +218,17 @@
     
     _nameLabel.text=model.nickname;
     
+    _cityLabel.text=modelGroup.addres;
+    
     
     //创建正文
-    self.shuoshuotextLabel.text = modelGroup.addres;
+    self.shuoshuotextLabel.text = modelGroup.content[0];
     
     //创建配图
     for (int i = 0; i < [modelGroup.img_url count]; i++) {
         
         UIImageView *pictureView = [[UIImageView alloc]init];
-        pictureView.backgroundColor=[UIColor redColor];
+        pictureView.backgroundColor=[UIColor clearColor];
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapImageView:)];
         [pictureView addGestureRecognizer:tap];
         pictureView.tag = imageTag + i;
@@ -224,6 +267,9 @@
     }
     
     
+    self.dianzanNumberLabel.text=[NSString stringWithFormat:@"%@",modelGroup.nice_num];
+    
+    
     
 }
 
@@ -252,6 +298,12 @@
     
     self.nameLabel.frame = self.cellFrame.nameF;
     
+    self.lineH.frame=self.cellFrame.lineF;
+    
+    self.cityLabel.frame=self.cellFrame.cityF;
+    
+    self.mapLogoView.frame=self.cellFrame.mapLogoF;
+    
     self.shuoshuotextLabel.frame = self.cellFrame.shuoshuotextF;
     
     for (int i = 0; i < [self.cellFrame.picturesF count]; i++) {
@@ -264,7 +316,12 @@
     
     self.replyButton.frame = self.cellFrame.replyF;
     
-    self.replyBackgroundView.frame = self.cellFrame.replyBackgroundF;
+     self.replyBackgroundView.frame = self.cellFrame.replyBackgroundF;
+    
+    self.lineView.frame=self.cellFrame.lineViewF;
+    self.dianzanNumberLabel.frame=self.cellFrame.dianzanNumberF;
+    
+    self.dianzanBt.frame=self.cellFrame.dianzanLogoF;
 }
 
 -(void)setCellFrame:(DetailFansAndFocusCellFrame *)cellFrame{

@@ -26,9 +26,7 @@
 
 @interface DetailFansAndFocusCellFrame ()
 {
-    
-    CGFloat iconViewY;
-    
+
     CGFloat nameLabelX;
 }
 
@@ -44,10 +42,8 @@
     
     _model=model;
 
-    //nameF昵称
-    nameLabelX = CGRectGetMaxX(self.iconF) + padding;
     CGSize nameLabelSize = [self sizeWithString:model.nickname font:nameFont maxSize:CGSizeMake(MAXFLOAT,MAXFLOAT)];
-    CGFloat nameLabelY = iconViewY;
+    CGFloat nameLabelY = padding;
     CGFloat nameLabelWidth = nameLabelSize.width;
     CGFloat nameLabelHeight = nameLabelSize.height;
     self.nameF = CGRectMake(nameLabelX, nameLabelY, nameLabelWidth, nameLabelHeight);
@@ -55,25 +51,54 @@
   
 }
 
-
+//先执行DetailArrayModel后执行DetailFansAndFocusModel，所以位置设置要多注意
 -(void)setModelGroup:(DetailArrayModel *)modelGroup{
     
     _modelGroup=modelGroup;
     
     //iconF头像
     CGFloat iconViewX = padding;
-    iconViewY = padding;
+    CGFloat iconViewY = padding;
     CGFloat iconViewWidth = 40;
     CGFloat iconViewHeight = 40;
     self.iconF = CGRectMake(iconViewX, iconViewY, iconViewWidth, iconViewHeight);
     
- 
+    //nameF昵称
+    //因为先执行所以在这里先把位置赋值进行传递
+    nameLabelX = CGRectGetMaxX(self.iconF) + padding;
     
     
+    //时间戳
+    CGFloat timeLabelWidth = 50;
+    CGFloat timeLabelHeight = 15;
+    CGFloat timeLabelX = KscreenW - padding - timeLabelWidth;
+    CGFloat timeLabelY = iconViewY;
+    self.timeF = CGRectMake(timeLabelX, timeLabelY, timeLabelWidth, timeLabelHeight);
+    
+    //发布时间前面竖线
+    CGFloat lineHeight = 11;
+    CGFloat lineY = padding+2;
+    CGFloat lineX=timeLabelX-padding/2;
+    self.lineF=CGRectMake(lineX,lineY, 1,lineHeight);
+    
+    //城市定位
+    CGFloat cityLabelWidth = 25;
+    CGFloat cityLabelHeight = 15;
+    CGFloat cityX=lineX-padding/2-cityLabelWidth;
+    self.cityF=CGRectMake(cityX, iconViewY, cityLabelWidth, cityLabelHeight);
+    
+    //地图标志
+    CGFloat mapLogoWidth = 10;
+    CGFloat mapLogoHeight = 11;
+    CGFloat mapLogoX=cityX-mapLogoWidth;
+     CGFloat mapLogoY =lineY ;
+    self.mapLogoF=CGRectMake(mapLogoX, mapLogoY, mapLogoWidth, mapLogoHeight);
+    
+
     //shuoshuotextF正文
     CGFloat shuoshuotextLabelX = nameLabelX;
-    CGFloat shuoshuotextLabelY = CGRectGetMaxY(self.iconF) + padding/2;
-    CGSize shuoshuotextLabelSize = [self sizeWithString:self.modelGroup.addres font:shuoshuotextFont maxSize:CGSizeMake(screenWidth - nameLabelX - padding, MAXFLOAT)];
+    CGFloat shuoshuotextLabelY = padding*3;
+    CGSize shuoshuotextLabelSize = [self sizeWithString:self.modelGroup.content[0] font:shuoshuotextFont maxSize:CGSizeMake(screenWidth - nameLabelX - padding, MAXFLOAT)];
     CGFloat shuoshuotextLabelWidth = shuoshuotextLabelSize.width;
     CGFloat shuoshuotextLabelHeight = shuoshuotextLabelSize.height;
     self.shuoshuotextF = CGRectMake(shuoshuotextLabelX, shuoshuotextLabelY, shuoshuotextLabelWidth, shuoshuotextLabelHeight);
@@ -105,14 +130,7 @@
     {
         self.cellHeight = CGRectGetMaxY(self.shuoshuotextF) + padding;
     }
-    
-    //时间戳
-    CGFloat timeLabelWidth = 50;
-    CGFloat timeLabelHeight = 15;
-    CGFloat timeLabelX = nameLabelX;
-    CGFloat timeLabelY = self.cellHeight;
-    self.timeF = CGRectMake(timeLabelX, timeLabelY, timeLabelWidth, timeLabelHeight);
-    
+
     
     //评论按钮
     CGFloat replyButtonWidth = 35;
@@ -146,6 +164,43 @@
         self.replyBackgroundF = CGRectMake(nameLabelX, CGRectGetMaxY(self.replyF) + padding, replyBackgroundWidth, replyBackgroundHeight);
     }
     
+    //点赞栏竖线
+    self.cellHeight = CGRectGetMaxY(self.replyBackgroundF) + padding*2;
+    CGFloat lineViewY = self.cellHeight;
+    CGFloat lineViewX = KscreenW/2;
+    CGFloat lineViewHeight = 20;
+    self.lineViewF=CGRectMake(lineViewX, lineViewY, 1, lineViewHeight);
+    
+     self.cellHeight = CGRectGetMaxY(self.lineViewF) + padding;
+    
+    
+    //点赞人数
+    CGFloat dianzanNumberWidth = 40;
+    CGFloat dianzanNumberHeight = 20;
+    CGFloat dianzanNumberY = lineViewY;
+    CGFloat dianzanNumberX = lineViewX-SYRealValueWidth(66)-dianzanNumberWidth;
+self.dianzanNumberF=CGRectMake(dianzanNumberX, dianzanNumberY, dianzanNumberWidth, dianzanNumberHeight);
+    
+    //点赞图标
+    CGFloat dianzanLogoWidth = 16;
+    CGFloat dianzanLogoHeight = 16; self.dianzanLogoF=CGRectMake(CGRectGetMinX(self.dianzanNumberF)-dianzanNumberWidth, dianzanNumberY, dianzanLogoWidth, dianzanLogoHeight);
+    
+    
+    //评论图标
+    CGFloat commentImageWidth = 15;
+    CGFloat commentImageHeigth = 13;
+self.commentImageF=CGRectMake(CGRectGetMaxX(self.lineViewF)+SYRealValueWidth(66), dianzanNumberY, commentImageWidth, commentImageHeigth);
+    
+    //评论人数
+    CGFloat commentNumberWidth = 40;
+    CGFloat commentNumberHeight = 20; self.commentNumberF=CGRectMake(CGRectGetMaxX(self.commentImageF)+10, dianzanNumberY, commentNumberWidth, commentNumberHeight);
+    
+    
+    
+    
+    
+    
+    self.cellHeight = CGRectGetMaxY(self.lineViewF) + padding;
     
 }
 

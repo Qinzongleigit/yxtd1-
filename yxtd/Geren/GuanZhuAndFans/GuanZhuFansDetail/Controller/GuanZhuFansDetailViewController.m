@@ -211,8 +211,10 @@
                 
                 DetailFansAndFocusCellFrame *familyGroupFrame = [[DetailFansAndFocusCellFrame alloc]init];
                 
-                   familyGroupFrame.modelGroup =model;
+               
+                    familyGroupFrame.modelGroup =model;
                 familyGroupFrame.model=self.userHeaderModel;
+
                 
                 [models addObject:familyGroupFrame];
                 
